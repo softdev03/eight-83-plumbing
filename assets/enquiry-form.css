@@ -22,7 +22,8 @@
     margin: 0px;
 }
 .shopify-section--enquiry-form .image {
-    line-height: 0;;
+    line-height: 0;
+    max-width: 500px;
 }
 .shopify-section--enquiry-form .image img {
     width: 100%;
