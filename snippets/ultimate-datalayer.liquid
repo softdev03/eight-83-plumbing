@@ -1,0 +1,53 @@
+<script>  
+/**
+ * Added by: An Agency
+ * Note: Please do not remove, it's essential for tracking.
+ */
+document.addEventListener('click', function(event) {
+  // Look for the nearest <a> element that might trigger an external application or specific div with phone number click
+  let target = event.target.closest('a[href^="tel:"], a[href^="mailto:"], #PCAB3_DISPLAY');
+
+  if (target) {
+    // Determine the type of click event
+    let isPhoneLink = target.tagName === 'A' && target.href.startsWith('tel:');
+    let isEmailLink = target.tagName === 'A' && target.href.startsWith('mailto:');
+    let isDivPhoneClick = target.id === 'PCAB3_DISPLAY';
+
+    let contactType, contactValue;
+
+    // Handle phone link clicks
+    if (isPhoneLink) {
+      contactType = 'telephone';
+      contactValue = target.href.replace('tel:', '');
+    } 
+    // Handle email link clicks
+    else if (isEmailLink) {
+      contactType = 'email';
+      contactValue = target.href.replace('mailto:', '');
+    }
+    // Handle clicks on the div with phone number
+    else if (isDivPhoneClick) {
+      contactType = 'telephone';
+      contactValue = 'Direct phone button';  // As this doesn't have a 'tel:' link, a description is used
+    }
+
+    // Push the event data to the dataLayer
+    if (contactType) {
+      dataLayer.push({
+        event: contactType === 'telephone' ? 'phone_number_click' : 'email_link_click',
+        contact_type: contactType,
+        contact_value: contactValue,
+        link_href: target.href || 'N/A',
+        link_text: target.innerText || target.textContent || '',
+        link_classes: target.getAttribute('class') || '',
+        link_id: target.getAttribute('id') || '',
+        page_location: window.location.href,
+        timestamp: new Date().toISOString()
+      });
+
+      // Log to console for debugging
+      console.log(`Event detected: ${contactType}`, contactValue);
+    }
+  }
+});
+</script>

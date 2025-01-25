@@ -1,0 +1,557 @@
+{%- style -%}
+.promotion-grid {
+	width: 100%;
+	display: block;
+    {% if section.settings.section_size == 'full-width' %}
+    	padding-left:15px;
+        padding-right:15px;
+    {% endif %}
+}
+
+.section-{{ section.id }}.promotion-grid {
+    padding-top:{{ section.settings.padding_top }}px;
+    padding-bottom:{{ section.settings.padding_bottom }}px;
+}
+  
+.section-container {
+	width: 100%;
+	max-width: 1400px;
+    padding: 0 15px;
+	margin: 0 auto;
+	display: block;
+}
+  
+.promotion-grid-row {
+	margin-left: -15px;
+	margin-right: -15px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.promotion-grid-col {
+	width: 50%;
+	float: left;
+	padding: 0 15px;
+    margin: 15px 0;
+}
+
+.promotion-grid-block {
+	width: 100%;
+	display: block;
+	height: 100%;
+	position: relative;
+}
+
+.promotion-grid-image svg.my-custom-class {
+	background: #333;
+}
+
+.promotion-grid-image {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.promotion-grid-image * {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.promotion-grid-detail {
+	position: absolute;
+	left: 10px;
+	right: 10px;
+	top: 10px;
+	bottom: 10px;
+	display: flex;
+    padding: 15px;	
+}  
+
+.promotion-detail-vertical-align-middle {
+    align-items: center;
+}
+  
+.promotion-detail-horizontal-align-center {
+    justify-content: center;
+    text-align: center;
+} 
+  
+.promotion-detail-vertical-align-top {
+    align-items: flex-start;
+}
+  
+.promotion-detail-horizontal-align-left {
+    justify-content: flex-start;
+    text-align: left;
+} 
+  
+.promotion-detail-vertical-align-bottom {
+    align-items: flex-end;
+}
+  
+.promotion-detail-horizontal-align-right {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.promotion-detail__heading.h2 {
+    font-size: 24px;
+    line-height: 34px;
+}
+
+.promotion-detail__heading.h1 {
+    font-size: 36px;
+    line-height: 46px;
+}
+
+.promotion-detail__heading.h0 {
+    font-size: 58px;
+    line-height: 68px;
+} 
+  
+.promotion-detail__text-subtitle * {
+    font-size: 22px;
+    line-height: 30px;
+}  
+
+.promotion-grid-detail-inner .button {
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 20px;
+    display: inline-block;
+    margin: 5px 10px;
+}  
+
+.promotion-detail-buttons {
+	margin-top: 15px;
+	display: inline-block;
+	margin-left: -10px;
+	margin-right: -10px;
+}
+
+@media screen and (max-width: 749px) {
+
+.section-{{ section.id }}.promotion-grid {
+    padding-top:{{ section.settings.mobile_padding_top }}px;
+    padding-bottom:{{ section.settings.mobile_padding_bottom }}px;
+}  
+
+.promotion-grid-col {
+	width: 100%;
+}  
+  
+.promotion-detail__heading.h1 {
+    font-size: 30px;
+    line-height: 40px;
+}
+  
+.promotion-detail__heading.h0 {
+    font-size: 44px;
+    line-height: 54px;
+}
+  
+.promotion-detail__text-subtitle * {
+    font-size: 20px;
+    line-height: 28px;
+}
+   
+}    
+{%- endstyle -%} 
+
+<div class="promotion-grid section-{{ section.id }}">
+  {% if section.settings.section_size == 'container' %}
+    <div class="section-container">
+  {% endif %}
+
+      <div class="promotion-grid-row">
+          {% for block in section.blocks %}
+              <div class="promotion-grid-col">
+                  <div class="promotion-grid-block">
+            
+                      <div class="promotion-grid-image">
+                          {% if block.settings.image != blank %}
+                          <img 
+                            src="{{ block.settings.image | img_url: 'master' }}"
+                            alt="{{ block.settings.image.alt }}"
+                            width="{{ block.settings.image.width }}"
+                            height="{{ block.settings.image.height }}"
+                            >
+                          {% else %}
+                            {{ 'collection-1' | placeholder_svg_tag: 'my-custom-class' }}
+                          {% endif %}
+                      </div>
+
+                      <div class="promotion-grid-detail promotion-detail-vertical-align-{{ block.settings.text_align-vertical }} promotion-detail-horizontal-align-{{ block.settings.text_align-horizontal }}"
+                        style="{% if block.settings.enable_border != blank %}border: 1px solid {{ block.settings.border_color }};{% endif %}"
+                        >
+                            <div class="promotion-grid-detail-inner">
+                              
+                                {% if block.settings.heading != blank %}
+                                <h2
+                                    class="promotion-detail__heading {{ block.settings.heading_size }}"
+                                    style="color:{{ block.settings.heading_color }}; text-transform: {{ block.settings.heading_transform }}"
+                                >
+                                    {{ block.settings.heading }}
+                                </h2>
+                                {% endif %}
+            
+                                {% if block.settings.text != blank %}
+                                <div
+                                    class="promotion-detail__text rte promotion-detail__text-{{ block.settings.text_style }}"
+                                    style="color:{{ block.settings.text_color }}"
+                                >
+                                    {{ block.settings.text }}
+                                </div>
+                                {% endif %}
+            
+                                {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
+                                <div class="promotion-detail-buttons">
+                                      {%- if block.settings.button_label_1 != blank -%}
+                                      <a
+                                          href="{{ block.settings.button_link_1 }}"
+                                          class="button"
+                                          style="background:{{ block.settings.btn_bg_color_1 }}; color:{{ block.settings.btn_label_color_1 }};"
+                                      >
+                                          {{ block.settings.button_label_1 | escape }}
+                                      </a>
+                                      {%- endif -%}
+            
+                                      {%- if block.settings.button_label_2 != blank -%}
+                                      <a
+                                          href="{{ block.settings.button_link_2 }}"
+                                          class="button"
+                                          style="background:{{ block.settings.btn_bg_color_2 }}; color:{{ block.settings.btn_label_color_2 }};"
+                                      >
+                                          {{ block.settings.button_label_2 | escape }}
+                                      </a>
+                                      {%- endif -%}
+                                </div>
+                                {%- endif -%}
+            
+                            </div>
+                      </div>
+                    
+                  </div>
+              </div>
+          {% endfor %}
+      </div>
+      
+  {% if section.settings.section_size == 'container' %}    
+    </div>
+  {% endif %}
+</div>
+
+
+{% schema %}
+{
+"name": "Promotion grid",
+"class": "section",  
+"settings": [
+    {
+        "type": "select",
+        "id": "section_size",
+        "options": [
+            {
+                "value": "container",
+                "label": "Container"
+            },
+            {
+                "value": "full-width",
+                "label": "Full width"
+            }
+        ],
+        "default": "full-width",
+        "label": "Section size"
+    },
+    {
+        "type": "header",
+        "content": "Desktop space"
+    },
+    {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 0
+    },
+    {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 0
+    },
+    {
+        "type": "header",
+        "content": "Mobile space"
+    },
+    {
+        "type": "range",
+        "id": "mobile_padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 0
+    },
+    {
+        "type": "range",
+        "id": "mobile_padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 0
+    }
+  
+],
+"blocks": [
+    {
+        "type": "collection",
+        "name": "Collection",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "header",
+                "content": "Heading"
+            },
+            {
+                "type": "inline_richtext",
+                "id": "heading",
+                "default": "Promotion grid",
+                "label": "Heading"
+            },
+            {
+                "type": "select",
+                "id": "heading_size",
+                "options": [
+                    {
+                        "value": "h2",
+                        "label": "Small"
+                    },
+                    {
+                        "value": "h1",
+                        "label": "Medium"
+                    },
+                    {
+                        "value": "h0",
+                        "label": "Large"
+                    }
+                ],
+                "default": "h1",
+                "label": "Heading size"
+            },
+            {
+                "type": "select",
+                "id": "heading_transform",
+                "options": [
+                    {
+                        "value": "uppercase",
+                        "label": "Uppercase"
+                    },
+                    {
+                        "value": "lowercase",
+                        "label": "Lowercase"
+                    },
+                    {
+                        "value": "capitalize",
+                        "label": "Capitalize"
+                    },
+                    {
+                        "value": "",
+                        "label": "Auto"
+                    }
+                ],
+                "default": "",
+                "label": "Heading transform"
+            },
+            {
+                "type": "color",
+                "id": "heading_color",
+                "label": "Heading color",
+                "default": "#fff"
+            },
+            {
+                "type": "header",
+                "content": "Content"
+            },
+            {
+                "type": "richtext",
+                "id": "text",
+                "default": "<p>Lorem Ipsum has been the industry's standard dummy text.</p>",
+                "label": "Text"
+            },
+            {
+                "type": "select",
+                "id": "text_style",
+                "options": [
+                    {
+                        "value": "body",
+                        "label": "Body"
+                    },
+                    {
+                        "value": "subtitle",
+                        "label": "Subtitle"
+                    }
+                ],
+                "default": "body",
+                "label": "body"
+            },
+            {
+                "type": "color",
+                "id": "text_color",
+                "label": "Text color",
+                "default": "#fff"
+            },
+            {
+                "type": "header",
+                "content": "Button 1"
+            },
+            {
+                "type": "text",
+                "id": "button_label_1",
+                "default": "Button label",
+                "label": "Button label",
+                "info": "Leave the label blank to hide the button."
+            },
+            {
+                "type": "url",
+                "id": "button_link_1",
+                "label": "Button link"
+            },
+            {
+                "type": "color",
+                "id": "btn_bg_color_1",
+                "label": "Button background color",
+                "default": "#fff"
+            },
+            {
+                "type": "color",
+                "id": "btn_label_color_1",
+                "label": "Button label color",
+                "default": "#000"
+            },
+            {
+                "type": "header",
+                "content": "Button 2"
+            },
+            {
+                "type": "text",
+                "id": "button_label_2",
+                "default": "Button label",
+                "label": "Button label",
+                "info": "Leave the label blank to hide the button."
+            },
+            {
+                "type": "url",
+                "id": "button_link_2",
+                "label": "Button link"
+            },
+            {
+                "type": "color",
+                "id": "btn_bg_color_2",
+                "label": "Button background color",
+                "default": "#fff"
+            },
+            {
+                "type": "color",
+                "id": "btn_label_color_2",
+                "label": "Button label color",
+                "default": "#000"
+            },
+            {
+                "type": "header",
+                "content": "Others"
+            },
+            {
+                "type": "select",
+                "id": "text_align-horizontal",
+                "options": [
+                    {
+                        "value": "left",
+                        "label": "Left"
+                    },
+                    {
+                        "value": "center",
+                        "label": "Center"
+                    },
+                    {
+                        "value": "right",
+                        "label": "Right"
+                    }
+                ],
+                "default": "center",
+                "label": "Horizontal text alignment"
+            },
+            {
+                "type": "select",
+                "id": "text_align-vertical",
+                "options": [
+                    {
+                        "value": "top",
+                        "label": "Top"
+                    },
+                    {
+                        "value": "middle",
+                        "label": "Middle"
+                    },
+                    {
+                        "value": "bottom",
+                        "label": "Bottom"
+                    }
+                ],
+                "default": "middle",
+                "label": "Vertical text alignment"
+            },
+            {
+                "type": "checkbox",
+                "id": "enable_border",
+                "label": "Enable boder",
+                "default": true
+            },
+            {
+                "type": "color",
+                "id": "border_color",
+                "label": "Boder color",
+                "default": "#fff"
+            }
+          
+        ]
+    }         
+],
+"presets": [
+    {
+        "name": "Promotion grid",
+        "blocks": [
+            {
+                "type": "collection"
+            },
+            {
+                "type": "collection"
+            }
+        ]
+    }
+] 
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

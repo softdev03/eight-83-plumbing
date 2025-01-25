@@ -1,0 +1,52 @@
+.shopify-section--support-information .shopify-support-information {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.shopify-section--support-information .support-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.shopify-section--support-information .heading {
+    font-size: 90px;
+    color: #0165A0;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+.shopify-section--support-information .text {
+    font-size: 20px;
+    color: #00446C;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 1100px) {
+    .shopify-section--support-information .heading {
+        font-size: 80px;
+    }
+    .shopify-section--support-information .text {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width: 989px) {
+    .shopify-section--support-information .heading {
+        font-size: 60px;
+    }
+    .shopify-section--support-information .text {
+        font-size: 13px;
+    }
+}
+@media screen and (max-width: 749px) {
+    .shopify-section--support-information .shopify-support-information {
+        justify-content: center;
+        column-gap: 30px;
+        row-gap: 15px;
+    }
+    .shopify-section--support-information .heading {
+        font-size: 40px;
+        margin-bottom: 5px;
+    }
+    .shopify-section--support-information .text {
+        font-size: 10px;
+    }
+}

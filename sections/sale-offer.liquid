@@ -1,0 +1,143 @@
+{{ 'sale-offer.css' |  asset_url |  stylesheet_tag }}
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+  }
+  #shopify-section-{{ section.id }} .shopify-sale-offer {
+    padding-top: {{ section.settings.desktop_padding_top }}px;
+    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+    max-width: {{ section.settings.section_width }}px;
+  }
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .shopify-sale-offer {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="shopify-sale-offer text-upper-container">
+  <div class="image">
+    <img src="{{ section.settings.image |  img_url: 'master' }}" alt="Image" width="auto" height="auto">
+  </div>
+  <div class="online-offer text-white-wrapper">
+    <h1 class="big-text line-height-1_1 font-800 m-0">{{ section.settings.online_offer_text }}</h1>
+    <p class="small-text line-height-1_1 font-800 m-0">{{ section.settings.online_offer_text }}</p>
+  </div>
+  <div class="cash_and_link-wrapper">
+    <div class="cash-back text-white-wrapper">
+      <p class="price line-height-1_1 font-800 m-0">{{ section.settings.price_text }}</p>
+      <div class="cash-text">
+        <p class="back-text m-0 line-height-1_1 font-800">{{ section.settings.cash_back_text }}</p>
+        <p class="purpose m-0 line-height-1_1 font-800">{{ section.settings.purpose_text }}</p>
+      </div>
+    </div>
+    <a href="{{ section.settings.link }}" class="link font-800 line-height-1_1">{{ section.settings.link_text }}</a>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Sale Offer",
+    "tag": "section",
+    "class": "shopify-section--sale-offer",
+    "settings": [
+      {
+        "type": "number",
+        "id": "section_width",
+        "label": "Section Width",
+        "default": 1200
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#000000"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "online_offer_text",
+        "label": "Online Offer Text"
+      },
+      {
+        "type": "text",
+        "id": "price_text",
+        "label": "Price Text"
+      },
+      {
+        "type": "text",
+        "id": "cash_back_text",
+        "label": "Cash Back Text"
+      },
+      {
+        "type": "text",
+        "id": "purpose_text",
+        "label": "Purpose Text"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Link"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Link Text"
+      },
+      {
+        "type": "header",
+        "content": "Padding Settings"
+      },
+      {
+        "type": "range",
+        "id": "desktop_padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Desktop Padding Top",
+        "default": 50
+      },
+      {
+        "type": "range",
+        "id": "desktop_padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Desktop Padding Bottom",
+        "default": 50
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Mobile Padding Top",
+        "default": 50
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Mobile Padding Bottom",
+        "default": 50
+      }
+    ],
+    "presets": [
+      {
+        "name": "Sale Offer",
+        "settings": {
+        }
+      }
+    ]
+  }
+{% endschema %}

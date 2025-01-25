@@ -1,0 +1,148 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "rich_text_i4xpbj": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_FywAft": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Story",
+            "heading_size": "h1"
+          }
+        },
+        "text_J6yRnC": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Eight 83 Plumbing was founded on the principles of integrity, professionalism, and excellence. From our humble beginnings, we have grown into one of Canberra’s most reputable plumbing service providers. Our commitment to customer satisfaction and quality workmanship has been the cornerstone of our success. Over the years, we have built strong relationships with our clients, who trust us for our expertise and dependable service.</p><h2></h2>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_FywAft",
+        "text_J6yRnC"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "f74eb8e1-ab76-41a7-99b7-db954cd9a074": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--16437401452743__f74eb8e1-ab76-41a7-99b7-db954cd9a074-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Eight 83 Plumbing, Who We Are",
+            "heading_size": "h2"
+          }
+        },
+        "template--16437401452743__f74eb8e1-ab76-41a7-99b7-db954cd9a074-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Welcome to Eight 83 Plumbing, 2023 Master Plumber Association award winner and your trusted partner for all plumbing needs in Canberra. With years of experience and a dedicated team of certified professionals, we provide top-notch plumbing services tailored to meet the unique requirements of each client. Our mission is to deliver reliable, efficient, and high-quality solutions that ensure your home’s plumbing system runs smoothly.</p><p></p>",
+            "text_style": "body"
+          }
+        },
+        "template--16437401452743__f74eb8e1-ab76-41a7-99b7-db954cd9a074-button-1": {
+          "type": "button",
+          "settings": {
+            "button_label": "0437 174 202",
+            "button_link": "tel:0437 174 202",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "template--16437401452743__f74eb8e1-ab76-41a7-99b7-db954cd9a074-heading-1",
+        "template--16437401452743__f74eb8e1-ab76-41a7-99b7-db954cd9a074-text-1",
+        "template--16437401452743__f74eb8e1-ab76-41a7-99b7-db954cd9a074-button-1"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/abe0e388-64d0-4577-89b5-7107fc922258.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
+        "color_scheme": "background-1",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "f5db8489-e1dc-45ce-a16b-06c51a7d2a0b": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Fill out the form below for a callback",
+        "heading_size": "h1",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "eg_marquee_w8yh3E": {
+      "type": "eg-marquee",
+      "disabled": true,
+      "settings": {
+        "bg_color": "#002a4d",
+        "color": "",
+        "text_size": "text-sm",
+        "text_weight": "",
+        "text_transform": "",
+        "list_label": "",
+        "animation_duration": 0,
+        "marquee_direction": "left",
+        "gap": 0,
+        "pt": 0,
+        "pb": 0,
+        "mt": 0,
+        "mb": 0
+      }
+    },
+    "waves_CTHCBm": {
+      "type": "waves",
+      "settings": {
+        "wave_animation_speed": 5,
+        "wave_placement": "eg-waves-top",
+        "color": "#2baae0",
+        "blend_wave": true,
+        "wave_blend_color": "#002a4d",
+        "wave_blend_alpha": 1,
+        "wave_height_desktop": 2,
+        "wave_height_mobile": 2
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_i4xpbj",
+    "f74eb8e1-ab76-41a7-99b7-db954cd9a074",
+    "f5db8489-e1dc-45ce-a16b-06c51a7d2a0b",
+    "eg_marquee_w8yh3E",
+    "waves_CTHCBm"
+  ]
+}

@@ -1,0 +1,142 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "Canberra Wide - Local Plumbing Canberra",
+            "link": "shopify://pages/contact"
+          }
+        },
+        "announcement_Yzh7wf": {
+          "type": "announcement",
+          "settings": {
+            "text": "Unblock Drains Fast and at an affordable price",
+            "link": "shopify://pages/blocked-drain-services"
+          }
+        },
+        "announcement_YTTHUc": {
+          "type": "announcement",
+          "settings": {
+            "text": "Discount On Any Hot Water Service",
+            "link": "shopify://pages/hot-water-solutions"
+          }
+        },
+        "announcement_8FndMx": {
+          "type": "announcement",
+          "settings": {
+            "text": "Pensioner discount (conditions apply)",
+            "link": "https://eight83plumbing.com.au/"
+          }
+        },
+        "announcement_z6d94q": {
+          "type": "announcement",
+          "settings": {
+            "text": "Gungahlin Plumber",
+            "link": "https://eight83plumbing.com.au/"
+          }
+        },
+        "announcement_hxNdVg": {
+          "type": "announcement",
+          "settings": {
+            "text": "Canberra Plumber",
+            "link": "https://eight83plumbing.com.au/"
+          }
+        },
+        "announcement_ndKGJh": {
+          "type": "announcement",
+          "settings": {
+            "text": "Bathroom Renovations",
+            "link": "https://eight83plumbing.com.au/pages/bathroom-renovations"
+          }
+        },
+        "announcement_hwfA68": {
+          "type": "announcement",
+          "settings": {
+            "text": "Hot Water Systems",
+            "link": "https://eight83plumbing.com.au/pages/hot-water-solutions"
+          }
+        },
+        "announcement_BBXfKd": {
+          "type": "announcement",
+          "settings": {
+            "text": "Plumbing Maintenance",
+            "link": "https://eight83plumbing.com.au/pages/general-plumbing"
+          }
+        },
+        "announcement_rKTMiC": {
+          "type": "announcement",
+          "settings": {
+            "text": "24/7 Plumbing",
+            "link": "https://eight83plumbing.com.au/pages/emergency-plumbing"
+          }
+        }
+      },
+      "block_order": [
+        "announcement-bar-0",
+        "announcement_Yzh7wf",
+        "announcement_YTTHUc",
+        "announcement_8FndMx",
+        "announcement_z6d94q",
+        "announcement_hxNdVg",
+        "announcement_ndKGJh",
+        "announcement_hwfA68",
+        "announcement_BBXfKd",
+        "announcement_rKTMiC"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "accent-1",
+        "show_line_separator": false,
+        "show_social": true,
+        "auto_rotate": true,
+        "change_slides_speed": 3,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_position": "middle-left",
+        "menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": false,
+        "color_scheme": "accent-2",
+        "menu_color_scheme": "",
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "enable_google_rating": true,
+        "google_rating_link": "#",
+        "google_icon": "shopify://shop_images/google_icon_a8fb4188-2a6f-4f02-926f-6b8a2df3f5c5.png",
+        "google_rating_text": "5.0 Google Rating",
+        "enable_phone_number": true,
+        "phone_icon": "shopify://shop_images/phone_icon_5c3bfd2b-17fb-465b-9a8c-da248e594377.svg",
+        "real_phone_number": "0437 174 202",
+        "phone_number_to_show": "0437 174 202",
+        "mobile_logo_position": "center",
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

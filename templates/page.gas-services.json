@@ -1,0 +1,411 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_xN6XTH": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_4ee3TK": {
+          "type": "heading",
+          "settings": {
+            "heading": "Professional Gas Services in Canberra – Safe and Efficient Solutions",
+            "heading_size": "h1"
+          }
+        },
+        "text_rFJLjC": {
+          "type": "text",
+          "settings": {
+            "text": "Whether you need a new gas connection, leak detection, or appliance installation, our team of certified professionals is here to help. We provide top-notch gas services to ensure your home is safe and efficient.",
+            "text_style": "body"
+          }
+        },
+        "buttons_gQV6xc": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "0437 174 202",
+            "button_link_1": "tel:0437 174 202",
+            "button_style_secondary_1": false,
+            "button_label_2": "Book Now",
+            "button_link_2": "shopify://pages/contact",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_4ee3TK",
+        "text_rFJLjC",
+        "buttons_gQV6xc"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/457743071.jpg",
+        "image_overlay_opacity": 30,
+        "image_height": "medium",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "accent-2",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "collapsible_content_Aq49Fz": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_Bn4K3H": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gas Connections",
+            "icon": "check_mark",
+            "row_content": "<p>Proper gas connections are essential for safety and efficiency. Our experts ensure secure and compliant connections for all your gas appliances.</p><p>Need a new gas connection? Our professionals will handle it safely and efficiently.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_HJVrfn": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gas Leak Detection",
+            "icon": "check_mark",
+            "row_content": "<p>Gas leaks are dangerous and require immediate attention. We use advanced detection methods to locate and repair leaks, ensuring your home is safe.</p><p>Smell gas in your home? Contact us immediately for fast and reliable leak detection and repair.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_4TUAXj": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gas Hot Water Installation",
+            "icon": "check_mark",
+            "row_content": "<p>Enjoy reliable hot water with our professional gas hot water installation services. We install high-efficiency systems to meet your household needs.</p><p>Need a new hot water system? Our experts will install it quickly and efficiently.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_ghqiH7": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gas Line Installation",
+            "icon": "check_mark",
+            "row_content": "<p>Proper gas line installation is crucial for safety and performance. Our team installs gas lines with precision, adhering to all safety regulations.</p><p>Need a new gas line? We’ll install it safely and ensure it meets all standards.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_UYX3ni": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gas Repairs",
+            "icon": "check_mark",
+            "row_content": "<p>From minor fixes to major repairs, our technicians handle all types of gas repairs to keep your systems running smoothly.</p><p>Facing a gas issue? Our skilled team will repair it promptly and effectively.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_WFRKQp": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gas Appliance Installation",
+            "icon": "check_mark",
+            "row_content": "<p>Installing gas appliances requires expertise to ensure safety and functionality. We install all types of gas appliances, from stoves to heaters.</p><p>Need a gas appliance installed? Our professionals will set it up safely and correctly.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_PHM88d": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Natural Gas Services",
+            "icon": "check_mark",
+            "row_content": "<p>Our comprehensive natural gas services include installations, repairs, and maintenance to ensure your home is safe and efficient.</p><p>Using natural gas? We provide all the services you need to keep your system running smoothly.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_cb8Nhc": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "LPG Gas Services",
+            "icon": "check_mark",
+            "row_content": "<p>We offer specialised LPG gas services, including tank installations, refills, and system maintenance to meet your household needs.</p><p>Need LPG gas services? Our team will ensure your system is safe and efficient.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_Bn4K3H",
+        "collapsible_row_HJVrfn",
+        "collapsible_row_4TUAXj",
+        "collapsible_row_ghqiH7",
+        "collapsible_row_UYX3ni",
+        "collapsible_row_WFRKQp",
+        "collapsible_row_PHM88d",
+        "collapsible_row_cb8Nhc"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "Comprehensive Gas Services for Your Home",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "",
+        "container_color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_qygbqc": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_CJhahg": {
+          "type": "heading",
+          "settings": {
+            "heading": "Need a trustworthy gas service provider? We offer comprehensive solutions for all your gas needs. <a href=\"tel:0437 174 202\" title=\"tel:0437 174 202\">0437 174 202</a>",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_CJhahg"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 44
+      }
+    },
+    "image_with_text_AB3HbP": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_hMKE7T": {
+          "type": "heading",
+          "settings": {
+            "heading": "Why Canberra Trusts Us for Gas Services",
+            "heading_size": "h2"
+          }
+        },
+        "text_AMRqdi": {
+          "type": "text",
+          "settings": {
+            "text": "<p>With years of experience, advanced equipment, and a commitment to safety and customer satisfaction, we are the top choice for gas services in Canberra. Our licensed technicians provide prompt and reliable service, ensuring your home is safe and efficient.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_hMKE7T",
+        "text_AMRqdi"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/457743071.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "contact_form_eyMJ8f": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Fill out the form below or call us directly at <a href=\"tel:0437 174 202\" title=\"tel:0437 174 202\">0437 174 202</a>. Our team is ready to provide you with the best gas services in Canberra.",
+        "heading_size": "h2",
+        "color_scheme": "",
+        "padding_top": 16,
+        "padding_bottom": 36
+      }
+    },
+    "eg_testimonials_2_a4Tg9q": {
+      "type": "eg-testimonials-2",
+      "blocks": {
+        "testimonial_tpKHh4": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "five",
+            "title": "Your products are amazing!",
+            "text": "<p>I have been using your products for all of this time and i simply love them. Keep up the good work.</p>",
+            "author_name": ""
+          }
+        },
+        "testimonial_zhBFdY": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "five",
+            "title": "PRV at the water meter",
+            "text": "<p>Brilliant work by Daniel, we received a detailed quote and the work was done 2 days later. Super attentive, he let us know what was required. He also took pictures of all the work he did! Best plumber we have had over at our place by a mile! – Robert Avell., Canberra</p>",
+            "author_name": ""
+          }
+        },
+        "testimonial_dYWAnr": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "five",
+            "title": "Toilet repair",
+            "text": "<p>\"Daniel was professional, friendly and experienced. He proactively fixed other issues to save money in the long run, and went above what I expected from a plumber attending a rental. Really glad my agent switched to eight 83, I will be recommending him and the team from now on.\" – David Jelfs-Smith., Canberra</p>",
+            "author_name": ""
+          }
+        },
+        "testimonial_dCCLnK": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "five",
+            "title": "HIGHLY RECOMMEND",
+            "text": "<p>\"I was given Daniel's number on recommendation and was immediately impressed by his professionalism, high work standards, and 100% transparency. His plumbing service is (what seems old fashioned these days) customer centric, and he was genuinely concerned about the outcome of the work that needed doing. It's hard to find honest, hard working, experienced, friendly and reasonable tradies - Daniel delivered all of that and will be the the only plumber I will use and recommend in this city. My only gripe is that my 6-year-old daughter is now in love with him and asking me when he's coming back to fix more stuff... lol.  Thank you, Daniel!\" – Damien Slingsby., Canberra</p>",
+            "author_name": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_tpKHh4",
+        "testimonial_zhBFdY",
+        "testimonial_dYWAnr",
+        "testimonial_dCCLnK"
+      ],
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "section_size": "container",
+        "testimonial_style": "style-1",
+        "heading": "\"What Our Clients Say About Us\"",
+        "heading_size": "h1",
+        "heading_transform": "",
+        "heading_color": "#000000",
+        "sub_heading": "",
+        "sub_heading_size": "body",
+        "sub_heading_transform": "",
+        "sub_heading_color": "#000000",
+        "header-alignment": "center",
+        "show_slides": 3,
+        "detail_alignment": "center",
+        "bg_color": "#ffffff",
+        "border_color": "#cccccc",
+        "text_color": "#000000",
+        "star_color": "#f0cf4a",
+        "arrows_color": "#000000",
+        "title_size": "h2",
+        "title_transform": "",
+        "text_style": "body",
+        "button_label": "",
+        "button_link": "",
+        "btn_bg_color": "#000000",
+        "btn_label_color": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 20,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 20
+      }
+    },
+    "image_banner_t9VViN": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_fQeNmz": {
+          "type": "heading",
+          "settings": {
+            "heading": "Had bad experiences with other gas service providers? Our reliable and professional team guarantees timely and effective solutions.",
+            "heading_size": "h2"
+          }
+        },
+        "text_AUGCQB": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>Contact Us Today for Expert Gas Services!</strong>",
+            "text_style": "body"
+          }
+        },
+        "buttons_CfhD7C": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Call Us",
+            "button_link_1": "tel:0437 174 202",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_fQeNmz",
+        "text_AUGCQB",
+        "buttons_CfhD7C"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/402919905.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "eg_marquee_GgeDWg": {
+      "type": "eg-marquee",
+      "settings": {
+        "bg_color": "#002a4d",
+        "color": "",
+        "text_size": "text-sm",
+        "text_weight": "",
+        "text_transform": "",
+        "list_label": "",
+        "animation_duration": 0,
+        "marquee_direction": "left",
+        "gap": 0,
+        "pt": 0,
+        "pb": 0,
+        "mt": 0,
+        "mb": 0
+      }
+    },
+    "waves_HJYgLq": {
+      "type": "waves",
+      "settings": {
+        "wave_animation_speed": 5,
+        "wave_placement": "eg-waves-top",
+        "color": "#2baae0",
+        "blend_wave": true,
+        "wave_blend_color": "#002a4d",
+        "wave_blend_alpha": 1,
+        "wave_height_desktop": 15,
+        "wave_height_mobile": 5
+      }
+    }
+  },
+  "order": [
+    "image_banner_xN6XTH",
+    "main",
+    "collapsible_content_Aq49Fz",
+    "rich_text_qygbqc",
+    "image_with_text_AB3HbP",
+    "contact_form_eyMJ8f",
+    "eg_testimonials_2_a4Tg9q",
+    "image_banner_t9VViN",
+    "eg_marquee_GgeDWg",
+    "waves_HJYgLq"
+  ]
+}

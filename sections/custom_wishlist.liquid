@@ -1,0 +1,1542 @@
+{% liquid
+  assign enable_section = section.settings.enable_section 
+  assign icon_color = section.settings.icon_color 
+  assign icon_background = section.settings.icon_background 
+  assign icon_color_hover = section.settings.icon_color_hover 
+  assign icon_background_hover = section.settings.icon_background_hover 
+  assign icon_color_selected = section.settings.icon_color_selected 
+  assign icon_background_selected = section.settings.icon_background_selected 
+  assign icon_vertical_position = section.settings.icon_vertical_position 
+  assign icon_vertical_offset = section.settings.icon_vertical_offset 
+  assign icon_horizontal_position = section.settings.icon_horizontal_position 
+  assign icon_horizontal_offset = section.settings.icon_horizontal_offset 
+  
+  assign knob_side = section.settings.knob_side 
+  assign knob_position = section.settings.knob_position 
+  
+  assign knob_color = section.settings.knob_color 
+  assign knob_background = section.settings.knob_background 
+  assign knob_border = section.settings.knob_border 
+  assign knob_count_color = section.settings.knob_count_color 
+  
+  assign wishlist_heading = section.settings.wishlist_heading 
+  assign wishlist_grid = section.settings.wishlist_grid 
+  assign products_gap = section.settings.products_gap 
+  assign link_image = section.settings.link_image 
+  assign link_title = section.settings.link_title 
+  assign link_button = section.settings.link_button 
+  assign cart_page = section.settings.cart_page 
+  assign ATC_message = section.settings.ATC_message 
+  assign Show_atc = section.settings.Show_atc 
+  assign card_background = section.settings.card_background 
+  assign show_shadow = section.settings.show_shadow 
+  assign rounded_corners = section.settings.rounded_corners 
+  assign button_color = section.settings.button_color 
+  assign button_background_color = section.settings.button_background_color 
+%}
+
+<style>
+  body {
+    --icon_border: {{ icon_color }};
+    --icon_fill: {{ icon_background }};
+  }
+  #shopify-section-{{ section.id }} {
+    z-index: 222;
+    background-color: rgb(255 255 255);
+  }
+  .icon_holder {
+    position: relative;
+    isolation: isolate;
+  }
+  .section_{{ section.id }} p:empty {
+    display: none;
+  }
+  .section_{{ section.id }} * {
+    color: #212121;
+  }
+  .section_{{ section.id }} p {
+    margin-block: 1em;
+    padding: 0px;
+  }
+  .section_{{ section.id }} .hidden {
+    display: none!important;
+  }
+  .functionally_hidden {
+    display: none!important;
+  }
+  .section_{{ section.id }} {
+    position: relative;
+    padding-inline: 20px;
+    font-size: max(16px, 1em);
+  }
+  .section_{{ section.id }} [href="#wishlist"] {
+    --knob_icon_color: {{ knob_color }};
+    --knob_count_bg: {{ knob_count_color }};
+    position: fixed!important;
+    top: {{ knob_position | times:4 }}%!important;
+    {{ knob_side }}: 0px!important;
+    z-index: 222222!important;
+    place-content: center!important;
+    height: max(3em, 48px)!important;
+    width: max(3em, 48px)!important;
+    padding: 4px!important;
+    cursor: pointer!important;
+    background-color: {{ knob_background }}!important;
+    display: grid!important;
+    transition: all ease 0.3s!important;
+    box-shadow: 0px 3px 6px 0px rgb(0 0 0 / 30%);
+    border: unset!important;
+    {% if knob_side == "right" %}
+      left: unset!important;
+      border-radius: 50% 0px 0px 50%!important;
+      transform: translateX(150%)!important;
+    {% else %}
+      border-radius: 0px 50% 50% 0px!important;
+      transform: translateX(-150%)!important;
+    {% endif %}
+    {% if knob_border %}
+      border: solid 1px var(--knob_icon_color)!important;
+    {% endif %}
+    border-{{ knob_side }}: none!important;
+  }
+  .section_{{ section.id }} [href="#wishlist"].active {
+    transform: translateX(0%)!important;
+  }
+  .section_{{ section.id }} .item_count_icon {
+    position: absolute;
+    top: 8px;
+    {% if knob_side == "right" %}
+      left: 0px;
+    {% else %}
+      right: -8px;
+    {% endif %}
+    transform: translate(-3px, -50%);
+    background: var(--knob_count_bg);
+    color: white;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    font-size: max(9.6px, 0.6em);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0px;
+    margin: 0px;
+    padding: 0px;
+  }
+  .section_{{ section.id }} .wishlist_utility {
+    display: none;
+    max-width: 1170px;
+    margin-inline: auto;
+  }
+  .section_{{ section.id }} .wishlist_utility.active {
+    display: block;
+  }
+  .section_{{ section.id }} .wishlist_container_header {
+    font-size: 200%;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .section_{{ section.id }} .wishlist_control_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background-color: #fafafa;
+    padding: 10px 20px;
+    margin-bottom: 30px;
+  }
+  .section_{{ section.id }} .wishlist_control_container p {
+    margin: 0px;
+    line-height: max(1em, 16px);
+  }
+  .section_{{ section.id }} .wishlist_controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  .section_{{ section.id }} .wishlist_control {
+    place-content: center;
+    padding: 4px;
+    gap: 4px;
+    height: 35px;
+    width: 45px;
+    background-color: #ccc;
+    border: solid 1px #aaa;
+    display: flex;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all ease 0.3s;
+    flex-wrap: wrap;
+  }
+  .section_{{ section.id }} .wishlist_control > * {
+    display: block; 
+    background-color: #aaa;
+    height: calc(50% - 2px);
+  }
+  .section_{{ section.id }} .wishlist_control.group_1 > * { width: 100%;}
+  .section_{{ section.id }} .wishlist_control.group_2 > * { width: calc(50% - 3px);}
+  .section_{{ section.id }} .wishlist_control.group_3 > * { width: calc(33% - 3.3px);}
+  .section_{{ section.id }} .wishlist_control:hover {
+    opacity: 1;
+  }
+  .section_{{ section.id }} .wishlist_control.active {
+    opacity: 1;
+  }
+  
+  .wishlist_btn {
+    position: absolute!important;
+    {{ icon_vertical_position }}: {{ icon_vertical_offset }}px!important;
+    {{ icon_horizontal_position }}: {{ icon_horizontal_offset }}px!important;
+    border-radius: 50%!important;
+    z-index: 22222!important;
+    display: grid!important;
+    place-content: center!important;
+    height: max(2em, 32px)!important;
+    width: max(2em, 32px)!important;
+    padding: 4px!important;
+    cursor: pointer!important;
+    border: solid 1px var(--active_icon_border)!important;
+    background-color: var(--active_icon_fill)!important;
+    transition: all ease 0.3s;
+  }
+  .wishlist_btn svg {
+    height: 15px!important;
+    width: 15px!important;
+    position: static!important;
+  }
+  .section_{{ section.id }} .wishlist_close {
+    position: absolute;
+    right: 40px;
+    top: 10px;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+  }
+  .section_{{ section.id }} .wishlist_container {
+    max-width: 1170px;
+    margin-inline: auto;
+    gap: {{ products_gap }}px;
+    padding-bottom: 60px;
+    display: none;
+    isolation: isolate;
+  }
+  .section_{{ section.id }} .wishlist_container.col3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .section_{{ section.id }} .wishlist_container.col4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .section_{{ section.id }} .wishlist_container.col5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .section_{{ section.id }} .wishlist_container.active {
+    display: grid;
+  }
+
+  .wishlist_btn:not(.added),
+  .wishlist_btn:not([data-status="true"]) {
+    --active_icon_border: {{ icon_color }};
+    --active_icon_fill: {{ icon_background }};
+  }
+  .wishlist_btn.added,
+  .wishlist_btn[data-status="true"] {
+    --active_icon_border: {{ icon_color_selected }};
+    --active_icon_fill: {{ icon_background_selected }};
+  }
+  .wishlist_btn:hover {
+    --active_icon_border: {{ icon_color_hover }};
+    --active_icon_fill: {{ icon_background_hover }};
+  }
+  .wishlist_btn.added:hover,
+  .wishlist_btn[data-status="true"]:hover {
+    --active_icon_border: {{ icon_background_hover }};
+    --active_icon_fill: {{ icon_color_hover }};
+  }
+  
+  /* Wishlist product list styles */
+
+  .section_custom_wishlist .product_card {
+      overflow: hidden;
+      padding: 15px;
+      background-color: {{ card_background }};
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transition: all ease 0.3s;
+      overflow: hidden;
+      {% if rounded_corners %}
+        border-radius: 12px;
+      {% endif %}
+      {% if show_shadow %}
+        box-shadow: 3px 3px 12px 0px rgb(0 0 0 / 10%);
+      {% endif %}
+  }
+  .section_custom_wishlist .product_card_img {
+      display: block;
+      width: calc(100% + 30px);
+      max-width: calc(100% + 30px);
+      margin: -15px -15px 0px;
+      height: 200px;
+      object-fit: cover;
+      background-color: #eee;
+      transition: all ease 0.3s;
+  }
+  .section_custom_wishlist .product_card_img:hover {
+      transform: scale(1.02);
+  }
+  .section_custom_wishlist .product_card_title {
+      /* font-weight: 600; */
+      line-height: 1.2em;
+      margin-bottom: auto;
+      text-decoration: none;
+      margin-top: 10px;
+  }
+  .section_custom_wishlist .product_card_button_list {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+  }
+  .section_custom_wishlist .product_card_button:not(.inline) {
+      display: {% if Show_atc %}block{% else %}none{% endif %};
+      text-align: center;
+      padding: 6px 20px;
+      text-decoration: none;
+      color: {{ button_color }};
+      background-color: {{ button_background_color }};
+      cursor: pointer;
+      {% if rounded_corners %}
+        border-radius: 6px;
+      {% endif %}
+  }
+  .section_custom_wishlist .product_card_button.hidden {
+    opacity: 0!important;
+    display: inline-block!important;
+    max-width: max-content!important;
+    pointer-events: none!important;
+    visibility: hidden!important;
+    margin: 0px!important;
+  }
+  .section_custom_wishlist .product_card_button.inline {
+    color: {{ button_background_color }};
+  }
+  .section_custom_wishlist .product_card_price_container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 5px;
+      margin-bottom: auto;
+      height: 20%;
+  }
+  .section_custom_wishlist .product_card_compare_price {
+      text-decoration: line-through;
+      opacity: 0.75;
+      margin-block: 0px;
+      font-size: 80%;
+  }
+  .section_custom_wishlist .product_card_price {
+      font-weight: 600;
+      margin-block: 0px;
+      font-size: 90%;
+  }
+  .section_custom_wishlist .product_card_variant_container {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+  }
+  .section_custom_wishlist .product_card_option_name {
+      margin-block: 5px;
+      font-size: 70%;
+      line-height: 1em;
+  }
+  .section_custom_wishlist .product_card_option_set {
+      padding: 3px 7px;
+      width: clamp(33%, 110px, 100%);
+      margin-bottom: 15px;
+      border: solid 1px #bbb;
+  }
+  .section_custom_wishlist .product_card_option_set:focus-visible {
+    outline: none!important;
+    box-shadow: none!important;
+  }
+  .section_custom_wishlist .product_card_option {
+      flex: 1;
+  }
+  .section_custom_wishlist .product_form_custom_wishlist {
+      display: flex;
+      height: 100%;
+      margin: 0px;
+  }
+  .section_custom_wishlist .product_card_button {
+    font-size: 80%;
+  }
+  .section_custom_wishlist .hiding {
+    transform: scale(0);
+  }
+  .empty_icon {
+    margin-top: 50px;
+    position: relative;
+    height: max(150px, 30vh);
+    column-span: all;
+    grid-column: 1 / -1;
+  }
+  .empty_icon svg {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    height: 80%;
+    transform: translateX(-50%);
+  }
+  .empty_icon .empty_icon_text {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: min(60px, 20vw);
+    font-weight: 800;
+    margin: 0px;
+    line-height: 0px;
+    animation: bob 3s infinite both;
+  }
+
+  .section_custom_wishlist .loading_spinner {
+    display: none;
+    place-content: center;
+    margin-block: max(9rem, 150px);
+  }
+  .section_custom_wishlist .loading_spinner.active {
+    display: grid;
+  }
+  .section_custom_wishlist .loading_spinner svg {
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1.2s;
+    -webkit-animation-name: my_rotate;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    
+    -moz-transition-property: -moz-transform;
+    -moz-animation-name: my_rotate; 
+    -moz-animation-duration: 1.2s; 
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    
+    transition-property: transform;
+    animation-name: my_rotate; 
+    animation-duration: 1.2s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  
+  @-webkit-keyframes my_rotate {
+      from {-webkit-transform: rotate(0deg);}
+      to {-webkit-transform: rotate(360deg);}
+  }
+  
+  @-moz-keyframes my_rotate {
+      from {-moz-transform: rotate(0deg);}
+      to {-moz-transform: rotate(360deg);}
+  }
+  
+  @keyframes bob {
+    0% {margin-top: 0px}
+    40% {margin-top: 20px}
+    60% {margin-top: -20px}
+    100% {margin-top: 0px}
+  }
+  @keyframes my_rotate {
+      from {transform: rotate(0deg);}
+      to {transform: rotate(360deg);}
+  }
+
+  @media only screen and (max-width: 767px) {
+    .section_{{ section.id }} .wishlist_container.col3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .section_{{ section.id }} .wishlist_container.col4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .section_{{ section.id }} .wishlist_container.col5 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .section_custom_wishlist .wishlist_controls {
+      display: none;
+    }
+  }
+  .section_custom_wishlist 
+</style>
+
+<div class="section_{{ section.id }}">
+  {% if enable_section %}
+    {%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+    {%- assign pageUrlWithHost = contentForQuerystring | split:'"pageurl":"' | last | split:'"' | first |
+       replace:'\/','/' | 
+       replace:'%20',' ' | 
+       replace:'\u0026','&'
+    -%}
+    
+    <div class="jQeury_holder">
+      <script>
+        if (!window.jQuery) {
+          let script = document.createElement('script');
+          script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js';
+          document.querySelector('.jQeury_holder').appendChild(script);
+        }
+      </script>
+    </div>
+    
+    <a href="#wishlist" class="wishlist_btn" style="{% if pageUrlWithHost contains "oseid" %}transform: none!important{% endif %}">
+      <p class="item_count_icon hidden" style="{% if pageUrlWithHost contains "oseid" %}display: grid!important{% endif %}">10</p>
+      <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path fill="var(--knob_icon_color)" d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/></svg>
+    </a>
+    <div class="wishlist_utility">
+      <svg class="wishlist_close" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0,0,256,256">
+        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(6.4,6.4)"><path d="M21,24.15l-12.143,12.143l-4.15,-4.15l12.143,-12.143l-12.143,-12.143l4.15,-4.15l12.143,12.143l12.143,-12.143l4.15,4.15l-12.143,12.143l12.143,12.143l-4.15,4.15z" fill="#c7c7c7"></path><path d="M33.143,4.414l3.443,3.443l-11.436,11.436l-0.707,0.707l0.707,0.707l11.436,11.436l-3.443,3.443l-11.436,-11.436l-0.707,-0.707l-0.707,0.707l-11.436,11.436l-3.443,-3.443l11.436,-11.436l0.707,-0.707l-0.707,-0.707l-11.436,-11.436l3.443,-3.443l11.436,11.436l0.707,0.707l0.707,-0.707l11.436,-11.436M33.143,3l-12.143,12.143l-12.143,-12.143l-4.857,4.857l12.143,12.143l-12.143,12.143l4.857,4.857l12.143,-12.143l12.143,12.143l4.857,-4.857l-12.143,-12.143l12.143,-12.143l-4.857,-4.857z" fill="#000000"></path></g></g>
+      </svg>
+      <p class="wishlist_container_header">{{ wishlist_heading }}</p>
+      <div class="wishlist_control_container">
+        <p class="">Saved item(s): <span class="item_count">10</span></p>
+        <div class="wishlist_controls">
+          Display:
+          <div data-row="col3" class="wishlist_control group_1 {% if wishlist_grid == "col3" %}active{% endif %}"><div></div><div></div></div>
+          <div data-row="col4" class="wishlist_control group_2 {% if wishlist_grid == "col4" %}active{% endif %}"><div></div><div></div><div></div><div></div></div>
+          <div data-row="col5" class="wishlist_control group_3 {% if wishlist_grid == "col5" %}active{% endif %}"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        </div>
+      </div>
+      <div class="loading_spinner active">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+          <circle cx="24" cy="4" r="4" fill="#444"/>
+          <circle cx="12.19" cy="7.86" r="3.7" fill="#444"/>
+          <circle cx="5.02" cy="17.68" r="3.4" fill="#444"/>
+          <circle cx="5.02" cy="30.32" r="3.1" fill="#444"/>
+          <circle cx="12.19" cy="40.14" r="2.8" fill="#444"/>
+          <circle cx="24" cy="44" r="2.5" fill="#444"/>
+          <circle cx="35.81" cy="40.14" r="2.2" fill="#444"/>
+          <circle cx="42.98" cy="30.32" r="1.9" fill="#444"/>
+          <circle cx="42.98" cy="17.68" r="1.6" fill="#444"/>
+          <circle cx="35.81" cy="7.86" r="1.3" fill="#444"/>
+        </svg>
+      </div>
+    </div>
+    <div class="wishlist_container {{ wishlist_grid }}">
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  {% if enable_section %}
+    (function() {
+      window.addEventListener("load", ()=>{
+        let section = document.querySelector(".section_{{ section.id }}");
+        let wishlistSection = document.querySelector("#shopify-section-{{ section.id }}");
+  
+        let isWishlistOpen = false;
+        let isApplyWishlist = true;
+        let pageBody = document.querySelector("body");
+        let wishlistTrigger = section.querySelector("[href='#wishlist']");
+        let wishlistContainer = section.querySelector(".wishlist_container");
+        let wishlistUtility = section.querySelector(".wishlist_utility");
+        let wishlistClose = section.querySelector(".wishlist_close");
+        let itemCount = section.querySelector(".item_count");
+        let itemCountFloating = section.querySelector(".item_count_icon");
+        let wishlistControls = section.querySelectorAll(".wishlist_control");
+        let loadingSpinner = section.querySelector(".loading_spinner");
+        
+        let responseCount = 0;
+        let failedProducts = [];
+        let scrollAmount = 0;
+        let isMobile = false;
+        let mobileImageSizeTolerance = 50;
+        let PCImageSizeTolerance = 60;
+  
+        let savedList = readWishList();
+        itemCountFloating.innerHTML = savedList.length;
+        itemCountFloating.classList.remove("hidden");
+        wishlistTrigger.classList.add("active");
+  
+        let wishlist_container = createElement("span", ["wishlist_btn"], [], `<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path fill="var(--active_icon_border)" d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/></svg>`);
+  
+        {% if customer %}
+          // console.log("customer");
+        {% else %}
+          // console.log("Not customer");
+        {% endif %}
+  
+        {% if template.name == 'cart' %}
+          isApplyWishlist = false;
+        {% elsif template.name == 'product' %}
+          productFormFinder();
+        {% else %}
+          
+        {% endif %}
+
+        if (window.innerWidth < 800) {
+          isMobile = true;
+        }
+        
+        // =========================================================================================== Generic utility functions
+        
+        // ======================= HTML node creation
+        function createElement(tag, classList=[], childList=[], text = null) {
+          let newElem = document.createElement(tag);
+          text != null ? newElem.innerHTML = text : null;
+          classList.length > 0 ? classList.forEach(item=>newElem.classList.add(item)) : null;
+          childList.length > 0 ? childList.forEach(item=>newElem.appendChild(item)) : null;
+          return newElem;
+        }
+  
+        function linkHandle(node) {
+          let handle = null;
+          if (node && node.href && node.href.includes("/products/") && !node.href.includes("cdn") && !node.href.includes("#") && !node.href.includes("share") && !node.href.includes("mailto")) {
+            handle = node.href.split("/products/")[1].split("#")[0].split("?")[0].split("/")[0];
+          }
+          return handle;
+        }
+        
+        // ======================= Re-reading saved item list for update
+        function findItem(input) {
+          savedList = readWishList();
+          return savedList.some(item => item.toLowerCase() == input.toLowerCase());
+        }
+        
+        // ======================= Intersection observer for adding icon on dynamically loaded sections
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && entry.target.classList.contains("pseudo-section")) {
+              setTimeout(()=>{
+                sectionCheck(entry.target);
+              }, 1000)
+            }
+          });
+        }, {root: null,rootMargin: '0px',threshold: 0.1});
+  
+        // =============================================== Initiation
+        setInterval(()=>{
+          if (isApplyWishlist) {
+            if (!document.querySelector("body").classList.contains("wishlisted")) {
+              productFormFinder();
+              enableWishlist();
+            }
+          }
+        }, 2000)
+  
+        function enableWishlist() {
+          let pageLinks = Array.from(document.querySelector(".sections_container").querySelectorAll("a")).filter(node => node.href && node.href.includes("/products/") && !node.href.includes("cdn") && !node.href.includes("#") && !node.href.includes("share") && !node.href.includes("mailto"));
+          let allSections = [];
+          if (document.querySelector(".sections_container")) {
+            allSections = Array.from(document.querySelector(".sections_container").children);
+          }
+          
+          document.querySelector("body").classList.add("wishlisted");
+          allSections.forEach(sectionOne=>{
+            if ("noscript a script style iframe header sticky-header announcement announcement-bar".includes(sectionOne.tagName.toLowerCase())) {
+              sectionOne.classList.add("pseudo-deny");
+            };
+            ["header", "sticky-header", "announcement", "announcement-bar", "custom_wishlist", "nav", "footer"].forEach(checkClassOne=>{
+              Array.from(sectionOne.classList).forEach(classOne=>{
+                if (classOne.includes(checkClassOne)) {
+                  sectionOne.classList.add("pseudo-deny");
+                }
+              })
+            });
+            ["header", "sticky-header", "announcement", "announcement-bar", "custom_wishlist", "footer"].forEach(checkChildOne=>{
+              if (Array.from(sectionOne.querySelectorAll(`.${checkChildOne}`)).length > 0) {
+                sectionOne.classList.add("pseudo-deny");
+              }
+            });
+    
+            if (!sectionOne.classList.contains("pseudo-deny")) {
+              sectionOne.classList.add("pseudo-section");
+              sectionCheck(sectionOne);
+              observer.observe(sectionOne);
+            }
+          })
+        }
+  
+        function productFormFinder() {
+          if (window.location.href.includes("/products/")) {
+            let allForm = document.querySelectorAll("form");
+            let productForm = null;
+            allForm.forEach(form=>{
+              if (form.action.includes("/cart/add")) {
+                if (ProductLinkFinder(form).length == 0) {
+                  if (productForm == null) {
+                    productForm = form
+                  }
+                }
+              }
+            });
+            let mainSection = parentFinder(productForm, "section", ["shopify", "section"]);
+            let mainSectionImages = Array.from(mainSection.querySelectorAll("img"));
+            let thisHandle = window.location.href.split("/products/")[1].split("#")[0].split("?")[0].split("/")[0];
+            let icon = generateIcon(thisHandle);
+            let gallery = galleryFinder(mainSectionImages);
+            appendIcon(gallery, icon)
+          }
+        }
+  
+        // ============================== This returns the main gallery of the section
+        function galleryFinder(images) {
+          let gallery = null;
+          let imageClamps = [];
+          let mainClamp = null;
+    
+          if (images.length == 0) {
+            return null;
+          } else if (images.length == 1) {
+            imageClamps.push(images[0].parentElement);
+          } else {
+            images.forEach(img=>{
+              let parent = null;
+              let checkElement = img;
+              while (!parent) {
+                if (checkElement.tagName.toLowerCase() == "body") {
+                  return null
+                };
+                if (checkElement.parentElement.querySelectorAll("img").length > 1) {
+                  if (ProductLinkFinder(checkElement.parentElement).length > 1) {
+                    parent = checkElement;
+                  } else {
+                    parent = checkElement.parentElement;
+                  }
+                };
+                if (!parent) {
+                  checkElement = checkElement.parentElement;
+                }
+              }
+              if (!imageClamps.includes(parent)) {
+                imageClamps.push(parent)
+              }
+            })
+          }
+          
+          if (imageClamps.length > 1) {
+            let index = 0;
+            while (!mainClamp && index < imageClamps.length) {
+              imageClamps[index].querySelector("p") ? index += 1 : mainClamp = imageClamps[index]
+            }
+            imageClamps.forEach(clamp=> clamp.querySelector("img").offsetWidth > mainClamp.querySelector("img").offsetWidth ? clamp.querySelector("p") ? null : mainClamp = clamp : null)
+          } else {
+            mainClamp = imageClamps[0];
+          }
+    
+          if (mainClamp) {
+            let isPure = false;
+            let checkElement = mainClamp;
+            while (!isPure) {
+              let isMurky = false;
+              let checkClass = "";
+              Array.from(checkElement.classList).forEach(classOne=>checkClass += `${classOne} `);
+              ["flickity", "splide", "slider"].forEach(classOne=> checkClass.includes(classOne) ? isMurky = true : null);
+              if (isMurky) {
+                checkElement = checkElement.parentElement
+              } else {
+                gallery = checkElement;
+                isPure = true;
+              };
+            }
+          }
+          if (gallery) {
+            let checkElement = gallery;
+            let imageWidth = gallery.querySelector("img").offsetWidth;
+            let imageHeight = gallery.querySelector("img").offsetHeight;
+            
+            let topParent = null;
+            while (!topParent) {
+              let checkClass = "";
+              Array.from(checkElement.parentElement.parentElement.classList).forEach(classOne=>checkClass += `${classOne} `);
+              if (checkClass.includes("sections_container")) {
+                topParent = checkElement;
+              } else {
+                if (isMobile) {
+                  if (checkElement.parentElement.offsetWidth < (imageWidth + mobileImageSizeTolerance) && checkElement.parentElement.offsetWidth < (imageHeight + mobileImageSizeTolerance)) {
+                    checkElement = checkElement.parentElement;
+                  } else {
+                    topParent = checkElement;
+                  }
+                } else {
+                  if (checkElement.parentElement.offsetWidth < (imageWidth + PCImageSizeTolerance) && checkElement.parentElement.offsetWidth < (imageHeight + PCImageSizeTolerance)) {
+                    checkElement = checkElement.parentElement;
+                  } else {
+                    topParent = checkElement;
+                  }
+                }
+              }
+            }
+            gallery = topParent;
+          }
+          gallery.classList.add("pseudo-gallery");
+          return gallery;
+        }
+        
+        // ============================== Appending icon on parent
+        function appendIcon(target, icon) {
+          if (target.offsetWidth > 100) {
+            target.classList.add("icon_holder");
+            target.appendChild(icon);
+          }
+        }
+        
+        // ============================== This returns the main gallery of the section
+        function ProductLinkFinder(element) {
+          return productsLinks = Array.from(element.querySelectorAll("a")).filter(element => element.href && element.href.includes("/products/") && !element.href.includes("cdn") && !element.href.includes("#") && !element.href.includes("share") && !element.href.includes("mailto"));
+        }
+  
+        // ============================== This returns the nearest parentElement that contains all the items in the provided list
+        function LinkAncestor(links) {
+          let currentElement = links[0].parentElement;
+          let currentLinks = ProductLinkFinder(currentElement);
+          
+          while (links.length > currentLinks.length) {
+            if (currentElement.tagName == "BODY") {
+              break;
+            }
+            currentElement = currentElement.parentElement;
+            currentLinks = ProductLinkFinder(currentElement);
+          }
+          currentElement.classList.add("pseudo-main");
+          return currentElement;
+        }
+  
+        // ============================== This returns the nearest parentElement that matches the query
+        function parentFinder(input, tagName=null, allClass=[], someClass=[]) { 
+          let checkElement = input;
+          let parent = null;
+  
+          while (!parent) {
+            if (checkElement.tagName.toLowerCase() == tagName) {
+              parent = checkElement;
+            }
+            if (!parent) {
+              let elementClass = "";
+              let allContain = true;
+              Array.from(checkElement.classList).forEach(item=> elementClass += item);
+              allClass.forEach(classOne=> elementClass.includes(classOne) ? null : allContain = false);
+              allContain ? parent = checkElement : null;
+            }
+            if (!parent) {
+              let elementClass = "";
+              let hasClass = false;
+              Array.from(checkElement.classList).forEach(item=> elementClass += item);
+              someClass.forEach(classOne=> elementClass.includes(classOne) ? hasClass = true : null);
+              hasClass ? parent = checkElement : null;
+            }
+            if (!parent) {
+              checkElement = checkElement.parentElement;
+            }
+          }
+          return parent;
+        }
+        
+        // ========================================================================================= Icon placement logics
+  
+        function sectionCheck(sectionOne) {
+          let sectionLinks = ProductLinkFinder(sectionOne);
+          if (sectionLinks.length == 1) {
+            sectionOne.classList.add("pseudo-product");
+            singleProuctSection(sectionOne)
+          } else if (sectionLinks.length > 1) {
+            let isSameProduct = true;
+            sectionLinks.forEach(link=>{
+              if (linkHandle(sectionLinks[0]) != linkHandle(link)) {
+                isSameProduct = false;
+              }
+            })
+            if (isSameProduct) {
+              sectionOne.classList.add("pseudo-product");
+              singleProuctSection(sectionOne);
+            } else {
+              multiProuctSection(sectionOne);
+            }
+          } else if (sectionLinks.length == 0) {
+            return null;
+          }
+        }
+  
+        // =============================================== Logic Decider
+        function singleProuctSection(sectionOne) {
+          let thisHandle = linkHandle(ProductLinkFinder(sectionOne)[0]);
+          let allImages = sectionOne.querySelectorAll("img");
+          let gallery = null;
+    
+          gallery = galleryFinder(allImages);
+                
+          if (gallery && !gallery.classList.contains("icon_holder")) {
+            let icon = generateIcon(thisHandle);
+            appendIcon(gallery, icon);
+          }
+        }
+  
+        // =============================================== Logic Decider
+        function multiProuctSection(sectionOne) {
+          let sectionLinks = ProductLinkFinder(sectionOne);
+          sectionLinks.forEach(linkOne=>{
+            let thisHandle = linkHandle(linkOne);
+            let thisItem = linkOne;
+            let oneHandle = true;
+            while (oneHandle) {
+              let thisClassList = "";
+              Array.from(thisItem.classList).forEach(item=> thisClassList += item);
+              if (thisClassList.includes("pseudo")) {
+                oneHandle = false;
+              }
+              if (oneHandle) {
+                Array.from(thisItem.parentElement.querySelectorAll("a")).forEach(anchor=>{
+                  if (linkHandle(anchor) != thisHandle) {
+                    oneHandle = false;
+                  }
+                })
+              }
+              if (oneHandle) {
+                thisItem = thisItem.parentElement;
+              }
+            }
+            thisItem.classList.add("pseudo-product");
+  
+            singleProuctSection(thisItem);
+          });
+        }
+  
+        function generateIcon(handle) {
+          let myIcon = wishlist_container.cloneNode(true);
+          savedList.includes(handle) ? myIcon.classList.add("added") : null;
+          savedList.includes(handle) ? myIcon.dataset.status = "true" : myIcon.dataset.status = "false";
+          myIcon.dataset.handle = handle;
+          myIcon.addEventListener("click", (event)=>{
+            event.stopPropagation();
+            event.preventDefault();
+            if (myIcon.dataset.status == "true") {
+              let isRemoved = removeFromList(myIcon.dataset.handle);
+              if (isRemoved) {
+                savedList = readWishList();
+                [itemCount, itemCountFloating].forEach(item=>item.innerHTML = savedList.length);
+                myIcon.dataset.status = "false";
+                myIcon.classList.remove("added");
+  
+                if (savedList.length == 0) {
+                  wishlistContainer.innerHTML = `
+                    <div class="empty_icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88"><path d="m86.69 32.608-8.65-4.868 8.65-4.868a1 1 0 0 0 0-1.744l-32-18a1.002 1.002 0 0 0-.98 0L44 8.593l-9.71-5.465a1.002 1.002 0 0 0-.98 0l-32 18a1 1 0 0 0 0 1.744l8.65 4.868-8.65 4.868a1 1 0 0 0 0 1.744l9.69 5.45V66a1.001 1.001 0 0 0 .51.872l32 18A1.203 1.203 0 0 0 44 85a1.232 1.232 0 0 0 .49-.128l32-18A1.001 1.001 0 0 0 77 66V39.802l9.69-5.45a1 1 0 0 0 0-1.744zM43 44.03 14.04 27.74 43 11.45zm2-32.58 28.96 16.29L45 44.03zm9.2-6.303L84.161 22 76 26.593 46.04 9.74zm-20.4 0 8.16 4.593-22.47 12.64L12 26.593 3.839 22zM12 28.887 41.96 45.74l-8.16 4.593L3.839 33.48zm1 12.042 20.31 11.423a1 1 0 0 0 .98 0L43 47.45v34.84L13 65.415zm62 0v24.486L45 82.29V47.45l8.71 4.901a1 1 0 0 0 .98 0zm-20.8 9.404-8.16-4.593L76 28.888l8.161 4.592z" style="fill:#1d1b1e" data-name="Unbox"/></svg><p class="empty_icon_text">!</p></div>
+                  `;
+                }
+              } else {
+                  console.log("failed to remove");
+              }
+            } else {
+              let isAdded = addToList(myIcon.dataset.handle);
+              if (isAdded) {
+                savedList = readWishList();
+                [itemCount, itemCountFloating].forEach(item=>item.innerHTML = savedList.length);
+                myIcon.dataset.status = "true";
+                myIcon.classList.add("added");
+              } else {
+                console.log("failed to add")
+              }
+            }
+            updateAllIcon();
+          })
+          return myIcon;
+        }
+  
+        function updateAllIcon() {
+          document.querySelectorAll(".wishlist_btn").forEach(button=>{
+            if (button.hasAttribute("data-handle")) {
+              let isPresent = findItem(button.dataset.handle);
+              if (isPresent) {
+                button.classList.add("added");
+                button.dataset.status = "true";
+              } else {
+                button.classList.remove("added");
+                button.dataset.status = "false";
+              }
+            }
+          })
+        }
+        
+        // ========================================================================================= Objective utility functions
+  
+        // =============================================== On-page organizing wishlist item list
+        wishlistControls.forEach(control=>{
+          control.addEventListener("click", ()=>{
+            ["col3", "col4", "col5"].forEach(thisClass=>wishlistContainer.classList.remove(thisClass));
+            wishlistControls.forEach(btn=>btn.classList.remove("active"));
+            control.classList.add("active");
+            wishlistContainer.classList.add(control.dataset.row);
+          })
+        })
+  
+        // =========================================================================== Generating products on the wishlist page
+        function printProduct(thisProduct) {
+          let variant_id = thisProduct.variants[0].id;
+          let cardImageContainer = null;
+          {% if link_image %}
+            cardImageContainer = createElement("a");
+            cardImageContainer.href = `${window.Shopify.routes.root + 'products/' + thisProduct.handle}`;
+          {% else %}
+            cardImageContainer = createElement("div");
+          {% endif %}
+          let cardImage = createElement("img", ["product_card_img"]);
+          if (thisProduct.image && thisProduct.image.src) {
+            cardImage.src = thisProduct.image.src;
+          } else {
+            cardImage.src = "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=webp&v=1530129081"; 
+          }
+          cardImageContainer.appendChild(cardImage);
+          let cardTitle = null;
+          {% if link_title %}
+            cardTitle = createElement("a", ["product_card_title"], [], thisProduct.title);
+            cardTitle.href = `${window.Shopify.routes.root + 'products/' + thisProduct.handle}`;
+          {% else %}
+            cardTitle = createElement("p", ["product_card_title"], [], thisProduct.title);
+          {% endif %}
+          let cardPrice = createElement("p", ["product_card_price"], [], `${"{{ shop.money_format }}".trim().split("{")[0] + thisProduct.variants[0].price}`);
+          let cardComparePrice = createElement("p", ["product_card_compare_price"], [], `${thisProduct.variants[0].compare_at_price.length > 0 ? "{{ shop.money_format }}".trim().split("{")[0] + thisProduct.variants[0].compare_at_price : ""}`);
+          let priceContainer = createElement("div", ["product_card_price_container"], [cardComparePrice, cardPrice])
+          let variantContainer = createElement("div", ["product_card_variant_container"]);
+  
+          let cardDetailButton = null;
+          {% if link_button %}
+            cardDetailButton = createElement("a", ["product_card_button", "inline"], [], "Details");
+          {% else %}
+            cardDetailButton = createElement("p", ["product_card_button", "hidden"], [], "Details");
+          {% endif %}
+          cardDetailButton.href = `${window.Shopify.routes.root + 'products/' + thisProduct.handle}`;
+  
+          {% if cart_page %}
+            let cardForm = createElement("form", ["product_form_custom_wishlist"]);
+            cardForm.method = "post";
+            cardForm.action = `/cart/add/${variant_id}`;
+            cardForm.acceptCharset = "UTF-8";
+            cardForm.enctype = "multipart/form-data";
+            cardForm.novalidate = "novalidate";
+    
+            let cardInputProduct = createElement("input");
+            cardInputProduct.type = "hidden";
+            cardInputProduct.name = "form_type";
+            cardInputProduct.value = "product";
+    
+            let cardInputChar = createElement("input");
+            cardInputChar.type = "hidden";
+            cardInputChar.name = "utf8";
+            cardInputChar.value = "✓";
+    
+            let cardInputVariant = createElement("input");
+            cardInputVariant.type = "hidden";
+            cardInputVariant.name = "id";
+            cardInputVariant.value = variant_id;
+            cardInputVariant.disabled = "disabled";
+    
+            let cardSubmit = createElement("button", ["product_card_button"], [], "{{ ATC_message }}");
+            cardSubmit.type = "submit";
+            cardSubmit.name = "add";
+            cardSubmit.value = variant_id;
+            
+            let cardInputProductId = createElement("input");
+            cardInputProductId.type = "hidden";
+            cardInputProductId.name = "product-id";
+            cardInputProductId.value = variant_id;
+          
+            [cardInputProduct, cardInputChar, cardInputVariant, cardSubmit, cardInputProductId].forEach(item=>cardForm.appendChild(item));
+          {% else %}
+            let cardForm = createElement("button", ["product_card_button"], [], "{{ ATC_message }}");
+  
+            cardForm.addEventListener("click", (e)=>{
+              $.ajax({
+                type: 'POST',
+                url: '/cart/add.js',
+                data: {
+                  quantity: 1,
+                  id: e.target.dataset.variant,
+                },
+                dataType: 'json',
+                success: function() {
+                  console.log(`Product -${e.target.dataset.variant}- added to cart successfully!`);
+                },
+                error: function(xhr, status, error) {
+                  console.error('Error adding product to cart:', e.target.dataset.variant);
+                }
+              })
+            })
+          {% endif %}
+  
+          let cardButtonContainer = createElement("div", ["product_card_button_list"], [cardDetailButton, cardForm]);
+  
+          if (thisProduct.options[0].values[0] != "Default Title") {
+            for (option in thisProduct.options) {
+              let cardOptionName = createElement("p", ["product_card_option_name"], [], thisProduct.options[option].name);
+              let cardVariantSelect = createElement("select", ["product_card_option_set"]);
+              for (value in thisProduct.options[option].values) {
+                let cardVariantOption = createElement("option", [], [], thisProduct.options[option].values[value]);
+                cardVariantOption.value = thisProduct.options[option].values[value];
+                cardVariantSelect.appendChild(cardVariantOption);
+              }
+              let optionData = [];
+              for (variant in thisProduct.variants) {
+                let variantData = [
+                  thisProduct.variants[variant].title, 
+                  thisProduct.variants[variant].id, 
+                  thisProduct.variants[variant].image_id != null ? thisProduct.images.find(img=>img.id == thisProduct.variants[variant].image_id).src : null, 
+                  [
+                    "{{ shop.money_format }}".trim().split("{")[0] + thisProduct.variants[variant].price,
+                    thisProduct.variants[variant].compare_at_price.length > 0 ? "{{ shop.money_format }}".trim().split("{")[0] + thisProduct.variants[variant].compare_at_price : ""
+                  ]
+                ];
+                optionData.push(variantData);
+              }
+                
+              cardVariantSelect.addEventListener("change", ()=>{
+                variantUpdate(optionData);
+              })
+              let cardOption = createElement("div", ["product_card_option"], [cardOptionName, cardVariantSelect]);
+              variantContainer.appendChild(cardOption)
+            }
+          }
+          
+          let cardContainer = createElement("div", ["product_card", "product"], [cardImageContainer, cardTitle, priceContainer, variantContainer, cardButtonContainer]);
+  
+          function variantUpdate(optionData) {
+            let selectedDataSet = Array.from(cardContainer.querySelectorAll(".product_card_option_set"), item => item.value);
+            let selectedVariant = null;
+            optionData.forEach(option=>{
+              if (selectedVariant == null) {
+                selectedVariant = option;
+                selectedDataSet.forEach(item=>{
+                  if (!option[0].includes(item)) {
+                    selectedVariant = null;
+                  }
+                })
+              }
+            })
+                
+            cardPrice.innerHTML = selectedVariant[3][0];
+            cardComparePrice.innerHTML = selectedVariant[3][1];
+            selectedVariant[2] != "null" ? cardImage.src = selectedVariant[2] : null;
+  
+            if (cardForm.tagName == "FORM") {
+              cardForm.action = `/cart/add/${selectedVariant[1]}`;
+              cardInputVariant.value = selectedVariant[1];
+              cardSubmit.value = selectedVariant[1];
+              cardInputProductId.value = selectedVariant[1];
+            } else if (cardForm.tagName == "BUTTON") {
+              cardForm.dataset.variant = selectedVariant[1];
+            }
+          }
+          if (!cardContainer.classList.contains("icon_holder")) {
+            let icon = generateIcon(thisProduct.handle);
+cardContainer.classList.add("icon_holder");
+cardContainer.appendChild(icon);
+            icon.addEventListener("click", ()=>{
+              cardContainer.classList.add("hiding");
+              setTimeout(()=>{
+                cardContainer.style.display = "none";
+              }, 300)
+            })
+          }
+          wishlistContainer.appendChild(cardContainer);
+        }
+        
+        // =============================================== Fetching product data from Shopify
+        function fetchProduct(item) {
+          jQuery.getJSON(window.Shopify.routes.root + 'products/' + item, function(thisProduct) {
+            printProduct(thisProduct.product);
+            responseCount += 1;
+          }).fail(function(response) {
+            if (response.status == 404) {
+              responseCount += 1;
+              failedProducts.push(item);
+            }
+          });
+        }
+        function updateList () {
+          setTimeout(()=>{
+            if (responseCount == savedList.length) {
+              let newList = [];
+              savedList.forEach(save=>{
+                if (!failedProducts.includes(save.toLowerCase())) {
+                  newList.push(save);
+                }
+              })
+              saveWishList(newList);
+              let updatedList = readWishList();
+              itemCount.innerHTML = updatedList.length;
+              itemCountFloating.innerHTML = updatedList.length;
+              responseCount = 0;
+              failedProducts = [];
+              loadingSpinner.classList.remove("active");
+              wishlistContainer.classList.add("active");
+            } else {
+              updateList()
+            }
+          }, 100)
+        }
+        
+        // =============================================== Manipulating wishlist window
+        wishlistClose.addEventListener("click", ()=>{
+          isWishlistOpen = false;
+          pageBody.classList.remove("no_scroll");
+          Array.from(wishlistSection.parentElement.children).forEach(sibling=>sibling.classList.remove("functionally_hidden"));
+          // wishlistSection.classList.add("functionally_hidden");
+          wishlistContainer.classList.remove("active");
+          wishlistUtility.classList.remove("active");
+          wishlistTrigger.classList.add("active");
+          loadingSpinner.classList.add("active");
+          updateAllIcon();
+        })
+          
+        wishlistTrigger.addEventListener("click", ()=>{
+          isWishlistOpen = open;
+          pageBody.classList.add("no_scroll");
+          Array.from(wishlistSection.parentElement.children).forEach(sibling=>sibling.classList.add("functionally_hidden"));
+          wishlistSection.classList.remove("functionally_hidden");
+          wishlistContainer.classList.add("active");
+          wishlistUtility.classList.add("active");
+          wishlistTrigger.classList.remove("active");
+          
+          savedList = readWishList();
+          itemCount.innerHTML = savedList.length;
+          wishlistContainer.innerHTML = "";
+          if (savedList.length > 0) {
+            savedList.forEach(item=>{
+              let thisProduct = fetchProduct(item);
+            })
+          } else {
+            wishlistContainer.innerHTML = `
+              <div class="empty_icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88"><path d="m86.69 32.608-8.65-4.868 8.65-4.868a1 1 0 0 0 0-1.744l-32-18a1.002 1.002 0 0 0-.98 0L44 8.593l-9.71-5.465a1.002 1.002 0 0 0-.98 0l-32 18a1 1 0 0 0 0 1.744l8.65 4.868-8.65 4.868a1 1 0 0 0 0 1.744l9.69 5.45V66a1.001 1.001 0 0 0 .51.872l32 18A1.203 1.203 0 0 0 44 85a1.232 1.232 0 0 0 .49-.128l32-18A1.001 1.001 0 0 0 77 66V39.802l9.69-5.45a1 1 0 0 0 0-1.744zM43 44.03 14.04 27.74 43 11.45zm2-32.58 28.96 16.29L45 44.03zm9.2-6.303L84.161 22 76 26.593 46.04 9.74zm-20.4 0 8.16 4.593-22.47 12.64L12 26.593 3.839 22zM12 28.887 41.96 45.74l-8.16 4.593L3.839 33.48zm1 12.042 20.31 11.423a1 1 0 0 0 .98 0L43 47.45v34.84L13 65.415zm62 0v24.486L45 82.29V47.45l8.71 4.901a1 1 0 0 0 .98 0zm-20.8 9.404-8.16-4.593L76 28.888l8.161 4.592z" style="fill:#1d1b1e" data-name="Unbox"/></svg><p class="empty_icon_text">!</p></div>
+            `;
+          }
+          updateList()
+        })
+        
+        // =============================================== Manipulating Savelist
+        function removeFromList(value) {
+          let newList = [];
+          savedList.forEach(item=>{
+            if (value.toLowerCase() != item.toLowerCase()) {
+              newList.push(item);
+            }
+          })
+          return saveWishList(newList);
+        }
+        function addToList(value) {
+          let newList = [];
+          if (!savedList.includes(value)) {
+            newList = [...savedList, value];
+          } else {
+            newList = savedList;
+          }
+          return saveWishList(newList);
+        }
+        
+        function saveWishList(value) {
+          let isSaveLocal =  saveLocal(value);
+          {% if customer %}
+            // saveCloud(value);
+          {% endif %}
+          let isSaveCloud = true;
+          if (isSaveLocal && isSaveCloud) {
+            return true;
+          }
+        }
+        function readWishList() {
+          let myLocal = readLocal();
+          // let myCloud = readCloud();
+          return myLocal;
+        }
+        // =============================================== Manipulating local storage
+        
+        function saveLocal(value) {
+          try {
+            const jsonString = JSON.stringify(value);
+            localStorage.setItem("wishlist", jsonString);
+            return true;
+          } catch (error) {
+            return false;
+          }
+        }
+  
+        function readLocal() {
+          try {
+            const storedValue = localStorage.getItem("wishlist");
+            if (storedValue !== null) {
+              return JSON.parse(storedValue);
+            } else {
+              return [];
+            }
+          } catch (error) {
+            return [];
+          }
+        }
+  
+        // =============================================== Manipulating Customer Metafield
+  
+        function readCloud() {
+        }
+        async function saveCloud(value) {
+        }
+      })
+    })()
+  {% endif %}
+</script>
+
+{% schema %}
+  {
+    "name": "Custom WIshlist",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_section",
+        "label": "Enable Wishlist",
+        "default": true,
+        "info": "Enables/Disables wishlist feature on this page"
+      },
+      {
+        "type": "select",
+        "id": "icon_vertical_position",
+        "label": "Icon vertical position",
+        "default": "top",
+        "options": [
+          {"label": "Top", "value": "top"},
+          {"label": "Bottom", "value": "bottom"}
+        ]
+      },
+      {
+        "type": "range",
+        "id": "icon_vertical_offset",
+        "label": "Vertical offset",
+        "min": 0,
+        "max": 25,
+        "step": 1,
+        "default": 16,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "icon_horizontal_position",
+        "label": "Icon horizontal position",
+        "default": "left",
+        "options": [
+          {"label": "Left", "value": "left"},
+          {"label": "Right", "value": "right"}
+        ]
+      },
+      {
+        "type": "range",
+        "id": "icon_horizontal_offset",
+        "label": "Horizontal offset",
+        "min": 0,
+        "max": 25,
+        "step": 1,
+        "default": 16,
+        "unit": "px"
+      },
+      {
+        "type": "header",
+        "content": "Drawer knob settings"
+      },
+      {
+        "type": "select",
+        "id": "knob_side",
+        "label": "Knob location",
+        "default": "right",
+        "options": [
+          {"label": "Left", "value": "left"},
+          {"label": "Right", "value": "right"}
+        ]
+      },
+      {
+        "type": "range",
+        "id": "knob_position",
+        "label": "Knob position",
+        "min": 0,
+        "max": 25,
+        "step": 1,
+        "default": 5,
+        "unit": "x4%"
+      },
+      {
+        "type": "color",
+        "id": "knob_color",
+        "label": "Knob icon color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "knob_background",
+        "label": "Knob background color",
+        "default": "#f7f7f7"
+      },
+      {
+        "type": "checkbox",
+        "id": "knob_border",
+        "label": "Show border",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "knob_count_color",
+        "label": "Item count color",
+        "default": "#3651b1"
+      },
+      {
+        "type": "header",
+        "content": "Icon colors"
+      },
+      {
+        "type": "paragraph",
+        "content": "Regular state"
+      },
+      {
+        "type": "color",
+        "id": "icon_color",
+        "label": "Icon color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "icon_background",
+        "label": "Icon background",
+        "default": "#fff"
+      },
+      {
+        "type": "paragraph",
+        "content": "Mouse over state"
+      },
+      {
+        "type": "color",
+        "id": "icon_color_hover",
+        "label": "Icon color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "icon_background_hover",
+        "label": "Icon background",
+        "default": "#fff"
+      },
+      {
+        "type": "paragraph",
+        "content": "Selected state"
+      },
+      {
+        "type": "color",
+        "id": "icon_color_selected",
+        "label": "Icon color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "icon_background_selected",
+        "label": "Icon background",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": "Wishlist page"
+      },
+      {
+        "type": "text",
+        "id": "wishlist_heading",
+        "label": "Wishlist Headng",
+        "default": "Your Wishlist"
+      },
+      {
+        "type": "select",
+        "id": "wishlist_grid",
+        "label": "Wishlist grid count",
+        "default": "col4",
+        "options": [
+          {"label": "3", "value": "col3"},
+          {"label": "4", "value": "col4"},
+          {"label": "5", "value": "col5"}
+        ]
+      },
+      {
+        "type": "range",
+        "id": "products_gap",
+        "label": "Product grid gap",
+        "min": 4,
+        "max": 32,
+        "step": 4,
+        "default": 20,
+        "unit": "px"
+      },
+      {
+        "type": "paragraph",
+        "content": "Link to product page"
+      },
+      {
+        "type": "checkbox",
+        "id": "link_image",
+        "label": "Link on image"
+      },
+      {
+        "type": "checkbox",
+        "id": "link_title",
+        "label": "Link on Title"
+      },
+      {
+        "type": "checkbox",
+        "id": "link_button",
+        "label": "Details button",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "card_background",
+        "label": "Card background",
+        "default": "#f7f7f7"
+      },
+      {
+        "type": "checkbox",
+        "id": "rounded_corners",
+        "label": "Rounded card corners",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_shadow",
+        "label": "Use card shadow",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "Show_atc",
+        "label": "Show 'Add to cart' button",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "ATC_message",
+        "label": "Button label",
+        "default": "Add to cart"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_page",
+        "label": "Redirect to Cart page",
+        "info": "Redirects the customer to cart page after adding product to cart",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "button_color",
+        "label": "Button color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "button_background_color",
+        "label": "Button background color",
+        "default": "#323232"
+      }
+    ],
+    "blocks": [],
+    "presets": [
+      {
+        "name": "Custom WIshlist"
+      }
+    ]
+  }
+{% endschema %}

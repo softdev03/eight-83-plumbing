@@ -1,0 +1,601 @@
+{% comment %}
+  Renders a header drawer menu for mobile and desktop.
+
+  Usage:
+  {% render 'header-drawer' %}
+{% endcomment %}
+
+<style>
+  .custom_megamenu_item_mobile {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 20px;
+  }
+  .megamenu_product_container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .megamenu_product_media {
+    position: relative;
+    background-color: #eee;
+  }
+  .megamenu_product_image {
+    flex: 1;
+    width: 100%;
+    display: block;
+    height: unset;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+  }
+  .megamenu_product_title {
+    font-weight: 600;
+    font-size: 90%;
+    line-height: 1.4em;
+    margin-block: 10px;
+    text-align: center;
+    letter-spacing: 0;
+  }
+  .megamenu_product_button {
+    width: 100%;
+    padding: 6px 0px;
+    cursor: pointer;
+  }
+  .megamenu_product_form_options  {
+    padding: 5px;
+    border: 0px;
+    outline: solid 1px #ccc;
+    box-shadow: unset;
+    outline-offset: 0px;
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    width: calc(100% - 16px);
+  }
+</style>
+
+
+
+<header-drawer data-breakpoint="{% if section.settings.menu_type_desktop == 'drawer' %}desktop{% else %}tablet{% endif %}">
+  <details id="Details-menu-drawer-container" class="menu-drawer-container">
+    <summary
+      class="header__icon header__icon--menu header__icon--summary link focus-inset"
+      aria-label="{{ 'sections.header.menu' | t }}"
+    >
+      <span>
+        {% render 'icon-hamburger' %}
+        {% render 'icon-close' %}
+      </span>
+    </summary>
+    <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-{{ section.settings.menu_color_scheme }}">
+      <div class="menu-drawer__inner-container">
+        <div class="menu-drawer__navigation-container">
+          <nav class="menu-drawer__navigation">
+            <ul class="menu-drawer__menu has-submenu list-menu" role="list">
+              {%- for link in section.settings.menu.links -%}
+                <li>
+                  {%- if link.links != blank -%}
+                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+                      <summary
+                        id="HeaderDrawer-{{ link.handle }}"
+                        class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
+                      >
+                        {{ link.title | escape }}
+                        {% render 'icon-arrow' %}
+                        {% render 'icon-caret' %}
+                      </summary>
+                      <div
+                        id="link-{{ link.handle | escape }}"
+                        class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                        tabindex="-1"
+                      >
+                        <div class="menu-drawer__inner-submenu">
+                          <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                            {% render 'icon-arrow' %}
+                            {{ link.title | escape }}
+                          </button>
+                          <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+
+                            {% for block in section.blocks %}
+                              {% if block.type == "image" and block.settings.megamenu_name != blank %}
+                                {% liquid assign megamenu_name = block.settings.megamenu_name | downcase %}
+                                {% liquid assign link_name = link.title | downcase %}
+                                {% if megamenu_name == link_name %}
+                                  <style>
+                                    .megamenu-{{ block.settings.megamenu_name | downcase }} .mega-menu__list {
+                                      display: grid!important;
+                                    }
+                                    .megamenu-{{ block.settings.megamenu_name | downcase }} .mega-menu__list {
+                                      grid-template-columns: repeat({{ block.settings.megamenu_column_count }}, minmax(0,1fr))!important;
+                                      gap: 20px calc({{ block.settings.megamenu_column_gap }} * 1px)!important;
+                                    }
+                                  </style>
+
+                                  {% assign megamenu_image_mobile = "null" %}
+                                  {% if block.settings.megamenu_image_mobile == blank %}
+                                    {% assign megamenu_image_mobile = block.settings.megamenu_image %}
+                                  {% else %}
+                                    {% assign megamenu_image_mobile = block.settings.megamenu_image_mobile %}
+                                  {% endif %}
+                                  
+                                  {% assign megamenu_image_position_mobile = "null" %}
+                                  {% if block.settings.megamenu_image_position_mobile == "auto" %}
+                                    {% assign megamenu_image_position_mobile = block.settings.megamenu_image_position %}
+                                  {% else %}
+                                    {% assign megamenu_image_position_mobile = block.settings.megamenu_image_position_mobile %}
+                                  {% endif %}
+                                  
+                                  {% assign megamenu_product_position_mobile = "null" %}
+                                  {% if block.settings.megamenu_product_position_mobile == "auto" %}
+                                    {% assign megamenu_product_position_mobile = block.settings.megamenu_product_position %}
+                                  {% else %}
+                                    {% assign megamenu_product_position_mobile = block.settings.megamenu_product_position_mobile %}
+                                  {% endif %}
+          
+                                  {% if megamenu_image_mobile != blank and megamenu_image_position_mobile == "first" %}
+                                    <li style="margin-block:20px;">
+                                      {% if block.settings.megamenu_image_link != blank %}
+                                        <a href="{{ block.settings.megamenu_image_link }}" >
+                                      {% endif %}
+                                          <img class="megamenu_image_mobile" src="{{ megamenu_image_mobile | image_url }}"  style="width:100%;height:auto;"/>
+                                      {% if block.settings.megamenu_image_link != blank %}
+                                        </a>
+                                      {% endif %}
+                                    </li>
+                                  {% endif %}
+                                  
+                                  {% if block.settings.megamenu_products != blank and megamenu_product_position_mobile == "first" %}
+                                    <li style="margin-block: 20px;display: flex;flex-wrap: wrap;align-items: center;justify-content: space-evenly;gap: 0px;">
+                                      {% for productOne in block.settings.megamenu_products %}
+                                        <form data-form-type="drawer_cart" method="post" action="/cart/add/{{ productOne.selected_or_first_available_variant.id }}" id="product-form-{{ section.id }}" accept-charset="UTF-8" class="form  " enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form" style="{% if block.settings.megamenu_products.count > 1 %}width: max(150px, calc(50% - 20px));{% else %}width: min(400px, calc(100% - 30px));{% endif %}">
+                                          <input type="hidden" name="form_type" value="product">
+                                          <input type="hidden" name="utf8" value="✓">
+                                          <input type="hidden" name="id" value="{{ productOne.selected_or_first_available_variant.id }}" disabled="" class="product-variant-id">
+                                          <input type="hidden" name="product-id" value="{{ productOne.selected_or_first_available_variant.id }}">
+
+                                          <a href="/products/{{ productOne.handle }}" style="display: none!important;">{{ productOne.title }}</a>
+          
+                                          <div class="megamenu_image_container" style="position: relative;">
+                                            {% if block.settings.megamenu_product_image_link %}
+                                              <a href="/products/{{ productOne.handle }}" >
+                                            {% endif %}
+                                                  <img class="megamenu_product_image" src="{% if productOne.variants.size > 1 %}{% if productOne.selected_or_first_available_variant.image %}{{ productOne.selected_or_first_available_variant.image | image_url }}{% else %}{{ productOne.images.first | image_url }}{% endif %}{% else %}{{ productOne.images.first | image_url }}{% endif %}"  style="width:100%;height:auto;object-fit:cover;{% if block.settings.megamenu_product_image_size == "square" %}aspect-ratio:1 / 1;{% elsif block.settings.megamenu_product_image_size == "short" %}aspect-ratio: 3 / 2;{% elsif block.settings.megamenu_product_image_size == "tall" %}aspect-ratio: 2 / 3;{% endif %}"/>
+                                            {% if block.settings.megamenu_product_image_link %}
+                                              </a>
+                                            {% endif %}
+          
+                                            {% if block.settings.megamenu_product_atc and productOne.variants.size > 1 %}
+                                              <div class="product_form_variant_container">
+                                                <select class="megamenu_product_form_options">
+                                                  {%- for variant in productOne.variants -%}
+                                                      <option data-image="{% if variant.image %}{{ variant.image | image_url }}{% elsif productOne.featured_image %}{{ productOne.featured_image | image_url }}{% else %}{{ productOne.images.first | image_url }}{% endif %}" data-price="{{ variant.price | money }}" data-compare="{{ variant.compare_at_price | money }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+                                                  {%- endfor -%}
+                                                </select>
+                                              </div>
+                                            {% endif %}
+                                            
+                                          </div>
+          
+                                          {% if block.settings.megamenu_product_title %}
+                                            {% if block.settings.megamenu_product_title_link %}
+                                              <a href="/products/{{ productOne.handle }}" style="text-decoration: none;color: rgba(var(--color-foreground));">
+                                            {% endif %}
+                                                <p style="margin: 10px 0px 0px;line-height: 1.2em;font-size: 85%;font-weight: 600;text-align: center;">{{ productOne.title }}</p>
+                                            {% if block.settings.megamenu_product_title_link %}
+                                              </a>
+                                            {% endif %}
+                                          {% endif %}
+          
+                                          {% if block.settings.megamenu_product_atc %}
+                                            <button id="ProductSubmitButton-" type="submit" name="add" class="megamenu_product_button button {{ block.settings.atc_style }}" value="{{ productOne.selected_or_first_available_variant.id }}" style="margin: 10px 0px 0px;">
+                                              {% if block.settings.megamenu_product_atc_label == blank %}Add To Cart{% else %}{{ block.settings.megamenu_product_atc_label }}{% endif %}
+                                            </button>
+                                          {% endif %}
+                                          
+                                        </form>
+                                      {% endfor %}
+                                    </li>
+                                  {% endif %}
+                                  
+                                {% endif %}
+                              {% endif %}
+                            {% endfor %}
+                    
+                            {%- for childlink in link.links -%}
+                              <li>
+                                {%- if childlink.links == blank -%}
+                                  <a
+                                    id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                                    href="{{ childlink.url }}"
+                                    class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                    {% if childlink.current %}
+                                      aria-current="page"
+                                    {% endif %}
+                                  >
+                                    {{ childlink.title | escape }}
+                                  </a>
+                                {%- else -%}
+                                  <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}">
+                                    <summary
+                                      id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                                      class="menu-drawer__menu-item link link--text list-menu__item focus-inset"
+                                    >
+                                      {{ childlink.title | escape }}
+                                      {% render 'icon-arrow' %}
+                                      {% render 'icon-caret' %}
+                                    </summary>
+                                    <div
+                                      id="childlink-{{ childlink.handle | escape }}"
+                                      class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                                    >
+                                      <button
+                                        class="menu-drawer__close-button link link--text focus-inset"
+                                        aria-expanded="true"
+                                      >
+                                        {% render 'icon-arrow' %}
+                                        {{ childlink.title | escape }}
+                                      </button>
+                                      <ul
+                                        class="menu-drawer__menu list-menu"
+                                        role="list"
+                                        tabindex="-1"
+                                      >
+                                        {%- for grandchildlink in childlink.links -%}
+                                          <li>
+                                            <a
+                                              id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                              href="{{ grandchildlink.url }}"
+                                              class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                              {% if grandchildlink.current %}
+                                                aria-current="page"
+                                              {% endif %}
+                                            >
+                                              {{ grandchildlink.title | escape }}
+                                            </a>
+                                          </li>
+                                        {%- endfor -%}
+                                      </ul>
+                                    </div>
+                                  </details>
+                                {%- endif -%}
+                              </li>
+                            {%- endfor -%}
+
+                            {% for block in section.blocks %}
+                              {% if block.type == "image" and block.settings.megamenu_name != blank %}
+                                {% liquid assign megamenu_name = block.settings.megamenu_name | downcase %}
+                                {% liquid assign link_name = link.title | downcase %}
+                                {% if megamenu_name == link_name %}
+                                  <style>
+                                    .megamenu-{{ block.settings.megamenu_name | downcase }} .mega-menu__list {
+                                      display: grid!important;
+                                    }
+                                    .megamenu-{{ block.settings.megamenu_name | downcase }} .mega-menu__list {
+                                      grid-template-columns: repeat({{ block.settings.megamenu_column_count }}, minmax(0,1fr))!important;
+                                      gap: 20px calc({{ block.settings.megamenu_column_gap }} * 1px)!important;
+                                    }
+                                  </style>
+
+                                  {% assign megamenu_image_mobile = "null" %}
+                                  {% if block.settings.megamenu_image_mobile == blank %}
+                                    {% assign megamenu_image_mobile = block.settings.megamenu_image %}
+                                  {% else %}
+                                    {% assign megamenu_image_mobile = block.settings.megamenu_image_mobile %}
+                                  {% endif %}
+                                  
+                                  {% assign megamenu_image_position_mobile = "null" %}
+                                  {% if block.settings.megamenu_image_position_mobile == "auto" %}
+                                    {% assign megamenu_image_position_mobile = block.settings.megamenu_image_position %}
+                                  {% else %}
+                                    {% assign megamenu_image_position_mobile = block.settings.megamenu_image_position_mobile %}
+                                  {% endif %}
+                                  
+                                  {% assign megamenu_product_position_mobile = "null" %}
+                                  {% if block.settings.megamenu_product_position_mobile == "auto" %}
+                                    {% assign megamenu_product_position_mobile = block.settings.megamenu_product_position %}
+                                  {% else %}
+                                    {% assign megamenu_product_position_mobile = block.settings.megamenu_product_position_mobile %}
+                                  {% endif %}
+          
+                                  {% if megamenu_image_mobile != blank and megamenu_image_position_mobile == "last" %}
+                                    <li style="margin-block:20px;">
+                                      {% if block.settings.megamenu_image_link != blank %}
+                                        <a href="{{ block.settings.megamenu_image_link }}" >
+                                      {% endif %}
+                                          <img class="megamenu_image_mobile" src="{{ megamenu_image_mobile | image_url }}"  style="width:100%;height:auto;"/>
+                                      {% if block.settings.megamenu_image_link != blank %}
+                                        </a>
+                                      {% endif %}
+                                    </li>
+                                  {% endif %}
+                                  
+                                  {% if block.settings.megamenu_products != blank and megamenu_product_position_mobile == "last" %}
+                                    <li style="margin-block: 20px;display: flex;flex-wrap: wrap;align-items: center;justify-content: space-evenly;gap: 0px;">
+                                      {% for productOne in block.settings.megamenu_products %}
+                                        <form data-form-type="drawer_cart" method="post" action="/cart/add/{{ productOne.selected_or_first_available_variant.id }}" id="product-form-{{ section.id }}" accept-charset="UTF-8" class="form  " enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form" style="{% if block.settings.megamenu_products.count > 1 %}width: max(150px, calc(50% - 20px));{% else %}width: min(400px, calc(100% - 30px));{% endif %}">
+                                          <input type="hidden" name="form_type" value="product">
+                                          <input type="hidden" name="utf8" value="✓">
+                                          <input type="hidden" name="id" value="{{ productOne.selected_or_first_available_variant.id }}" disabled="" class="product-variant-id">
+                                          <input type="hidden" name="product-id" value="{{ productOne.selected_or_first_available_variant.id }}">
+
+                                          <a href="/products/{{ productOne.handle }}" style="display: none!important;">{{ productOne.title }}</a>
+          
+                                          <div class="megamenu_image_container" style="position: relative;">
+                                            {% if block.settings.megamenu_product_image_link %}
+                                              <a href="/products/{{ productOne.handle }}" >
+                                            {% endif %}
+                                                  <img class="megamenu_product_image" src="{% if productOne.variants.size > 1 %}{% if productOne.selected_or_first_available_variant.image %}{{ productOne.selected_or_first_available_variant.image | image_url }}{% else %}{{ productOne.images.first | image_url }}{% endif %}{% else %}{{ productOne.images.first | image_url }}{% endif %}"  style="width:100%;height:auto;object-fit:cover;{% if block.settings.megamenu_product_image_size == "square" %}aspect-ratio:1 / 1;{% elsif block.settings.megamenu_product_image_size == "short" %}aspect-ratio: 3 / 2;{% elsif block.settings.megamenu_product_image_size == "tall" %}aspect-ratio: 2 / 3;{% endif %}"/>
+                                            {% if block.settings.megamenu_product_image_link %}
+                                              </a>
+                                            {% endif %}
+          
+                                            {% if block.settings.megamenu_product_atc and productOne.variants.size > 1 %}
+                                              <div class="product_form_variant_container">
+                                                <select class="megamenu_product_form_options">
+                                                  {%- for variant in productOne.variants -%}
+                                                      <option data-image="{% if variant.image %}{{ variant.image | image_url }}{% elsif productOne.featured_image %}{{ productOne.featured_image | image_url }}{% else %}{{ productOne.images.first | image_url }}{% endif %}" data-price="{{ variant.price | money }}" data-compare="{{ variant.compare_at_price | money }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+                                                  {%- endfor -%}
+                                                </select>
+                                              </div>
+                                            {% endif %}
+                                            
+                                          </div>
+          
+                                          {% if block.settings.megamenu_product_title %}
+                                            {% if block.settings.megamenu_product_title_link %}
+                                              <a href="/products/{{ productOne.handle }}" style="text-decoration: none;color: rgba(var(--color-foreground));">
+                                            {% endif %}
+                                                <p style="margin: 10px 0px 0px;line-height: 1.2em;font-size: 85%;font-weight: 600;text-align: center;">{{ productOne.title }}</p>
+                                            {% if block.settings.megamenu_product_title_link %}
+                                              </a>
+                                            {% endif %}
+                                          {% endif %}
+          
+                                          {% if block.settings.megamenu_product_atc %}
+                                            <button id="ProductSubmitButton-" type="submit" name="add" class="megamenu_product_button button {{ block.settings.atc_style }}" value="{{ productOne.selected_or_first_available_variant.id }}" style="margin: 10px 0px 0px;">
+                                              {% if block.settings.megamenu_product_atc_label == blank %}Add To Cart{% else %}{{ block.settings.megamenu_product_atc_label }}{% endif %}
+                                            </button>
+                                          {% endif %}
+                                          
+                                        </form>
+                                      {% endfor %}
+                                    </li>
+                                  {% endif %}
+                                  
+                                {% endif %}
+                              {% endif %}
+                            {% endfor %}
+
+                          </ul>
+                        </div>
+                      </div>
+                    </details>
+                  {%- else -%}
+                    <a
+                      id="HeaderDrawer-{{ link.handle }}"
+                      href="{{ link.url }}"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      {{ link.title | escape }}
+                    </a>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </nav>
+          <div class="menu-drawer__utility-links">
+            {%- if shop.customer_accounts_enabled -%}
+              <a
+                href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+                class="menu-drawer__account link focus-inset h5 medium-hide large-up-hide"
+              >
+                {% render 'icon-account' %}
+                {%- liquid
+                  if customer
+                    echo 'customer.account_fallback' | t
+                  else
+                    echo 'customer.log_in' | t
+                  endif
+                -%}
+              </a>
+            {%- endif -%}
+            {%- if localization.available_countries or localization.available_languages -%}
+              <div class="menu-drawer__localization header-localization">
+                {%- if localization.available_countries and localization.available_countries.size > 1 -%}
+                  <noscript>
+                    {%- form 'localization', id: 'HeaderCountryMobileFormNoScriptDrawer', class: 'localization-form' -%}
+                      <div class="localization-form__select">
+                        <h2 class="visually-hidden" id="HeaderCountryMobileLabelNoScriptDrawer">
+                          {{ 'localization.country_label' | t }}
+                        </h2>
+                        <select
+                          class="localization-selector link"
+                          name="country_code"
+                          aria-labelledby="HeaderCountryMobileLabelNoScriptDrawer"
+                        >
+                          {%- for country in localization.available_countries -%}
+                            <option
+                              value="{{ country.iso_code }}"
+                              {%- if country.iso_code == localization.country.iso_code %}
+                                selected
+                              {% endif %}
+                            >
+                              {{ country.name }} ({{ country.currency.iso_code }}
+                              {{ country.currency.symbol }})
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                        {% render 'icon-caret' %}
+                      </div>
+                      <button class="button button--tertiary">{{ 'localization.update_country' | t }}</button>
+                    {%- endform -%}
+                  </noscript>
+
+                  <localization-form class="no-js-hidden">
+                    {%- form 'localization', id: 'HeaderCountryMobileForm', class: 'localization-form' -%}
+                      <div>
+                        <h2 class="visually-hidden" id="HeaderCountryMobileLabel">
+                          {{ 'localization.country_label' | t }}
+                        </h2>
+                        {%- render 'country-localization', localPosition: 'HeaderCountryMobile' -%}
+                      </div>
+                    {%- endform -%}
+                  </localization-form>
+                {% endif %}
+
+                {%- if localization.available_languages and localization.available_languages.size > 1 -%}
+                  <noscript>
+                    {%- form 'localization',
+                      id: 'HeaderLanguageMobileFormNoScriptDrawer',
+                      class: 'localization-form'
+                    -%}
+                      <div class="localization-form__select">
+                        <h2 class="visually-hidden" id="HeaderLanguageMobileLabelNoScriptDrawer">
+                          {{ 'localization.language_label' | t }}
+                        </h2>
+                        <select
+                          class="localization-selector link"
+                          name="locale_code"
+                          aria-labelledby="HeaderLanguageMobileLabelNoScriptDrawer"
+                        >
+                          {%- for language in localization.available_languages -%}
+                            <option
+                              value="{{ language.iso_code }}"
+                              lang="{{ language.iso_code }}"
+                              {%- if language.iso_code == localization.language.iso_code %}
+                                selected
+                              {% endif %}
+                            >
+                              {{ language.endonym_name | capitalize }}
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                        {% render 'icon-caret' %}
+                      </div>
+                      <button class="button button--tertiary">{{ 'localization.update_language' | t }}</button>
+                    {%- endform -%}
+                  </noscript>
+
+                  <localization-form class="no-js-hidden">
+                    {%- form 'localization', id: 'HeaderLanguageMobileForm', class: 'localization-form' -%}
+                      <div>
+                        <h2 class="visually-hidden" id="HeaderLanguageMobileLabel">
+                          {{ 'localization.language_label' | t }}
+                        </h2>
+                        {%- render 'language-localization', localPosition: 'HeaderLanguageMobile' -%}
+                      </div>
+                    {%- endform -%}
+                  </localization-form>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+            <ul class="list list-social list-unstyled" role="list">
+              {%- if settings.social_twitter_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_twitter_link }}" class="list-social__link link">
+                    {%- render 'icon-twitter' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.twitter' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_facebook_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_facebook_link }}" class="list-social__link link">
+                    {%- render 'icon-facebook' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.facebook' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_pinterest_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_pinterest_link }}" class="list-social__link link">
+                    {%- render 'icon-pinterest' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.pinterest' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_instagram_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_instagram_link }}" class="list-social__link link">
+                    {%- render 'icon-instagram' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_tiktok_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_tiktok_link }}" class="list-social__link link">
+                    {%- render 'icon-tiktok' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.tiktok' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_tumblr_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_tumblr_link }}" class="list-social__link link">
+                    {%- render 'icon-tumblr' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.tumblr' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_snapchat_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_snapchat_link }}" class="list-social__link link">
+                    {%- render 'icon-snapchat' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.snapchat' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_youtube_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_youtube_link }}" class="list-social__link link">
+                    {%- render 'icon-youtube' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.youtube' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_vimeo_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_vimeo_link }}" class="list-social__link link">
+                    {%- render 'icon-vimeo' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.vimeo' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+</header-drawer>
+
+<script>
+  let productForms = document.querySelectorAll("[data-form-type='drawer_cart']");
+  productForms.forEach(productForm => {
+    let formSelect = productForm.querySelector(".megamenu_product_form_options");
+    if (formSelect) {
+      let currentId = null;
+      let currentImage = null;
+      formSelect.addEventListener("change", ()=>{
+        Array.from(formSelect.children).forEach(option=>{
+          if (option.value == formSelect.value) {
+              currentId = option.value;
+              currentImage = option.dataset.image;
+          }
+        })
+        productForm.action = `/cart/add/${currentId}`;
+        productForm.querySelector("input[name='id']").value = currentId;
+        productForm.querySelector("button[type='submit']").value = currentId;
+        
+        productForm.querySelector(".megamenu_product_image").src = currentImage;
+      })
+    }
+  })
+</script>

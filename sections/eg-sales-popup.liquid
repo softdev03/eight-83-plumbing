@@ -1,0 +1,333 @@
+{% comment %} 
+    EG Sales Popup
+    © 2022 EcomGraduates
+    https://wwww.ecomgraduates.com 
+{% endcomment %}
+
+{% liquid
+    assign show_section = false
+
+    if section.settings.enable_section
+        assign show_section = true
+    endif
+
+    unless request.page_type == 'index' or request.page_type == 'product' or request.page_type == 'collection'
+        assign show_section = false
+    endunless
+
+    if request.page_type == 'index'
+        unless section.settings.show_homepage
+            assign show_section = false
+        endunless
+    endif
+
+    if request.page_type == 'product'
+        unless section.settings.show_product_page
+            assign show_section = false
+        endunless
+    endif
+
+    if request.page_type == 'collection'
+        unless section.settings.show_collection_page
+            assign show_section = false
+        endunless
+    endif
+%}
+
+<style>
+    #eg-sales-popup {
+        list-style: none; 
+        padding: 0;
+        margin: 0;  
+        position: fixed;
+        bottom: 10px;
+        width: 360px;
+        max-width: calc(100% - 20px);
+        text-align: left;
+        z-index: {{ section.settings.z_index }};
+    }
+    #eg-sales-popup.left {
+        left: 10px;
+    }
+    #eg-sales-popup.center {
+        left: 10px;
+        right: 10px;
+    }
+    #eg-sales-popup.right {
+        right: 10px;
+    }
+    #eg-sales-popup:not([hidden]) {
+        animation: eg_sales_popup_animation .4s ease-out both;
+    }
+    @keyframes eg_sales_popup_animation {
+        from { 
+            transform: translateY(100%)
+        }
+        to { 
+            transform: translateY(0)
+        }
+    }
+    .eg-sales-popup-item {
+        box-shadow: 0 0 8px rgba(0, 0, 0, .1);
+        background: {{ section.settings.bg_color }};
+        color: {{ section.settings.text_color }};
+    }
+    .eg-sales-popup-item.rounded {
+        border-radius: .5rem;
+    }
+    .eg-sales-popup-item.rounded-full {
+        border-radius: 50rem;
+    }
+    .eg-sales-popup-item a {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        padding: 6px;
+        text-decoration: none;
+        color: {{ section.settings.text_color }};
+    }
+    .eg-sales-popup-item img {
+        margin: 0 4px 0 0;
+        transition: all .2s ease-out;
+    }
+    .eg-sales-popup-item.rounded-full img {
+        border-radius: 50rem;
+    }
+    .eg-sales-popup-item a:hover img {
+        opacity: .75;
+    }
+    .eg-sales-popup-item-inner {
+        padding: 8px;
+    }
+    .eg-sales-popup-item-subtitle {
+        font-size: 14px;
+        margin: 0 0 4px;
+        line-height: 1.1;
+    }
+    .eg-sales-popup-item-title {
+        font-size: 16px;
+        margin: 0 0 6px;
+        line-height: normal;
+        color: {{ section.settings.text_color }};
+    }
+    .eg-sales-popup-item-time {
+        font-size: 13px;
+        margin: 0;
+        line-height: normal;
+        font-style: italic;
+        color: #C62828;
+    }
+    #eg-sales-popup-close-btn {
+        position: absolute;
+        top: -2px;
+        right: -4px;
+        display: flex;
+        background-color: rgba(0, 0, 0, .75);
+        padding: 0;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all .2s ease-out;
+    }
+    #eg-sales-popup-close-btn:hover {
+        background-color: rgba(0, 0, 0, 1);
+    }
+</style>
+
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const lastClosed = localStorage.getItem('eg-sales-popup-last-closed')
+        const hoursToWwait = Number({{ section.settings.idle_delay }})
+
+        if (!window.location.href.includes('eg-sales-popup')) {
+            if (lastClosed && (Number(lastClosed) + (hoursToWwait * 3.6e+6)) > new Date().getTime()) {
+                return
+            }
+        }
+
+        const min = Math.ceil(1)
+        const max = Math.floor({{ section.blocks.size }})
+        const random = Math.floor(Math.random() * (max - min + 1) + min);
+
+        setTimeout(() => {
+            document.querySelector('#eg-sales-popup').removeAttribute('hidden')
+            document.querySelector(`.eg-sales-popup-item:nth-child(${random})`).removeAttribute('hidden')
+
+        }, {{ section.settings.delay | times: 1000 }})
+    })
+
+    window.onClickEgSalesPopupCloseBtn = (btn, event) => {
+        document.querySelector('#eg-sales-popup').setAttribute('hidden', 'hidden')
+
+        localStorage.setItem('eg-sales-popup-last-closed', new Date().getTime())
+    }
+</script>
+
+{% if show_section %}
+    <div 
+        id="eg-sales-popup"  
+        class="{{ section.settings.position }}"
+        aria-hidden="true"
+        hidden>
+        {% for block in section.blocks %}
+            <div class="eg-sales-popup-item {{ section.settings.rounded_corners }}" hidden>
+                <a href="{{ block.settings.product.url }}">
+                    <img
+                        class=""
+                        src="{{ block.settings.product.featured_image | image_url: width: 100, height: 100, crop: 'center' }}"
+                        alt="{{ block.settings.product.featured_image.alt }}"
+                        width="100"
+                        height="100"
+                        loading="lazy">
+                    <div class="eg-sales-popup-item-inner">
+                        <p class="eg-sales-popup-item-subtitle">
+                            {{ block.settings.subtitle }}
+                        </p>
+                        <h6 class="eg-sales-popup-item-title">
+                            {{ block.settings.product.title }} →
+                        </h6>
+                        <p class="eg-sales-popup-item-time">
+                            {{ block.settings.time }}
+                        </p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+        <button 
+            id="eg-sales-popup-close-btn" 
+            data-closing-delay="24" 
+            aria-label="Close" 
+            data-delay="{{ section.settings.idle_delay }}"
+            onclick="onClickEgSalesPopupCloseBtn(this, event)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line>
+            </svg>
+        </button>
+    </div>
+{% endif %}
+
+{% schema %}
+{
+    "name": "EG Sales Popup",
+    "settings": [
+        {
+            "type": "header",
+            "content": "General"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_section",
+            "label": "Enable section",
+            "default": true
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background Color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "#121212"
+        },
+        {
+            "type": "select",
+            "id": "rounded_corners",
+            "label": "Rounded corners",
+            "default": "rounded-full",
+            "options": [
+                {  "value": "", "label": "Square" },
+                {  "value": "rounded", "label": "Rounded" },
+                {  "value": "rounded-full", "label": "Rounded-full" }
+            ]
+        },
+        {
+            "type": "range",
+            "id": "delay",
+            "label": "Delay (sec)",
+            "info": "The time to wait before showing the popup when the page load (in seconds)",
+            "default": 2,
+            "min": 0,
+            "max": 10
+        },
+        {
+            "type": "range",
+            "id": "idle_delay",
+            "label": "Delay (hours)",
+            "info": "The time to wait before showing the popup again after it was closed (in hours)",
+            "default": 24,
+            "min": 0,
+            "step": 1,
+            "max": 100
+        },
+        {
+            "type": "select",
+            "id": "position",
+            "label": "Position",
+            "default": "left",
+            "options": [
+                {  "value": "left", "label": "Left" },
+                {  "value": "center", "label": "Center" },
+                {  "value": "right", "label": "Right" }
+            ]
+        },
+        {
+            "type": "text",
+            "id": "z_index",
+            "label": "Z index",
+            "default": "9",
+            "info": "Adjust if you are having issues with overlapping"
+        },
+        {
+            "type": "header",
+            "content": "Visibility"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_homepage",
+            "label": "Show on the homepage",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "show_product_page",
+            "label": "Show on the product page",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "show_collection_page",
+            "label": "Show on the collection page",
+            "default": true
+        }
+    ],    
+    "blocks": [
+        {
+            "type": "block",
+            "name": "Block",
+            "settings": [
+                {
+                    "type": "product",
+                    "id": "product",
+                    "label": "Product"
+                },
+                {
+                    "type": "text",
+                    "id": "subtitle",
+                    "label": "Subtitle",
+                    "default": "John from Palm Beach, FL purchased a"
+                },
+                {
+                    "type": "text",
+                    "id": "time",
+                    "label": "Time",
+                    "default": "10 hours ago"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,107 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "image_EcntMi": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/6627a8c6a283dcd01eda6b67_1000x500_Solid.png",
+            "image_width": 300,
+            "alignment": ""
+          }
+        },
+        "1ed1a9a7-83c3-42c4-ab60-74d203203dbb": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Our Services - Eight 83 Plumbing",
+            "menu": "services"
+          }
+        },
+        "text_Uw7aLY": {
+          "type": "text",
+          "settings": {
+            "heading": "Eight 83 Plumbing",
+            "subtext": "<p>With over 15 years of experience, Eight 83 Plumbing provides reliable and professional plumbing services in Canberra. Available 24/7 for all your emergency plumbing needs.</p>"
+          }
+        },
+        "brand_information_aGCH76": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": false
+          }
+        },
+        "logo_V8C8nx": {
+          "type": "logo",
+          "settings": {
+            "logo_link": "#",
+            "logo": "shopify://shop_images/Australian-Owned-Certified-01-e1710379582134-1024x1024-1.webp",
+            "width": 76
+          }
+        },
+        "logo_iYwNBA": {
+          "type": "logo",
+          "settings": {
+            "logo_link": "#",
+            "logo": "shopify://shop_images/eight-83-plumbing.webp",
+            "width": 120
+          }
+        },
+        "logo_tMFnWB": {
+          "type": "logo",
+          "settings": {
+            "logo_link": "https://www.facebook.com/p/Eight-83-Plumbing-61558751863209",
+            "logo": "shopify://shop_images/facebook-5-star-png.webp",
+            "width": 120
+          }
+        },
+        "logo_jGGkQC": {
+          "type": "logo",
+          "settings": {
+            "logo_link": "#",
+            "logo": "shopify://shop_images/Arc-removebg-preview-e1715821417803.webp",
+            "width": 120
+          }
+        }
+      },
+      "block_order": [
+        "image_EcntMi",
+        "1ed1a9a7-83c3-42c4-ab60-74d203203dbb",
+        "text_Uw7aLY",
+        "brand_information_aGCH76",
+        "logo_V8C8nx",
+        "logo_iYwNBA",
+        "logo_tMFnWB",
+        "logo_jGGkQC"
+      ],
+      "settings": {
+        "color_scheme": "accent-2",
+        "newsletter_enable": false,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": false,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

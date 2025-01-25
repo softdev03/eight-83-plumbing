@@ -1,0 +1,492 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "video_new_j3jVfY": {
+      "type": "video-new",
+      "settings": {
+        "video": "shopify://files/videos/FTP.mp4",
+        "video_link": "",
+        "announce_text": "We're Open!",
+        "heading": "<h1>Canberra's Trusted <em>24/7</em> Plumbers</h1>",
+        "text": "Over 20 Years of Experience in Residential & Commercial Plumbing",
+        "quote_link": "#",
+        "quote_text": "Get a Free Quote",
+        "emergency_link": "#",
+        "emergency_text": "24/7 Emergency Service",
+        "desktop_padding_top": 50,
+        "desktop_padding_bottom": 50,
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 50
+      }
+    },
+    "sale_offer_8tApRA": {
+      "type": "sale-offer",
+      "settings": {
+        "section_width": 1440,
+        "background_color": "#00446c",
+        "image": "shopify://shop_images/offer_sale_img.webp",
+        "online_offer_text": "online offer only",
+        "price_text": "$150",
+        "cash_back_text": "cash back",
+        "purpose_text": "on Hot Water System Trade-Ins",
+        "link": "#",
+        "link_text": "Get a Free Quote",
+        "desktop_padding_top": 20,
+        "desktop_padding_bottom": 20,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20
+      }
+    },
+    "support_information_hNCxEV": {
+      "type": "support-information",
+      "blocks": {
+        "support_item_xPFyty": {
+          "type": "support_item",
+          "settings": {
+            "heading": "fully",
+            "text": "Licensed & Insured"
+          }
+        },
+        "support_item_xG4iYK": {
+          "type": "support_item",
+          "settings": {
+            "heading": "60 min",
+            "text": "60-Minute Response Time"
+          }
+        },
+        "support_item_L7xthF": {
+          "type": "support_item",
+          "settings": {
+            "heading": "3721",
+            "text": "Over 3721 Completed Jobs"
+          }
+        }
+      },
+      "block_order": [
+        "support_item_xPFyty",
+        "support_item_xG4iYK",
+        "support_item_L7xthF"
+      ],
+      "settings": {
+        "desktop_padding_top": 60,
+        "desktop_padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40
+      }
+    },
+    "rich_text_h8ibrU": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_NBQi4E": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Comprehensive Plumbing Services",
+            "heading_size": "h1"
+          }
+        },
+        "text_XkgzXw": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Discover the wide range of plumbing services Eight 83 Plumbing offers to keep your home or business running smoothly. Click on the blocks below to learn more about each service</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_NBQi4E",
+        "text_XkgzXw"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 0
+      }
+    },
+    "multicolumn_x6DUqF": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_6d9MNF": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/emergency-services.png",
+            "title": "Emergency Plumbing",
+            "text": "<p>Quick, reliable service</p>",
+            "link_label": "Emergency Plumbing",
+            "link": "shopify://pages/emergency-plumbing"
+          }
+        },
+        "column_pb6hVC": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/repairing.png",
+            "title": "General plumbing",
+            "text": "<p>Reliable Repairs & Maintenance<br/></p>",
+            "link_label": "General plumbing",
+            "link": "shopify://pages/general-plumbing"
+          }
+        },
+        "column_wFf6qQ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/water-heater.png",
+            "title": "Hot Water Solutions",
+            "text": "<p>Installations and repairs</p>",
+            "link_label": "Hot Water",
+            "link": "shopify://pages/hot-water-solutions"
+          }
+        },
+        "column_GRz8NH": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/gas-cylinder_2.png",
+            "title": "Gas fitting Services",
+            "text": "<p>Safe gas fitting service</p>",
+            "link_label": "Gas fitting",
+            "link": "shopify://pages/gas-fitting-services"
+          }
+        },
+        "column_ny7Hpg": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/blockage_1.png",
+            "title": "<strong>Blocked Drain Services</strong>",
+            "text": "<p>Clearing and maintenance</p>",
+            "link_label": "Blocked Drains",
+            "link": "shopify://pages/blocked-drain-services"
+          }
+        },
+        "column_4t37kH": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/bathroom.png",
+            "title": "Bathroom renovations",
+            "text": "<p>Supply & Install </p>",
+            "link_label": "Bathroom reno's",
+            "link": "shopify://pages/bathroom-renovations"
+          }
+        }
+      },
+      "block_order": [
+        "column_6d9MNF",
+        "column_pb6hVC",
+        "column_wFf6qQ",
+        "column_GRz8NH",
+        "column_ny7Hpg",
+        "column_4t37kH"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "enquiry_form_GJarAm": {
+      "type": "enquiry-form",
+      "blocks": {
+        "service_9zTQfL": {
+          "type": "service",
+          "settings": {
+            "text": "Blocked Drains"
+          }
+        },
+        "service_txwN4Q": {
+          "type": "service",
+          "settings": {
+            "text": "Burst Pipes"
+          }
+        },
+        "service_wyqTMR": {
+          "type": "service",
+          "settings": {
+            "text": "New Home Plumbing"
+          }
+        },
+        "service_JE6P4D": {
+          "type": "service",
+          "settings": {
+            "text": "Emergency Plumbing"
+          }
+        },
+        "service_jD6gpq": {
+          "type": "service",
+          "settings": {
+            "text": "Gas Fitting"
+          }
+        },
+        "service_zPdGXp": {
+          "type": "service",
+          "settings": {
+            "text": "Bathroom Renovations"
+          }
+        },
+        "job_type_bBfa6x": {
+          "type": "job_type",
+          "settings": {
+            "text": "Residential"
+          }
+        },
+        "job_type_mJ8zrm": {
+          "type": "job_type",
+          "settings": {
+            "text": "Commercial"
+          }
+        }
+      },
+      "block_order": [
+        "service_9zTQfL",
+        "service_txwN4Q",
+        "service_wyqTMR",
+        "service_JE6P4D",
+        "service_jD6gpq",
+        "service_zPdGXp",
+        "job_type_bBfa6x",
+        "job_type_mJ8zrm"
+      ],
+      "settings": {
+        "heading": "Get a Free Plumbing Quote",
+        "text": "<p>Fill out the form below and our team <strong>will get back to you within 60 minutes. </strong><em><strong>Guaranteed!</strong></em></p>",
+        "image": "shopify://shop_images/sec5_cashback.webp",
+        "desktop_padding_top": 60,
+        "desktop_padding_bottom": 60,
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 60,
+        "bg_color": "#f6f6f6"
+      }
+    },
+    "multirow_eMnHKp": {
+      "type": "multirow",
+      "blocks": {
+        "row_rFTEM4": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/56864842.jpg",
+            "caption": "Your Plumbing Emergency is Our Priority",
+            "heading": "<strong>24/7 Emergency Response</strong>",
+            "text": "<p>With over 15 years of experience, Eight 83 Plumbing has built a reputation for providing top-notch plumbing services in Canberra. Our commitment to quality and customer satisfaction sets us apart from the competition.</p>",
+            "button_label": "Call Us Anytime!",
+            "button_link": "tel:0437 174 202"
+          }
+        },
+        "row_j999rB": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/621457880.jpg",
+            "caption": "Professional and Certified Plumbers at Your Service",
+            "heading": "<strong>Fully Insured & Qualified Plumbers</strong>",
+            "text": "<p>All our Canberra <strong>Plumbers</strong> are fully licensed and qualified to handle any plumbing job. Backed by extensive training and certification, we ensure top-tier service and customer peace of mind, backed up by NRMA insurance. Give Eight 83 Plumbing a call.</p>",
+            "button_label": "Learn More About Our Team",
+            "button_link": "shopify://pages/about-us"
+          }
+        },
+        "row_mnKtFT": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/168810038.jpg",
+            "caption": "Transparent Pricing for Your Peace of Mind",
+            "heading": "Our commitment to quality and transparency",
+            "text": "<p>At Eight 83 Plumbing, we believe in using the latest technology and best practices to ensure your plumbing system is reliable and efficient. Our commitment to quality and transparency means you can trust us to get the job done right the first time.</p>",
+            "button_label": "Book a Plumber",
+            "button_link": "shopify://pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "row_rFTEM4",
+        "row_j999rB",
+        "row_mnKtFT"
+      ],
+      "settings": {
+        "image_height": "adapt",
+        "desktop_image_width": "medium",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "image_layout": "alternate-left",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "eg_testimonials_2_8nJ7F8": {
+      "type": "eg-testimonials-2",
+      "blocks": {
+        "testimonial_KcTaXd": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "five",
+            "title": "They were quick, professional",
+            "text": "<p>\"Eight 83 Plumbing provided excellent service when we had a burst pipe. They were quick, professional, and resolved the issue efficiently.\" </p><p></p>",
+            "author_name": "Sarah J., Canberra"
+          }
+        },
+        "testimonial_wR969R": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "five",
+            "title": "Installed our new hot water system",
+            "text": "<p>\"I highly recommend Eight 83 Plumbing. They installed our new hot water system perfectly and provided great advice on maintenance.\" </p>",
+            "author_name": "Mark D., Canberra"
+          }
+        },
+        "testimonial_mfNyRG": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "five",
+            "title": "Left everything clean and tidy",
+            "text": "<p>\"The team at Eight 83 Plumbing is fantastic. They fixed our leaking taps quickly and left everything clean and tidy. Exceptional service!\" </p>",
+            "author_name": "Emily R., Canberra"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_KcTaXd",
+        "testimonial_wR969R",
+        "testimonial_mfNyRG"
+      ],
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "section_size": "full-width",
+        "testimonial_style": "style-1",
+        "heading": "\"What Our Customers Are Saying\"",
+        "heading_size": "h1",
+        "heading_transform": "",
+        "heading_color": "#121212",
+        "sub_heading": "",
+        "sub_heading_size": "body",
+        "sub_heading_transform": "",
+        "sub_heading_color": "#000000",
+        "header-alignment": "center",
+        "show_slides": 3,
+        "detail_alignment": "center",
+        "bg_color": "#ffffff",
+        "border_color": "#cccccc",
+        "text_color": "#000000",
+        "star_color": "#f0cf4a",
+        "arrows_color": "#000000",
+        "title_size": "h2",
+        "title_transform": "",
+        "text_style": "body",
+        "button_label": "",
+        "button_link": "",
+        "btn_bg_color": "#0096cc",
+        "btn_label_color": "#ffffff",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 30
+      }
+    },
+    "rich_text_KDyDCj": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_WcdXmm": {
+          "type": "heading",
+          "settings": {
+            "heading": "Fast, Trustworthy 24-Hour Emergency Plumbing Service. That's the Eight 83 Plumbing difference.",
+            "heading_size": "h1"
+          }
+        },
+        "text_R37mj7": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Available 24/7</strong> Our team is always on stand-by</p>"
+          }
+        },
+        "button_6JnPmq": {
+          "type": "button",
+          "settings": {
+            "button_label": "Call Now",
+            "button_link": "tel:0437 174 202",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_WcdXmm",
+        "text_R37mj7",
+        "button_6JnPmq"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 44,
+        "padding_bottom": 100
+      }
+    },
+    "eg_marquee_text_VfRdC7": {
+      "type": "eg-marquee-text",
+      "disabled": true,
+      "settings": {
+        "bg_color": "#002a4d",
+        "color": "",
+        "text_size": "",
+        "text_weight": "",
+        "text_transform": "",
+        "list_label": "",
+        "animation_duration": 15,
+        "marquee_direction": "left",
+        "gap": 20,
+        "pt": 0,
+        "pb": 0,
+        "mt": 0,
+        "mb": 0
+      }
+    },
+    "waves_QxnAxr": {
+      "type": "waves",
+      "settings": {
+        "wave_animation_speed": 5,
+        "wave_placement": "eg-waves-top",
+        "color": "#0096cc",
+        "blend_wave": true,
+        "wave_blend_color": "#121212",
+        "wave_blend_alpha": 1,
+        "wave_height_desktop": 8,
+        "wave_height_mobile": 8
+      }
+    }
+  },
+  "order": [
+    "video_new_j3jVfY",
+    "sale_offer_8tApRA",
+    "support_information_hNCxEV",
+    "rich_text_h8ibrU",
+    "multicolumn_x6DUqF",
+    "enquiry_form_GJarAm",
+    "multirow_eMnHKp",
+    "eg_testimonials_2_8nJ7F8",
+    "rich_text_KDyDCj",
+    "eg_marquee_text_VfRdC7",
+    "waves_QxnAxr"
+  ]
+}

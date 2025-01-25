@@ -1,0 +1,402 @@
+{% comment %} 
+    EG Promo Slider
+    © 2022 EcomGraduates
+    https://wwww.ecomgraduates.com 
+{% endcomment %}
+
+{% liquid
+    case section.settings.img_orientation
+        when 'portrait': 
+            assign img_width = 600 
+            assign img_height = 900
+        when 'square'
+            assign img_width = 600 
+            assign img_height = 600
+        when 'landscape'
+            assign img_width = 900 
+            assign img_height = 600
+    endcase
+%}
+
+{% if section.settings.enable_section %}
+{% if section.settings.show_only_homepage == false or template.name == 'index' %}
+
+{% comment %}theme-check-disable{% endcomment %}
+<link 
+    rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/css/splide.min.css" 
+    integrity="sha256-5uKiXEwbaQh9cgd2/5Vp6WmMnsUr3VZZw0a8rKnOKNU=" 
+    crossorigin="anonymous"
+    defer>
+<script 
+    src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js" 
+    integrity="sha256-EZ92IjxfDkxLNzfU5LeyYSHivLIGLygoFLDrhTVjRxw=" 
+    crossorigin="anonymous"
+    defer></script>
+{% comment %}theme-check-disable{% endcomment %}
+
+<link href="{{ 'eg-promo-slider.css' | asset_url }}" rel="stylesheet">
+<script src="{{ 'micromodal.min.js' | asset_url }}" defer></script>
+<script src="{{ 'eg-promo-slider.js' | asset_url }}" defer></script>
+
+<button 
+    id="eg-promo-slider-btn-trigger"
+    class="btn button"
+    data-micromodal-trigger="eg-promo-slider-modal"
+    style="
+        --bg-color: {{ section.settings.bg_color }}; 
+        --bg-color-hover: {{ section.settings.bg_color | color_lighten: 10 }};
+        --text-color: {{ section.settings.text_color }}
+    ">
+    <span class="">
+        {{ section.settings.toggle_btn_text }}
+    </span>
+</button>
+
+<div 
+    id="eg-promo-slider-modal"
+    class="micromodal" 
+    aria-hidden="true"
+    style="visibility: hidden;">
+    <div 
+        class="micromodal__overlay" 
+        data-micromodal-close
+        tabindex="-1"
+        style="
+            background-color: rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100.00 }});
+            backdrop-filter: blur({{ section.settings.overlay_blur | append: 'px' }});
+        ">
+        <div 
+            class="micromodal__container" 
+            role="dialog" 
+            aria-modal="true" 
+            aria-labelledby="eg-promo-slider-title"
+            style="
+                background-color: {{ section.settings.bg_color }};
+                color: {{ section.settings.text_color }}
+            ">
+            <div class="micromodal__container__inner">
+                <header class="micromodal__header">
+                    <h2 
+                        id="eg-promo-slider-title" 
+                        class="micromodal__title {{ section.settings.modal_title_size }}"
+                        style="color: {{ section.settings.text_color }}">
+                        {{ section.settings.modal_title }}
+                    </h2>
+                    <button 
+                        class="micromodal__close" 
+                        aria-label="Close modal" 
+                        data-micromodal-close
+                        style="color: {{ section.settings.text_color }}">
+                    </button>
+                </header>
+                <main class="micromodal__content">
+                    <div 
+                        class="splide" 
+                        role="group" 
+                        aria-labelledby="eg-promo-slider-title"
+                        data-arrows="{{ section.settings.slider_arrows }}"
+                        data-pagination="{{ section.settings.slider_pagination }}"
+                        data-gap="{{ section.settings.slider_gap }}"
+                        data-rewind="{{ section.settings.slider_rewind }}"
+                        data-breakpoint-xs="{{ section.settings.breakpoint_xs }}"
+                        data-breakpoint-sm="{{ section.settings.breakpoint_sm }}"
+                        data-breakpoint-md="{{ section.settings.breakpoint_md }}"
+                        data-breakpoint-lg="{{ section.settings.breakpoint_lg }}"
+                        data-breakpoint-xl="{{ section.settings.breakpoint_xl }}"
+                        data-breakpoint-xxl="{{ section.settings.breakpoint_xxl }}"> 
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                {% for block in section.blocks %}
+                                    <li class="splide__slide block-item">
+                                        <a 
+                                            href="{{ block.settings.url }}"
+                                            style="color: {{ section.settings.text_color }}">
+                                            <img
+                                                class="block-img"
+                                                src="{{ block.settings.img | image_url: width: img_width, height: img_height }}"
+                                                alt="{{ block.settings.img.alt }}"
+                                                width="{{ img_width }}"
+                                                height="{{ img_height }}"
+                                                loading="lazy">
+                                            {% unless block.settings.description == blank %}
+                                                <h3
+                                                    class="block-title {{ block.settings.title_size }}"
+                                                    style="color: {{ section.settings.text_color }}">
+                                                    {{ block.settings.title }}
+                                                </h3>
+                                            {% endunless %}
+                                            {% unless block.settings.description == blank %}
+                                                <div class="block-description rte">
+                                                    {{ block.settings.description }}
+                                                </div>
+                                            {% endunless %}
+                                            {% unless block.settings.btn_text == blank %}
+                                                <span 
+                                                    class="block-btn btn button"
+                                                    style="
+                                                        background-color: {{ section.settings.text_color }};
+                                                        color: {{ section.settings.bg_color }}
+                                                    ">
+                                                    {{ block.settings.btn_text }}
+                                                </span>
+                                            {% endunless %}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endif %}
+
+{% schema %}
+{
+    "name": "EG Promo Slider",
+    "settings": [
+        {
+            "type": "header",
+            "content": "General"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_section",
+            "label": "Enable section",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "show_only_homepage",
+            "label": "Show only on the homepage",
+            "default": true
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background Color",
+            "default": "#121212"
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "text",
+            "id": "toggle_btn_text",
+            "label": "Toggle Button Text",
+            "default": "Today's Offers (6)"
+        },
+        {
+            "type": "header",
+            "content": "Modal"
+        },
+        {
+            "type": "range",
+            "id": "overlay_opacity",
+            "label": "Overlay opacity",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 50
+        },
+        {
+            "type": "range",
+            "id": "overlay_blur",
+            "label": "Overlay blur",
+            "min": 0,
+            "max": 20,
+            "step": 1,
+            "default": 10
+        },
+        {
+            "type": "text",
+            "id": "modal_title",
+            "label": "Modal Title",
+            "default": "Today's Offers"
+        },
+        {
+            "type": "select",
+            "id": "modal_title_size",
+            "label": "Modal title size",
+            "default": "h3",
+            "options": [
+                { "group": "Heading", "value": "h1", "label": "H1" },
+                { "group": "Heading", "value": "h2", "label": "H2" },
+                { "group": "Heading", "value": "h3", "label": "H3" },
+                { "group": "Heading", "value": "h4", "label": "H4" },
+                { "group": "Heading", "value": "h5", "label": "H5" },
+                { "group": "Heading", "value": "h6", "label": "H6" }
+            ]
+        },
+        {
+            "type": "header",
+            "content": "Slider"
+        },
+        {
+            "type": "checkbox",
+            "id": "slider_arrows",
+            "label": "Arrows",
+            "default": true,
+            "info": "Prev/Next Buttons"
+        },
+        {
+            "type": "checkbox",
+            "id": "slider_pagination",
+            "label": "Pagination",
+            "default": true,
+            "info": "Small dots at the end"
+        },
+        {
+            "type": "range",
+            "id": "slider_gap",
+            "label": "Gap",
+            "default": 15,
+            "min": 0,
+            "max": 30,
+            "info": "Spacing between slides"
+        },
+        {
+            "type": "checkbox",
+            "id": "slider_rewind",
+            "label": "Rewind",
+            "default": true,
+            "info": "Determines whether to rewind the carousel or not."
+        },
+        {
+            "type": "select",
+            "id": "img_orientation",
+            "label": "Image orientation",
+            "options": [
+                { "value": "portrait", "label": "Portrait" },
+                { "value": "square", "label": "Square" },
+                { "value": "landscape", "label": "Landscape" }
+            ],
+            "default": "landscape"
+        },
+        {
+            "type": "header",
+            "content": "Breakpoints",
+            "info": "Adjust items per slide based on screen resolution"
+        },
+        {
+            "type": "range",
+            "id": "breakpoint_xs",
+            "label": "Items per slide / xs",
+            "info": "Screen width: less than 576px",
+            "min": 1,
+            "max": 3,
+            "step": 1,
+            "default": 1
+        },
+        {
+            "type": "range",
+            "id": "breakpoint_sm",
+            "label": "Items per slide / sm",
+            "info": "Screen width: ≥576px",
+            "min": 1,
+            "max": 3,
+            "step": 1,
+            "default": 2
+        },
+        {
+            "type": "range",
+            "id": "breakpoint_md",
+            "label": "Items per slide / md",
+            "info": "Screen width: ≥768px",
+            "min": 1,
+            "max": 4,
+            "step": 1,
+            "default": 3
+        },
+        {
+            "type": "range",
+            "id": "breakpoint_lg",
+            "label": "Items per slide / lg",
+            "info": "Screen width: ≥992px",
+            "min": 1,
+            "max": 6,
+            "step": 1,
+            "default": 3
+        },
+        {
+            "type": "range",
+            "id": "breakpoint_xl",
+            "label": "Items per slide / xl",
+            "info": "Screen width: ≥1200px",
+            "min": 1,
+            "max": 6,
+            "step": 1,
+            "default": 4
+        },
+        {
+            "type": "range",
+            "id": "breakpoint_xxl",
+            "label": "Items per slide / xxl",
+            "info": "Screen width: ≥1400px",
+            "min": 1,
+            "max": 8,
+            "step": 1,
+            "default": 5
+        }
+    ],    
+    "blocks": [
+        {
+            "type": "block",
+            "name": "Block",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "img",
+                    "label": "Image"
+                },
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "Link (URL)"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Some Title Goes Here"
+                },
+                {
+                    "type": "select",
+                    "id": "title_size",
+                    "label": "Title size",
+                    "default": "h3",
+                    "options": [
+                        { "group": "Heading", "value": "h1", "label": "H1" },
+                        { "group": "Heading", "value": "h2", "label": "H2" },
+                        { "group": "Heading", "value": "h3", "label": "H3" },
+                        { "group": "Heading", "value": "h4", "label": "H4" },
+                        { "group": "Heading", "value": "h5", "label": "H5" },
+                        { "group": "Heading", "value": "h6", "label": "H6" }
+                    ]
+                },
+                {
+                    "type": "richtext",
+                    "id": "description",
+                    "label": "Description",
+                    "default": "<p>Some option and a bit more long description goes here</p>",
+                    "info": "Leave empty to disable"
+                },
+                {
+                    "type": "text",
+                    "id": "btn_text",
+                    "label": "Button Text",
+                    "default": "Shop Now",
+                    "info": "Leave empty to disable"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

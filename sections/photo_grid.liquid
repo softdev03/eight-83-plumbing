@@ -1,0 +1,1345 @@
+{% liquid 
+  assign vertical_height = section.settings.vertical_height 
+  assign vertical_margin = section.settings.vertical_margin 
+  assign section_bg = section.settings.section_bg 
+  assign section_text = section.settings.section_text 
+  assign section_width = section.settings.section_width 
+
+  assign section_heading = section.settings.section_heading
+  assign heading_color = section.settings.heading_color 
+  assign section_sub_heading = section.settings.section_sub_heading
+  assign sub_heading_first = section.settings.sub_heading_first
+  assign heading_gap = section.settings.heading_gap 
+  assign heading_center = section.settings.heading_center 
+  
+  assign container_type = section.settings.container_type 
+  assign item_count = section.settings.item_count 
+  assign item_count_tablet = section.settings.item_count_tablet 
+  assign item_count_mobile = section.settings.item_count_mobile 
+  assign default_label = section.settings.default_label 
+  assign default_link = section.settings.default_link 
+  assign block_post_label = section.settings.block_post_label 
+  assign block_post_style = section.settings.block_post_style 
+  assign block_icon_size = section.settings.block_icon_size 
+  assign block_icon_color = section.settings.block_icon_color 
+  assign block_overlay_color = section.settings.block_overlay_color 
+  assign block_overlay_opacity = section.settings.block_overlay_opacity 
+  
+  assign modal_bg = section.settings.modal_bg 
+  assign container_corner_radius = section.settings.container_corner_radius 
+  assign default_spacing = section.settings.default_spacing 
+  assign modal_image_first = section.settings.modal_image_first 
+  assign modal_image_size = section.settings.modal_image_size
+  assign modal_image_fill = section.settings.modal_image_fill
+  assign modal_product_image_size = section.settings.modal_product_image_size 
+  assign modal_product_title_bold = section.settings.modal_product_title_bold 
+  assign modal_product_price_bold = section.settings.modal_product_price_bold 
+  assign modal_product_price_color = section.settings.modal_product_price_color 
+  assign modal_product_compare_price_color = section.settings.modal_product_compare_price_color 
+  assign modal_product_view_product = section.settings.modal_product_view_product 
+  assign modal_product_view_product_text = section.settings.modal_product_view_product_text 
+  assign modal_product_view_product_style = section.settings.modal_product_view_product_style 
+  assign modal_product_ATC = section.settings.modal_product_ATC 
+  assign modal_product_ATC_text = section.settings.modal_product_ATC_text 
+  assign modal_product_ATC_style = section.settings.modal_product_ATC_style 
+  
+  assign btn_primary_bg = section.settings.btn_primary_bg 
+  assign btn_primary_text = section.settings.btn_primary_text 
+  assign btn_primary_corner = section.settings.btn_primary_corner 
+  assign btn_secondary_bg = section.settings.btn_secondary_bg 
+  assign btn_secondary_text = section.settings.btn_secondary_text 
+  assign btn_secondary_corner = section.settings.btn_secondary_corner 
+  assign btn_outline_text = section.settings.btn_outline_text 
+  assign btn_outline_corner = section.settings.btn_outline_corner 
+%}
+
+<style>
+  .section_{{ section.id }} {
+    --modal_content_radius: {{ container_corner_radius }}px;
+    --spacing_padding: {{ default_spacing }}px;
+    --logo_size: {{ block_icon_size }};
+    --logo_max_size: var(--logo_size) * 1%;
+    --logo_min_size: calc(var(--logo_size) * 2.5px);
+    --icon_color: {{ block_icon_color }};
+    padding-inline: 10px; 
+    padding-block: {{ vertical_height }}px; 
+    margin-block: {{ vertical_margin }}px; 
+    background-color: {{ section_bg }};
+  }
+  .section_{{ section.id }} .inner_container {
+    max-width: {{ section_width }};
+    margin-inline: auto;
+  }
+  .section_{{ section.id }} :is(h1, h2, h3, h4, h5, h6, p, span, ul, ol, li) {
+    margin-top: 0px;
+    margin-bottom: 1.4em;
+
+    {% if section_text != "transparent" and section_text != "" and section_text != " " and section_text != "rgba(0, 0, 0, 0)" and section_text != "rgba(0,0,0,0)" %}
+      color: {{ section_text }};
+    {% endif %}
+  }
+  .section_{{ section.id }} li {
+    margin-bottom: 0.3em;
+  }
+  .section_{{ section.id }} .heading_container * {
+    margin-bottom: 0px;
+  }
+  .section_{{ section.id }} .flex_1 {
+    flex: 1;
+  }
+  .section_{{ section.id }} .flex_2 {
+    flex: 2;
+  }
+  .section_{{ section.id }} .flex_3 {
+    flex: 3;
+  }
+  .section_{{ section.id }} .d_flex {
+    display: flex;
+  }
+  .section_{{ section.id }} .flex_wrap {
+    flex-wrap: wrap;
+  }
+  .section_{{ section.id }} .flex_col {
+    flex-direction: column;
+  }
+  .section_{{ section.id }} .flex_col_r {
+    flex-direction: column-reverse;
+  }
+  .section_{{ section.id }} .text_center {
+    text-align: center;
+  }
+  .section_{{ section.id }} .align_center {
+    align-items: center
+  }
+  .section_{{ section.id }} .justify_center {
+    justify-content: center;
+  }
+  .section_{{ section.id }} .bold {
+    font-weight: bold;
+  }
+  .section_{{ section.id }} .btn_style_primary {
+    text-decoration: none;
+    background-color: {{ btn_primary_bg }};
+    color: {{ btn_primary_text }};
+    border-radius: {% if btn_primary_corner == "sharp" %}0px{% elsif btn_primary_corner == "smooth" %}4px{% else %}500px{% endif %};
+  }
+  .section_{{ section.id }} .btn_style_secondary {
+    text-decoration: none;
+    background-color: {{ btn_secondary_bg }};
+    color: {{ btn_secondary_text }};
+    border-radius: {% if btn_secondary_corner == "sharp" %}0px{% elsif btn_secondary_corner == "smooth" %}4px{% else %}500px{% endif %};
+  }
+  .section_{{ section.id }} .btn_style_outline {
+    text-decoration: none;
+    background-color: transparent;
+    color: {{ btn_outline_text }};
+    border: solid 1px {{ btn_outline_text }};
+    border-radius: {% if btn_outline_corner == "sharp" %}0px{% elsif btn_outline_corner == "smooth" %}4px{% else %}500px{% endif %};
+  }
+
+  
+  .section_{{ section.id }} .heading_container {
+    gap: {{ heading_gap }}px;
+    margin-bottom: 40px;
+  }
+  .section_{{ section.id }} .section_heading {
+    {% if heading_color != "transparent" and heading_color != "" and heading_color != " " and heading_color != "rgba(0, 0, 0, 0)" and heading_color != "rgba(0,0,0,0)" %}
+      color: {{ heading_color }};
+    {% endif %}
+  }
+  .section_{{ section.id }} .gallery {
+    overflow: auto;
+    padding-bottom: 20px;
+  }
+  .section_{{ section.id }} .image_block {
+    position: relative;
+    min-width: calc(100% / {{ item_count }});
+    max-width: calc(100% / {{ item_count }});
+  }
+  
+  .section_{{ section.id }} .block_image {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .section_{{ section.id }} .block_label, 
+  .section_{{ section.id }} .modal_label {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding: 0.75em 1.4em 0.3em;
+    background: linear-gradient(0deg, rgb(0 0 0 / 60%) 55%, rgb(0 0 0 / 40%) 75%, transparent);
+    width: 100%;
+    margin: 0px;
+    z-index: 3;
+    font-size: clamp(10px, 1vw, 14px);
+    color: white;
+    pointer-events: none;
+  }
+  .section_{{ section.id }} .hover_content {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    cursor: zoom-in;
+  }
+  .section_{{ section.id }} .hover_content > * {
+    transition: all ease 0.3s;
+  }
+  .section_{{ section.id }} .image_block:hover .hover_content > * {
+    transform: none;
+    opacity: 1;
+  }
+  .section_{{ section.id }} .overlay {
+    background-color: {{ block_overlay_color }};
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    display: block;
+  }
+  .section_{{ section.id }} .image_block:hover .overlay {
+    opacity: calc({{ block_overlay_opacity }} / 100);
+  }
+  .section_{{ section.id }} .logo {
+    width: max(var(--logo_min_size), var(--logo_max_size));
+    height: max(var(--logo_min_size), var(--logo_max_size));
+    z-index: 2;
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  .section_{{ section.id }} .block_button, 
+  .section_{{ section.id }} .modal_button {
+    position: relative;
+    z-index: 2;
+    transform: scale(1.1);
+    padding: 0.3em 0.8em;
+    outline: none;
+    box-shadow: none;
+    margin-top: 1.2em;
+    opacity: 0;
+    cursor: pointer;
+    font-size: 70%;
+    text-align: center;
+  }
+  .section_{{ section.id }} .block_button:hover {
+    transform: scale(1.1)!important;
+  }
+
+  .section_{{ section.id }} .block_modal {
+    position: fixed;
+    inset: 0px;
+    background: rgb(0 0 0 / 50%);
+    z-index: 11;
+    cursor: zoom-out;
+  }
+  .section_{{ section.id }} .modal_content {
+    max-width: min(1000px, calc(100vw - 50px));
+    max-height: min(500px, calc(100vh - 130px));
+    width: 100%;
+    height: 100%;
+    background-color: {{ modal_bg }};
+    margin-inline: auto;
+    cursor: default;
+    border-radius: calc(var(--modal_content_radius) + var(--spacing_padding) * 2);
+    position: relative;
+    z-index: 3;
+    padding:calc(var(--spacing_padding) * 2.5);
+  }
+  .section_{{ section.id }} .modal_content_wrapper {
+    height: 100%;
+    gap:calc(var(--spacing_padding) * 2.5);
+  }
+  .section_{{ section.id }} [data-modal-status="false"] {
+    display: none!important;
+  }
+  .section_{{ section.id }} .modal_image_container {
+    position: relative;
+    order: 2;
+  }
+  .section_{{ section.id }} .modal_image {
+    width: 100%;
+    height: 100%;
+    object-fit: {{ modal_image_fill }};
+    border-radius: var(--modal_content_radius);
+    background-color: #f7f7f7;
+  }
+  .section_{{ section.id }} .modal_information_container {
+    overflow: auto;
+    order: {% if modal_image_first %}3{% else %}1{% endif %};
+  }
+  .section_{{ section.id }} .modal_information {
+    padding-right: 15px;
+  }
+  .section_{{ section.id }} .modal_product_container, 
+  .section_{{ section.id }} .modal_details_container {
+    border: solid 1px #eee;
+    border-radius: var(--modal_content_radius);
+    padding: calc(var(--spacing_padding) * 2);
+    margin-bottom: calc(var(--spacing_padding) * 2);
+  }
+  .section_{{ section.id }} .modal_product_image {
+    width: 100%;
+    max-height: {{ modal_product_image_size }}px;
+    object-fit: contain;
+    background-color: #f7f7f7;
+    margin-bottom: 10px;
+  }
+  .section_{{ section.id }} .modal_product_title {
+    font-size: 90%;
+    {% if modal_product_title_bold %} font-weight: 600; {% endif %}
+  }
+  .section_{{ section.id }} .modal_product_price {
+    font-size: 80%;
+    {% if modal_product_price_bold %} font-weight: 600; {% endif %}
+    {% if modal_product_price_color != "transparent" and modal_product_price_color != "" and modal_product_price_color != " " and modal_product_price_color != "rgba(0, 0, 0, 0)" and modal_product_price_color != "rgba(0,0,0,0)" %}
+      color: {{ modal_product_price_color }};
+    {% endif %}
+  }
+  .section_{{ section.id }} .modal_product_compare_price {
+    text-decoration: line-through;
+    font-weight: 400;
+    margin-inline-end: 10px;
+    font-size: 80%;
+    {% if modal_product_compare_price_color != "transparent" and modal_product_compare_price_color != "" and modal_product_compare_price_color != " " and modal_product_compare_price_color != "rgba(0, 0, 0, 0)" and modal_product_compare_price_color != "rgba(0,0,0,0)" %}
+      color: {{ modal_product_compare_price_color }};
+    {% endif %}
+  }
+  .modal_product_compare_price:empty {
+    display: none!important;
+  }
+  .section_{{ section.id }} .modal_product_title,
+  .section_{{ section.id }} .modal_product_price {
+    margin-bottom: 0.6em;
+    line-height: 1em;
+  }
+  .section_{{ section.id }} .modal_product_button {
+    padding: 0.6em 0.6em;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 75%;
+  }
+  .section_{{ section.id }} .modal_details > * {
+    line-height: 1.3em;
+    margin-bottom: 0.5em;
+  }
+  .section_{{ section.id }} .modal_button {
+    font-size: 80%;
+    padding: 0.5em 1.2em;
+    margin-top: 1.2em;
+    margin-bottom: 0.7em;
+    pointer-events: all;
+    white-space: nowrap;
+  }
+  .section_{{ section.id }} .modal_close {
+    position: absolute;
+    top: var(--spacing_padding);
+    left: var(--spacing_padding);
+    padding: 8px;
+    border: solid 1px #eee;
+    border-radius: 50%;
+    height: calc(var(--spacing_padding) * 4);
+    width: calc(var(--spacing_padding) * 4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: {{ modal_bg }};
+    cursor: pointer;
+    z-index: 5;
+  }
+  .section_{{ section.id }} .variant_container, 
+  .section_{{ section.id }} .variant_data {
+    display: none!important;
+  }
+  .section_{{ section.id }} legend {
+    margin-bottom: 0;
+    color: black;
+    padding: 0px;
+  }
+  .section_{{ section.id }} fieldset {
+    padding: 0px;
+    border: none;
+    margin-bottom: 1em;
+  }
+  .section_{{ section.id }} select {
+    width: 100%;
+    padding: 0.3em 0.5em;
+}
+
+  *:is(.gallery, .modal_content_wrapper, .modal_information_container)::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  *:is(.gallery, .modal_content_wrapper, .modal_information_container)::-webkit-scrollbar-track {
+    background-color: #ccc;
+    border-radius: 500px;
+  }
+  
+  *:is(.gallery, .modal_content_wrapper, .modal_information_container)::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 500px;
+  }
+  *:is(.gallery, .modal_content_wrapper, .modal_information_container)::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+
+  *:is(.gallery, .modal_content_wrapper, .modal_information_container) {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #ccc;
+  }
+  
+  *:is(.gallery, .modal_content_wrapper, .modal_information_container)::-moz-scrollbar {
+    width: 6px;
+  }
+  
+  *:is(.gallery, .modal_content_wrapper, .modal_information_container)::-moz-scrollbar-track {
+    background-color: #ccc;
+    border-radius: 500px;
+  }
+  
+  *:is(.gallery, .modal_content_wrapper, .modal_information_container)::-moz-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 500px;
+  }
+  
+  *:is(.gallery, .modal_content_wrapper, .modal_information_container)::-moz-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+
+  @media only screen and (max-width: 900px) {
+    .section_{{ section.id }} .image_block {
+      min-width: calc(100% / {{ item_count_tablet }});
+      max-width: calc(100% / {{ item_count_tablet }});
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    .section_{{ section.id }} .modal_content {
+    }
+    .section_{{ section.id }} .modal_content_wrapper {
+      flex-direction: column;
+      overflow: auto;
+    }
+    .section_{{ section.id }} .modal_image_container {
+      order: 1;
+    }
+    .section_{{ section.id }} .modal_information_container {
+      overflow: visible;
+      order: 2;
+    }
+    .s_small_flex_1 {
+      flex: 1;
+    }
+    .section_{{ section.id }} .image_block {
+      min-width: calc(100% / {{ item_count_mobile }});
+      max-width: calc(100% / {{ item_count_mobile }});
+    }
+    *:is(.gallery, .modal_content_wrapper, .modal_information_container)::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    *:is(.gallery, .modal_content_wrapper, .modal_information_container)::-moz-scrollbar {
+      width: 4px;
+    }
+  }
+</style>
+
+<div class="section_{{ section.id }}">
+  <div class="inner_container">
+
+    {% if section_heading != blank or section_sub_heading != blank %}
+      <div class="heading_container d_flex {% if sub_heading_first %}flex_col_r{% else %}flex_col{% endif %} {% if heading_center %}text_center{% endif %}">
+        {% if section_heading != blank %}
+          <h2 class="section_heading">{{ section_heading }}</h2>
+        {% endif %}
+        {% if section_sub_heading != blank %}
+          <p class="section_sub_heading">{{ section_sub_heading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="content_container">
+      <div class="gallery_container">
+        <div class="gallery d_flex {% if container_type == "grid" %}flex_wrap{% endif %}">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when "image" %}
+
+                <div class="image_block">
+                  {% liquid 
+                    assign image = block.settings.image
+                    assign label = block.settings.label
+                    assign product = block.settings.product
+                    assign product_details = block.settings.product_details
+                    assign instagram_post = block.settings.instagram_post
+                  %}
+                  {% if image == blank %}
+                    <img class="block_image" src="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=webp&v=1530129081" />
+                  {% else %}
+                    <img class="block_image" src="{{ image | image_url }}" />
+                  {% endif %}
+                  {% if default_label and label != blank %}
+                    <p class="block_label">{{ label }}</p>
+                  {% endif %}
+              
+                  <div class="hover_content d_flex flex_col align_center justify_center">
+                    <div class="overlay"></div>
+                    <svg class="logo" fill="var(--icon_color)" id="Layer_1" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 551.034 551.034" style="enable-background:new 0 0 000.000 000.000;" xml:space="preserve">
+                      <path class="logo_box" fill:"var(--icon_color)" id="XMLID_17_" d="M386.878,0H164.156C73.64,0,0,73.64,0,164.156v222.722 c0,90.516,73.64,164.156,164.156,164.156h222.722c90.516,0,164.156-73.64,164.156-164.156V164.156 C551.033,73.64,477.393,0,386.878,0z M495.6,386.878c0,60.045-48.677,108.722-108.722,108.722H164.156 c-60.045,0-108.722-48.677-108.722-108.722V164.156c0-60.046,48.677-108.722,108.722-108.722h222.722 c60.045,0,108.722,48.676,108.722,108.722L495.6,386.878L495.6,386.878z"/>
+                      <path id="XMLID_81_" fill="var(--icon_color)" d="M275.517,133C196.933,133,133,196.933,133,275.516 s63.933,142.517,142.517,142.517S418.034,354.1,418.034,275.516S354.101,133,275.517,133z M275.517,362.6 c-48.095,0-87.083-38.988-87.083-87.083s38.989-87.083,87.083-87.083c48.095,0,87.083,38.988,87.083,87.083 C362.6,323.611,323.611,362.6,275.517,362.6z"/>
+                      <circle id="XMLID_83_" fill="var(--icon_color)" cx="418.306" cy="134.072" r="34.149"/>
+                    </svg>
+                    {% if default_link and instagram_post != blank %}
+                      <a href="{{ instagram_post }}" class="block_button btn_style_{{ block_post_style }}">{{ block_post_label }}</a>
+                    {% endif %}
+                  </div>
+
+                  <div class="block_modal d_flex align_center justify_center" data-modal-status="false">
+                    <div class="modal_content">
+                      <div class="modal_close">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#000" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="18" y1="6" x2="6" y2="18"></line>
+                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                      </div>
+                      <div class="modal_content_wrapper d_flex">
+                        <div class="modal_image_container {% if modal_image_size == "large" %}flex_3{% else %}flex_2{% endif %} s_small_flex_1">
+                          {% if image == blank %}
+                            <img class="modal_image" src="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=webp&v=1530129081" />
+                          {% else %}
+                            <img class="modal_image" src="{{ image | image_url }}" />
+                          {% endif %}
+                          {% if label != blank %}
+                            <div class="block_label d_flex" style="justify-content: space-between;gap:var(--spacing_padding);align-items:flex-end;border-radius: 0 0 var(--modal_content_radius) var(--modal_content_radius);">
+                              <p class="" style="margin-bottom:0.75em;color:white;">{{ label }}</p>
+                              {% if instagram_post != blank %}
+                                <a href="{{ instagram_post }}" class="modal_button btn_style_{{ block_post_style }}" style="opacity: 1;">{{ block_post_label }}</a>
+                              {% endif %}
+                            </div>
+                          {% endif %}
+                        </div>
+                        {% if product != blank or product_details != blank %}
+                          <div class="modal_information_container {% if modal_image_size == "small" %}flex_3{% else %}flex_2{% endif %} s_small_flex_1">
+                            <div class="modal_information">
+                              {% if product != blank %}
+                                <div class="modal_product_container">
+                                {% liquid
+                                  assign image_url = ""
+                                  if product.selected_or_first_available_variant.image
+                                    assign image_url = product.selected_or_first_available_variant.image | image_url
+                                  elsif product.featured_image
+                                    assign image_url = product.featured_image | image_url
+                                  else
+                                    assign image_url = "null"
+                                  endif
+                                %}
+                                  <img class="modal_product_image" src="{{ image_url }}" />
+                                  <p class="modal_product_title">{{ product.title }}</p>
+                                  <form method="post" action="/cart/add/{{ product.selected_or_first_available_variant.id }}" id="product-form-{{ section.id }}" accept-charset="UTF-8" class="form product_form flex_1" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form">
+                                    <p class="modal_product_price_container d_flex" style="margin-bottom: 0px;">
+                                        <span class="modal_product_compare_price">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
+                                      <span class="modal_product_price">{{ product.selected_or_first_available_variant.price | money }}</span>
+                                    </p>
+                                    <input type="hidden" name="form_type" value="product">
+                                    <input type="hidden" name="utf8" value="✓">
+                                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled="" class="product-variant-id">
+
+                                    {%- liquid
+                                      assign variants_available_arr = product.variants | map: 'available'
+                                      assign variants_option1_arr = product.variants | map: 'option1'
+                                      assign variants_option2_arr = product.variants | map: 'option2'
+                                      assign variants_option3_arr = product.variants | map: 'option3'
+                                    
+                                      assign product_form_id = 'product-form-' | append: section.id
+                                    -%}
+
+                                    <div class="variant_list d_flex" style="gap: 10px;">
+
+                                      {%- for option in product.options_with_values -%}
+                                        <fieldset class="js product-form__input flex_1">
+                                          <legend class="form__label">{{ option.name }}</legend>
+                                        
+                                          <select class="product_form_options {{ product_form_id }}">
+                                            {%- for value in option.values -%}
+                                              {%- liquid
+                                                assign option_disabled = true
+                                            
+                                                for option1_name in variants_option1_arr
+                                                  case option.position
+                                                    when 1
+                                                      if variants_option1_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
+                                                        assign option_disabled = false
+                                                      endif
+                                                    when 2
+                                                      if option1_name == product.selected_or_first_available_variant.option1 and variants_option2_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
+                                                        assign option_disabled = false
+                                                      endif
+                                                    when 3
+                                                      if option1_name == product.selected_or_first_available_variant.option1 and variants_option2_arr[forloop.index0] == product.selected_or_first_available_variant.option2 and variants_option3_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
+                                                        assign option_disabled = false
+                                                      endif
+                                                  endcase
+                                                endfor
+                                              -%}
+                                              <option
+                                                value="{{ value | escape }}"
+                                                {% if option.selected_value == value %}
+                                                  selected="selected"
+                                                {% endif %}
+                                              >
+                                                {% if option_disabled -%}
+                                                  {{- 'products.product.value_unavailable' | t: option_value: value -}}
+                                                {%- else -%}
+                                                  {{- value -}}
+                                                {%- endif %}
+                                              </option>
+                                            {%- endfor -%}
+                                          </select>
+                                        
+                                        </fieldset>
+                                      {%- endfor -%}
+                      
+                                      <div class="variant_container">
+                                        {% for variant in product.variants %}
+                                          <p class="variant_data" data-variant-id="{{ variant.id }}" data-variant-title="{{ variant.title }}" data-variant-price="{{ variant.price | money }}" data-variant-compare="{{ variant.compare_at_price | money }}" data-variant-image="{% if variant.featured_image %}{{ variant.featured_image | image_url }}{% else %}null{% endif %}"></p>
+                                        {% endfor %}
+                                      </div>
+                                    </div>
+
+                                    <div class="d_flex" style="gap:var(--spacing_padding);">
+                                      {% if modal_product_view_product %}
+                                        <a href="/products/{{ product.handle }}" type="button" role="button" class="modal_product_button flex_1 btn_style_{{ modal_product_view_product_style }}">{{ modal_product_view_product_text }}</a>
+                                      {% endif %}
+                                      {% if modal_product_ATC %}
+                                        <button id="ProductSubmitButton-" type="submit" name="add" class="modal_product_button flex_1 btn_style_{{ modal_product_ATC_style }}" value="{{ product.selected_or_first_available_variant.id }}">
+                                          {{ modal_product_ATC_text }}
+                                        </button>
+                                      {% endif %}
+                                    </div>
+                                
+                                    <input type="hidden" name="product-id" value="{{ product.selected_or_first_available_variant.id }}">
+                                  </form>
+                                </div>
+                              {% endif %}
+    
+                              {% if product_details != blank %}
+                                <div class="modal_details_container">
+                                  <div class="modal_details">{{ product_details }}</div>
+                                </div>
+                              {% endif %}
+                            </div>
+                          </div>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                        
+                </div>
+  
+            {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<script>
+  (function(){
+    let section = document.querySelector(".section_{{ section.id }}");
+    let allImageBlock = Array.from(section.querySelectorAll(".image_block"));
+    let allOverlay = Array.from(section.querySelectorAll(".hover_content"));
+    let allBlockButton = Array.from(section.querySelectorAll(".block_button"));
+    let allModalContainer = Array.from(section.querySelectorAll(".block_modal"));
+    let allModalContent = Array.from(section.querySelectorAll(".modal_content"));
+    let allModalButton = Array.from(section.querySelectorAll(".modal_button"));
+    let allForm = Array.from(section.querySelectorAll("form"));
+    let allModalClose = Array.from(section.querySelectorAll(".modal_close"));
+    let galleryContainer = section.querySelector(".gallery_container");
+    let allProductForms = Array.from(section.querySelectorAll(".product_form"));
+    
+    [allBlockButton, allModalButton].forEach(group =>{
+      group.forEach(content=>{
+        content.addEventListener("click", (event)=>{
+          window.location.href =  event.target.href;
+          event.stopPropagation();
+          event.preventDefault();
+        })
+      })
+    })
+
+    allProductForms.forEach(productForm=>{
+      Array.from(productForm.querySelectorAll(".product_form_options")).forEach(formElement=>{
+        formElement.addEventListener("change", (event)=>{
+          let currentVariant = "";
+          Array.from(productForm.querySelectorAll(".product_form_options")).forEach(formElementValue=>{
+            currentVariant += `${formElementValue.value} / `;
+          });
+          currentVariant = currentVariant.trim().slice(0, -1).trim();
+          Array.from(productForm.querySelectorAll(".variant_data")).forEach(data=>{
+            if (data.dataset.variantTitle == currentVariant) {
+              productForm.action = `/cart/add/${data.dataset.variantId}`;
+              productForm.querySelector("input[name='id']").value = data.dataset.variantId;
+              productForm.querySelector("button[type='submit']").value = data.dataset.variantId;
+
+              productForm.querySelector(".modal_product_price").textContent = data.dataset.variantPrice;
+              productForm.querySelector(".modal_product_compare_price").textContent = data.dataset.variantCompare;
+              if (data.dataset.variantImage != "null") {
+                productForm.parentElement.querySelector(".modal_product_image").src = data.dataset.variantImage;
+              }
+            }
+          })
+        })
+      })
+    })
+
+    allOverlay.forEach(overlay=>{
+      overlay.addEventListener("click", ()=>{
+        openModal(overlay)
+      })
+    })
+
+    function closeAllModal() {
+      section.querySelectorAll(".block_modal").forEach(modal=>{
+        modal.dataset.modalStatus = "false";
+      })
+    }
+    
+    function openModal(overlay) {
+      closeAllModal();
+      overlay.parentElement.querySelector(".block_modal").dataset.modalStatus = "true";
+    }
+
+    allModalContainer.forEach(overlay=>{
+      overlay.addEventListener("click", ()=>{
+        closeAllModal();
+      })
+    })
+    
+    allModalClose.forEach(overlay=>{
+      overlay.addEventListener("click", ()=>{
+        closeAllModal();
+      })
+    })
+
+    allModalContent.forEach(content=>{
+      content.addEventListener("click", (event)=>{
+        event.stopPropagation();
+        event.preventDefault();
+      })
+    })
+    
+    allForm.forEach(form=>{
+      form.addEventListener("click", (event)=>{
+        event.stopPropagation();
+      })
+    })
+  })()
+</script>
+
+{% schema %}
+  {
+    "name": "Instagram photo grid",
+    "settings": [
+      {
+          "type": "header",
+          "content": "Headings settings"
+      },
+      {
+          "type": "text",
+          "id": "section_heading",
+          "label": "Section heading"
+      },
+      {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading color"
+      },
+      {
+          "type": "text",
+          "id": "section_sub_heading",
+          "label": "Section sub heading"
+      },
+      {
+          "type": "checkbox",
+          "id": "sub_heading_first",
+          "label": "Sub heading first"
+      },
+      {
+          "type": "checkbox",
+          "id": "heading_center",
+          "label": "Heading center",
+          "default": true
+      },
+      {
+          "type": "range",
+          "id": "heading_gap",
+          "label": "Heading gap",
+          "max": 30,
+          "min": 0,
+          "step": 1,
+          "default": 15,
+          "unit": "px"
+      },
+      {
+          "type": "header",
+          "content": "Gallery Settings"
+      },
+      {
+        "type": "select",
+        "id": "container_type",
+        "label": "Gallery type",
+        "default": "grid",
+        "options": [
+          {"label": "Grid", "value": "grid"},
+          {"label": "Slider", "value": "slider"}
+        ]
+      },
+      {
+        "type": "range",
+        "id": "item_count",
+        "label": "Items in view",
+        "min": 2,
+        "max": 6,
+        "step": 1,
+        "default": 4,
+        "unit": "itm"
+      },
+      {
+        "type": "range",
+        "id": "item_count_tablet",
+        "label": "Items in view - Tablet",
+        "min": 2,
+        "max": 4,
+        "step": 1,
+        "default": 3,
+        "unit": "itm"
+      },
+      {
+        "type": "range",
+        "id": "item_count_mobile",
+        "label": "Items in view - Mobile",
+        "min": 1,
+        "max": 3,
+        "step": 1,
+        "default": 2,
+        "unit": "itm"
+      },
+      {
+        "type": "checkbox",
+        "id": "default_label",
+        "label": "Show image label in gallery view",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "default_link",
+        "label": "Show 'View post' button in gallery view",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "block_post_label",
+        "label": "Button label",
+        "default": "View post"
+      },
+      {
+        "type": "select",
+        "id": "block_post_style",
+        "label": "Button style",
+        "default": "primary",
+        "options": [
+          {"label": "Primary", "value": "primary"},
+          {"label": "Secondary", "value": "secondary"},
+          {"label": "Outline", "value": "outline"}
+        ]
+      },
+      {
+        "type": "range",
+        "id": "block_icon_size",
+        "label": "Icon size",
+        "min": 4,
+        "max": 20,
+        "step": 1,
+        "default": 12
+      },
+      {
+          "type": "color",
+          "id": "block_icon_color",
+          "label": "Icon Color",
+          "default": "#fff"
+      },
+      {
+          "type": "color",
+          "id": "block_overlay_color",
+          "label": "Overlay Color",
+          "default": "#000"
+      },
+      {
+        "type": "range",
+        "id": "block_overlay_opacity",
+        "label": "Overlay opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 50,
+        "unit": "%"
+      },
+      {
+          "type": "header",
+          "content": "Modal Settings"
+      },
+      {
+          "type": "color",
+          "id": "modal_bg",
+          "label": "Modal background",
+          "default": "#fff"
+      },
+      {
+          "type": "range",
+          "id": "container_corner_radius",
+          "label": "Container corner radius",
+          "max": 20,
+          "min": 0,
+          "step": 1,
+          "default": 8,
+          "unit": "px"
+      },
+      {
+          "type": "range",
+          "id": "default_spacing",
+          "label": "Content default spacing",
+          "max": 20,
+          "min": 0,
+          "step": 1,
+          "default": 8,
+          "unit": "px"
+      },
+      {
+        "type": "checkbox",
+        "id": "modal_image_first",
+        "label": "Image first",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "modal_image_size",
+        "label": "Image size",
+        "default": "large",
+        "options": [
+          {"label": "Small", "value": "small"},
+          {"label": "Half", "value": "half"},
+          {"label": "Large", "value": "large"}
+        ]
+      },
+      {
+        "type": "select",
+        "id": "modal_image_fill",
+        "label": "Image fill",
+        "default": "cover",
+        "options": [
+          {"label": "Contain", "value": "contain"},
+          {"label": "Cover", "value": "cover"}
+        ],
+        "info": "'Contain' ensures that image doesn't get cut off on edges, while 'Cover' ensures that there's no blank space on edges"
+      },
+      {
+       "type": "paragraph",
+        "content": "Product block settings"
+      },
+      {
+       "type": "paragraph",
+        "content": "-------------------------"
+      },
+      {
+          "type": "range",
+          "id": "modal_product_image_size",
+          "label": "Product image size",
+          "max": 280,
+          "min": 130,
+          "step": 15,
+          "default": 175,
+          "unit": "px"
+      },
+      {
+          "type": "checkbox",
+          "id": "modal_product_title_bold",
+          "label": "Use bold title"
+      },
+      {
+          "type": "checkbox",
+          "id": "modal_product_price_bold",
+          "label": "Use bold Price font",
+          "default": true
+      },
+      {
+          "type": "color",
+          "id": "modal_product_price_color",
+          "label": "Price text color",
+          "default": "#00a000"
+      },
+      {
+          "type": "color",
+          "id": "modal_product_compare_price_color",
+          "label": "Compare price text color",
+          "default": "#d15858"
+      },
+      {
+          "type": "checkbox",
+          "id": "modal_product_view_product",
+          "label": "Show 'View product' button",
+          "default": true
+      },
+      {
+          "type": "text",
+          "id": "modal_product_view_product_text",
+          "label": "'View product' button label",
+          "default": "View product"
+      },
+      {
+        "type": "select",
+        "id": "modal_product_view_product_style",
+        "label": "Button style",
+        "default": "primary",
+        "options": [
+          {"label": "Primary", "value": "primary"},
+          {"label": "Secondary", "value": "secondary"},
+          {"label": "Outline", "value": "outline"}
+        ]
+      },
+      {
+          "type": "checkbox",
+          "id": "modal_product_ATC",
+          "label": "Enable quick purchase",
+          "default": true
+      },
+      {
+          "type": "text",
+          "id": "modal_product_ATC_text",
+          "label": "Quick buy button label",
+          "default": "Add to Cart"
+      },
+      {
+        "type": "select",
+        "id": "modal_product_ATC_style",
+        "label": "Button style",
+        "default": "primary",
+        "options": [
+          {"label": "Primary", "value": "primary"},
+          {"label": "Secondary", "value": "secondary"},
+          {"label": "Outline", "value": "outline"}
+        ]
+      },
+      {
+          "type": "header",
+          "content": "Section Settings"
+      },
+      {
+          "type": "range",
+          "id": "vertical_height",
+          "label": "Section padding",
+          "max": 150,
+          "min": 0,
+          "step": 5,
+          "default": 60,
+          "unit": "px",
+          "info": "Sets the top and bottom padding of the section around content"
+      },
+      {
+          "type": "range",
+          "id": "vertical_margin",
+          "label": "Section Margin",
+          "max": 150,
+          "min": 0,
+          "step": 5,
+          "default": 60,
+          "unit": "px",
+          "info": "Sets the top and bottom margin of the section outside the section content"
+      },
+      {
+          "type": "select",
+          "id": "section_width",
+          "label": "Content width",
+          "default": "1170px",
+          "options": [
+              {"label": "Full width", "value": "100%"},
+              {"label": "Wide", "value": "calc(100% - 100px)"},
+              {"label": "Extended", "value": "1400px"},
+              {"label": "Standard", "value": "1170px"},
+              {"label": "Narrow", "value": "970px"}
+          ]
+      },
+      {
+          "type": "color",
+          "id": "section_bg",
+          "label": "Background color"
+      },
+      {
+          "type": "color",
+          "id": "section_text",
+          "label": "Default text color"
+      },
+      {
+       "type": "header",
+        "content": "Default style / preset"
+      },
+      {
+       "type": "paragraph",
+        "content": "Primary Button"
+      },
+      {
+       "type": "paragraph",
+        "content": "-------------------------"
+      },
+      {
+          "type": "color",
+          "id": "btn_primary_bg",
+          "label": "Button Background",
+          "default": "#555"
+      },
+      {
+          "type": "color",
+          "id": "btn_primary_text",
+          "label": "Button Text color",
+          "default": "#fff"
+      },
+      {
+          "type": "select",
+          "id": "btn_primary_corner",
+          "label": "Button Corner",
+          "default": "sharp",
+          "options": [
+              {"label": "Sharp", "value": "sharp"},
+              {"label": "Smooth", "value": "smooth"},
+              {"label": "Rounded", "value": "rounded"}
+          ]
+      },
+      {
+       "type": "paragraph",
+        "content": "Secondary Button"
+      },
+      {
+       "type": "paragraph",
+        "content": "-------------------------"
+      },
+      {
+          "type": "color",
+          "id": "btn_secondary_bg",
+          "label": "Button Background",
+          "default": "#fff"
+      },
+      {
+          "type": "color",
+          "id": "btn_secondary_text",
+          "label": "Button Text color",
+          "default": "#555"
+      },
+      {
+          "type": "select",
+          "id": "btn_secondary_corner",
+          "label": "Button Corner",
+          "default": "sharp",
+          "options": [
+              {"label": "Sharp", "value": "sharp"},
+              {"label": "Smooth", "value": "smooth"},
+              {"label": "Rounded", "value": "rounded"}
+          ]
+      },
+      {
+       "type": "paragraph",
+        "content": "Outline Button"
+      },
+      {
+       "type": "paragraph",
+        "content": "-------------------------"
+      },
+      {
+          "type": "color",
+          "id": "btn_outline_text",
+          "label": "Button Text color",
+          "default": "#555"
+      },
+      {
+          "type": "select",
+          "id": "btn_outline_corner",
+          "label": "Button Corner",
+          "default": "sharp",
+          "options": [
+              {"label": "Sharp", "value": "sharp"},
+              {"label": "Smooth", "value": "smooth"},
+              {"label": "Rounded", "value": "rounded"}
+          ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Featured image"
+          },
+          {
+            "type": "text",
+            "id": "label",
+            "label": "Image label",
+            "default": "Good Food, Good Mood #foodie"
+          },
+          {
+            "type": "url",
+            "id": "instagram_post",
+            "label": "Instagram post url",
+            "info": "(Optional) Link an instagram post here"
+          },
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Featured product"
+          },
+          {
+            "type": "richtext",
+            "id": "product_details",
+            "label": "Text field",
+            "default": "<h3>Hydration in Style with Color-Block Elegance</h3><h4>Vibrant Aesthetics</h4><p>The Color-block water bottle isn't just a hydration companion; it's a style statement.</p><h4>Durable Design, Lasting Impact</h4><p>Robust construction for long-term use. Withstands daily wear and tear, ensuring reliability. Elevates your style while staying refreshed.</p><h4>Functionality with Flair</h4><ul><li>Perfect companion for on-the-go hydration</li><li>Merge fashion and functionality seamlessly</li><li>Make a statement while staying hydrated</li></ul>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Instagram photo grid",
+        "blocks": [
+          {
+            "type": "image",
+            "settings": {
+              "label": "Good Food, Good Mood #foodie",
+              "instagram_post": "#",
+              "product": "",
+              "product_details": "<h3>Hydration in Style with Elegance<\/h3><h4>Vibrant Aesthetics<\/h4><p>The Color-block water bottle isn't just a hydration companion; it's a style statement.<\/p><h4>Durable Design, Lasting Impact<\/h4><p>Robust construction for long-term use. Withstands daily wear and tear, ensuring reliability. Elevates your style while staying refreshed.<\/p><h4>Functionality with Flair<\/h4><ul><li>Perfect companion for on-the-go hydration<\/li><li>Merge fashion and functionality seamlessly<\/li><li>Make a statement while staying hydrated<\/li><\/ul>"
+            }
+          },
+          {
+            "type": "image",
+            "settings": {
+              "label": "Good Food, Good Mood #foodie",
+              "instagram_post": "#",
+              "product": "",
+              "product_details": "<h3>Hydration in Style with Elegance<\/h3><h4>Vibrant Aesthetics<\/h4><p>The Color-block water bottle isn't just a hydration companion; it's a style statement.<\/p><h4>Durable Design, Lasting Impact<\/h4><p>Robust construction for long-term use. Withstands daily wear and tear, ensuring reliability. Elevates your style while staying refreshed.<\/p><h4>Functionality with Flair<\/h4><ul><li>Perfect companion for on-the-go hydration<\/li><li>Merge fashion and functionality seamlessly<\/li><li>Make a statement while staying hydrated<\/li><\/ul>"
+            }
+          },
+          {
+            "type": "image",
+            "settings": {
+              "label": "Good Food, Good Mood #foodie",
+              "instagram_post": "#",
+              "product": "",
+              "product_details": "<h3>Hydration in Style with Elegance<\/h3><h4>Vibrant Aesthetics<\/h4><p>The Color-block water bottle isn't just a hydration companion; it's a style statement.<\/p><h4>Durable Design, Lasting Impact<\/h4><p>Robust construction for long-term use. Withstands daily wear and tear, ensuring reliability. Elevates your style while staying refreshed.<\/p><h4>Functionality with Flair<\/h4><ul><li>Perfect companion for on-the-go hydration<\/li><li>Merge fashion and functionality seamlessly<\/li><li>Make a statement while staying hydrated<\/li><\/ul>"
+            }
+          },
+          {
+            "type": "image",
+            "settings": {
+              "label": "Good Food, Good Mood #foodie",
+              "instagram_post": "#",
+              "product": "",
+              "product_details": "<h3>Hydration in Style with Elegance<\/h3><h4>Vibrant Aesthetics<\/h4><p>The Color-block water bottle isn't just a hydration companion; it's a style statement.<\/p><h4>Durable Design, Lasting Impact<\/h4><p>Robust construction for long-term use. Withstands daily wear and tear, ensuring reliability. Elevates your style while staying refreshed.<\/p><h4>Functionality with Flair<\/h4><ul><li>Perfect companion for on-the-go hydration<\/li><li>Merge fashion and functionality seamlessly<\/li><li>Make a statement while staying hydrated<\/li><\/ul>"
+            }
+          },
+          {
+            "type": "image",
+            "settings": {
+              "label": "Good Food, Good Mood #foodie",
+              "product": "",
+              "product_details": "<h3>Hydration in Style with Elegance<\/h3><h4>Vibrant Aesthetics<\/h4><p>The Color-block water bottle isn't just a hydration companion; it's a style statement.<\/p><h4>Durable Design, Lasting Impact<\/h4><p>Robust construction for long-term use. Withstands daily wear and tear, ensuring reliability. Elevates your style while staying refreshed.<\/p><h4>Functionality with Flair<\/h4><ul><li>Perfect companion for on-the-go hydration<\/li><li>Merge fashion and functionality seamlessly<\/li><li>Make a statement while staying hydrated<\/li><\/ul>"
+            }
+          },
+          {
+            "type": "image",
+            "settings": {
+              "label": "Good Food, Good Mood #foodie",
+              "product": "",
+              "product_details": "<h3>Hydration in Style with Elegance<\/h3><h4>Vibrant Aesthetics<\/h4><p>The Color-block water bottle isn't just a hydration companion; it's a style statement.<\/p><h4>Durable Design, Lasting Impact<\/h4><p>Robust construction for long-term use. Withstands daily wear and tear, ensuring reliability. Elevates your style while staying refreshed.<\/p><h4>Functionality with Flair<\/h4><ul><li>Perfect companion for on-the-go hydration<\/li><li>Merge fashion and functionality seamlessly<\/li><li>Make a statement while staying hydrated<\/li><\/ul>"
+            }
+          },
+          {
+            "type": "image",
+            "settings": {
+              "label": "Good Food, Good Mood #foodie",
+              "product": "",
+              "product_details": "<h3>Hydration in Style with Elegance<\/h3><h4>Vibrant Aesthetics<\/h4><p>The Color-block water bottle isn't just a hydration companion; it's a style statement.<\/p><h4>Durable Design, Lasting Impact<\/h4><p>Robust construction for long-term use. Withstands daily wear and tear, ensuring reliability. Elevates your style while staying refreshed.<\/p><h4>Functionality with Flair<\/h4><ul><li>Perfect companion for on-the-go hydration<\/li><li>Merge fashion and functionality seamlessly<\/li><li>Make a statement while staying hydrated<\/li><\/ul>"
+            }
+          },
+          {
+            "type": "image",
+            "settings": {
+              "label": "Good Food, Good Mood #foodie",
+              "product": "",
+              "product_details": "<h3>Hydration in Style with Elegance<\/h3><h4>Vibrant Aesthetics<\/h4><p>The Color-block water bottle isn't just a hydration companion; it's a style statement.<\/p><h4>Durable Design, Lasting Impact<\/h4><p>Robust construction for long-term use. Withstands daily wear and tear, ensuring reliability. Elevates your style while staying refreshed.<\/p><h4>Functionality with Flair<\/h4><ul><li>Perfect companion for on-the-go hydration<\/li><li>Merge fashion and functionality seamlessly<\/li><li>Make a statement while staying hydrated<\/li><\/ul>"
+            }
+          }
+        ],
+        "settings": {
+          "section_heading": "@instagram_shop",
+          "heading_color": "#00aeff",
+          "section_sub_heading": "Follow us at",
+          "sub_heading_first": true,
+          "heading_center": true,
+          "heading_gap": 4,
+          "container_type": "slider",
+          "item_count": 3,
+          "item_count_tablet": 3,
+          "item_count_mobile": 2,
+          "default_label": true,
+          "default_link": true,
+          "block_post_label": "View post",
+          "block_post_style": "outline",
+          "block_icon_size": 12,
+          "block_icon_color": "#ffffff",
+          "block_overlay_color": "#000000",
+          "block_overlay_opacity": 50,
+          "modal_bg": "#ffffff",
+          "container_corner_radius": 17,
+          "default_spacing": 8,
+          "modal_image_first": true,
+          "modal_image_size": "large",
+          "modal_image_fill": "contain",
+          "modal_product_image_size": 175,
+          "modal_product_title_bold": true,
+          "modal_product_price_bold": true,
+          "modal_product_price_color": "#028f0d",
+          "modal_product_compare_price_color": "#b70303",
+          "modal_product_view_product": true,
+          "modal_product_view_product_text": "View product",
+          "modal_product_view_product_style": "primary",
+          "modal_product_ATC": true,
+          "modal_product_ATC_text": "Add to Cart",
+          "modal_product_ATC_style": "primary",
+          "vertical_height": 25,
+          "section_width": "1170px",
+          "section_bg": "#f3f3f3",
+          "section_text": "#000000",
+          "btn_primary_bg": "#111111",
+          "btn_primary_text": "#ffffff",
+          "btn_primary_corner": "sharp",
+          "btn_secondary_bg": "#ffffff",
+          "btn_secondary_text": "#111111",
+          "btn_secondary_corner": "sharp",
+          "btn_outline_text": "#ffffff",
+          "btn_outline_corner": "rounded"
+        }
+      }
+    ]
+  }
+{% endschema %}

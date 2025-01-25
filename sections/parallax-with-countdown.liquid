@@ -1,0 +1,665 @@
+{%- style -%}
+.section + .section {
+	line-height: 1rem;
+}
+  
+.parallax-with-countdown_spacer.parallax-with-countdown_spacer-{{ section.id }}, .parallax-with-countdown.section-{{ section.id }} {
+    min-height: {{ section.settings.desktop-height }}px;
+}
+
+.parallax-with-countdown_spacer {
+    width: 100%;
+    display: inline-block !important;
+} 
+  
+.parallax-with-countdown {
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+    background: #ccc;
+}
+  
+.parallax-block {
+    position: absolute;
+    top: -30%;
+    left: 0;
+    width: 100%;
+    height: 160%;
+} 
+  
+.parallax-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: calc(100% + 150px);
+    overflow: hidden;
+}
+  
+.parallax-image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+  
+.parallax-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+  
+.parallax-text-wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    padding: 0 15px;
+    width: 100%;
+}
+  
+.parallax-text__heading.h2 {
+    font-size: 24px;
+    line-height: 34px;
+}
+
+.parallax-text__heading.h1 {
+    font-size: 36px;
+    line-height: 46px;
+}
+
+.parallax-text__heading.h0 {
+    font-size: 58px;
+    line-height: 68px;
+} 
+  
+.parallax-text__text-subtitle * {
+    font-size: 22px;
+    line-height: 30px;
+}
+  
+.parallax-text-wrapper.parallax-text-vertical-align-middle {
+    align-items: center;
+}
+  
+.parallax-text-wrapper.parallax-text-horizontal-align-center {
+    justify-content: center;
+    text-align: center;
+} 
+  
+.parallax-text-wrapper.parallax-text-vertical-align-top {
+    align-items: flex-start;
+}
+  
+.parallax-text-wrapper.parallax-text-horizontal-align-left {
+    justify-content: flex-start;
+    text-align: left;
+} 
+  
+.parallax-text-wrapper.parallax-text-vertical-align-bottom {
+    align-items: flex-end;
+}
+  
+.parallax-text-wrapper.parallax-text-horizontal-align-right {
+    justify-content: flex-end;
+    text-align: right;
+}
+  
+.parallax-countdown {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    max-width: 400px;
+    margin: 15px auto 20px;
+}
+  
+.parallax-count-block * {
+    width: 100%;
+    display: block;
+}
+  
+.parallax-count-block {
+    width: 25%;
+    padding: 5px 7px 10px;
+    border-right: 1px solid transparent;
+} 
+
+.parallax-countdown .parallax-count-block:last-child {
+    border: none;
+}
+  
+.parallax-count-block span {
+    font-size: 42px;
+    line-height: 44px;
+}
+  
+.parallax-count-block small {
+    font-size: 15px;
+    line-height: 17px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.parallax-countdown-{{ section.id }} .parallax-count-block {
+    border-color: {{ section.settings.count-text-color}};
+}
+  
+.parallax-text__heading {
+	margin: 0 0 5px;
+}
+
+.parallax-text-inner .button {
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 20px;
+    display: inline-block;
+}
+
+.parallax-mobile-image {
+    display:none;  
+}
+
+.without-parallax-block {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+}
+  
+.without-parallax-block .parallax-image {
+	height: 100%;
+}
+
+.without-parallax-block .parallax-image {
+	height: 100%;
+	transform: none !important;
+}
+
+.parallax-image-inner {
+	width: 100%;
+    height: 100%;
+	display: block;
+}  
+
+.parallax-video-inner {
+	width: 100%;
+    height: 100%;
+	display: block;
+}
+  
+.parallax-video-inner video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+  
+@media screen and (max-width: 749px) {
+.parallax-with-countdown_spacer.parallax-with-countdown_spacer-{{ section.id }}, .parallax-with-countdown.section-{{ section.id }} {
+    min-height: {{ section.settings.mobile-height }}px;
+}
+  
+.parallax-text__heading.h1 {
+    font-size: 30px;
+    line-height: 40px;
+}
+  
+.parallax-text__heading.h0 {
+    font-size: 44px;
+    line-height: 54px;
+}
+  
+.parallax-text__text-subtitle * {
+    font-size: 20px;
+    line-height: 28px;
+}
+  
+.parallax-count-block span {
+    font-size: 36px;
+    line-height: 38px;
+}
+  
+.parallax-mobile-image {
+    display:block;  
+} 
+
+.parallax-desktop-image {
+    display:none;  
+}   
+}  
+{%- endstyle -%}  
+
+
+<div class="parallax-with-countdown section-{{ section.id }}">
+    <div class="parallax-image-wrapper">
+        <div class="{% if section.settings.parallax-enable != blank %}parallax-block{% else %}without-parallax-block{% endif %}">
+            <div class="parallax-image">
+              {% if section.settings.desktop_video != blank %}
+                <div class="parallax-video-inner">
+                    {% if section.settings.desktop_video != blank %}
+                    {{
+                      section.settings.desktop_video
+                      | video_tag: image_size: 'master', loop: true, controls: true, muted: true, autoplay: true, class: 'parallax-desktop-image'
+                    }}
+                    {% endif %} 
+                  
+                    {% if section.settings.mobile_video != blank %}
+                    {{
+                      section.settings.mobile_video
+                      | video_tag: image_size: 'master', loop: true, controls: true, muted: true, autoplay: true, class: 'parallax-mobile-image'
+                    }}
+                    {% else %}
+                    {{
+                      section.settings.desktop_video
+                      | video_tag: image_size: 'master', loop: true, controls: true, muted: true, autoplay: true, class: 'parallax-mobile-image'
+                    }}
+                    {% endif %}  
+                </div>
+              {% else %}
+                <div class="parallax-image-inner">
+                  {% if section.settings.image != blank %}
+                  <img 
+                    src="{{ section.settings.image | img_url: 'master' }}" 
+                    alt="{{ section.settings.image.alt }}" 
+                    width="{{ section.settings.image.width }}"
+                    height="{{ section.settings.image.height }}"
+                    loading="lazy"
+                    class="parallax-desktop-image"
+                    >
+                  {% endif %}  
+                  {% if section.settings.mobile-image != blank %}
+                  <img 
+                    src="{{ section.settings.mobile-image | img_url: 'master' }}" 
+                    alt="{{ section.settings.mobile-image.alt }}" 
+                    width="{{ section.settings.mobile-image.width }}"
+                    height="{{ section.settings.mobile-image.height }}"
+                    loading="lazy"
+                    class="parallax-mobile-image"
+                    >
+                  {% else %}
+                   <img 
+                    src="{{ section.settings.image | img_url: 'master' }}" 
+                    alt="{{ section.settings.image.alt }}" 
+                    width="{{ section.settings.image.width }}"
+                    height="{{ section.settings.image.height }}"
+                    loading="lazy"
+                    class="parallax-mobile-image"
+                    > 
+                  {% endif %}
+                </div>
+              {% endif %} 
+            </div>
+        </div>  
+    </div>
+    <div class="parallax-text-wrapper parallax-text-vertical-align-{{ section.settings.text_align-vertical }} parallax-text-horizontal-align-{{ section.settings.text_align-horizontal }}">
+        <div class="parallax-text-inner">
+              {% if section.settings.heading != blank %}
+              <h2
+                  class="parallax-text__heading {{ section.settings.heading_size }}"
+                  style="color:{{ section.settings.heading_color }}; text-transform: {{ section.settings.heading_transform }}"
+              >
+                  {{ section.settings.heading }}
+              </h2>
+              {% endif %}
+              {% if section.settings.text != blank %}
+              <div
+                  class="parallax-text__text rte parallax-text__text-{{ section.settings.text_style }}"
+                  style="color:{{ section.settings.text_color }}"
+              >
+                  {{ section.settings.text }}
+              </div>
+              {% endif %}
+              <div class="parallax-countdown parallax-countdown-{{ section.id }}" 
+                 data-date="{{ section.settings.count_end_date }}" 
+                 data-time="{{ section.settings.count_end_time }}"
+                 style="color:{{ section.settings.count-text-color}};"
+                 >
+                      <div class="parallax-count-block">
+                        <span class="days" id="day-{{ section.id }}">00</span>
+                        <small>Days</small>
+                      </div>
+          
+                      <div class="parallax-count-block">
+                        <span class="hours" id="hour-{{ section.id }}">00</span>
+                        <small>Hour</small>
+                      </div>
+          
+                      <div class="parallax-count-block">
+                        <span class="minutes" id="minute-{{ section.id }}">00</span>
+                        <small>Minutes</small>
+                      </div>
+          
+                      <div class="parallax-count-block">
+                        <span class="seconds" id="second-{{ section.id }}">00</span>
+                        <small>Seconds</small>
+                      </div>
+              </div>
+              {%- if section.settings.button_label != blank -%}
+              <a
+                  href="{{ section.settings.button_link }}"
+                  class="button"
+                  style="background:{{ section.settings.btn_bg_color }}; color:{{ section.settings.btn_label_color }};"
+              >
+                  {{ section.settings.button_label | escape }}
+              </a>
+              {%- endif -%}
+        </div>  
+    </div>  
+</div>  
+<div class="parallax-with-countdown_spacer parallax-with-countdown_spacer-{{ section.id }}"></div>
+<script>
+const parallaxImage = document.querySelector('.parallax-image');
+const parallaxSection = document.querySelector('.parallax-with-countdown');
+
+function isElementInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top <= window.innerHeight && rect.bottom >= 0
+    );
+}
+
+function updateParallax() {
+    if (isElementInViewport(parallaxSection)) {
+        const scrollPosition = window.scrollY;
+        const sectionTop = parallaxSection.getBoundingClientRect().top;
+        const parallaxAmount = sectionTop * 0.5; // Adjust the factor as needed
+        parallaxImage.style.transform = `translate3d(0px, ${-parallaxAmount}px, 0px)`;
+    } else {
+        // Reset the transform when the section is not in the viewport
+        parallaxImage.style.transform = `translate3d(0px, 0px, 0px)`;
+    }
+}
+
+window.addEventListener('scroll', updateParallax);
+
+updateParallax();
+
+if (Shopify.designMode) {
+  document.addEventListener("shopify:section:load", function (event) {
+      var sectionId = event.detail.sectionId;
+      timer(sectionId);
+  });
+}
+            
+function timer(id){  
+const countdate = document.querySelector('.parallax-countdown-'+id).getAttribute('data-date');
+const counttime = document.querySelector('.parallax-countdown-'+id).getAttribute('data-time');  
+var deadline = new Date(countdate || counttime).getTime();
+       
+var x = setInterval(function() {
+var now = new Date().getTime();
+var t = deadline - now;
+    if (t < 0) {
+  
+        clearInterval(x);
+        
+        document.getElementById("demo").innerHTML = "TIME UP";
+        document.getElementById('day-'+id).innerHTML ='0';
+        document.getElementById('hour-'+id).innerHTML ='0';
+        document.getElementById('minute-'+id).innerHTML ='0' ;
+        document.getElementById('second-'+id).innerHTML = '0';
+         return;
+}
+var days = Math.floor(t / (1000 * 60 * 60 * 24));
+ 
+var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
+var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((t % (1000 * 60)) / 1000);
+document.getElementById('day-'+id).innerHTML =days ;
+document.getElementById('hour-'+id).innerHTML =hours;
+document.getElementById('minute-'+id).innerHTML = minutes;
+document.getElementById('second-'+id).innerHTML =seconds;
+
+}, 1000);
+}
+timer('{{ section.id }}');  
+</script>  
+
+{% schema %}
+{
+"name": "Parallax with countdown",
+"class": "section",  
+"settings": [
+    {
+        "type": "checkbox",
+        "id": "parallax-enable",
+        "label": "Enable parallax",
+        "default": true
+    },
+    {
+        "type": "text",
+        "id": "desktop-height",
+        "label": "Section desktop height",
+        "default": "600"
+    },
+    {
+        "type": "text",
+        "id": "mobile-height",
+        "label": "Section mobile height",
+        "default": "450"
+    }, 
+    {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Desktop image"
+    },
+    {
+        "type": "image_picker",
+        "id": "mobile-image",
+        "label": "Mobile image"
+    },
+    {
+      "type": "video",
+      "id": "desktop_video",
+      "label": "Desktop video"
+    },
+    {
+      "type": "video",
+      "id": "mobile_video",
+      "label": "Mobile video"
+    },
+    {
+        "type": "header",
+        "content": "Countdown"
+    },
+    {
+        "type": "text",
+        "id": "count_end_date",
+        "info": "Format: MM/DD/YYYY",
+        "label": "Countdown end date",
+        "default": "11/03/2023"
+    }, 
+    {
+        "type": "text",
+        "id": "count_end_time",
+        "info": "Format: HH:MM:SS",
+        "label": "Countdown end time",
+        "default": "01:22:45"
+    },
+    {
+        "type": "color",
+        "id": "count-text-color",
+        "label": "Countdown time color",
+        "default": "#000"
+    },
+    {
+        "type": "header",
+        "content": "Heading"
+    },
+    {
+        "type": "inline_richtext",
+        "id": "heading",
+        "default": "Parallax with countdown",
+        "label": "Heading"
+    },
+    {
+        "type": "select",
+        "id": "heading_size",
+        "options": [
+            {
+                "value": "h2",
+                "label": "Small"
+            },
+            {
+                "value": "h1",
+                "label": "Medium"
+            },
+            {
+                "value": "h0",
+                "label": "Large"
+            }
+        ],
+        "default": "h1",
+        "label": "Medium"
+    },
+    {
+        "type": "select",
+        "id": "heading_transform",
+        "options": [
+            {
+                "value": "uppercase",
+                "label": "Uppercase"
+            },
+            {
+                "value": "lowercase",
+                "label": "Lowercase"
+            },
+            {
+                "value": "capitalize",
+                "label": "Capitalize"
+            },
+            {
+                "value": "",
+                "label": "Auto"
+            }
+        ],
+        "default": "",
+        "label": "Heading transform"
+    },
+    {
+        "type": "color",
+        "id": "heading_color",
+        "label": "Heading color",
+        "default": "#000"
+    },
+    {
+        "type": "header",
+        "content": "Content"
+    },
+    {
+        "type": "richtext",
+        "id": "text",
+        "default": "<p>Lorem Ipsum has been the industry's standard dummy text.</p>",
+        "label": "Text"
+    },
+    {
+        "type": "select",
+        "id": "text_style",
+        "options": [
+            {
+                "value": "body",
+                "label": "Body"
+            },
+            {
+                "value": "subtitle",
+                "label": "Subtitle"
+            }
+        ],
+        "default": "body",
+        "label": "body"
+    },
+    {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#000"
+    },
+    {
+        "type": "header",
+        "content": "Button"
+    },
+    {
+        "type": "text",
+        "id": "button_label",
+        "default": "Button label",
+        "label": "Button label",
+        "info": "Leave the label blank to hide the button."
+    },
+    {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+    },
+    {
+        "type": "color",
+        "id": "btn_bg_color",
+        "label": "Button background color",
+        "default": "#000"
+    },
+    {
+        "type": "color",
+        "id": "btn_label_color",
+        "label": "Button label color",
+        "default": "#fff"
+    },
+    {
+        "type": "header",
+        "content": "Others"
+    },
+    {
+        "type": "select",
+        "id": "text_align-horizontal",
+        "options": [
+            {
+                "value": "left",
+                "label": "Left"
+            },
+            {
+                "value": "center",
+                "label": "Center"
+            },
+            {
+                "value": "right",
+                "label": "Right"
+            }
+        ],
+        "default": "center",
+        "label": "Horizontal text alignment"
+    },
+    {
+        "type": "select",
+        "id": "text_align-vertical",
+        "options": [
+            {
+                "value": "top",
+                "label": "Top"
+            },
+            {
+                "value": "middle",
+                "label": "Middle"
+            },
+            {
+                "value": "bottom",
+                "label": "Bottom"
+            }
+        ],
+        "default": "middle",
+        "label": "Vertical text alignment"
+    }
+],
+"presets": [
+    {
+        "name": "Parallax with countdown"
+        
+    }
+]  
+}
+{% endschema %}
+

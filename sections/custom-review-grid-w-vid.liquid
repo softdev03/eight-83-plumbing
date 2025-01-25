@@ -1,0 +1,1080 @@
+
+<style>
+  .section_{{ section.id }} {
+    --heading_gap: 0px;
+    --block_corner: {{ section.settings.block_corner }}px;
+    --image_per_row: {{ section.settings.image_per_row }};
+    --review_per_row: {{ section.settings.review_per_row }};
+    --review_star_color: {{ section.settings.star_color }};
+    --block_gap: {{ section.settings.block_gap }}px;
+    --review_block_bg: {{ section.settings.review_block_bg }};
+    --media_block_bg: {{ section.settings.media_block_bg }};
+
+
+    padding: {{ section.settings.section_padding }}px 0px;
+    background-color: {{ section.settings.section_bg }};
+    font-size: 16px;
+}
+.section_{{ section.id }} * {
+    margin-block: 0px;
+    line-height: 1.4em;
+}
+.section_{{ section.id }} h1, 
+.section_{{ section.id }} h2, 
+.section_{{ section.id }} h3, 
+.section_{{ section.id }} h4, 
+.section_{{ section.id }} h5, 
+.section_{{ section.id }} h6, 
+.section_{{ section.id }} p, 
+.section_{{ section.id }} .heading, 
+.section_{{ section.id }} .body {
+    line-height: 1.4em;
+    margin-block: 0px;
+    padding: 0px;
+}
+.section_{{ section.id }} div:empty {
+  display: block!important;
+}
+.temp_icon {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: rgb(0 0 0 / 50%);
+}
+.section_{{ section.id }} .d_block {
+    display: block;
+}
+.section_{{ section.id }} .d_flex {
+    display: flex;
+}
+.section_{{ section.id }} .d_flex_col {
+    display: flex;
+    flex-direction: column;
+}
+.section_{{ section.id }} .d_flex_col_r {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.section_{{ section.id }} .d_flex_wrap {
+    flex-wrap: wrap;
+}
+.section_{{ section.id }} .d_none {
+    display: none!important;
+}
+.section_{{ section.id }} .flex_1 {
+    flex: 1;
+}
+.section_{{ section.id }} .flex_2 {
+    flex: 2;
+}
+.section_{{ section.id }} .flex_3 {
+    flex: 3;
+}
+.section_{{ section.id }} .flex_4 {
+    flex: 4;
+}
+.section_{{ section.id }} .gap_0 {
+    gap: 0px;
+}
+.section_{{ section.id }} .gap_1 {
+    gap: 10px;
+}
+.section_{{ section.id }} .gap_2 {
+    gap: 20px;
+}
+.section_{{ section.id }} .gap_3 {
+    gap: 30px;
+}
+.section_{{ section.id }} .content_width {
+    max-width: 1170px;
+    margin-inline: auto;
+    padding: 10px;
+}
+.section_{{ section.id }} .heading_container {
+    gap: var(--heading_gap);
+    margin-bottom: var(--heading_gap);
+}
+.section_{{ section.id }} .heading_container * {
+    text-align: center;
+}
+.section_{{ section.id }} .heading_container .section_heading {
+    font-size: {{ section.settings.heading_size }};
+    color: {{ section.settings.heading_color }};
+}
+.section_{{ section.id }} .content_container {
+    margin-top: 40px;
+}
+.section_{{ section.id }} .image_container {
+    justify-content: center;
+    gap: var(--block_gap);
+}
+.section_{{ section.id }} .image_block {
+    --icon_color: {{ section.settings.default_icon_color }};
+    --icon_bg: {{ section.settings.default_icon_bg }};
+  
+    min-height: 200px;
+    position: relative;
+    border-radius: var(--block_corner);
+    overflow: hidden;
+    min-width: calc(100% / var(--image_per_row) - 15px);
+    flex: 1;
+}
+.section_{{ section.id }} .image_block img {
+    position: absolute;
+    line-height: 0;
+    display: block;
+}
+.section_{{ section.id }} .review_elements {
+    position: relative;
+    padding: 0px 20px;
+    height: calc(100% - 40px);
+    overflow: hidden;
+}
+.section_{{ section.id }} .review_container {
+    height: calc(100% - 40px);
+    justify-content: center;
+    margin-bottom: 30px;
+    position: relative;
+    gap: var(--block_gap);
+}
+.section_{{ section.id }} .review_container.transition {
+    transition: all ease 0.3s;
+}
+.section_{{ section.id }} .dummy_first {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  transform: translateX(calc(-100% + 40px));
+  display: none!important;;
+}
+.section_{{ section.id }} .dummy_last {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  transform: translateX(calc(100% - 40px));
+  display: none!important;;
+}
+.section_{{ section.id }} .review {
+    --currentColor: var(--review_star_color);
+    border-radius: var(--block_corner);
+    padding: 15px;
+    width: calc((100% / var(--review_per_row)) - 15px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: var(--review_block_bg);
+    pointer-events: none;
+    user-select: none;
+    
+    {% if section.settings.show_border %}
+      border: solid 1px var(--currentColor);
+    {% endif %}
+}
+.section_{{ section.id }} .review * {
+    width: 100%;
+}
+.section_{{ section.id }} .star_container {
+    margin-bottom: 5px;
+    justify-content: flex-start;
+    gap: 2px;
+}
+.section_{{ section.id }} .star_container svg {
+    height: 20px;
+    width: 20px;
+    color: var(--review_star_color);
+}
+.section_{{ section.id }} .review_content {
+    font-size: 80%;
+    line-height: 1.5em;
+    margin-block: 5px;
+}
+  .section_{{ section.id }} .review_footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-block: 8px 8px;
+    gap: 4px;
+  }
+.section_{{ section.id }} .review_author {
+    font-size: {{ section.settings.author_size }};
+    font-weight: 600;
+    width: max-content;
+}
+.section_{{ section.id }} .verified_badge {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2px;
+    font-size: 60%;
+    color: {{ section.settings.verified_color }};
+    white-space: nowrap;
+    flex: 1;
+    text-aligN: right;
+}
+.section_{{ section.id }} .verified_badge svg {
+    height: 13px;
+    width: 13px;
+}
+.section_{{ section.id }} .navigation_container {
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    display: none;
+}
+.section_{{ section.id }} .nav.prev,
+.section_{{ section.id }} .nav.next {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    width: 30px;
+    height: 30px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0.75;
+}
+.section_{{ section.id }} .nav.next {
+    left: unset;
+    right: 15px;
+}
+.section_{{ section.id }} .nav.btn {
+    height: 10px;
+    width: 10px;
+    border: solid 1px gold;
+    border-radius: 50%;
+    background-color: #c3c3c3;
+    cursor: pointer;
+}
+.section_{{ section.id }} .nav.btn.active {
+    background-color: #999;
+}
+.section_{{ section.id }} .product-form__buttons {
+  max-width: 100%!important;
+}
+.section_{{ section.id }} .section_CTA {
+    --button_color: {{ section.settings.button_color }};
+    width: calc(100% - 80px);
+    margin-inline: auto;
+    border: solid 2px var(--button_color);
+    border-radius: var(--block_corner);
+    background-color: {{ section.settings.button_bg }};
+    letter-spacing: 2px;
+    color: var(--button_color);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+}
+.section_{{ section.id }} .icon_hand {
+  height: 20px;
+  width: 20px;
+  transform: translateY(-50%) translateX(0%) rotate(90deg);
+  position: absolute;
+  opacity: 0;
+  transition: all ease 0.3s;
+}
+.section_{{ section.id }} .section_CTA:hover .icon_hand {
+  opacity: 1;
+  transform: translateY(-50%) translateX(50%) rotate(90deg);
+}
+
+
+.section_{{ section.id }} .image_block svg {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    height: 60px;
+    width: 60px;
+    display: block;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+.section_{{ section.id }} .image_block .video_poster {
+  position: absolute;
+  z-index: 1;
+  object-fit: cover;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.section_{{ section.id }} .image_block div.video_poster {
+  pointer-events: none!important;
+  opacity: 0!important;
+}
+.section_{{ section.id }} .image_block [data-name="mute"], 
+.section_{{ section.id }} .image_block [data-name="sound"] {
+  top: 10px;
+  left: unset;
+  right: 10px;
+  height:30px;
+  width: 30px;
+  padding: 5px;
+  transform: none;
+  opacity: 0.5;
+}
+  
+@media only screen and (min-width: 767px) {
+    .section_{{ section.id }} .review_container {
+        width: 100% !important;
+        transform: none !important;
+    }
+    .section_{{ section.id }} .review {
+        width: calc((100% / var(--review_per_row)) - 15px)!important;
+        min-width: calc((100% / var(--review_per_row)) - 15px)!important;
+        flex: 1;
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    .section_{{ section.id }} .s767_d_block {
+        display: block;
+    }
+    .section_{{ section.id }} .s767_d_flex {
+        display: flex;
+    }
+    .section_{{ section.id }} .s767_d_flex_col {
+        display: flex;
+        flex-direction: column;
+    }
+    .section_{{ section.id }} .s767_d_flex_col_r {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .section_{{ section.id }} .s767_d_flex_wrap {
+        flex-wrap: wrap;
+    }
+    .section_{{ section.id }} .s767_d_flex_no_wrap {
+        flex-wrap: nowrap;
+    }
+    .section_{{ section.id }} .s767_d_none {
+        display: none;
+    }
+    .section_{{ section.id }} .s767_flex_1 {
+        flex: 1;
+    }
+    .section_{{ section.id }} .s767_flex_2 {
+        flex: 2;
+    }
+    .section_{{ section.id }} .s767_flex_3 {
+        flex: 3;
+    }
+    .section_{{ section.id }} .s767_flex_4 {
+        flex: 4;
+    }
+    .section_{{ section.id }} .s767_gap_0 {
+        gap: 0px;
+    }
+    .section_{{ section.id }} .s767_gap_1 {
+        gap: 10px;
+    }
+    .section_{{ section.id }} .s767_gap_2 {
+        gap: 20px;
+    }
+    .section_{{ section.id }} .s767_gap_3 {
+        gap: 30px;
+    }
+    .section_{{ section.id }} .review {
+        flex: unset;
+    }
+    .section_{{ section.id }} .review_element {
+      padding-top: 10px
+    }
+    .section_{{ section.id }} .review_container {
+        margin-bottom: 0px;
+        gap: 20px;
+    }
+    .section_{{ section.id }} .navigation_container {
+        display: flex;
+    }
+  .section_{{ section.id }} .dummy_first,
+  .section_{{ section.id }} .dummy_last {
+    display: block!important;
+  }
+}
+</style>
+
+
+{%- liquid assign icon_hand = '<svg class="icon_hand" fill="var(--button_color)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 288c17.69 0 32-14.33 32-32V192c0-17.67-14.31-32-32-32s-32 14.33-32 32v64C256 273.7 270.3 288 288 288zM224 244.4V160c0-17.67-14.31-32-32-32S160 142.3 160 160v80h40C208.5 240 216.5 241.7 224 244.4zM128 240V32c0-17.67-14.31-32-32-32S64 14.33 64 32v208.8C66.66 240.5 69.26 240 72 240H128zM384 192c-17.69 0-32 14.33-32 32v64c0 17.67 14.31 32 32 32s32-14.33 32-32V224C416 206.3 401.7 192 384 192zM323.8 309C313.6 315.1 301.3 320 288 320c-5.766 0-11.24-1.08-16.55-2.51C268.6 354.6 237.9 384 200 384H127.1C119.2 384 112 376.8 112 368S119.2 352 127.1 352l69.72 .0001c15.52 0 42.28-11.29 42.28-40C239.1 289.9 222.1 272 200 272h-128C49.91 272 32 289.9 32 312v63.41c0 33.13 16 64.56 42.81 84.13l36.41 26.45C134.5 502.9 162.5 512 191.3 512H280c75.11 0 136-60.89 136-136v-32.88C406.6 348.6 395.7 352 384 352C356.1 352 332.6 333.1 323.8 309z"/></svg>' -%}
+
+
+<div class="section_{{ section.id }}">
+  <div class="content_width">
+    <div class="heading_container {% if section.settings.sub_heading_first %}d_flex_col_r{% else %}d_flex_col{% endif %}">
+      <div class="section_heading">{{ section.settings.section_heading }}</div>
+      <p class="section_sub_heading">{{ section.settings.section_sub_heading }}</p>
+    </div>
+
+
+    <div class="content_container d_flex s767_d_flex_col gap_2">
+      <div class="image_container flex_1 d_flex d_flex_wrap">
+        {% for block in section.blocks %}
+          {% if block.type == "image" %}
+            
+            <div class="image_block block_{{ block.id }}">
+              <style>
+                .section_{{ section.id }} div.block_{{ block.id }}.image_block {
+                  {% if block.settings.media_block_bg != "transparent" and block.settings.media_block_bg != "" and block.settings.media_block_bg != " " and block.settings.media_block_bg != "rgba(0,0,0,0)" %}
+                    --media_block_bg: {{ block.settings.media_block_bg }};
+                  {% endif %}
+                  {% if block.settings.icon_color != "transparent" and block.settings.icon_color != "" and block.settings.icon_color != " " and block.settings.icon_color != "rgba(0,0,0,0)" %}
+                    --icon_color: {{ block.settings.icon_color }};
+                  {% endif %}
+                  {% if block.settings.icon_bg != "transparent" and block.settings.icon_bg != "" and block.settings.icon_bg != " " and block.settings.icon_bg != "rgba(0,0,0,0)" %}
+                    --icon_bg: {{ block.settings.icon_bg }};
+                  {% endif %}
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  position: relative;
+                  background-color: var(--media_block_bg);
+                }
+                .block_{{ block.id }} img, 
+                .block_{{ block.id }} video {
+                  position: absolute;
+                  width: 100%;
+                  height: 100%;
+                  {% if block.settings.media_size == "fill" %}
+                    object-fit: cover;
+                  {% elsif block.settings.media_size == "fit" %}
+                    object-fit: contain;
+                  {% endif %}
+                }
+                .block_{{ block.id }} svg {
+                  color: var(--icon_color);
+                  background-color: var(--icon_bg);
+                }
+                .block_{{ block.id }} svg[data-name="play"] {
+                  background-color: var(--icon_color);
+                }
+              </style>
+              {% if block.settings.video_url != blank %}
+                <video preload="metadata" {% if block.settings.autoplay %} autoplay {% endif %} {% if block.settings.mute %} muted {% endif %} {% if block.settings.loop %} loop {% endif %} playsinline>
+                  <source src="{{ block.settings.video_url }}" type="video/mp4" />
+                  Error loading video...
+                </video>
+                <svg data-name="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" class="{% if block.settings.autoplay and block.settings.mute %} d_none {% endif %}">
+                  <path fill="var(--icon_bg)" d="M40 0a40 40 0 1040 40A40 40 0 0040 0zM26 61.56V18.44L64 40z"></path>
+                </svg>
+                <svg data-name="mute" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--icon_color)" viewBox="0 0 16 16">
+                  <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zM6 5.04 4.312 6.39A.5.5 0 0 1 4 6.5H2v3h2a.5.5 0 0 1 .312.11L6 10.96V5.04zm7.854.606a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"/>
+                </svg>
+                <svg data-name="sound" class="d_none" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path fill="var(--icon_color)" d="M16 21c3.527-1.547 5.999-4.909 5.999-9S19.527 4.547 16 3v2c2.387 1.386 3.999 4.047 3.999 7S18.387 17.614 16 19v2z"/>
+                  <path fill="var(--icon_color)" d="M16 7v10c1.225-1.1 2-3.229 2-5s-.775-3.9-2-5zM4 17h2.697l5.748 3.832a1.004 1.004 0 0 0 1.027.05A1 1 0 0 0 14 20V4a1 1 0 0 0-1.554-.832L6.697 7H4c-1.103 0-2 .897-2 2v6c0 1.103.897 2 2 2zm0-8h3c.033 0 .061-.016.093-.019a1.027 1.027 0 0 0 .38-.116c.026-.015.057-.017.082-.033L12 5.868v12.264l-4.445-2.964c-.025-.017-.056-.02-.082-.033a.986.986 0 0 0-.382-.116C7.059 15.016 7.032 15 7 15H4V9z"/>
+                </svg>
+                {% if block.settings.use_video %}
+                  {% if block.settings.content != blank %}
+                    <img class="video_poster {% if block.settings.autoplay and block.settings.mute %} d_none {% endif %}" src="{{ block.settings.content | image_url }}" />
+                  {% else %}
+                    <div class="video_poster"></div>
+                  {% endif %}
+                {% else %}
+                  <div class="video_poster"></div>
+                {% endif %}
+              {% else %}
+                <img src="{{ block.settings.content | image_url }}" />
+              {% endif %}
+            </div>
+        
+          {% endif %}
+        {% endfor %}
+      </div>
+
+
+      <div class="text_container flex_1">
+        <div class="review_elements">
+          <div data-view="0" class="review_container transition d_flex d_flex_wrap s767_d_flex_no_wrap">
+            {% for block in section.blocks %}
+              {% if block.type == "text" %}
+              
+                <div class="review block_{{ block.id }}">
+                  <style>
+  
+                    {% if block.settings.review_block_bg != "transparent" and block.settings.review_block_bg != "" and block.settings.review_block_bg != " " and block.settings.review_block_bg != "rgba(0,0,0,0)" %}
+                      --review_block_bg: {{ block.settings.review_block_bg }};
+                    {% endif %}
+                    .block_{{ block.id }} {
+                        background-color: var(--review_block_bg);
+                    }
+                  </style>
+                  <div class="star_container d_flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m5.825 22l2.325-7.6L2 10h7.6L12 2l2.4 8H22l-6.15 4.4l2.325 7.6L12 17.3L5.825 22Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m5.825 22l2.325-7.6L2 10h7.6L12 2l2.4 8H22l-6.15 4.4l2.325 7.6L12 17.3L5.825 22Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m5.825 22l2.325-7.6L2 10h7.6L12 2l2.4 8H22l-6.15 4.4l2.325 7.6L12 17.3L5.825 22Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m5.825 22l2.325-7.6L2 10h7.6L12 2l2.4 8H22l-6.15 4.4l2.325 7.6L12 17.3L5.825 22Z"/></svg>
+                    {% if block.settings.rating == 4 %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m8.85 17.825l3.15-1.9l3.15 1.925l-.825-3.6l2.775-2.4l-3.65-.325l-1.45-3.4l-1.45 3.375l-3.65.325l2.775 2.425l-.825 3.575ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625l7.2.625l-5.45 4.725L18.175 22L12 18.275L5.825 22ZM12 13.25Z"/></svg>
+                    {% elsif block.settings.rating == 4.5 %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 8.9v5.9l2.4 1.85l-.9-3.05l2.25-1.6h-2.8L12 8.9ZM5.825 22l2.325-7.6L2 10h7.6L12 2l2.4 8H22l-6.15 4.4l2.325 7.6L12 17.3L5.825 22Z"/></svg>
+                    {% else %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m5.825 22l2.325-7.6L2 10h7.6L12 2l2.4 8H22l-6.15 4.4l2.325 7.6L12 17.3L5.825 22Z"/></svg>
+                    {% endif %}
+                  </div>
+                  <div class="review_content">
+                    {{ block.settings.content }}
+                  </div>
+                  <div class="review_footer">
+                    <p class="review_author">{{ block.settings.author }}</p>
+                    {% if block.settings.show_verified %}
+                      <p class="verified_badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Z"/></svg>
+                        {{ block.settings.verified_message }}
+                      </p>
+                    {% endif %}
+                  </div>
+                </div>
+
+
+              {% endif %}
+            {% endfor %}
+          </div>
+
+
+          <div class="navigation_container d_flex ">
+            <svg class="nav prev" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 16l1.4-1.4l-1.6-1.6H16v-2h-4.2l1.6-1.6L12 8l-4 4l4 4Zm0 6q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Z"/></svg>
+            <div class="nav_button_container d_flex gap_1">
+              {% for block in section.blocks %}
+                {% if block.type == "text" %}
+                  
+                  <div class="nav btn temp_icon"></div>
+              
+                {% endif %}
+              {% endfor %}
+            </div>
+            <svg class="nav next" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 16l4-4l-4-4l-1.4 1.4l1.6 1.6H8v2h4.2l-1.6 1.6L12 16Zm0 6q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Z"/></svg>
+          </div>
+        </div>
+        {% if section.settings.button_label != blank %}
+          {% if section.settings.button_url == blank %}
+            <button class="section_CTA">Shop Now</button>
+          {% else %}
+            
+            {% if section.settings.button_url contains "products/" %}
+              
+              {% if section.settings.button_product %}
+
+
+                {%- liquid assign productHandle = section.settings.button_url | split: "products/" | last -%}
+                {%- liquid assign product =  all_products[productHandle] -%}
+    
+                <form method="post" action="/cart/add/{{ product.selected_or_first_available_variant.id }}" id="product-form-{{ section.id }}" accept-charset="UTF-8" class="form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form">
+                  <input type="hidden" name="form_type" value="product">
+                  <input type="hidden" name="utf8" value="✓">
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled="" class="product-variant-id">
+          
+                  <div class="product-form__buttons">
+                    <button id="ProductSubmitButton-" type="submit" name="add" class="section_CTA" value="{{ product.selected_or_first_available_variant.id }}">
+                      {{ section.settings.button_label }} {% if section.settings.show_hand %}<span> {{ icon_hand }} </span>{% endif %}
+                    </button>
+                  </div>
+                  <input type="hidden" name="product-id" value="{{ product.selected_or_first_available_variant.id }}">
+                </form>
+              
+              {% else %}
+                <a href={{ section.settings.button_url }} class="section_CTA">{{ section.settings.button_label }} {% if section.settings.show_hand %}<span> {{ icon_hand }} </span>{% endif %}</a>
+              {% endif %}
+              
+            {% else %}
+              <a href={{ section.settings.button_url }} class="section_CTA">{{ section.settings.button_label }} {% if section.settings.show_hand %}<span> {{ icon_hand }} </span>{% endif %}</a>
+            {% endif %}
+            
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    (function () {
+        window.addEventListener("load", () => {
+          let section = document.querySelector(".section_{{ section.id }}");
+
+
+          let allReview = section.querySelectorAll(".review");
+          let reviewContainer = section.querySelector(".review_container");
+          let allNavButton = section.querySelectorAll(".nav.btn");
+
+
+          let prevButton = section.querySelector(".nav.prev");
+          let nextButton = section.querySelector(".nav.next");
+
+
+          allNavButton[0].classList.add("active");
+          
+          function reviewSizer() {
+              let containerWidth = reviewContainer.parentElement.offsetWidth - 40;
+
+
+              reviewContainer.style.width = `${(allReview.length * containerWidth) + ((allReview.length - 1) * 20) - (allReview.length * 0)}px`;
+              reviewContainer.setAttribute("data-size", containerWidth)
+              section.querySelectorAll(".review").forEach(review => {
+                  review.style.width = `${containerWidth - 30 - 0}px`;
+                  review.style.minWidth = `${containerWidth - 30 - 0}px`;
+              })
+          }
+          reviewSizer();
+
+
+          window.addEventListener("resize", () => {
+              reviewSizer()
+          })
+          
+          let tempFirst = allReview[(allReview.length - 1)].cloneNode(true);
+          tempFirst.classList.add("dummy_first");
+          let tempLast = allReview[0].cloneNode(true);
+          tempLast.classList.add("dummy_last");
+
+
+          reviewContainer.insertBefore(tempFirst, allReview[0]);
+          reviewContainer.appendChild(tempLast)
+
+
+          function updateSlide(value = null, type = null) {
+              reviewContainer.dataset.view = value;
+              reviewContainer.style.transform = `translateX(${-(parseInt(reviewContainer.dataset.size) - 10) * value - 45}px)`;
+
+
+              if (value < 0) {
+                  value = allReview.length - 1;
+              } else if (value >= allReview.length) {
+                  value = 0;
+              }
+
+
+              if (type == null) {
+                  setTimeout(() => { reviewContainer.classList.remove("transition") }, 300)
+                  setTimeout(() => { updateSlide(value, "call") }, 310)
+                  setTimeout(() => { reviewContainer.classList.add("transition") }, 400)
+              };
+
+
+              allNavButton.forEach(nav => { nav.classList.remove("active") });
+              allNavButton[value].classList.add("active");
+          }
+          updateSlide(0);
+
+
+          nextButton.addEventListener("click", () => {
+              let currentSlide = parseInt(reviewContainer.dataset.view);
+              if (currentSlide < allReview.length) {
+                  let newslide = currentSlide + 1;
+                  updateSlide(newslide);
+              }
+
+
+          })
+          prevButton.addEventListener("click", () => {
+              let currentSlide = parseInt(reviewContainer.dataset.view);
+              if (currentSlide >= 0) {
+                  let newslide = currentSlide - 1;
+                  updateSlide(newslide);
+              }
+          })
+
+
+          allNavButton.forEach((nav, index) => {
+              nav.addEventListener("click", () => {
+                  updateSlide(index);
+              })
+          })
+
+
+          {% if section.settings.autoplay_duration != 0 %}
+            setInterval(()=>{
+              updateSlide(parseInt(reviewContainer.dataset.view) + 1)
+            }, {{ section.settings.autoplay_duration | times: 1000 }})
+          {% endif %}
+
+
+          // ========================================================================== Video playback
+
+
+          document.querySelectorAll("svg[data-name='play']").forEach(item=>{
+            item.addEventListener("click", ()=>{
+              document.querySelectorAll("svg[data-name='play']").forEach(play=>{
+                play.parentElement.querySelector("video").pause();
+                play.parentElement.querySelector(".video_poster").classList.remove("d_none");
+                play.parentElement.querySelector("video").currentTime = 0;
+                play.classList.remove("d_none")
+              })
+              item.classList.add("d_none");
+              item.parentElement.querySelector(".video_poster").classList.add("d_none");
+              item.parentElement.querySelector("video").play();
+            })
+          })
+          
+          document.querySelectorAll("video").forEach(item=>{
+            item.addEventListener("click", ()=>{
+              item.pause();
+              item.parentElement.querySelector("svg[data-name='play']").classList.remove("d_none");
+            })
+
+
+            if (item.hasAttribute("autoplay")) {
+              item.parentElement.querySelector("svg[data-name='play']").classList.add("d_none");
+              item.play();
+            }
+            if (item.hasAttribute("muted")) {
+              item.parentElement.querySelector("svg[data-name='sound']").classList.add("d_none");
+              item.parentElement.querySelector("svg[data-name='mute']").classList.remove("d_none");
+            } else {
+              item.parentElement.querySelector("svg[data-name='sound']").classList.remove("d_none");
+              item.parentElement.querySelector("svg[data-name='mute']").classList.add("d_none");
+            }
+
+
+            item.parentElement.querySelector(".video_poster").style.width = `${item.offsetWidth}px`;
+            item.parentElement.querySelector(".video_poster").style.height = `${item.offsetHeight}px`;
+          })
+          document.querySelectorAll("svg[data-name='mute']").forEach(item=>{
+            item.addEventListener("click", ()=>{
+              item.classList.add("d_none");
+              item.parentElement.querySelector("video").muted = false;
+              item.parentElement.querySelector("svg[data-name='sound']").classList.remove("d_none");
+            })
+          })
+          document.querySelectorAll("svg[data-name='sound']").forEach(item=>{
+            item.addEventListener("click", ()=>{
+              item.classList.add("d_none");
+              item.parentElement.querySelector("video").muted = true;
+              item.parentElement.querySelector("svg[data-name='mute']").classList.remove("d_none");
+            })
+          })
+      })
+    })()
+</script>
+
+
+{% schema %}
+  {
+    "name": "Custom Review Grid",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Headings settings"
+      },
+      {
+        "type": "richtext",
+        "id": "section_heading",
+        "label": "Section heading"
+      },
+      {
+        "type": "select",
+        "id": "heading_size",
+        "label": "Heading size",
+        "default": "200%",
+        "options": [
+          {"label": "Extra small", "value": "135%"},
+          {"label": "Extra small", "value": "175%"},
+          {"label": "Extra small", "value": "200%"},
+          {"label": "Extra small", "value": "250%"},
+          {"label": "Extra small", "value": "300%"}
+        ]
+      },
+      {
+        "type": "color",
+        "id": "heading_color",
+        "label": "Heading color"
+      },
+      {
+        "type": "textarea",
+        "id": "section_sub_heading",
+        "label": "Section sub heading"
+      },
+      {
+        "type": "checkbox",
+        "id": "sub_heading_first",
+        "label": "Sub heading first"
+      },
+      {
+        "type": "header",
+        "content": "Content settings"
+      },
+      {
+        "type": "range",
+        "id": "image_per_row",
+        "label": "Images per row",
+        "default": 2,
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "unit": "img"
+      },
+      {
+        "type": "range",
+        "id": "review_per_row",
+        "label": "Reviews per row",
+        "default": 2,
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "unit": "rvw"
+      },
+      {
+        "type": "range",
+        "id": "block_corner",
+        "label": "Block corner radius",
+        "default": 12,
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "block_gap",
+        "label": "Grid gap",
+        "info": "Sets the gap in between images and reviews",
+        "default": 12,
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "autoplay_duration",
+        "label": "Autoplay reviews on Mobile",
+        "default": 5,
+        "min": 0,
+        "max": 10,
+        "step": 0.2,
+        "unit": "sec",
+        "info": "Set to '0' to stop autoplay"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "default": "Shop now"
+      },
+      {
+        "type": "url",
+        "id": "button_url",
+        "label": "Button URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "button_product",
+        "label": "Direct add to cart",
+        "info": "Only works if Product is selected as URL"
+      },
+      {
+        "type": "color",
+        "id": "button_bg",
+        "label": "Button background color",
+        "default": "#333"
+      },
+      {
+        "type": "color",
+        "id": "button_color",
+        "label": "Button text color",
+        "default": "#fff"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_hand",
+        "label": "Show hand icon"
+      },
+      {
+        "type": "header",
+        "content": "Blocks settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_border",
+        "label": "Show border",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "verified_color",
+        "label": "Verified badge color"
+      },
+      {
+        "type": "color",
+        "id": "star_color",
+        "label": "Rating star color"
+      },
+      {
+        "type": "color",
+        "id": "review_block_bg",
+        "label": "Review block background color",
+        "info": "Use 'transparent' to not set any"
+      },
+      {
+        "type": "color",
+        "id": "media_block_bg",
+        "label": "Media block background color",
+        "info": "Use 'transparent' to not set any"
+      },
+      {
+        "type": "select",
+        "id": "author_size",
+        "label": "Review author size",
+        "default": "100%",
+        "options": [
+          {"label": "Extra small", "value": "75%"},
+          {"label": "Small", "value": "90%"},
+          {"label": "Standard", "value": "100%"},
+          {"label": "Large", "value": "110%"},
+          {"label": "Extra large", "value": "125%"}
+        ]
+      },
+      {
+        "type": "color",
+        "id": "default_icon_color",
+        "label": "Default icon color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "default_icon_bg",
+        "label": "Default icon background color",
+        "default": "#000"
+      },
+      {
+        "type": "header",
+        "content": "Section settings"
+      },
+      {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section background color"
+      },
+      {
+        "type": "range",
+        "id": "section_padding",
+        "label": "Section top and bottom padding",
+        "min": 0,
+        "max": 150,
+        "step": 5,
+        "unit": "px",
+        "default": 60
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Media",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "content",
+            "label": "Select image"
+          },
+          {
+            "type": "checkbox",
+            "id": "use_video",
+            "label": "Use as video thumbnail",
+            "info": "Use image as video thumbnail"
+          },
+          {
+            "type": "text",
+            "id": "video_url",
+            "label": "Video URL",
+            "info": "Adding video URL will convert block type from image to video"
+          },
+          {
+            "type": "select",
+            "id": "media_size",
+            "label": "Media size",
+            "default": "fill",
+            "options": [
+              {"label": "Fill", "value": "fill"},
+              {"label": "Fit", "value": "fit"}
+            ]
+          },
+          {
+            "type": "color",
+            "id": "media_block_bg",
+            "label": "Block background color"
+          },
+          {
+            "type": "checkbox",
+            "id": "autoplay",
+            "label": "Video will autoplay",
+            "info": "Autoplay works if video is also muted."
+          },
+          {
+            "type": "checkbox",
+            "id": "mute",
+            "label": "Start video with mute",
+            "default": true
+          },
+          {
+            "type": "checkbox",
+            "id": "loop",
+            "label": "Loop video when finished"
+          },
+          {
+            "type": "color",
+            "id": "icon_color",
+            "label": "Icon color",
+            "default": "#fff"
+          },
+          {
+            "type": "color",
+            "id": "icon_bg",
+            "label": "Icon background color",
+            "default": "#000"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "name": "Review",
+        "settings": [
+          {
+            "type": "range",
+            "id": "rating",
+            "label": "Rating",
+            "min": 4,
+            "max": 5,
+            "step": 0.5,
+            "default": 5,
+            "unit": "str"
+          },
+          {
+            "type": "richtext",
+            "id": "content",
+            "label": "Review content",
+            "default": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique id atque magni at! Doloremque temporibus nulla tempora architecto neque nesciunt.</p>"
+          },
+          {
+            "type": "text",
+            "id": "author",
+            "label": "Author name"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_verified",
+            "label": "Show verified"
+          },
+          {
+            "type": "text",
+            "id": "verified_message",
+            "label": "Verified message",
+            "default": "Verified purchase"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom Review Grid"
+      }
+    ]
+  }
+{% endschema %}

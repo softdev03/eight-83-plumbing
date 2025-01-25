@@ -1,0 +1,452 @@
+{% comment %} 
+    Stories
+    © 2021 EcomGraduates
+    https://wwww.ecomgraduates.com 
+{% endcomment %}
+{% assign enable_lightbox = false %}
+{% for block in section.blocks %}
+	{% if block.settings.enable_lightbox %}
+		{% assign enable_lightbox = true %}
+		{% break %}
+	{% endif %}
+{% endfor %}
+{% if enable_lightbox %}
+    <link 
+        rel="stylesheet" 
+        href="https://cdn.jsdelivr.net/npm/lightgallery@2.3.0/css/lightgallery-bundle.min.css" 
+        integrity="sha256-S8sL5U5HwTa3JmR1y0ASCyQH111hgvPpKOkYXZHa4sA=" 
+        crossorigin="anonymous">
+
+    <script 
+        src="https://cdn.jsdelivr.net/npm/lightgallery@2.3.0/lightgallery.umd.js" 
+        integrity="sha256-JCTBwBr7/xnYfiypcnakV8/GvFvz9t2eCbhoXawVNNs=" 
+        crossorigin="anonymous"
+        defer></script>
+    <script 
+        src="https://cdn.jsdelivr.net/npm/lightgallery@2.3.0/plugins/zoom/lg-zoom.umd.js" 
+        integrity="sha256-oEK9q6qqQPWijQFuvQYQS8xaxPbNCynjBJrVslE5WNw=" 
+        crossorigin="anonymous"
+        defer></script>
+
+    <script 
+        src="https://cdn.jsdelivr.net/npm/lightgallery@2.3.0/plugins/thumbnail/lg-thumbnail.umd.js" 
+        integrity="sha256-8VPSOFnws4wkjGRqmfBRT8HSBuaX6N+YCzSlyickHCc=" 
+        crossorigin="anonymous"
+        defer></script>
+
+    <script 
+        src="https://cdn.jsdelivr.net/npm/lightgallery@2.3.0/plugins/autoplay/lg-autoplay.umd.js" 
+        integrity="sha256-oGd0puLfxAD88icw7fyzzdbOuPVS74EWVJiIR59BpeI=" 
+        crossorigin="anonymous"
+        defer></script>
+
+    <script 
+        src="https://cdn.jsdelivr.net/npm/lightgallery@2.3.0/plugins/fullscreen/lg-fullscreen.umd.js" 
+        integrity="sha256-isWHu6Wf1asbWy38/6RHpn8XdrjKy09ElOd4M3SW+zY=" 
+        crossorigin="anonymous"
+        defer></script>
+
+    <script 
+        src="https://cdn.jsdelivr.net/npm/lightgallery@2.3.0/plugins/share/lg-share.umd.js" 
+        integrity="sha256-k0N4feNJYOkdI0H2foUmQagvQ+WCbGvEGamNLwJkt9M=" 
+        crossorigin="anonymous"
+        defer></script>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/lightgallery@2.3.0/plugins/video/lg-video.umd.js" 
+        integrity="sha256-NRM0LRcbkZ7/ybAnmoQZxz9ZCWZSfZj+Wcr6I6mGuws=" 
+        crossorigin="anonymous"
+        defer></script>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            lightGallery(document.querySelector('#eg-stories-{{ section.id }} .eg-stories-list'), {
+                plugins: [lgZoom, lgThumbnail, lgAutoplay, lgFullscreen, lgShare, lgVideo],
+                selector: '.eg-stores-lightbox',
+                speed: 500
+            });
+        })
+    </script>
+{% endif %}
+
+<style>
+    /*
+        General styles
+    */
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .lg-backdrop {
+        display: block !important;
+    }
+
+    /*
+        Stories styling
+    */
+    .eg-stories {
+        overflow-x: hidden;
+    }
+
+    .eg-stories-list {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: auto;
+        list-style: none;
+        margin: 0;
+        padding: 2rem 0;
+    }
+
+    @media (max-width: 749px) {
+        .eg-stories-list {
+            padding-left: .5rem;
+        }
+    }
+
+    @media (min-width: 750px) {
+        .eg-stories-list {
+            justify-content: center;
+        }
+    }
+
+    .eg-stories-list li {
+        text-align: center;
+    }
+
+    .eg-stories-list li a {
+        display: flex;
+        position: relative;
+        margin: -.5rem;
+    }
+
+    .eg-stories-list img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+    }
+    
+    .eg-stories-list svg  {
+        position: absolute;
+        fill: none;
+        stroke-linecap: round;
+        stroke-width: 3;
+        stroke-dasharray: 1;
+        stroke-dashoffset: 0;
+        animation: stroke-draw 6s ease-out 2 alternate;
+    }
+
+    .eg-stories-list .title {
+        font-size: .85em;
+        font-weight: bold;
+        display: block;
+        margin: 0;
+    }
+    
+    /*
+        Styles based on settings
+    */
+    #eg-stories-{{ section.id }} {
+        {% unless section.settings.bg_color == 'rgba(0,0,0,0)' %}
+            background-color: {{ section.settings.bg_color }};
+        {% endunless %}
+        {% unless section.settings.color == 'rgba(0,0,0,0)' %}
+            color: {{ section.settings.color }};
+        {% endunless %}
+        padding-top: {{ section.settings.pt }}rem;
+        padding-bottom: {{ section.settings.pb }}rem;
+        margin-top: {{ section.settings.mt }}rem;
+        margin-bottom: {{ section.settings.mb }}rem;   
+    }
+
+    @media (max-width: 749px) {
+        #eg-stories-{{ section.id }} {
+            {% unless section.settings.show_mobile %}
+                display: none;
+            {% endunless %}
+        }
+    }
+
+    @media (min-width: 750px) {
+        #eg-stories-{{ section.id }} {
+            {% unless section.settings.show_desktop %}
+                display: none;
+            {% endunless %}
+        }
+    }
+
+    #eg-stories-{{ section.id }} .eg-stories-list a {
+        width: {{ section.settings.img_size | plus: 21 }}px; 
+        height: {{ section.settings.img_size | plus: 21 }}px;
+    }
+
+    #eg-stories-{{ section.id }} .eg-stories-list svg  {
+        stroke: {{ section.settings.stroke_color_start }};
+    }
+
+    @keyframes stroke-draw {
+        from {
+            stroke: {{ section.settings.stroke_color_start }} /* #8a3ab9 */;
+            stroke-dasharray: 1;
+        }
+        to {
+            stroke: {{ section.settings.stroke_color_end }}; /* #cd486b */
+            transform:rotate(180deg);
+            stroke-dasharray: 8;
+        }
+    }
+	.eg-lightbox-btn {
+    	background: white;
+    	padding: 1rem;
+    	border-radius: 0.3rem;
+    	color: black !important;
+    	text-decoration: none !important;
+    }
+  	.eg-lightbox-btn:hover {
+    	background: #e9e9e9;
+    	padding: 1rem;
+    	border-radius: 0.3rem;
+    	color: black !important;
+    	text-decoration: none !important;
+    }
+    /* Dummy code to fix editor styling */
+    {}
+</style>
+
+<section 
+    id="eg-stories-{{ section.id }}" 
+    class="eg-stories">
+    <div 
+        class="{% if section.settings.container %}page-width container{% endif %}" 
+        style="max-width: {{ section.settings.max_width }}px">
+        <ul 
+            class="eg-stories-list">
+            {% for block in section.blocks %}
+                <li>
+                    {% assign img_size = section.settings.img_size | append: 'x' | append: section.settings.img_size %}
+                    <a 
+                        {% if block.settings.enable_lightbox %}
+                       		class="eg-stores-lightbox"
+                       		data-sub-html='<a class="eg-lightbox-btn" href="{{ block.settings.url }}">{{ block.settings.title }}</a>'
+                            {% if block.settings.img.alt contains 'youtube' %}
+                                href="{{ block.settings.img.alt }}"
+                            {% elsif block.settings.img.alt contains '.mp4' %}
+                                data-video='{
+                                    "source": [
+                                        {
+                                            "src": "{{ block.settings.img.alt }}", 
+                                            "type":"video/mp4" 
+                                        }
+                                    ], 
+                                    "attributes": {
+                                        "preload": false, 
+                                        "playsinline": true, 
+                                        "controls": true
+                                    }
+                                }'
+                       		{% else %}
+                                href="{{ block.settings.img | img_url: '1600x' }}"
+                                data-lg-size="1600-{{ 1600 | divided_by: block.settings.img.aspect_ratio | round }}"
+                            {% endif %}
+                        {% else %}
+                            href="{{ block.settings.url }}"
+                        {% endif %}
+                    >
+                        <img 
+                            class="img-fluid"
+                            src="{{ block.settings.img | img_url: img_size, crop: 'center' }}"
+                            alt="{{ block.settings.img.alt | escape }}" 
+                            width="{{ section.settings.img_size | minus: 3 }}"
+                            height="{{ section.settings.img_size | minus: 3 }}" 
+                            loading="lazy">
+                        {% if block.settings.show_circle_effect %}
+                            <svg 
+                                viewBox="0 0 100 100" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                style="stroke-width: {{ section.settings.svg_stroke_width }}"
+                                style="enable-background:new -580 439 577.9 194;"
+                                xml:space="preserve">  
+                                <circle cx="50" cy="50" r="40" />
+                            </svg>
+                        {% endif %}
+                    </a>
+                    {% unless block.settings.title == blank %}
+                        <span class="title">
+                            {{ block.settings.title }}
+                        </span>
+                    {% endunless %}
+                </li>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "EG - Stories-lightbox",
+    "settings": [
+        {
+            "type": "header",
+            "content": "General"
+        },
+        {
+            "type": "checkbox",
+            "id": "container",
+            "label": "Wrap in a container",
+            "default": false
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background color"
+        },
+        {
+            "type": "color",
+            "id": "color",
+            "label": "Text color"
+        },
+        {
+            "type": "text",
+            "id": "max_width",
+            "label": "Max width (px)",
+            "info": "Adjust container width (in pixels). Leave empty to use your theme's container width."
+        },
+        {
+            "type": "text",
+            "id": "img_size",
+            "label": "Image size",
+            "default": "80"
+        },
+        {
+            "type": "header",
+            "content": "Circle effect"
+        },
+        {
+            "type": "range",
+            "id": "svg_stroke_width",
+            "label": "Effect stroke width",
+            "default": 2,
+            "min": 1,
+            "max": 4
+        },
+        {
+            "type": "color",
+            "id": "stroke_color_start",
+            "label": "Stroke color start",
+            "default": "#8a3ab9"
+        },
+        {
+            "type": "color",
+            "id": "stroke_color_end",
+            "label": "Stroke color end",
+            "default": "#cd486b"
+        },
+        {
+            "type": "header",
+            "content": "Visibility"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_mobile",
+            "label": "Show on mobile",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "show_desktop",
+            "label": "Show on desktop",
+            "default": true
+        },
+        {
+            "type": "header",
+            "content": "Spacing",
+            "info": "Based on 'rem' values [Learn more](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units)"
+        },
+        {
+            "type": "range",
+            "id": "pt",
+            "label": "Padding top",
+            "min": 0,
+            "max": 12,
+            "step": 1,
+            "default": 0
+        },
+        {
+            "type": "range",
+            "id": "pb",
+            "label": "Padding bottom",
+            "min": 0,
+            "max": 12,
+            "step": 1,
+            "default": 0
+        },
+        {
+            "type": "range",
+            "id": "mt",
+            "label": "Margin top",
+            "min": 0,
+            "max": 12,
+            "step": 1,
+            "default": 0
+        },
+        {
+            "type": "range",
+            "id": "mb",
+            "label": "Margin bottom",
+            "min": 0,
+            "max": 12,
+            "step": 1,
+            "default": 0
+        }
+    ],
+    "blocks": [
+        {
+            "type": "block",
+            "name": "Block",
+            "settings": [
+        		{
+            		"type": "header",
+            		"content": "Lightbox"
+        		},
+        		{
+            		"type": "checkbox",
+            		"id": "enable_lightbox",
+            		"label": "Enable lightbox",
+            		"default": true
+        		},
+                {
+                    "type": "image_picker",
+                    "id": "img",
+                    "label": "Image",
+                    "info": "Use the image ALT tag to set the video URL to display in the lightbox mode."
+                },
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "URL"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_circle_effect",
+                    "label": "Show circle effect",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "info": "Leave empty to disable"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "EG - Stories-lightbox",
+            "category": "Social"
+        }
+    ]
+}
+{% endschema %}

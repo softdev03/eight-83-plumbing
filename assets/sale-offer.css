@@ -1,0 +1,131 @@
+.shopify-section--sale-offer {
+    z-index: 1;
+    position: relative;
+}
+.shopify-section--sale-offer .shopify-sale-offer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.shopify-section--sale-offer .image {
+    line-height: 0;
+    margin-top: -78px;
+    margin-right: 2rem;
+}
+.shopify-section--sale-offer .online-offer .big-text {
+    font-size: 41px;
+}
+.shopify-section--sale-offer .online-offer .small-text {
+    font-size: 16px;
+}
+
+.shopify-section--sale-offer .cash_and_link-wrapper {
+    display: flex;
+}
+.shopify-section--sale-offer .cash-back {
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+    border: 4px dashed #3BD7F0;
+    margin-left: 2rem;
+}
+.shopify-section--sale-offer .cash-back .price {
+    font-size: 56px;
+    margin-right: 0.5rem;
+}
+.shopify-section--sale-offer .cash-back .cash-text {
+    display: flex;
+    flex-direction: column;
+}
+.shopify-section--sale-offer .cash-back .back-text {
+    font-size: 28px;
+}
+.shopify-section--sale-offer .cash-back .purpose {
+    font-size: 10px;
+}
+.shopify-section--sale-offer .link {
+    text-decoration: none;
+    color: #00446C;
+    background-color: #3BD7F0;
+    padding: 2rem 4rem;
+    font-size: 24px;
+    white-space: nowrap;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.shopify-section--sale-offer .online-offer .big-text {
+    font-size: 32px;
+}
+.shopify-section--sale-offer .cash-back .price {
+    font-size: 45px;
+}
+.shopify-section--sale-offer .cash-back .back-text {
+    font-size: 24px;
+}
+.shopify-section--sale-offer .link {
+    font-size: 21px;
+}
+@media screen and (max-width: 1439px) {
+    .shopify-section--sale-offer .online-offer .big-text {
+        font-size: 32px;
+    }
+    .shopify-section--sale-offer .cash-back .price {
+        font-size: 45px;
+    }
+    .shopify-section--sale-offer .cash-back .back-text {
+        font-size: 24px;
+    }
+    .shopify-section--sale-offer .link {
+        font-size: 21px;
+    }
+}
+@media screen and (max-width: 1279px) {
+    .shopify-section--sale-offer .shopify-sale-offer {
+        row-gap: 20px;
+    }
+    .shopify-section--sale-offer .cash-back {
+        margin-left: 0px;
+    }
+}
+@media screen and (max-width: 749px) {
+    .shopify-section--sale-offer .shopify-sale-offer {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        justify-content: space-between;
+    }
+    .shopify-section--sale-offer .online-offer .big-text {
+        font-size: 27px;
+    }
+    .shopify-section--sale-offer .online-offer .small-text {
+        font-size: 12px;
+    }
+    .shopify-section--sale-offer .cash_and_link-wrapper {
+        flex-direction: column;
+        row-gap: 6px;
+        width: 100%;
+        justify-content: space-between;
+    }
+    .shopify-section--sale-offer .cash-back {
+        padding: 10px;
+    }
+    .shopify-section--sale-offer .cash-back .price {
+        font-size: 32px;
+    }
+    .shopify-section--sale-offer .cash-back .back-text {
+        font-size: 18px;
+    }
+    .shopify-section--sale-offer .cash-back .purpose {
+        font-size: 8px;
+    }
+    .shopify-section--sale-offer .link {
+        font-size: 16px;
+        margin-left: 0px;
+    }
+}

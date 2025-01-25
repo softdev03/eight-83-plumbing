@@ -1,0 +1,80 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_YhkXcF": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_tnp4BR": {
+          "type": "heading",
+          "settings": {
+            "heading": "Get in Touch with Eight 83 Plumbing",
+            "heading_size": "h0"
+          }
+        },
+        "text_AB3KRX": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We are here to assist you with all your plumbing needs. Whether you have a question, need a quote, or require emergency plumbing services, our team at Eight 83 Plumbing is ready to help. Contact us using any of the methods below, and we will respond promptly.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_tnp4BR",
+        "text_AB3KRX"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "waves_bz7Qba": {
+      "type": "waves",
+      "settings": {
+        "wave_animation_speed": 5,
+        "wave_placement": "eg-waves-top",
+        "color": "#0096cc",
+        "blend_wave": true,
+        "wave_blend_color": "#002a4d",
+        "wave_blend_alpha": 1,
+        "wave_height_desktop": 1,
+        "wave_height_mobile": 1
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_YhkXcF",
+    "form",
+    "waves_bz7Qba"
+  ]
+}

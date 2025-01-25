@@ -1,0 +1,430 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_xN6XTH": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_4ee3TK": {
+          "type": "heading",
+          "settings": {
+            "heading": "Canberra's Trusted Emergency Plumbers – Available 24/7 for Immediate Service!",
+            "heading_size": "h1"
+          }
+        },
+        "text_rFJLjC": {
+          "type": "text",
+          "settings": {
+            "text": "Facing a plumbing emergency? Eight 83 Plumbing is here to help! Our experienced team is ready around the clock to provide fast and reliable plumbing services. From minor repairs to major issues, we handle it all with expertise and care.",
+            "text_style": "body"
+          }
+        },
+        "buttons_gQV6xc": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "0437 174 202",
+            "button_link_1": "tel:0437 174 202",
+            "button_style_secondary_1": false,
+            "button_label_2": "Book Now",
+            "button_link_2": "shopify://pages/contact",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_4ee3TK",
+        "text_rFJLjC",
+        "buttons_gQV6xc"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/194931965.jpg",
+        "image_overlay_opacity": 30,
+        "image_height": "medium",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "accent-2",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "collapsible_content_Aq49Fz": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_Bn4K3H": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Burst Pipe Repair",
+            "icon": "check_mark",
+            "row_content": "<p>Burst pipes can cause significant water damage quickly. Our team provides immediate repair services to fix burst pipes and prevent further damage to your property.</p><p>Worried about a burst pipe flooding your home? Our rapid response team will repair it promptly and effectively.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_4TUAXj": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gas Leaks Detection and Repair",
+            "icon": "check_mark",
+            "row_content": "<p>Gas leaks are extremely dangerous and require immediate attention. Our experts use advanced detection methods to locate and repair gas leaks, ensuring your safety.</p><p>Smell gas in your home? Don’t take any chances – contact us immediately for safe and reliable gas leak repair.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_HJVrfn": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Sewer System Backup",
+            "icon": "check_mark",
+            "row_content": "<p>A sewer system backup can cause serious health hazards and damage. Our plumbers provide swift solutions to clear and repair sewer backups, restoring your system to normal.</p><p>Dealing with a sewer backup? Our experienced team will resolve the issue quickly and safely.</p><p></p><p></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_ghqiH7": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Water Heater Malfunctions",
+            "icon": "check_mark",
+            "row_content": "<p>A malfunctioning water heater can disrupt your daily routine. We offer emergency repair services to get your water heater back in working order as soon as possible.</p><p>No hot water? Our experts will diagnose and fix your water heater promptly.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_UYX3ni": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Severe Drain Clogs",
+            "icon": "check_mark",
+            "row_content": "<p>Severe drain clogs can lead to backups and overflows. Our team uses advanced tools and techniques to clear even the toughest clogs, restoring proper drainage.</p><p>Facing a stubborn clog? Let our professionals handle it and restore your drainage system.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_WFRKQp": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Flooded Laundry Due to Plumbing Issues",
+            "icon": "check_mark",
+            "row_content": "<p>A flooded laundry can cause extensive damage. Our emergency plumbers respond quickly to address the cause of the flooding and remove the water, preventing further damage.</p><p>Laundry flooding? Our team will act fast to mitigate damage and fix the underlying plumbing issue.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_PHM88d": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Emergency Leak Repair",
+            "icon": "check_mark",
+            "row_content": "<p>Leaks can cause significant water damage if not addressed quickly. We offer emergency leak repair services to fix leaks promptly and prevent further issues.</p><p>Found a leak? Our emergency services will repair it quickly, protecting your home from water damage.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_cb8Nhc": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Broken Water Lines",
+            "icon": "check_mark",
+            "row_content": "<p>Broken water lines can disrupt your water supply and cause flooding. Our plumbers provide rapid repair services to fix broken water lines and restore normal water flow.</p><p>Broken water line? Our experts will fix it fast and ensure your water supply is restored.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_HEhE9G": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Overflowing Toilets",
+            "icon": "check_mark",
+            "row_content": "<p>An overflowing toilet is a messy and urgent problem. Our team provides immediate solutions to stop the overflow and fix the underlying issue.</p><p>Toilet overflowing? Contact us for a quick and effective solution.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_Rktzn9": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Rapid Response to Plumbing Disasters",
+            "icon": "check_mark",
+            "row_content": "<p>Plumbing disasters require immediate attention. Our team is available 24/7 to respond to any plumbing emergency, providing fast and effective solutions. </p><p>Facing a plumbing disaster? Our rapid response team will handle it swiftly and professionally.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_Bn4K3H",
+        "collapsible_row_4TUAXj",
+        "collapsible_row_HJVrfn",
+        "collapsible_row_ghqiH7",
+        "collapsible_row_UYX3ni",
+        "collapsible_row_WFRKQp",
+        "collapsible_row_PHM88d",
+        "collapsible_row_cb8Nhc",
+        "collapsible_row_HEhE9G",
+        "collapsible_row_Rktzn9"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "Emergency Plumbing Services:",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "",
+        "container_color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_qygbqc": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_CJhahg": {
+          "type": "heading",
+          "settings": {
+            "heading": "Plumbing problems can’t wait. Call us now for prompt and professional assistance!<strong> </strong><a href=\"tel:0437 174 202\">0437 174 202</a>",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_CJhahg"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 44
+      }
+    },
+    "image_with_text_AB3HbP": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_hMKE7T": {
+          "type": "heading",
+          "settings": {
+            "heading": "Why Canberra Trusts Eight 83 Plumbing for Emergency Services",
+            "heading_size": "h2"
+          }
+        },
+        "text_AMRqdi": {
+          "type": "text",
+          "settings": {
+            "text": "<p>With years of experience, advanced equipment, and a commitment to customer satisfaction, Eight 83 Plumbing is the go-to choice for emergency plumbing in Canberra. Our licensed plumbers provide prompt and reliable service, no matter the time of day.</p><p></p>",
+            "text_style": "body"
+          }
+        },
+        "caption_G3jw8g": {
+          "type": "caption",
+          "settings": {
+            "caption": "Had bad experiences with plumbers before? Our reliable and professional team guarantees timely and effective solutions.",
+            "text_style": "subtitle",
+            "text_size": "small"
+          }
+        }
+      },
+      "block_order": [
+        "heading_hMKE7T",
+        "text_AMRqdi",
+        "caption_G3jw8g"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/361975814.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "contact_form_88jH9d": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "<strong>Contact Us Today for Immediate Assistance! </strong>Fill out the form below or call us directly at <a href=\"tel:0437 174 202\">0437 174 202</a>. Our team is ready to provide you with the best emergency plumbing services in Canberra.",
+        "heading_size": "h2",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "eg_testimonials_2_a4Tg9q": {
+      "type": "eg-testimonials-2",
+      "blocks": {
+        "testimonial_zhBFdY": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "five",
+            "title": "I called them at 2 AM for a burst pipe",
+            "text": "<p>I called them at 2 AM for a burst pipe, and they arrived within 30 minutes. Professional and efficient service!\"</p>",
+            "author_name": "Sarah ., Canberra"
+          }
+        },
+        "testimonial_dYWAnr": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "five",
+            "title": "Excellent service and very professional",
+            "text": "<p>\"Excellent service and very professional. They fixed our leaking taps quickly and efficiently. Highly recommend!\" </p>",
+            "author_name": "Mark Canberra"
+          }
+        },
+        "testimonial_dCCLnK": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "five",
+            "title": "After we broke a pipe",
+            "text": "<p>The team did a great job installing our new dishwasher after we broke a pipe and caused issues. They were punctual, friendly, and left everything clean and tidy. Very impressed!\" </p>",
+            "author_name": "Jen, Canberra"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_zhBFdY",
+        "testimonial_dYWAnr",
+        "testimonial_dCCLnK"
+      ],
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "section_size": "container",
+        "testimonial_style": "style-1",
+        "heading": "\"Hear from Our Satisfied Customers\"",
+        "heading_size": "h1",
+        "heading_transform": "",
+        "heading_color": "#000000",
+        "sub_heading": "",
+        "sub_heading_size": "body",
+        "sub_heading_transform": "",
+        "sub_heading_color": "#000000",
+        "header-alignment": "center",
+        "show_slides": 3,
+        "detail_alignment": "center",
+        "bg_color": "#ffffff",
+        "border_color": "#cccccc",
+        "text_color": "#000000",
+        "star_color": "#f0cf4a",
+        "arrows_color": "#000000",
+        "title_size": "h2",
+        "title_transform": "",
+        "text_style": "body",
+        "button_label": "",
+        "button_link": "",
+        "btn_bg_color": "#000000",
+        "btn_label_color": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 20,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 20
+      }
+    },
+    "image_banner_t9VViN": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_fQeNmz": {
+          "type": "heading",
+          "settings": {
+            "heading": "Your plumbing issues are resolved fast and effectively",
+            "heading_size": "h1"
+          }
+        },
+        "text_AUGCQB": {
+          "type": "text",
+          "settings": {
+            "text": "Tired of unreliable plumbers who don’t show up on time? We ensure your plumbing issues are resolved quickly and effectively",
+            "text_style": "body"
+          }
+        },
+        "buttons_CfhD7C": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Call Us",
+            "button_link_1": "tel:0437 174 202",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_fQeNmz",
+        "text_AUGCQB",
+        "buttons_CfhD7C"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/302067997.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "eg_marquee_pdfmzm": {
+      "type": "eg-marquee",
+      "settings": {
+        "bg_color": "#002a4d",
+        "color": "",
+        "text_size": "",
+        "text_weight": "",
+        "text_transform": "",
+        "list_label": "Promotional Features",
+        "animation_duration": 15,
+        "marquee_direction": "left",
+        "gap": 20,
+        "pt": 0,
+        "pb": 0,
+        "mt": 0,
+        "mb": 0
+      }
+    },
+    "waves_HJYgLq": {
+      "type": "waves",
+      "settings": {
+        "wave_animation_speed": 5,
+        "wave_placement": "eg-waves-top",
+        "color": "#2baae0",
+        "blend_wave": true,
+        "wave_blend_color": "#002a4d",
+        "wave_blend_alpha": 1,
+        "wave_height_desktop": 15,
+        "wave_height_mobile": 5
+      }
+    }
+  },
+  "order": [
+    "image_banner_xN6XTH",
+    "main",
+    "collapsible_content_Aq49Fz",
+    "rich_text_qygbqc",
+    "image_with_text_AB3HbP",
+    "contact_form_88jH9d",
+    "eg_testimonials_2_a4Tg9q",
+    "image_banner_t9VViN",
+    "eg_marquee_pdfmzm",
+    "waves_HJYgLq"
+  ]
+}

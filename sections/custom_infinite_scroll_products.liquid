@@ -1,0 +1,157 @@
+{% if section.settings.use_loader %}
+  <style>
+    .must_hide {
+      display: none!important;
+    }
+  </style>
+  
+  <div class="section_{{ section.id }} custom_pagination_loader">
+    <style>
+      .custom_pagination_loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #custom_pagination {
+        display: {% if section.settings.show_button %} inline-flex {% else %} none {% endif %};
+
+        {% if section.settings.show_button_custom_style %}
+          background-color: {% if section.settings.button_bg != blank and section.settings.button_bg != "transparent" and section.settings.button_bg != "" and section.settings.button_bg != " " and section.settings.button_bg != "rgba(0,0,0,0)" and section.settings.button_bg != "rgba(0, 0, 0, 0)" %}{{ section.settings.button_bg }}{% else %}black{% endif %};
+          color: {% if section.settings.button_color != blank and section.settings.button_color != "transparent" and section.settings.button_color != "" and section.settings.button_color != " " and section.settings.button_color != "rgba(0,0,0,0)" and section.settings.button_color != "rgba(0, 0, 0, 0)" %}{{ section.settings.button_color }}{% else %}white{% endif %};
+          border-radius: {% if section.settings.rounded_corner %}8px{% else %}0px{% endif %};
+          padding: calc({{ section.settings.button_size }} * 1px) calc({{ section.settings.button_size }} * 3px);
+        {% endif %}
+      }
+    </style>
+    <div id="custom_pagination">
+      {% if section.settings.Show_button_label == blank %}View More{% else %}{{ section.settings.Show_button_label }}{% endif %}
+    </div>
+    <script>
+      (function() {
+        let section = document.querySelector(".section_{{ section.id }}");
+        let loaderBtn = section.querySelector("#custom_pagination");
+
+        let productContainerQuery = ".collection .product-grid";     // This is the container the contains all products on the page 
+        let paginationContainerQuery = ".pagination-wrapper";        // This contains all the pagination items
+        let paginationButtonQuery = "[aria-label='Next page']";      // It is the button that links to the next page
+        let defaultButtonStyle = "button button--primary"            // The default button style of the themeobs
+        
+        let paginationContainer = document.querySelector(paginationContainerQuery);
+        let paginationButton = document.querySelector(paginationButtonQuery);
+        
+        {% unless section.settings.show_button_custom_style %}
+          Array.from(defaultButtonStyle.split(" ")).forEach(item=>loaderBtn.classList.add(item));
+        {% endunless %}
+
+        if (paginationContainer) {
+          paginationContainer.classList.add("must_hide");
+        }
+        if (paginationButton) {
+          loaderBtn.dataset.href = paginationButton.href;
+        }
+        
+        
+        if (paginationButton) {
+        
+          async function contentNewLoader() {
+            loaderBtn.innerHTML = "{% if section.settings.Show_button_loading_label == blank %}Loading...{% else %}{{ section.settings.Show_button_loading_label }}{% endif %}";
+            
+            const respoonse = await fetch(loaderBtn.dataset.href);
+            const data = await respoonse.text();
+            const parser = new DOMParser();
+            const newDocument = parser.parseFromString(data, 'text/html');
+            paginationButton = newDocument.querySelector(paginationButtonQuery);
+            
+            loaderBtn.innerHTML = "{% if section.settings.Show_button_label == blank %}View More{% else %}{{ section.settings.Show_button_label }}{% endif %}";
+            if (document.querySelector(productContainerQuery)) {
+              document.querySelector(productContainerQuery).insertAdjacentHTML('beforeend', newDocument.querySelector(productContainerQuery).innerHTML);
+            }
+            
+            if (!paginationButton) {
+              loaderBtn.remove();
+            } else {
+              loaderBtn.dataset.href = paginationButton.href;
+            }
+          }
+          
+          loaderBtn.addEventListener("click", ()=>{contentNewLoader()});
+          
+          let customIntersectionObserver = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {entry.target.querySelector("#custom_pagination") ? entry.isIntersecting ? contentNewLoader() : null : null})
+          }, { threshold: 0, rootMargin: '0px 0px -100px 0px' });
+          customIntersectionObserver.observe(section);
+        }
+        
+      })()
+    </script>
+  </div>
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Custom Product Loader",
+    "templates": ["collection"],
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "use_loader",
+        "label": "Use auto loader",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_button",
+        "label": "Show 'Load more' button",
+        "default": true,
+        "info": "Hides the button if unchecked, but still laods products automatically"
+      },
+      {
+        "type": "text",
+        "id": "Show_button_label",
+        "label": "'Load more' button label"
+      },
+      {
+        "type": "text",
+        "id": "Show_button_loading_label",
+        "label": "'Load more' loading button label"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_button_custom_style",
+        "label": "Custom style for 'Load more' Button",
+        "info": "Uses default button color & style if not checked"
+      },
+      {
+        "type": "color",
+        "id": "button_bg",
+        "label": "Button background color"
+      },
+      {
+        "type": "range",
+        "id": "button_size",
+        "label": "Button size",
+        "default": 10,
+        "min": 4,
+        "max": 16,
+        "step": 1
+      },
+      {
+        "type": "color",
+        "id": "button_color",
+        "label": "Button text color"
+      },
+      {
+        "type": "checkbox",
+        "id": "rounded_corner",
+        "label": "Rounded button corner",
+        "default": true
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom Product Laoder"
+      }
+    ]
+  }
+{% endschema %}

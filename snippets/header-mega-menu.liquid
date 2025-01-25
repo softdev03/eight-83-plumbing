@@ -1,0 +1,360 @@
+{% comment %}
+  Renders a megamenu for the header.
+
+  Usage:
+  {% render 'header-mega-menu' %}
+{% endcomment %}
+
+<style>
+  .megamenu_custom_image {
+    width: 100%;
+    height: unset;
+    object-fit: contain;
+    object-position: top center;
+  }
+  .custom_megamenu_item {
+    margin: 10px;
+    margin-top: 0px;
+  }
+  .megamenu_product_container {
+    display: flex;
+    gap: 20px;
+  }
+  .megamenu_product_form {
+    max-width: max(45%, 250px);
+    margin-bottom: 10px;
+  }
+  .megamenu_product_media {
+    position: relative;
+    background-color: #eee;
+  }
+  .megamenu_product_image {
+    flex: 1;
+    width: 100%;
+    display: block;
+    height: unset;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+  }
+  .megamenu_product_title {
+    font-weight: 400;
+    font-size: 80%;
+    line-height: 1.4em;
+    margin-block: 10px;
+    text-align: center;
+    letter-spacing: 0;
+  }
+  .megamenu_product_button {
+    width: 100%;
+    padding: 6px 0px;
+    cursor: pointer;
+  }
+  .megamenu_product_form_options  {
+    padding: 5px;
+    border: 0px;
+    outline: solid 1px #ccc;
+    box-shadow: unset;
+    outline-offset: 0px;
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    width: calc(100% - 10px);
+  }
+</style>
+
+<nav class="header__inline-menu">
+  <ul class="list-menu list-menu--inline" role="list">
+    {%- for link in section.settings.menu.links -%}
+      <li>
+        {%- if link.links != blank -%}
+          <header-menu>
+            <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
+              <summary
+                id="HeaderMenu-{{ link.handle }}"
+                class="header__menu-item list-menu__item link focus-inset"
+              >
+                <span
+                  {%- if link.child_active %}
+                    class="header__active-menu-item"
+                  {% endif %}
+                >
+                  {{- link.title | escape -}}
+                </span>
+                {% render 'icon-caret' %}
+              </summary>
+              <div
+                id="MegaMenu-Content-{{ forloop.index }}"
+                class="megamenu-{{ link.title | downcase }} mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
+                tabindex="-1"
+              >
+                <ul
+                  class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
+                  role="list"
+                >
+
+                  {% for block in section.blocks %}
+                    {% if block.type == "image" and block.settings.megamenu_name != blank %}
+                      {% liquid assign megamenu_name = block.settings.megamenu_name | downcase %}
+                      {% liquid assign link_name = link.title | downcase %}
+                      {% if megamenu_name == link_name %}
+                        <style>
+                          .megamenu-{{ block.settings.megamenu_name | downcase | split: " " | first }} .mega-menu__list {
+                            display: grid!important;
+                            grid-template-columns: repeat({{ block.settings.megamenu_column_count }}, minmax(0, 250px))!important;
+                            gap: 20px calc({{ block.settings.megamenu_column_gap }} * 1px)!important;
+                          }
+                          .megamenu-{{ block.settings.megamenu_name | downcase | split: " " | first }} .mega-menu__list > li {
+                            width: unset!important;
+                            margin-inline: auto !important;
+                          }
+                        </style>
+
+
+                        {% if block.settings.megamenu_image != blank and block.settings.megamenu_image_position == "first" %}
+                          <li>
+                            {% if block.settings.megamenu_image_link != blank %}
+                              <a href="{{ block.settings.megamenu_image_link }}" >
+                            {% endif %}
+                                <img class="megamenu_image" src="{{ block.settings.megamenu_image | image_url }}"  style="width:100%;height:auto;"/>
+                            {% if block.settings.megamenu_image_link != blank %}
+                              </a>
+                            {% endif %}
+                          </li>
+                        {% endif %}
+                        
+                        {% if block.settings.megamenu_products != blank and block.settings.megamenu_product_position == "first" %}
+                          {% for productOne in block.settings.megamenu_products %}
+                            <li>
+                              <form data-form-type="drawer_cart" method="post" action="/cart/add/{{ productOne.selected_or_first_available_variant.id }}" id="product-form-{{ section.id }}" accept-charset="UTF-8" class="form megamenu_product_form " enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form">
+                                <input type="hidden" name="form_type" value="product">
+                                <input type="hidden" name="utf8" value="✓">
+                                <input type="hidden" name="id" value="{{ productOne.selected_or_first_available_variant.id }}" disabled="" class="product-variant-id">
+                                <input type="hidden" name="product-id" value="{{ productOne.selected_or_first_available_variant.id }}">
+
+                                <a href="/products/{{ productOne.handle }}" style="display: none!important;">{{ productOne.title }}</a>
+
+                                <div class="megamenu_image_container" style="position: relative;">
+                                  {% if block.settings.megamenu_product_image_link %}
+                                    <a href="/products/{{ productOne.handle }}" >
+                                  {% endif %}
+                                        <img class="megamenu_product_image" src="{% if productOne.variants.size > 1 %}{% if productOne.selected_or_first_available_variant.image %}{{ productOne.selected_or_first_available_variant.image | image_url }}{% else %}{{ productOne.images.first | image_url }}{% endif %}{% else %}{{ productOne.images.first | image_url }}{% endif %}"  style="width:100%;height:auto;object-fit:cover;{% if block.settings.megamenu_product_image_size == "square" %}aspect-ratio:1 / 1;{% elsif block.settings.megamenu_product_image_size == "short" %}aspect-ratio: 3 / 2;{% elsif block.settings.megamenu_product_image_size == "tall" %}aspect-ratio: 2 / 3;{% endif %}"/>
+                                  {% if block.settings.megamenu_product_image_link %}
+                                    </a>
+                                  {% endif %}
+
+                                  {% if block.settings.megamenu_product_atc and productOne.variants.size > 1 %}
+                                    <div class="product_form_variant_container">
+                                      <select class="megamenu_product_form_options">
+                                        {%- for variant in productOne.variants -%}
+                                            <option data-image="{% if variant.image %}{{ variant.image | image_url }}{% elsif productOne.featured_image %}{{ productOne.featured_image | image_url }}{% else %}{{ productOne.images.first | image_url }}{% endif %}" data-price="{{ variant.price | money }}" data-compare="{{ variant.compare_at_price | money }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+                                        {%- endfor -%}
+                                      </select>
+                                    </div>
+                                  {% endif %}
+                                  
+                                </div>
+
+                                {% if block.settings.megamenu_product_title %}
+                                  {% if block.settings.megamenu_product_title_link %}
+                                    <a href="/products/{{ productOne.handle }}" style="text-decoration: none;color: rgba(var(--color-foreground));">
+                                  {% endif %}
+                                      <p style="margin: 10px 0px 0px;line-height: 1.2em;font-size: 85%;font-weight: 600;text-align: center;">{{ productOne.title }}</p>
+                                  {% if block.settings.megamenu_product_title_link %}
+                                    </a>
+                                  {% endif %}
+                                {% endif %}
+
+                                {% if block.settings.megamenu_product_atc %}
+                                  <button id="ProductSubmitButton-" type="submit" name="add" class="megamenu_product_button button {{ block.settings.atc_style }}" value="{{ productOne.selected_or_first_available_variant.id }}" style="margin: 10px 0px 0px;min-height:unset;">
+                                    {% if block.settings.megamenu_product_atc_label == blank %}Add To Cart{% else %}{{ block.settings.megamenu_product_atc_label }}{% endif %}
+                                  </button>
+                                {% endif %}
+                                
+                              </form>
+                            </li>
+                          {% endfor %}
+                        {% endif %}
+                        
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+
+                  {% if link.levels == 1 %}
+                    <span class="custom_menu_level">
+                  {% endif %}
+                  
+                  {%- for childlink in link.links -%}
+                    <li>
+                      <a
+                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                        href="{{ childlink.url }}"
+                        class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
+                        {% if childlink.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                        {{ childlink.title | escape }}
+                      </a>
+                      {%- if childlink.links != blank -%}
+                        <ul class="list-unstyled" role="list">
+                          {%- for grandchildlink in childlink.links -%}
+                            <li>
+                              <a
+                                id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                href="{{ grandchildlink.url }}"
+                                class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
+                                {% if grandchildlink.current %}
+                                  aria-current="page"
+                                {% endif %}
+                              >
+                                {{ grandchildlink.title | escape }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      {%- endif -%}
+                    </li>
+                  {%- endfor -%}
+          
+                  {% if link.levels == 1 %}
+                    </span>
+                  {% endif %}
+
+                  {% for block in section.blocks %}
+                    {% if block.type == "image" and block.settings.megamenu_name != blank %}
+                      {% liquid assign megamenu_name = block.settings.megamenu_name | downcase %}
+                      {% liquid assign link_name = link.title | downcase %}
+                      {% if megamenu_name == link_name %}
+                        <style>
+                          .megamenu-{{ block.settings.megamenu_name | downcase | split: " " | first }} .mega-menu__list {
+                            display: grid!important;
+                            grid-template-columns: repeat({{ block.settings.megamenu_column_count }}, minmax(0, 250px))!important;
+                            gap: 20px calc({{ block.settings.megamenu_column_gap }} * 1px)!important;
+                          }
+                          .megamenu-{{ block.settings.megamenu_name | downcase | split: " " | first }} .mega-menu__list > li {
+                            width: unset!important;
+                            margin-inline: auto !important;
+                          }
+                        </style>
+
+
+                        {% if block.settings.megamenu_image != blank and block.settings.megamenu_image_position == "last" %}
+                          <li>
+                            {% if block.settings.megamenu_image_link != blank %}
+                              <a href="{{ block.settings.megamenu_image_link }}" >
+                            {% endif %}
+                                <img class="megamenu_image" src="{{ block.settings.megamenu_image | image_url }}"  style="width:100%;height:auto;"/>
+                            {% if block.settings.megamenu_image_link != blank %}
+                              </a>
+                            {% endif %}
+                          </li>
+                        {% endif %}
+                        
+                        {% if block.settings.megamenu_products != blank and block.settings.megamenu_product_position == "last" %}
+                          {% for productOne in block.settings.megamenu_products %}
+                            <li>
+                              <form data-form-type="drawer_cart" method="post" action="/cart/add/{{ productOne.selected_or_first_available_variant.id }}" id="product-form-{{ section.id }}" accept-charset="UTF-8" class="form megamenu_product_form " enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form">
+                                <input type="hidden" name="form_type" value="product">
+                                <input type="hidden" name="utf8" value="✓">
+                                <input type="hidden" name="id" value="{{ productOne.selected_or_first_available_variant.id }}" disabled="" class="product-variant-id">
+                                <input type="hidden" name="product-id" value="{{ productOne.selected_or_first_available_variant.id }}">
+
+                                <a href="/products/{{ productOne.handle }}" style="display: none!important;">{{ productOne.title }}</a>
+
+                                <div class="megamenu_image_container" style="position: relative;">
+                                  {% if block.settings.megamenu_product_image_link %}
+                                    <a href="/products/{{ productOne.handle }}" >
+                                  {% endif %}
+                                        <img class="megamenu_product_image" src="{% if productOne.variants.size > 1 %}{% if productOne.selected_or_first_available_variant.image %}{{ productOne.selected_or_first_available_variant.image | image_url }}{% else %}{{ productOne.images.first | image_url }}{% endif %}{% else %}{{ productOne.images.first | image_url }}{% endif %}"  style="width:100%;height:auto;object-fit:cover;{% if block.settings.megamenu_product_image_size == "square" %}aspect-ratio:1 / 1;{% elsif block.settings.megamenu_product_image_size == "short" %}aspect-ratio: 3 / 2;{% elsif block.settings.megamenu_product_image_size == "tall" %}aspect-ratio: 2 / 3;{% endif %}"/>
+                                  {% if block.settings.megamenu_product_image_link %}
+                                    </a>
+                                  {% endif %}
+
+                                  {% if block.settings.megamenu_product_atc and productOne.variants.size > 1 %}
+                                    <div class="product_form_variant_container">
+                                      <select class="megamenu_product_form_options">
+                                        {%- for variant in productOne.variants -%}
+                                            <option data-image="{% if variant.image %}{{ variant.image | image_url }}{% elsif productOne.featured_image %}{{ productOne.featured_image | image_url }}{% else %}{{ productOne.images.first | image_url }}{% endif %}" data-price="{{ variant.price | money }}" data-compare="{{ variant.compare_at_price | money }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+                                        {%- endfor -%}
+                                      </select>
+                                    </div>
+                                  {% endif %}
+                                  
+                                </div>
+
+                                {% if block.settings.megamenu_product_title %}
+                                  {% if block.settings.megamenu_product_title_link %}
+                                    <a href="/products/{{ productOne.handle }}" style="text-decoration: none;color: rgba(var(--color-foreground));">
+                                  {% endif %}
+                                      <p style="margin: 10px 0px 0px;line-height: 1.2em;font-size: 85%;font-weight: 600;text-align: center;">{{ productOne.title }}</p>
+                                  {% if block.settings.megamenu_product_title_link %}
+                                    </a>
+                                  {% endif %}
+                                {% endif %}
+
+                                {% if block.settings.megamenu_product_atc %}
+                                  <button id="ProductSubmitButton-" type="submit" name="add" class="megamenu_product_button button {{ block.settings.atc_style }}" value="{{ productOne.selected_or_first_available_variant.id }}" style="margin: 10px 0px 0px;min-height:unset;">
+                                    {% if block.settings.megamenu_product_atc_label == blank %}Add To Cart{% else %}{{ block.settings.megamenu_product_atc_label }}{% endif %}
+                                  </button>
+                                {% endif %}
+                                
+                              </form>
+                            </li>
+                          {% endfor %}
+                        {% endif %}
+                        
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+          
+                </ul>
+              </div>
+            </details>
+          </header-menu>
+        {%- else -%}
+          <a
+            id="HeaderMenu-{{ link.handle }}"
+            href="{{ link.url }}"
+            class="header__menu-item list-menu__item link link--text focus-inset"
+            {% if link.current %}
+              aria-current="page"
+            {% endif %}
+          >
+            <span
+              {%- if link.current %}
+                class="header__active-menu-item"
+              {% endif %}
+            >
+              {{- link.title | escape -}}
+            </span>
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>
+
+<script>
+  (function(){
+    let productForms = document.querySelectorAll("[data-form-type='drawer_cart']");
+    productForms.forEach(productForm => {
+      let formSelect = productForm.querySelector(".megamenu_product_form_options");
+      if (formSelect) {
+        let currentId = null;
+        let currentImage = null;
+        formSelect.addEventListener("change", ()=>{
+          Array.from(formSelect.children).forEach(option=>{
+            if (option.value == formSelect.value) {
+                currentId = option.value;
+                currentImage = option.dataset.image;
+            }
+          })
+          productForm.action = `/cart/add/${currentId}`;
+          productForm.querySelector("input[name='id']").value = currentId;
+          productForm.querySelector("button[type='submit']").value = currentId;
+          productForm.querySelector(".megamenu_product_image").src = currentImage;
+        })
+      }
+    })
+  })()
+</script>

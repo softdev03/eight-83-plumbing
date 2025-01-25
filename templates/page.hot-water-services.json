@@ -1,0 +1,391 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_xN6XTH": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_4ee3TK": {
+          "type": "heading",
+          "settings": {
+            "heading": "Hot Water Services Canberra. Keeping Your Water Warm and Your Home Comfortable",
+            "heading_size": "h1"
+          }
+        },
+        "text_rFJLjC": {
+          "type": "text",
+          "settings": {
+            "text": "Don't let cold showers ruin your day. We specialise in a wide range of hot water services to meet all your needs. Whether it's a minor repair, regular maintenance, or a complete system replacement, our experts deliver top-quality service.",
+            "text_style": "body"
+          }
+        },
+        "buttons_gQV6xc": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "0437 174 202",
+            "button_link_1": "tel:0437 174 202",
+            "button_style_secondary_1": false,
+            "button_label_2": "Book Now",
+            "button_link_2": "shopify://pages/contact",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_4ee3TK",
+        "text_rFJLjC",
+        "buttons_gQV6xc"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/695244663.jpg",
+        "image_overlay_opacity": 30,
+        "image_height": "medium",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "accent-1",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "collapsible_content_Aq49Fz": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_Bn4K3H": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Hot Water System Repairs",
+            "icon": "check_mark",
+            "row_content": "<p>Hot water system acting up? Our skilled technicians can diagnose and repair any issue, from faulty thermostats to leaking tanks. We work with all major brands to ensure your system is back up and running in no time. Facing hot water problems? Our prompt repair services will restore your hot water supply quickly and efficiently.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_HJVrfn": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Hot Water System Installation",
+            "icon": "check_mark",
+            "row_content": "<p>Need a new hot water system? We offer professional installation services for gas, electric, and solar hot water systems. Our experts will help you choose the right system for your home and ensure it’s installed correctly. Confused about which hot water system to choose? Our knowledgeable team will guide you through the selection process and handle the installation.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_4TUAXj": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Hot Water System Maintenance",
+            "icon": "check_mark",
+            "row_content": "<p>Regular maintenance is key to keeping your hot water system running smoothly. Our maintenance services include checking for leaks, testing the thermostat, and flushing the tank to remove sediment buildup. Want to avoid unexpected breakdowns? Schedule regular maintenance with us to keep your hot water system in top condition.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_ghqiH7": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gas Hot Water Systems",
+            "icon": "check_mark",
+            "row_content": "<p>Gas hot water systems are efficient and cost-effective. We offer installation, repair, and maintenance services for all types of gas hot water systems, ensuring you have a reliable supply of hot water. Looking for a reliable gas hot water solution? Our experts provide comprehensive services to keep your gas hot water system running efficiently. </p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_UYX3ni": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Electric Hot Water Systems",
+            "icon": "check_mark",
+            "row_content": "<p>Electric hot water systems are a popular choice for many homes. We provide expert installation, repair, and maintenance services for electric hot water systems, ensuring you have hot water when you need it. Need a dependable electric hot water system? Our team will ensure your system is installed and maintained for optimal performance.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_WFRKQp": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Solar Hot Water Systems",
+            "icon": "check_mark",
+            "row_content": "<p>Reduce your energy bills with a solar hot water system. Our specialists offer installation, repair, and maintenance services for solar hot water systems, helping you harness the power of the sun. Want to save on energy costs? Our solar hot water services provide an eco-friendly solution for your home.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_PHM88d": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Emergency Hot Water Services",
+            "icon": "check_mark",
+            "row_content": "<p>Hot water emergencies can happen at any time. Our team is available 24/7 to provide emergency hot water repairs and replacements, ensuring you’re never left without hot water. Dealing with a hot water emergency? Contact us immediately for fast, reliable service.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_Bn4K3H",
+        "collapsible_row_HJVrfn",
+        "collapsible_row_4TUAXj",
+        "collapsible_row_ghqiH7",
+        "collapsible_row_UYX3ni",
+        "collapsible_row_WFRKQp",
+        "collapsible_row_PHM88d"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "Canberra's Expert Hot Water Services – Ensuring Reliable Hot Water Every Day!",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "",
+        "container_color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 32,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_qygbqc": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_CJhahg": {
+          "type": "heading",
+          "settings": {
+            "heading": "Tired of unreliable hot water? Our comprehensive services ensure your system works perfectly, giving you peace of mind.<strong> </strong><a href=\"tel:+61300 495 574\" title=\"Call 1300 495 574\">0437 174 202.</a>",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_CJhahg"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 44
+      }
+    },
+    "image_with_text_ftCdxm": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_gKmknE": {
+          "type": "heading",
+          "settings": {
+            "heading": "Why Canberra Trusts Us for Hot Water Services",
+            "heading_size": "h2"
+          }
+        },
+        "text_4h4xyC": {
+          "type": "text",
+          "settings": {
+            "text": "<p>At Eight 83 Plumbing, with years of experience, expert technicians, and a commitment to customer satisfaction, we are Canberra top choice for hot water services. Our team is dedicated to providing reliable, efficient, and affordable solutions for all your hot water needs.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_gKmknE",
+        "text_4h4xyC"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/457743071.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "contact_form_fDGHDq": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Fill out the form below or call us directly at <a href=\"tel:1300 495 574\" title=\"tel:1300 495 574\">0437 174 202</a>. Our team is ready to provide you with the best hot water services in Melbourne.",
+        "heading_size": "h2",
+        "color_scheme": "",
+        "padding_top": 12,
+        "padding_bottom": 36
+      }
+    },
+    "eg_testimonials_2_a4Tg9q": {
+      "type": "eg-testimonials-2",
+      "blocks": {
+        "testimonial_zhBFdY": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "five",
+            "title": "Our hot water system broke down",
+            "text": "<p>Our hot water system broke down on a Sunday morning, and they had it fixed by noon. Excellent service!\" – James T., Melbourne</p>",
+            "author_name": ""
+          }
+        },
+        "testimonial_dYWAnr": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "five",
+            "title": "Installed our new solar hot water system",
+            "text": "<p>They installed our new solar hot water system, and we couldn’t be happier. Professional and efficient!\" – Laura P., Melbourne</p>",
+            "author_name": ""
+          }
+        },
+        "testimonial_dCCLnK": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "five",
+            "title": "Highly recommend!",
+            "text": "<p>They provide regular maintenance for our gas hot water system, and it’s always in perfect working order.\" – Michael B., Melbourne</p>",
+            "author_name": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_zhBFdY",
+        "testimonial_dYWAnr",
+        "testimonial_dCCLnK"
+      ],
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "section_size": "container",
+        "testimonial_style": "style-1",
+        "heading": "\"See What Our Happy Customers Have to Say\"",
+        "heading_size": "h1",
+        "heading_transform": "",
+        "heading_color": "#000000",
+        "sub_heading": "",
+        "sub_heading_size": "body",
+        "sub_heading_transform": "",
+        "sub_heading_color": "#000000",
+        "header-alignment": "center",
+        "show_slides": 3,
+        "detail_alignment": "center",
+        "bg_color": "#ffffff",
+        "border_color": "#cccccc",
+        "text_color": "#000000",
+        "star_color": "#f0cf4a",
+        "arrows_color": "#000000",
+        "title_size": "h2",
+        "title_transform": "",
+        "text_style": "body",
+        "button_label": "",
+        "button_link": "",
+        "btn_bg_color": "#000000",
+        "btn_label_color": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 20,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 20
+      }
+    },
+    "image_banner_t9VViN": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_fQeNmz": {
+          "type": "heading",
+          "settings": {
+            "heading": "Dealing with a hot water emergency? Contact us immediately for fast, reliable service.",
+            "heading_size": "h1"
+          }
+        },
+        "text_AUGCQB": {
+          "type": "text",
+          "settings": {
+            "text": "Looking for trustworthy hot water service? Our experienced team delivers top-notch service, ensuring your hot water system works perfectly.",
+            "text_style": "body"
+          }
+        },
+        "buttons_CfhD7C": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Call Us",
+            "button_link_1": "tel:1300 495 574",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_fQeNmz",
+        "text_AUGCQB",
+        "buttons_CfhD7C"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/431426276.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "waves_HJYgLq": {
+      "type": "waves",
+      "settings": {
+        "wave_animation_speed": 5,
+        "wave_placement": "eg-waves-top",
+        "color": "#2baae0",
+        "blend_wave": true,
+        "wave_blend_color": "#002a4d",
+        "wave_blend_alpha": 1,
+        "wave_height_desktop": 15,
+        "wave_height_mobile": 5
+      }
+    },
+    "eg_marquee_WbycrC": {
+      "type": "eg-marquee",
+      "settings": {
+        "bg_color": "#002a4d",
+        "color": "",
+        "text_size": "",
+        "text_weight": "",
+        "text_transform": "",
+        "list_label": "",
+        "animation_duration": 0,
+        "marquee_direction": "left",
+        "gap": 0,
+        "pt": 0,
+        "pb": 0,
+        "mt": 0,
+        "mb": 0
+      }
+    }
+  },
+  "order": [
+    "image_banner_xN6XTH",
+    "main",
+    "collapsible_content_Aq49Fz",
+    "rich_text_qygbqc",
+    "image_with_text_ftCdxm",
+    "contact_form_fDGHDq",
+    "eg_testimonials_2_a4Tg9q",
+    "image_banner_t9VViN",
+    "waves_HJYgLq",
+    "eg_marquee_WbycrC"
+  ]
+}

@@ -1,0 +1,2023 @@
+{%- liquid
+    assign content_heading = section.settings.content_heading
+    assign bold_heading = section.settings.bold_heading
+    assign heading_size = section.settings.heading_size
+    assign heading_color = section.settings.heading_color
+    assign top_content = section.settings.top_content
+    assign top_content_size = section.settings.top_content_size
+    assign show_content1 = section.settings.show_content1
+    assign content1 = section.settings.content1
+    assign content1_value = section.settings.content1_value
+    assign show_content2 = section.settings.show_content2
+    assign content2 = section.settings.content2
+    assign content2_value = section.settings.content2_value
+    assign show_content3 = section.settings.show_content3
+    assign content3 = section.settings.content3
+    assign content3_value = section.settings.content3_value
+    assign progress_color_main = section.settings.progress_color_main
+    assign progress_color_secondary = section.settings.progress_color_secondary
+    assign content_size = section.settings.content_size
+    assign progress_bar_size = section.settings.progress_bar_size
+    assign bottom_content = section.settings.bottom_content
+    assign bottom_content_size = section.settings.bottom_content_size
+    assign button_text = section.settings.button_text
+    assign button_url = section.settings.button_url
+    assign direct_add_to_cart = section.settings.direct_add_to_cart
+    assign button_bg = section.settings.button_bg
+    assign button_color = section.settings.button_color
+    assign show_hand = section.settings.show_hand
+    assign play_button_bg = section.settings.play_button_bg
+    assign play_icon = section.settings.play_icon
+    assign play_icon_size = section.settings.play_icon_size
+    
+    assign section_top_padding = section.settings.section_top_padding
+    assign section_bottom_padding = section.settings.section_bottom_padding
+    assign progress_card_direction = section.settings.progress_card_direction
+    assign video_count = section.settings.video_count
+    assign video_height = section.settings.video_height
+    assign text_align = section.settings.text_align
+    
+    assign spacing_scale_medium = section.settings.spacing_scale_medium
+    assign progress_card_direction_medium = section.settings.progress_card_direction_medium
+    assign video_count_medium = section.settings.video_count_medium
+    assign video_scale_medium = section.settings.video_scale_medium
+    assign play_icon_scale_medium = section.settings.play_icon_scale_medium
+    assign progress_scale_medium = section.settings.progress_scale_medium
+    assign text_align_medium = section.settings.text_align_medium
+    
+    assign spacing_scale_small = section.settings.spacing_scale_small
+    assign progress_card_direction_small = section.settings.progress_card_direction_small
+    assign video_count_small = section.settings.video_count_small
+    assign video_scale_small = section.settings.video_scale_small
+    assign play_icon_scale_small = section.settings.play_icon_scale_small
+    assign progress_scale_small = section.settings.progress_scale_small
+    assign text_align_small = section.settings.text_align_small
+    
+    assign spacing_scale_mobile = section.settings.spacing_scale_mobile
+    assign progress_card_direction_mobile = section.settings.progress_card_direction_mobile
+    assign video_count_mobile = section.settings.video_count_mobile
+    assign video_scale_mobile = section.settings.video_scale_mobile
+    assign play_icon_scale_mobile = section.settings.play_icon_scale_mobile
+    assign progress_scale_mobile = section.settings.progress_scale_mobile
+    assign text_align_mobile = section.settings.text_align_mobile
+    
+    assign section_bg = section.settings.section_bg
+    assign section_bg_position = section.settings.section_bg_position
+    assign section_mobile_bg = section.settings.section_mobile_bg
+    assign section_mobile_bg_position = section.settings.section_mobile_bg_position
+    assign overlay_color = section.settings.overlay_color
+    assign overlay_opacity = section.settings.overlay_opacity
+    assign custom_class = section.settings.custom_class
+-%}
+
+<style>
+  a:empty, ul:empty, dl:empty, div:empty, section:empty, article:empty, p:empty, h1:empty, h2:empty, h3:empty, h4:empty, h5:empty, h6:empty {
+    display: block!important;
+  }
+  .section_{{ section.id }} * {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  cs {
+    display: block;
+    width: 100%;
+    height: 10px;
+  }
+  .section_{{ section.id }} {
+    padding-top: {{ section_top_padding }}px;
+    padding-bottom: {{ section_bottom_padding }}px;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;
+    isolation: isolate;
+  }
+  .section_{{ section.id }}_pc_bg {
+    position: absolute;
+    inset: 0;
+    background-image: url("{{ section_bg | image_url }}");
+    background-position: {{ section_bg_position }};
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: {% if background_attachment %}fixed{% endif %};
+    z-index: -3;
+  }
+  .section_{{ section.id }}_mobile_bg {
+    position: absolute;
+    inset: 0;
+    background-image: url("{{ section_mobile_bg | image_url }}");
+    background-position: {{ section_mobile_bg_position }};
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: {% if mobile_background_attachment %}fixed{% endif %};
+    z-index: -2;
+  }
+  .section_{{ section.id }}_overlay {
+    position: absolute;
+    inset: 0;
+    background-color: {{ overlay_color }};
+    opacity: calc({{ overlay_opacity }} / 100);
+    z-index: -1;
+    user-select: none;
+    pointer-events: none;
+  }
+  .section_{{ section.id }} .video_container {
+    min-height: {{ video_height }}px;
+    position: relative;
+    width: 100%;
+  }
+  .section_{{ section.id }} .video_track {
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    width: auto;
+    user-select: none;
+    height: {{ video_height }}px;
+  }
+  .section_{{ section.id }} .track_transition {
+    transition: all ease 0.3s;
+  }
+  .section_{{ section.id }} .video_block {
+    height: {{ video_height }}px;
+    width: 320px;
+    margin: 20px 15px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .section_{{ section.id }} svg[data-name='play'] {
+    width: {{ play_icon_size }}px;
+    height: {{ play_icon_size }}px;
+    fill: {{ play_button_bg }};
+    stroke: {{ play_button_bg }};
+    cursor: pointer;
+    background-color: {{ play_icon }};
+    border-radius: 50%;
+    opacity: .9;
+    position: absolute;
+    z-index: 2;
+  }
+  .section_{{ section.id }} svg[data-name='mute'],
+  .section_{{ section.id }} svg[data-name='sound']{
+    width: 25px;
+    height: 25px;
+    fill: {{ play_icon }};
+    stroke: {{ play_icon }};
+    cursor: pointer;
+    background-color: {{ play_button_bg }};
+    border-radius: 50%;
+    opacity: .9;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 4;
+    padding: 4px;
+    opacity: 0.5;
+  }
+  .section_{{ section.id }} .video_overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+  .section_{{ section.id }} .video_block video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .d_none {
+    display: none;
+  }
+  .d_flex {
+    display: flex;
+  }
+  .flex_row {
+    flex-direction: row;
+  }
+  .flex_col {
+    flex-direction: column;
+  }
+  .flex_col_r {
+    flex-direction: column-reverse;
+  }
+  .center {
+    align-items: center;
+    justify-content: center;
+  }
+  .align_center {
+    align-items: center;
+  }
+  .justify_center {
+    justify-content: center;
+  }
+  .align_start {
+    align-items: start;
+  }
+  .justify_start {
+    justify-content: start;
+  }
+  .bold {
+    font-weight: 600;
+  }
+  .capitalize {
+    text-transform: capitalize;
+  }
+  .caps {
+    text-transform: uppercase;
+  }
+  .w_full {
+    width: 100%;
+  }
+  .flex_1 {
+    flex: 1;
+  }
+  .flex_2 {
+    flex: 2;
+  }
+  .gap_1 {
+    gap: 10px;
+  }
+  .gap_2 {
+    gap: 20px;
+  }
+  .gap_3 {
+    gap: 30px;
+  }
+  .relative {
+    position: relative;
+  }
+  .text_left,
+  .text_left > * {
+    text-align: left;
+  }
+  .text_center,
+  .text_center > * {
+    text-align: center;
+  }
+  .section_{{ section.id }} .heading {
+    font-size: 32px;
+    line-height: 1.1em;
+  }
+  .section_{{ section.id }} .heading.lg {
+    font-size: 52px;
+  }
+  .section_{{ section.id }} .heading.sm {
+    font-size: 24px;
+  }
+  .section_{{ section.id }} .body {
+    font-size: 15px;
+    line-height: 1.4em;
+  }
+  .section_{{ section.id }} .body.lg {
+    font-size: 18px;
+  }
+  .section_{{ section.id }} .body.sm {
+    font-size: 12px;
+  }
+  .section_{{ section.id }} .page_width {
+    max-width: 1170px;
+    margin: auto
+  }
+  .overflow_auto {
+    overflow: auto;
+  }
+  .overflow_hidden {
+    overflow: hidden;
+  }
+  .section_{{ section.id }} .centent_heading {
+    color: {{ heading_color }};
+  }
+  .section_{{ section.id }} .section_data_container {
+    padding: 15px 0px;
+    border-bottom: solid 1px #ddd;
+  }
+  .section_{{ section.id }} .section_button {
+    margin-top: 15px;
+    background-color: {{ button_bg }};
+    color: {{ button_color }};
+    display: block;
+    {% if show_hand %}
+      padding: 10px 30px 10px 80px;
+    {% else %}
+      padding: 10px 30px 10px 30px;
+    {% endif %}
+    border-radius: 6px;
+    position: relative;
+    font-weight: 600;
+    text-decoration: none;
+    max-width: fit-content;
+    cursor: pointer;
+    border: none!important;
+    box-shadow: none!important;
+    outline: none!important;
+    min-height: 45px;
+  }
+  .section_{{ section.id }} .section_button::before {
+    {% if show_hand %}
+      content: "";
+    {% endif %}
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    width: 30px;
+    height: 20px;
+    transform: translateY(-50%);
+    background-image: url("https://cdn.shopify.com/s/files/1/0827/3870/8793/t/1/assets/button_hand.webp?v=1694327969");
+    background-size: contain;
+    background-position: center center;
+  }
+  .section_{{ section.id }} div.icon_progress[role=progressbar] {
+    --value: 0;
+    --percentage: var(--value);
+    --primary: {{ progress_color_main }};
+    --secondary: {{ progress_color_secondary }};
+    --size: 300px;
+    animation: progress 2s .5s forwards;
+    width: {{ progress_bar_size }}px;
+    height: {{ progress_bar_size }}px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    display: grid!important;;
+    place-items: center;
+    transition: var(--value) ease 0.8s;
+  }
+  .section_{{ section.id }} div.icon_progress[role=progressbar]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(var(--primary) calc(var(--percentage) * 1%),var(--secondary) 0);
+    mask: radial-gradient(white 55%,transparent 0);
+    mask-mode: alpha;
+    -webkit-mask: radial-gradient(#0000 55%,#000 0);
+    -webkit-mask-mode: alpha;
+    transition: all ease 0.8s;
+  }
+  .section_{{ section.id }} div.icon_progress[role=progressbar]::after {
+    counter-reset: percentage var(--value);
+    content: counter(percentage) "%";
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: calc({{ progress_bar_size }}px / 3.333333);
+    color: var(--primary);
+    transition: all ease 0.8s;
+  }
+
+  @media only screen and (max-width:1170px) {
+    .section_{{ section.id }} {
+      padding-top: {{ section_top_padding | times: spacing_scale_medium | divided_by: 100 }}px;
+      padding-bottom: {{ section_bottom_padding | times: spacing_scale_medium | divided_by: 100 }}px;
+    }
+    .section_{{ section.id }} .section_data_container {
+      padding: calc(15px * {{ spacing_scale_medium }} / 100) 0px;
+    }
+    .s1170_w_full {
+      width: 100%;
+    }
+    .s1170_flex_1 {
+      flex: 1;
+    }
+    .s1170_flex_2 {
+      flex: 2;
+    }
+    .s1170_gap_1 {
+      gap: 10px;
+    }
+    .s1170_gap_2 {
+      gap: calc(20px * {{ spacing_scale_medium }} / 100);
+    }
+    .s1170_gap_3 {
+      gap: calc(30px * {{ spacing_scale_medium }} / 100);
+    }
+    .s1170_flex_row {
+      flex-direction: row;
+    }
+    .s1170_flex_col {
+      flex-direction: column;
+    }
+    .s1170_align_center {
+      align-items: center;
+    }
+    .s1170_justify_center {
+      justify-content: center;
+    }
+    .s1170_align_start {
+      align-items: start;
+    }
+    .s1170_justify_start {
+      justify-content: start;
+    }
+    .s1170_text_left,
+    .s1170_text_left > * {
+      text-align: left;
+    }
+    .s1170_text_center,
+    .s1170_text_center > * {
+      text-align: center;
+    }
+    .section_{{ section.id }} .heading {
+      font-size: 30px;
+    }
+    .section_{{ section.id }} .heading.lg {
+      font-size: 36px;
+    }
+    .section_{{ section.id }} .heading.sm {
+      font-size: 24px;
+    }
+    .section_{{ section.id }} .body {
+      font-size: 14px;
+    }
+    .section_{{ section.id }} .body.lg {
+      font-size: 16px;
+    }
+    .section_{{ section.id }} .body.sm {
+      font-size: 12px;
+    }
+    .s1170_d_none {
+      display: none;
+    }
+
+    .section_{{ section.id }} .video_container,
+    .section_{{ section.id }} .video_block,
+    .section_{{ section.id }} .video_block video,
+    .section_{{ section.id }} .video_track {
+      height: {{ video_height | times: video_scale_medium | divided_by: 100 }}px;
+      min-height: {{ video_height | times: video_scale_medium | divided_by: 100 }}px;
+    }
+    .section_{{ section.id }} svg[data-name='play'] {
+      width: {{ play_icon_size | times: play_icon_scale_medium | divided_by: 100 }}px;
+      height: {{ play_icon_size | times: play_icon_scale_medium | divided_by: 100 }}px;
+    }
+    .section_{{ section.id }} div.icon_progress[role=progressbar] {
+      height: {{ progress_bar_size | times: progress_scale_medium | divided_by: 100 }}px;
+      width: {{ progress_bar_size | times: progress_scale_medium | divided_by: 100 }}px;
+    }
+    .section_{{ section.id }} div.icon_progress[role=progressbar]::after {
+      font-size: calc({{ progress_bar_size | times: progress_scale_medium | divided_by: 100 }}px / 3.333333);
+    }
+  }
+
+  @media only screen and (max-width:900px) {
+    .section_{{ section.id }} {
+      padding-top: {{ section_top_padding | times: spacing_scale_small | divided_by: 100 }}px;
+      padding-bottom: {{ section_bottom_padding | times: spacing_scale_small | divided_by: 100 }}px;
+    }
+    .section_{{ section.id }} .section_data_container {
+      padding: calc(15px * {{ spacing_scale_small }} / 100) 0px;
+    }
+    .s900_w_full {
+      width: 100%;
+    }
+    .s900_flex_1 {
+      flex: 1;
+    }
+    .s900_flex_2 {
+      flex: 2;
+    }
+    .s900_gap_1 {
+      gap: 10px;
+    }
+    .s900_gap_2 {
+      gap: calc(20px * {{ spacing_scale_small }} / 100);
+    }
+    .s900_gap_3 {
+      gap: calc(30px * {{ spacing_scale_small }} / 100);
+    }
+    .s900_flex_row {
+      flex-direction: row;
+    }
+    .s900_flex_col {
+      flex-direction: column;
+    }
+    .s900_align_center {
+      align-items: center;
+    }
+    .s900_justify_center {
+      justify-content: center;
+    }
+    .s900_align_start {
+      align-items: start;
+    }
+    .s900_justify_start {
+      justify-content: start;
+    }
+    .s900_text_left,
+    .s900_text_left > * {
+      text-align: left;
+    }
+    .s900_text_center,
+    .s900_text_center > * {
+      text-align: center;
+    }
+    .section_{{ section.id }} .heading {
+      font-size: 30px;
+    }
+    .section_{{ section.id }} .heading.lg {
+      font-size: 36px;
+    }
+    .section_{{ section.id }} .heading.sm {
+      font-size: 24px;
+    }
+    v.body {
+      font-size: 14px;
+    }
+    .section_{{ section.id }} .body.lg {
+      font-size: 16px;
+    }
+    .section_{{ section.id }} .body.sm {
+      font-size: 12px;
+    }
+    .s900_d_none {
+      display: none;
+    }
+    .mobile_overflow_hidden {
+      overflow: hidden;
+    }
+
+    .section_{{ section.id }} .video_container,
+    .section_{{ section.id }} .video_block,
+    .section_{{ section.id }} .video_block video,
+    .section_{{ section.id }} .video_track {
+      height: {{ video_height | times: video_scale_small | divided_by: 100 }}px;
+      min-height: {{ video_height | times: video_scale_small | divided_by: 100 }}px;
+    }
+    .section_{{ section.id }} svg[data-name='play'] {
+      width: {{ play_icon_size | times: play_icon_scale_small | divided_by: 100 }}px;
+      height: {{ play_icon_size | times: play_icon_scale_small | divided_by: 100 }}px;
+    }
+    .section_{{ section.id }} div.icon_progress[role=progressbar] {
+      height: {{ progress_bar_size | times: progress_scale_small | divided_by: 100 }}px;
+      width: {{ progress_bar_size | times: progress_scale_small | divided_by: 100 }}px;
+    }
+    .section_{{ section.id }} div.icon_progress[role=progressbar]::after {
+      font-size: calc({{ progress_bar_size | times: progress_scale_small | divided_by: 100 }}px / 3.333333);
+    }
+  }
+
+  @media only screen and (max-width:767px) {
+    .section_{{ section.id }} {
+      padding-top: {{ section_top_padding | times: spacing_scale_mobile | divided_by: 100 }}px;
+      padding-bottom: {{ section_bottom_padding | times: spacing_scale_mobile | divided_by: 100 }}px;
+    }
+    .section_{{ section.id }} .section_data_container {
+      padding: calc(15px * {{ spacing_scale_mobile }} / 100) 0px;
+    }
+    .s750_w_full {
+      width: 100%;
+    }
+    .s750_flex_1 {
+      flex: 1;
+    }
+    .s750_flex_2 {
+      flex: 2;
+    }
+    .s750_gap_1 {
+      gap: 10px;
+    }
+    .s750_gap_2 {
+      gap: calc(20px * {{ spacing_scale_mobile }} / 100);
+    }
+    .s750_gap_3 {
+      gap: calc(30px * {{ spacing_scale_mobile }} / 100);
+    }
+    .s750_flex_row {
+      flex-direction: row;
+    }
+    .s750_flex_col {
+      flex-direction: column;
+    }
+    .s750_align_center {
+      align-items: center;
+    }
+    .s750_justify_center {
+      justify-content: center;
+    }
+    .s750_align_start {
+      align-items: start;
+    }
+    .s750_justify_start {
+      justify-content: start;
+    }
+    .s750_text_left,
+    .s750_text_left > * {
+      text-align: left;
+    }
+    .s750_text_center,
+    .s750_text_center > * {
+      text-align: center;
+    }
+    .section_{{ section.id }} .heading {
+      font-size: 30px;
+    }
+    .section_{{ section.id }} .heading.lg {
+      font-size: 36px;
+    }
+    .section_{{ section.id }} .heading.sm {
+      font-size: 24px;
+    }
+    .section_{{ section.id }} .body {
+      font-size: 14px;
+    }
+    .section_{{ section.id }} .body.lg {
+      font-size: 16px;
+    }
+    .section_{{ section.id }} .body.sm {
+      font-size: 12px;
+    }
+    .s750_d_none {
+      display: none;
+    }
+
+    .section_{{ section.id }} .video_container,
+    .section_{{ section.id }} .video_block,
+    .section_{{ section.id }} .video_block video,
+    .section_{{ section.id }} .video_track {
+      height: {{ video_height | times: video_scale_mobile | divided_by: 100 }}px;
+      min-height: {{ video_height | times: video_scale_mobile | divided_by: 100 }}px;
+    }
+    .section_{{ section.id }} svg[data-name='play'] {
+      width: {{ play_icon_size | times: play_icon_scale_mobile | divided_by: 100 }}px;
+      height: {{ play_icon_size | times: play_icon_scale_mobile | divided_by: 100 }}px;
+    }
+    .section_{{ section.id }} div.icon_progress[role=progressbar] {
+      height: {{ progress_bar_size | times: progress_scale_mobile | divided_by: 100 }}px;
+      width: {{ progress_bar_size | times: progress_scale_mobile | divided_by: 100 }}px;
+    }
+    .section_{{ section.id }} div.icon_progress[role=progressbar]::after {
+      font-size: calc({{ progress_bar_size | times: progress_scale_mobile | divided_by: 100 }}px / 3.333333);
+    }
+  }
+</style>
+
+<section class="section_{{ section.id }} {{ custom_class }}">
+  <div class="section_{{ section.id }}_pc_bg pc_bg {% if section_mobile_bg != blank %}s750_d_none{% endif %}"></div>
+  <div class="section_{{ section.id }}_mobile_bg mobile_bg d_none {% if section_mobile_bg != blank %}s750_d_block{% endif %}"></div>
+  <div class="section_{{ section.id }}_overlay transparent_overlay"></div>
+  
+  <div class="page_width">
+    {% for block in section.blocks %}
+      {% if block.type == "heading" %}
+        
+        {%- liquid 
+          assign heading_below_gap = block.settings.heading_below_gap
+          assign heading_color = block.settings.heading_color
+          assign sub_heading_first = block.settings.sub_heading_first
+          assign heading_gap = block.settings.heading_gap
+          assign bold_heading = block.settings.bold_heading
+          assign caps_heading = block.settings.caps_heading
+          assign heading_alignment = block.settings.heading_alignment
+          assign heading_size = block.settings.heading_size
+          assign bold_sub_heading = block.settings.bold_sub_heading
+          assign section_heading = block.settings.section_heading
+          assign section_sub_heading = block.settings.section_sub_heading
+        -%}
+  
+        <div class="heading_block w_full block_{{ block.id }}" {{ block.shopify_attributes }}>
+          <style>
+            .block_{{ block.id }}.heading_block {
+              margin: 0px 0px {{ heading_below_gap }}px 0px;
+              color: {{ heading_color }};
+            }
+            @media only screen and (max-width:1170px) {
+              .block_{{ block.id }}.heading_block {
+                margin: 0px 0px {{ heading_below_gap | times: spacing_scale_medium | divided_by: 100 }}px 0px;
+              }
+            }
+            @media only screen and (max-width:900px) {
+              .block_{{ block.id }}.heading_block {
+                margin: 0px 0px {{ heading_below_gap | times: spacing_scale_small | divided_by: 100 }}px 0px;
+              }
+            }
+            @media only screen and (max-width:767px) {
+              .block_{{ block.id }}.heading_block {
+                margin: 0px 0px {{ heading_below_gap | times: spacing_scale_mobile | divided_by: 100 }}px 0px;
+              }
+            }
+          </style>
+          <div class="d_flex {% if sub_heading_first %}flex_col_r{% else %}flex_col{% endif %} w_full  {{ heading_gap }}">
+            <p
+              data-rich-text
+              class="{% if bold_heading %}bold{% endif %} {% if caps_heading %}caps{% endif %} capitalize {{ heading_alignment }} heading {{ heading_size }}"
+            >
+              {{ section_heading }}
+            </p>
+            <p
+              data-rich-text
+              class="{% if bold_sub_heading %}bold{% endif %} {% if caps_heading %}caps{% endif %} capitalize {{ heading_alignment }} body"
+            >
+              {{ section_sub_heading }}
+            </p>
+          </div>
+        </div>
+        
+      {% endif %}
+    {% endfor %}
+    <div class="d_flex s750_flex_col center gap_3">
+      <div class="flex_2 s900_flex_1 overflow_hidden video_container">
+        {% for i in (1..3) %}
+          <div class="video_track d_flex center ">
+            {% for block in section.blocks %}
+              {% if block.type == "video" %}
+  
+                {%- liquid
+                  assign video_overlay = block.settings.video_overlay
+                  assign video_overlay_opacity =  block.settings.video_overlay_opacity
+                  assign video = block.settings.video
+                  assign message_heading = block.settings.message_heading
+                  assign message_content = block.settings.message_content
+                  assign message_color = block.settings.message_color
+                  assign message_direction = block.settings.message_direction
+                -%}
+            
+                <block class="video_block block block_{{ block.id }} relative d_flex center">
+                  <style>
+                    .block_{{ block.id }} .video_overlay {
+                      background-color: {{ video_overlay }};
+                      opacity: calc({{ video_overlay_opacity }} / 100);
+                    }
+                    .block_{{ block.id }} .overlay_message {
+                      user-select: none;
+                      pointer-events: none;
+                      position: absolute;
+                      bottom: -40px;
+                      left: 0px;
+                      width: 100%;
+                      padding: 40px 20px 55px;
+                      z-index: 3;
+                      color: {{ message_color }};
+                      background-image: linear-gradient(to top, {{video_overlay}}, transparent);
+                    }
+                  </style>
+                  <video preload="metadata" loop playsinline muted>
+                    <source src="{{ video }}" type="video/mp4" />
+                  </video>
+                  {% if message_heading != blank or message_content != blank %}
+                    <div class="overlay_message d_flex {% if message_direction %}flex_col_r{% else %}flex_col{% endif %} gap_1">
+                      <p class="heading sm bold">{{ message_heading }}</p>
+                      <div data-rich-text class="body">{{ message_content }}</div>
+                    </div>
+                    {% endif %}
+                  <div class="video_overlay"></div>
+                  <svg data-name="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+                    <path d="M40 0a40 40 0 1040 40A40 40 0 0040 0zM26 61.56V18.44L64 40z"></path>
+                  </svg>
+                  <svg data-name="mute" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ff0000" viewBox="0 0 16 16">
+                    <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zM6 5.04 4.312 6.39A.5.5 0 0 1 4 6.5H2v3h2a.5.5 0 0 1 .312.11L6 10.96V5.04zm7.854.606a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"/>
+                  </svg>
+                  <svg data-name="sound" class="d_none" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="#ffffff" d="M16 21c3.527-1.547 5.999-4.909 5.999-9S19.527 4.547 16 3v2c2.387 1.386 3.999 4.047 3.999 7S18.387 17.614 16 19v2z"/>
+                    <path fill="#ffffff" d="M16 7v10c1.225-1.1 2-3.229 2-5s-.775-3.9-2-5zM4 17h2.697l5.748 3.832a1.004 1.004 0 0 0 1.027.05A1 1 0 0 0 14 20V4a1 1 0 0 0-1.554-.832L6.697 7H4c-1.103 0-2 .897-2 2v6c0 1.103.897 2 2 2zm0-8h3c.033 0 .061-.016.093-.019a1.027 1.027 0 0 0 .38-.116c.026-.015.057-.017.082-.033L12 5.868v12.264l-4.445-2.964c-.025-.017-.056-.02-.082-.033a.986.986 0 0 0-.382-.116C7.059 15.016 7.032 15 7 15H4V9z"/>
+                  </svg>
+                </block>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+      <div 
+        class="flex_1 d_flex flex_col 
+        {% if text_align == "text_center" %}align_center{% else %}align_start{% endif %} 
+        {% if text_align_medium == "s1170_text_center" %}s1170_align_center{% else %}s1170_align_start{% endif %} 
+        {% if text_align_small == "s900_text_center" %}s900_align_center{% else %}s900_align_start{% endif %} 
+        {% if text_align_mobile == "s750_text_center" %}s750_align_center{% else %}s750_align_start{% endif %}"
+        >
+        {% if content_heading != blank %}
+          <p class="centent_heading heading capitalize {{ heading_size }} {% if bold_heading %}bold{% endif %} {{ content_size }} {{ text_align }} {{ text_align_medium }} {{ text_align_small }} {{ text_align_mobile }}">{{ content_heading }}</p>
+        {% endif %}
+        {% if top_content != blank %}
+          <div class="body {{ top_content_size }} {{ content_size }} {{ text_align }} {{ text_align_medium }} {{ text_align_small }} {{ text_align_mobile }}" style="margin-top: 10px;">{{ top_content }}</div>
+        {% endif %}
+        <div 
+          class="d_flex 
+          {% if progress_card_direction == "vertical" %}flex_col{% else %}flex_row gap_1{% endif %} 
+          {% if progress_card_direction_medium == "vertical" %}s1170_flex_col{% else %}s1170_flex_row gap_1{% endif %} 
+          {% if progress_card_direction_small == "vertical" %}s900_flex_col{% else %}s900_flex_row gap_1{% endif %} 
+          {% if progress_card_direction_mobile == "vertical" %}s750_flex_col{% else %}s750_flex_row gap_1{% endif %}
+          ">
+          {% if show_content1 %}
+            <div 
+              class="section_data_container d_flex gap_3 align_center w_full 
+              {% if progress_card_direction == "horizontal" %}flex_col{% else %}flex_row{% endif %} 
+              {% if progress_card_direction_medium == "horizontal" %}s1170_flex_col{% else %}s1170_flex_row{% endif %} 
+              {% if progress_card_directio_small == "horizontal" %}s900_flex_col{% else %}s900_flex_row{% endif %} 
+              {% if progress_card_direction_mobile == "horizontal" %}s750_flex_col{% else %}s750_flex_row{% endif %} 
+              ">
+              <div class="icon_progress" role="progressbar" aria-valuenow="{{ content1_value }}" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="flex_1 body {{ content_size }} {{ text_align }} {{ text_align_medium }} {{ text_align_small }} {{ text_align_mobile }}">{{ content1 }}</div>
+            </div>
+          {% endif %}
+          {% if show_content2 %}
+            <div 
+              class="section_data_container d_flex gap_3 align_center w_full 
+              {% if progress_card_direction == "horizontal" %}flex_col{% else %}flex_row{% endif %} 
+              {% if progress_card_direction_medium == "horizontal" %}s1170_flex_col{% else %}s1170_flex_row{% endif %} 
+              {% if progress_card_directio_small == "horizontal" %}s900_flex_col{% else %}s900_flex_row{% endif %} 
+              {% if progress_card_direction_mobile == "horizontal" %}s750_flex_col{% else %}s750_flex_row{% endif %} 
+              ">
+              <div class="icon_progress" role="progressbar" aria-valuenow="{{ content2_value }}" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="flex_1 body {{ content_size }} {{ text_align }} {{ text_align_medium }} {{ text_align_small }} {{ text_align_mobile }}">{{ content2 }}</div>
+            </div>
+          {% endif %}
+          {% if show_content3 %}
+            <div 
+              class="section_data_container d_flex gap_3 align_center w_full 
+              {% if progress_card_direction == "horizontal" %}flex_col{% else %}flex_row{% endif %} 
+              {% if progress_card_direction_medium == "horizontal" %}s1170_flex_col{% else %}s1170_flex_row{% endif %} 
+              {% if progress_card_directio_small == "horizontal" %}s900_flex_col{% else %}s900_flex_row{% endif %} 
+              {% if progress_card_direction_mobile == "horizontal" %}s750_flex_col{% else %}s750_flex_row{% endif %} 
+              ">
+              <div class="icon_progress" role="progressbar" aria-valuenow="{{ content3_value }}" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="flex_1 body {{ content_size }} {{ text_align }} {{ text_align_medium }} {{ text_align_small }} {{ text_align_mobile }}">{{ content3 }}</div>
+            </div>
+          {% endif %}
+        </div>
+        {% if bottom_content != blank %}
+          <div class="body {{ bottom_content_size }} {{ content_size }} {{ text_align }} {{ text_align_medium }} {{ text_align_small }} {{ text_align_mobile }}" style="margin-top: 10px;">{{ bottom_content }}</div>
+        {% endif %}
+        {% if button_text != blank %}
+          {% if button_url contains "products/" %}
+            {% if direct_add_to_cart %}
+              {%- liquid assign productHandle = button_url | split: "products/" | last -%}
+              {%- liquid assign product =  all_products[productHandle] -%}
+  
+              <form method="post" action="/cart/add/{{ product.selected_or_first_available_variant.id }}" id="product-form-{{ section.id }}" accept-charset="UTF-8" class="form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form">
+                <input type="hidden" name="form_type" value="product">
+                <input type="hidden" name="utf8" value="✓">
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled="" class="product-variant-id">
+        
+                <div class="product-form__buttons">
+                  <button id="ProductSubmitButton-" type="submit" name="add" class="section_button" value="{{ product.selected_or_first_available_variant.id }}">
+                    {{ button_text }}
+                  </button>
+                </div>
+                <input type="hidden" name="product-id" value="{{ product.selected_or_first_available_variant.id }}">
+              </form>
+            {% else %}
+              <a href="{{ button_url }}" class="section_button">{{ button_text }}</a>
+            {% endif %}
+          {% else %}
+            <a href="{{ button_url }}" class="section_button">{{ button_text }}</a>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    let section = document.querySelector(".section_{{ section.id }}");
+    
+    // ============================================================================================================ Animating progressbar from 0
+
+    let allProgress = Array.from(section.querySelectorAll("[role='progressbar']"));
+    allProgress.forEach(element=>{
+      let current = 0;
+      let min = 0;
+      let max = parseInt(element.getAttribute("aria-valuenow"));
+
+      window.addEventListener("load", function() {
+        let increment = setInterval(()=>{
+          element.style.setProperty('--value', current);
+          if (current < max) {
+            current += 1;
+          } else {
+            clearInterval(increment)
+          }
+        }, 35)
+      });
+    })
+  
+    // ============================================================================================================ Playing video with SVG
+  
+    document.querySelectorAll("svg[data-name='play']").forEach(item=>{
+      item.addEventListener("click", ()=>{
+        document.querySelectorAll("svg[data-name='play']").forEach(play=>{
+          play.parentElement.querySelector("video").pause();
+          play.parentElement.querySelector("video").currentTime = 0;
+          play.classList.remove("d_none")
+        })
+        item.classList.add("d_none");
+        item.parentElement.querySelector("video").play();
+      })
+    })
+  
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          entry.target.pause();
+          entry.target.currentTime = 0;
+          entry.target.parentElement.querySelector("svg[data-name='play']").classList.remove("d_none");
+        }
+      });
+    }, {threshold: 0.5});
+        
+    document.querySelectorAll("video").forEach(item=>{
+      observer.observe(item);
+      item.addEventListener("click", ()=>{
+        item.pause();
+        item.parentElement.querySelector("svg[data-name='play']").classList.remove("d_none");
+      })
+    })
+  
+    // ============================================================================================================ Muting/Unmuting video
+  
+    document.querySelectorAll("svg[data-name='mute']").forEach(item=>{
+      item.addEventListener("click", ()=>{
+        item.classList.add("d_none");
+        item.parentElement.querySelector("svg[data-name='sound']").classList.remove("d_none");
+        item.parentElement.querySelector("video").muted = false;
+      })
+    })
+    document.querySelectorAll("svg[data-name='sound']").forEach(item=>{
+      item.addEventListener("click", ()=>{
+        item.classList.add("d_none");
+        item.parentElement.querySelector("svg[data-name='mute']").classList.remove("d_none");
+        item.parentElement.querySelector("video").muted = true;
+      })
+    })
+  
+    // ============================================================================================================ Scrolling video series
+    
+    let container = section.querySelector(".video_container");
+    let allTracks = Array.from(container.querySelectorAll(".video_track"));
+    let track = allTracks[1];
+    let preTrack = allTracks[0];
+    let postTrack = allTracks[2];
+    let scrolling = false;
+    let currX, currY, oldX, oldY, startX, startY, oldPreX, oldPostX = 0;
+    let blockCount = Array.from(preTrack.children).length;
+    let video_width = 0;
+    let scrollType = null;
+    
+    const video_sizer = () => {
+      document.querySelectorAll(".video_block").forEach((video) => {
+        if (window.innerWidth > 1170) {
+          video_width = (parseInt(window.getComputedStyle(container, null).getPropertyValue("width"))- 60) / {{ video_count }} - 30;
+        } else if (window.innerWidth > 900) {
+          video_width = (parseInt(window.getComputedStyle(container, null).getPropertyValue("width"))- 60) / {{ video_count_medium }} - 30;
+        } else if (window.innerWidth > 767) {
+          video_width = (parseInt(window.getComputedStyle(container, null).getPropertyValue("width"))- 60) / {{ video_count_small }} - 30;
+        } else {
+          video_width = (parseInt(window.getComputedStyle(container, null).getPropertyValue("width"))- 60) / {{ video_count_mobile }} - 30;
+        }
+        video.style.width = `${video_width}px`;
+      })
+    }
+    video_sizer()
+  
+    preTrack.style.left = `${blockCount * -(video_width + 30) + 30}px`;
+    postTrack.style.left = `${blockCount * (video_width + 30) + 30}px`;
+  
+    window.addEventListener("resize", (e) => {
+      video_sizer()
+      notScrolling()
+    })
+
+    const moveSection = moveAmount => {
+      document.querySelector("body").classList.add("mobile_overflow_hidden");
+      track.style.left = `${oldX - moveAmount}px`;
+      preTrack.style.left = `${oldPreX - moveAmount}px`;
+      postTrack.style.left = `${oldPostX - moveAmount}px`;
+    }
+
+    const mouseMove = (e) => {
+      if (scrolling) {
+        currX  = e.clientX;
+        currY  = e.clientY;
+        let moveAmount = startX - currX;
+        let moveVertical = Math.abs(startY - currY);
+        console.log(moveVertical);
+
+        if (window.innerWidth < 767) {
+
+          if (!scrollType) {
+            if (moveVertical > 30) {
+              scrollType = "vert";
+            } else if (Math.abs(moveAmount) > 10) {
+              scrollType = "horz";
+            }
+          }
+
+          if (scrollType == "horz") {
+            moveSection(moveAmount);
+          }
+          
+        } else {
+          moveSection(moveAmount);
+        }
+      }
+    }
+    const mouseDown = (e) => {
+      scrolling = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      oldX = parseInt(window.getComputedStyle( track , null).getPropertyValue( "left" ));
+      oldPreX = parseInt(window.getComputedStyle( preTrack , null).getPropertyValue( "left" ));
+      oldPostX = parseInt(window.getComputedStyle( postTrack , null).getPropertyValue( "left" ));
+      [track, preTrack, postTrack].forEach(item=>item.classList.remove("track_transition"));
+    }
+  
+    const notScrolling = () => {
+      scrollType = null;
+      scrolling = false;
+      document.querySelector("body").classList.remove("mobile_overflow_hidden");
+      [track, preTrack, postTrack].forEach(item=>item.classList.add("track_transition"));
+      let left = parseInt(window.getComputedStyle( track , null).getPropertyValue( "left" ));
+      
+      for (let i = -20; i < 20; i++) {
+        if ((-video_width / 2 ) - 15 < (left + (video_width + 30) * i) && (left + (video_width + 30) * i) < (video_width / 2) + 15) {
+          let moveAmount = -(video_width + 30) * i + 30;
+          track.style.left = `${moveAmount}px`;
+          preTrack.style.left = `${moveAmount - blockCount * (video_width + 30)}px`;
+          postTrack.style.left = `${moveAmount + blockCount * (video_width + 30)}px`;
+          
+          setTimeout(()=>{
+            if (i < 0) {
+              [track, preTrack, postTrack].forEach(item=>item.classList.remove("track_transition"));
+              left = parseInt(window.getComputedStyle( track , null).getPropertyValue( "left" ));
+              track.style.left = `${left - blockCount * (video_width + 30)}px`;
+              preTrack.style.left = `${left - blockCount * 700}px`;
+              postTrack.style.left = `${left}px`;
+            } else if (i >= blockCount) {
+              [track, preTrack, postTrack].forEach(item=>item.classList.remove("track_transition"));
+              left = parseInt(window.getComputedStyle( track , null).getPropertyValue( "left" ));
+              track.style.left = `${left + blockCount * (video_width + 30)}px`;
+              preTrack.style.left = `${left}px`;
+              postTrack.style.left = `${left + blockCount * 700}px`;
+            }
+          }, 300)
+        }
+        oldX, oldPreX, oldPostX = 0;
+      }
+    }
+
+
+      
+    container.addEventListener("mousedown", (e) => mouseDown(e));
+    container.addEventListener("mousemove", (e) => mouseMove(e));
+    container.addEventListener("mouseup", (e) => scrolling ? notScrolling() : null);
+    container.addEventListener("mouseleave", (e) => scrolling ? notScrolling() : null);
+
+              
+    container.addEventListener("touchstart", (e) => mouseDown(e.touches[0]));
+    container.addEventListener("touchmove", (e) => mouseMove(e.touches[0]));
+    container.addEventListener("touchend", (e) => scrolling ? notScrolling() : null);
+  
+    // ============================================================================================================ Updating text custom transformation
+  
+    document.querySelectorAll("[data-rich-text]").forEach(text=>{
+      text.innerHTML = text.textContent.replace(/~/g, "<cs></cs>");
+    })
+  })()
+</script>
+
+{% schema %}
+  {
+    "name": "Shoppable Video Slider",
+    "max_blocks": 5,
+    "settings": [
+      {
+        "type": "header",
+        "content": "Content settings"
+      },
+      {
+        "type": "text",
+        "id": "content_heading",
+        "label": "Content heading"
+      },
+      {
+        "type": "checkbox",
+        "id": "bold_heading",
+        "label": "Bold heading"
+      },
+      {
+        "type": "select",
+        "id": "heading_size",
+        "label": "Heading size",
+        "default": "text_base",
+        "options": [
+          {"label": "Small", "value": "sm"},
+          {"label": "Regular", "value": "text_base"},
+          {"label": "Large", "value": "lg"}
+        ],
+        "info": "Only modifies the heading size"
+      },
+      {
+        "type": "color",
+        "id": "heading_color",
+        "label": "Heading color",
+        "default": "#333"
+      },
+      {
+        "type": "richtext",
+        "id": "top_content",
+        "label": "Text content"
+      },
+      {
+        "type": "select",
+        "id": "top_content_size",
+        "label": "Text content size",
+        "default": "text_base",
+        "options": [
+          {"label": "Small", "value": "sm"},
+          {"label": "Medium", "value": "text_base"},
+          {"label": "Large", "value": "lg"}
+        ],
+        "info": "Only modifies the content size"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "header",
+        "content": "Progress card 1"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "checkbox",
+        "id": "show_content1",
+        "label": "Show card",
+        "default": true
+      },
+      {
+        "type": "richtext",
+        "id": "content1",
+        "label": "Card content"
+      },
+      {
+        "type": "range",
+        "id": "content1_value",
+        "label": "Progress Value",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 95,
+        "unit": "%"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "header",
+        "content": "Progress card 2"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "checkbox",
+        "id": "show_content2",
+        "label": "Show card",
+        "default": true
+      },
+      {
+        "type": "richtext",
+        "id": "content2",
+        "label": "Card content"
+      },
+      {
+        "type": "range",
+        "id": "content2_value",
+        "label": "Progress Value",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 95,
+        "unit": "%"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "header",
+        "content": "Progress card 3"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "checkbox",
+        "id": "show_content3",
+        "label": "Show card",
+        "default": true
+      },
+      {
+        "type": "richtext",
+        "id": "content3",
+        "label": "Card content"
+      },
+      {
+        "type": "range",
+        "id": "content3_value",
+        "label": "Progress Value",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 95,
+        "unit": "%"
+      },
+      {
+        "type": "header",
+        "content": "Progress content settings"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "color",
+        "id": "progress_color_main",
+        "label": "Progress bar main color",
+        "default": "#7069bc",
+        "info": "Starts from 0 and fills color up to set limit"
+      },
+      {
+        "type": "color",
+        "id": "progress_color_secondary",
+        "label": "Progress bar secondary color",
+        "default": "#e3d2fd",
+        "info": "Colors the unfilled portion of the progress bar"
+      },
+      {
+        "type": "select",
+        "id": "content_size",
+        "label": "Progress card text size",
+        "default": "text_base",
+        "options": [
+          {"label": "Small", "value": "sm"},
+          {"label": "Medium", "value": "text_base"},
+          {"label": "Large", "value": "lg"}
+        ],
+        "info": "Modifies text size for all progress card contents"
+      },
+      {
+        "type": "range",
+        "id": "progress_bar_size",
+        "label": "Progress bar size",
+        "min": 30,
+        "max": 100,
+        "step": 5,
+        "default": 70,
+        "unit": "px",
+        "info": "Modifies size of all progress bar"
+      },
+      {
+        "type": "richtext",
+        "id": "bottom_content",
+        "label": "Bottom content"
+      },
+      {
+        "type": "select",
+        "id": "bottom_content_size",
+        "label": "Bottom content text size",
+        "default": "text_base",
+        "options": [
+          {"label": "Small", "value": "sm"},
+          {"label": "Medium", "value": "text_base"},
+          {"label": "Large", "value": "lg"}
+        ],
+        "info": "Modifies only the bottom content text size"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "header",
+        "content": "Button settings"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_url",
+        "label": "Button URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "direct_add_to_cart",
+        "label": "Direct add to cart",
+        "info": "Only works if Product is chosen as button URL",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "button_bg",
+        "label": "Button background color",
+        "default": "#7069bc"
+      },
+      {
+        "type": "color",
+        "id": "button_color",
+        "label": "Button text color",
+        "default": "#fff"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_hand",
+        "label": "Show hand icon"
+      },
+      {
+        "type": "color",
+        "id": "play_button_bg",
+        "label": "Play button background color",
+        "default": "#fff",
+        "info": "Modifies the background color of the play icon of all videos"
+      },
+      {
+        "type": "color",
+        "id": "play_icon",
+        "label": "Play button central color",
+        "default": "#1892ee",
+        "info": "Modifies the central color of the play icon of all videos"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "header",
+        "content": "Responsive - Large screen",
+        "info": "Screen size over 1170px"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "range",
+        "id": "section_top_padding",
+        "label": "Section top padding",
+        "min": 0,
+        "max": 300,
+        "step": 6,
+        "default": 48,
+        "unit": "px",
+        "info": "The gap between the top of the section and the start of content"
+      },
+      {
+        "type": "range",
+        "id": "section_bottom_padding",
+        "label": "Section bottom padding",
+        "min": 0,
+        "max": 300,
+        "step": 6,
+        "default": 48,
+        "unit": "px",
+        "info": "The gap between the end of content and the end of the section"
+      },
+      {
+        "type": "select",
+        "id": "progress_card_direction",
+        "label": "Progress card alignment",
+        "default": "vertical",
+        "options": [
+          {"label": "Horizontal", "value": "horizontal"},
+          {"label": "Vertical", "value": "vertical"}
+        ],
+        "info": "Sets the direction of the progress cards on wide screens"
+      },
+      {
+        "type": "range",
+        "id": "video_count",
+        "label": "Number of video",
+        "min": 1,
+        "max": 4,
+        "default": 2,
+        "info": "Sets the number of videos to appear only on wide screens"
+      },
+      {
+        "type": "range",
+        "id": "video_height",
+        "label": "Video height",
+        "min": 200,
+        "max": 800,
+        "step": 25,
+        "default": 600,
+        "unit": "px",
+        "info": "Sets the sets the height of each video only on wide screens"
+      },
+      {
+        "type": "range",
+        "id": "play_icon_size",
+        "label": "Play icon size",
+        "min": 30,
+        "max": 120,
+        "step": 5,
+        "default": 100,
+        "unit": "px",
+        "info": "Modifies the size of the play icon of all videos",
+        "info": "Sets the size of the play icon only on wide screens"
+      },
+      {
+        "type": "select",
+        "id": "text_align",
+        "label": "Text alignment",
+        "default": "text_left",
+        "options": [
+          {"label": "Left", "value": "text_left"},
+          {"label": "Center", "value": "text_center"}
+        ],
+        "info": "Sets the text alignment for only on wide screens"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "header",
+        "content": "Responsive - Medium screen",
+        "info": "Screen size between 900px and 1170px"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "range",
+        "id": "spacing_scale_medium",
+        "label": "Spacing scale",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 80,
+        "unit": "%",
+        "info": "Sets the section top and bottom gap on smaller screens"
+      },
+      {
+        "type": "select",
+        "id": "progress_card_direction_medium",
+        "label": "Progress card alignment",
+        "default": "vertical",
+        "options": [
+          {"label": "Horizontal", "value": "horizontal"},
+          {"label": "Vertical", "value": "vertical"}
+        ],
+        "info": "Progress card alignment direction for smaller screens"
+      },
+      {
+        "type": "range",
+        "id": "video_count_medium",
+        "label": "Number of video",
+        "min": 1,
+        "max": 4,
+        "default": 2,
+        "info": "Sets the number of videos for smaller screens"
+      },
+      {
+        "type": "range",
+        "id": "video_scale_medium",
+        "label": "Video size scale",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 90,
+        "unit": "%",
+        "info": "Sets the height of each video on smaller screens"
+      },
+      {
+        "type": "range",
+        "id": "play_icon_scale_medium",
+        "label": "Video play icon size scale",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 80,
+        "unit": "%",
+        "info": "Sets the play video icon on smaller screens"
+      },
+      {
+        "type": "range",
+        "id": "progress_scale_medium",
+        "label": "Progress bar size scale",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 80,
+        "unit": "%",
+        "info": "Sets the size of the progress bar on smaller screens"
+      },
+      {
+        "type": "select",
+        "id": "text_align_medium",
+        "label": "Text alignment",
+        "default": "s1170_text_left",
+        "options": [
+          {"label": "Left", "value": "s1170_text_left"},
+          {"label": "Center", "value": "s1170_text_center"}
+        ],
+        "info": "Sets the text alignment on smaller screens"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "header",
+        "content": "Responsive - Small screen",
+        "info": "Screen size between 767px and 900px"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "range",
+        "id": "spacing_scale_small",
+        "label": "Spacing scale",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 80,
+        "unit": "%",
+        "info": "Sets the section top and bottom gap on tablets"
+      },
+      {
+        "type": "select",
+        "id": "progress_card_direction_small",
+        "label": "Progress card alignment",
+        "default": "vertical",
+        "options": [
+          {"label": "Horizontal", "value": "horizontal"},
+          {"label": "Vertical", "value": "vertical"}
+        ],
+        "info": "Sets the progress card direction on tablets"
+      },
+      {
+        "type": "range",
+        "id": "video_count_small",
+        "label": "Number of video",
+        "min": 1,
+        "max": 4,
+        "default": 2,
+        "info": "Sets the number of video to show on tablets"
+      },
+      {
+        "type": "range",
+        "id": "video_scale_small",
+        "label": "Video size scale",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 90,
+        "unit": "%",
+        "info": "Sets the height of each video on tablets"
+      },
+      {
+        "type": "range",
+        "id": "play_icon_scale_small",
+        "label": "Video play icon size scale",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 80,
+        "unit": "%",
+        "info": "Sets the video play icon size on tablets"
+      },
+      {
+        "type": "range",
+        "id": "progress_scale_small",
+        "label": "Progress bar size scale",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 80,
+        "unit": "%",
+        "info": "Sets the progress bar size on tablets"
+      },
+      {
+        "type": "select",
+        "id": "text_align_small",
+        "label": "Text alignment",
+        "default": "s900_text_left",
+        "options": [
+          {"label": "Left", "value": "s900_text_left"},
+          {"label": "Center", "value": "s900_text_center"}
+        ],
+        "info": "Sets the text alignment on tablets"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "header",
+        "content": "Responsive - Mobile device",
+        "info": "Screen size less than 767px"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "range",
+        "id": "spacing_scale_mobile",
+        "label": "Spacing scale",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 80,
+        "unit": "%",
+        "info": "Sets the section top and bottom gap on mobiles"
+      },
+      {
+        "type": "select",
+        "id": "progress_card_direction_mobile",
+        "label": "Progress card alignment",
+        "default": "vertical",
+        "options": [
+          {"label": "Horizontal", "value": "horizontal"},
+          {"label": "Vertical", "value": "vertical"}
+        ],
+        "info": "Sets the progress card direction on mobiles"
+      },
+      {
+        "type": "range",
+        "id": "video_count_mobile",
+        "label": "Number of video",
+        "min": 1,
+        "max": 4,
+        "default": 2,
+        "info": "Sets the number of videos on mobiles"
+      },
+      {
+        "type": "range",
+        "id": "video_scale_mobile",
+        "label": "Video size scale",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 90,
+        "unit": "%"
+      },
+      {
+        "type": "range",
+        "id": "play_icon_scale_mobile",
+        "label": "Video play icon size scale",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 80,
+        "unit": "%",
+        "info": "Sets the height of each video on mobiles"
+      },
+      {
+        "type": "range",
+        "id": "progress_scale_mobile",
+        "label": "Progress bar size scale",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 80,
+        "unit": "%",
+        "info": "Sets the size of progress bar on mobiles"
+      },
+      {
+        "type": "select",
+        "id": "text_align_mobile",
+        "label": "Text alignment",
+        "default": "s750_text_left",
+        "options": [
+          {"label": "Left", "value": "s750_text_left"},
+          {"label": "Center", "value": "s750_text_center"}
+        ],
+        "info": "Sets the text alignment on mobiles"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "header",
+        "content": "Background Settings"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "image_picker",
+        "id": "section_bg",
+        "label": "Section background image"
+      },
+      {
+        "type": "select",
+        "id": "section_bg_position",
+        "label": "Background position",
+        "default": "center center",
+        "options": [
+          {"label": "Top Left", "value": "top left"},
+          {"label": "Top Center", "value": "top center"},
+          {"label": "Top Right", "value": "top right"},
+          {"label": "Center Left", "value": "center left"},
+          {"label": "Center Center", "value": "center center"},
+          {"label": "Center Right", "value": "center right"},
+          {"label": "Bottom Left", "value": "bottom left"},
+          {"label": "Bottom Center", "value": "bottom center"},
+          {"label": "Bottom Right", "value": "bottom right"}
+        ],
+        "info": "Sets the background image alignment in case image aspect ratio doesn't match section render ratio"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "header",
+        "content": "Mobile background"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "image_picker",
+        "id": "section_mobile_bg",
+        "label": "Section background image",
+        "info": "Sets a different background image for mobile. > Leave empty to use the same background as PC"
+      },
+      {
+        "type": "select",
+        "id": "section_mobile_bg_position",
+        "label": "Background position",
+        "default": "center center",
+        "options": [
+          {"label": "Top Left", "value": "top left"},
+          {"label": "Top Center", "value": "top center"},
+          {"label": "Top Right", "value": "top right"},
+          {"label": "Center Left", "value": "center left"},
+          {"label": "Center Center", "value": "center center"},
+          {"label": "Center Right", "value": "center right"},
+          {"label": "Bottom Left", "value": "bottom left"},
+          {"label": "Bottom Center", "value": "bottom center"},
+          {"label": "Bottom Right", "value": "bottom right"}
+        ],
+        "info": "Sets the background image alignment in case image aspect ratio doesn't match section render ratio"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "header",
+        "content": "Overlay Settings"
+      },
+      {"type": "paragraph", "content": "----------------------------------------"},
+      {
+        "type": "color",
+        "id": "overlay_color",
+        "label": "Overlay color",
+        "default": "#000000",
+        "info": "When background image is selected, this renders as overlay on top of background image. Otherwise, works as solid background-color"
+      },
+      {
+        "type": "range",
+        "id": "overlay_opacity",
+        "label": "Overlay opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 0,
+        "unit": "%",
+        "info": "Opacity 100% will make it a solid color background and 0% will make it transparent"
+      },
+      {
+        "type": "text",
+        "id": "custom_class",
+        "label": "Custom CSS Class",
+        "info": "Add class to add custom css to this section only"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "heading",
+        "name": "Section Heading",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Section heading"
+          },
+          {
+            "type": "text",
+            "id": "section_heading",
+            "label": "Section heading"
+          },
+          {
+            "type": "checkbox",
+            "id": "bold_heading",
+            "label": "Bold heading"
+          },
+          {
+            "type": "text",
+            "id": "section_sub_heading",
+            "label": "Section sub heading"
+          },
+          {
+            "type": "checkbox",
+            "id": "bold_sub_heading",
+            "label": "Bold sub heading"
+          },
+          {
+            "type": "checkbox",
+            "id": "sub_heading_first",
+            "label": "Sub heading first"
+          },
+          {
+            "type": "checkbox",
+            "id": "caps_heading",
+            "label": "All capital"
+          },
+          {
+            "type": "select",
+            "id": "heading_alignment",
+            "label": "Heading alignment",
+            "default": "text_center",
+            "options": [
+              {"label": "Left", "value": "text_left"},
+              {"label": "Center", "value": "text_center"}
+            ]
+          },
+          {
+            "type": "select",
+            "id": "heading_size",
+            "label": "Heading size",
+            "default": "text_base",
+            "options": [
+              {"label": "Small", "value": "sm"},
+              {"label": "Base", "value": "text_base"},
+              {"label": "Large", "value": "lg"}
+            ],
+            "info": "Only modifies heading size"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "label": "Heading color",
+            "default": "#000000",
+            "info": "Modifies both heading and subheading"
+          },
+          {
+            "type": "select",
+            "id": "heading_gap",
+            "label": "Gap between headings",
+            "default": "gap_0",
+            "options": [
+              {"label": "No gap", "value": "gap_0"},
+              {"label": "Small", "value": "gap_1"},
+              {"label": "Medium", "value": "gap_2"},
+              {"label": "Large", "value": "gap_3"}
+            ],
+            "info": "Sets the gap between Main heading and sub heading"
+          },
+          {
+            "type": "range",
+            "id": "heading_below_gap",
+            "label": "Gap after heading",
+            "min": 0,
+            "max": 100,
+            "step": 4,
+            "default": 20,
+            "unit": "px",
+            "info": "Sets the gap between the headings and start of content"
+          }
+        ]
+      },
+      {
+        "name": "Video",
+        "type": "video",
+        "settings": [
+          {
+            "type": "text",
+            "id": "video",
+            "label": "Video URL",
+            "info": "Works with Non-shopify hosted video"
+          },
+          {
+            "type": "color",
+            "id": "video_overlay",
+            "label": "Overlay color",
+            "info": "Adds a colored overlay layer on top of the video"
+          },
+          {
+            "type": "range",
+            "id": "video_overlay_opacity",
+            "label": "Overlay opacity",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "default": 5,
+            "unit": "%",
+            "info": "Sets the opacity of the overlay layer. 0% will make the layer transparent"
+          },
+          {
+            "type": "text",
+            "id": "message_heading",
+            "label": "Overlay message heading",
+            "info": "Add custom message/review on top of the video"
+          },
+          {
+            "type": "richtext",
+            "id": "message_content",
+            "label": "Overlay message content",
+            "info": "Add custom message/review on top of the video. Use '~' to introduce line-break in this field."
+          },
+          {
+            "type": "color",
+            "id": "message_color",
+            "label": "Message text color",
+            "info": "Sets the text color of the message/review"
+          },
+          {
+            "type": "checkbox",
+            "id": "message_direction",
+            "label": "Content appears before heading"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Shoppable Video Slider",
+        "blocks": [
+          {
+            "type": "heading",
+            "settings": {
+              "section_heading": "Shoppable Video section",
+              "bold_heading": true,
+              "section_sub_heading": "Brand name",
+              "bold_sub_heading": true,
+              "sub_heading_first": true,
+              "caps_heading": true,
+              "heading_alignment": "text_center",
+              "heading_size": "text_base",
+              "heading_color": "#333333",
+              "heading_gap": "gap_0",
+              "heading_below_gap": 44
+            }
+          },
+          {
+            "type": "video",
+            "settings": {
+              "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/4b1759f116054efba764e0ded0d862ec.mp4",
+              "video_overlay": "#ee1882",
+              "video_overlay_opacity": 5,
+              "message_heading": "",
+              "message_content": "<p>I love how easy it is to use it and yet how effective it is! <\/p><p>~<\/p><p>- <strong>Ellie P<\/strong><\/p>",
+              "message_color": "#ffffff",
+              "message_direction": false
+            }
+          },
+          {
+            "type": "video",
+            "settings": {
+              "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/72d2492bb0104c549fd088a4605ad347.mp4",
+              "video_overlay": "#ff0505",
+              "video_overlay_opacity": 5,
+              "message_heading": "",
+              "message_content": "<p>Instant result. All it took is 2 minutes to make a drastic impact!<\/p><p>~<\/p><p>- <strong>Ellie P<\/strong><\/p>",
+              "message_color": "#ffffff",
+              "message_direction": false
+            }
+          },
+          {
+            "type": "video",
+            "settings": {
+              "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/4b1759f116054efba764e0ded0d862ec.mp4",
+              "video_overlay": "#46ff02",
+              "video_overlay_opacity": 5,
+              "message_heading": "",
+              "message_content": "<p>This is the best purchase I've ever made!!! I'm blown away, and I recommend to everyone<\/p><p>~<\/p><p>- <strong>Ellie P<\/strong><\/p>",
+              "message_color": "#ffffff",
+              "message_direction": false
+            }
+          },
+          {
+            "type": "video",
+            "settings": {
+              "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/e76180bbef5a4ae185271617fac544c4.mp4",
+              "video_overlay": "#ee1882",
+              "video_overlay_opacity": 5,
+              "message_heading": "",
+              "message_content": "<p>I didn't have much expectation when I purchased, but Got to admit, it's impressive<\/p><p>~<\/p><p>- <strong>Ellie P<\/strong><\/p>",
+              "message_color": "#ffffff",
+              "message_direction": false
+            }
+          }
+        ],
+        "settings": {
+          "content_heading": "Gain customer trust with social Proof 💜",
+          "bold_heading": true,
+          "heading_size": "text_base",
+          "heading_color": "#333333",
+          "top_content": "<p>Visitors are 40% more likely to commit on a purchase if the page contains video reviews<\/p>",
+          "top_content_size": "text_base",
+          "show_content1": true,
+          "content1": "<p>Increases the number of sale<\/p>",
+          "content1_value": 40,
+          "show_content2": true,
+          "content2": "<p>More loyal customers<\/p>",
+          "content2_value": 50,
+          "show_content3": true,
+          "content3": "<p>Organic growth via social share<\/p>",
+          "content3_value": 95,
+          "progress_color_main": "#1892ee",
+          "progress_color_secondary": "#a4d7fe",
+          "content_size": "text_base",
+          "progress_bar_size": 70,
+          "bottom_content": "<p><em>* Results are according to 3rd party consumer studies. For more information please contact us.<\/em><\/p>",
+          "bottom_content_size": "sm",
+          "button_text": "BUY IT NOW",
+          "button_url": "#",
+          "button_bg": "#1892ee",
+          "button_color": "#ffffff",
+          "show_hand": true,
+          "play_button_bg": "#1892ee",
+          "play_icon": "#ffffff",
+          "section_top_padding": 60,
+          "section_bottom_padding": 60,
+          "progress_card_direction": "horizontal",
+          "video_count": 2,
+          "video_height": 600,
+          "play_icon_size": 85,
+          "text_align": "text_left",
+          "spacing_scale_medium": 95,
+          "progress_card_direction_medium": "horizontal",
+          "video_count_medium": 2,
+          "video_scale_medium": 90,
+          "play_icon_scale_medium": 75,
+          "progress_scale_medium": 80,
+          "text_align_medium": "s1170_text_center",
+          "spacing_scale_small": 80,
+          "progress_card_direction_small": "vertical",
+          "video_count_small": 1,
+          "video_scale_small": 100,
+          "play_icon_scale_small": 80,
+          "progress_scale_small": 80,
+          "text_align_small": "s900_text_left",
+          "spacing_scale_mobile": 85,
+          "progress_card_direction_mobile": "horizontal",
+          "video_count_mobile": 1,
+          "video_scale_mobile": 80,
+          "play_icon_scale_mobile": 100,
+          "progress_scale_mobile": 90,
+          "text_align_mobile": "s750_text_center",
+          "section_bg_position": "center center",
+          "section_mobile_bg_position": "center center",
+          "overlay_color": "#878787",
+          "overlay_opacity": 10
+        }
+      }
+    ]
+  }
+{% endschema %}

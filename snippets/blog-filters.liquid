@@ -1,0 +1,73 @@
+{% liquid
+    # Mode can be either 'menu' or 'select'
+    assign mode = 'menu'
+    assign text_all_topics = 'All posts'
+%}
+
+<style>
+    .blog-filters-wrapper {
+        margin: -12px 0 24px;
+    }
+    .blog-filters-wrapper ul {
+        margin: -.5rem -1rem;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .blog-filters-wrapper ul li a {
+        padding: 1rem;
+        line-height: normal;
+    }
+    .blog-filters-wrapper .select {
+        width: auto;
+        display: inline-flex;
+    }
+    .blog-filters-wrapper .select__select {
+        padding-right: 42px;
+    }
+</style>
+
+<div class="blog-filters-wrapper">
+    {% if mode == 'menu' %}
+        <ul class="list-unstyled">
+            <li>
+                <a 
+                    href="{{ blog.url }}" 
+                    class="link link--text list-menu__item list-menu__item--link {% unless current_tags %}list-menu__item--active{% endunless %}"
+                    aria-current="{% unless current_tags %}page{% endunless %}">
+                    {{ text_all_topics }}
+                </a>
+            </li>
+            {% for tag in blog.all_tags %}
+                <li>
+                    <a 
+                        href="{{ blog.url }}/tagged/{{ tag | handleize }}" 
+                        class="link link--text list-menu__item list-menu__item--link {% if current_tags contains tag %}list-menu__item--active{% endif %}"
+                        aria-current="{% if current_tags contains tag %}page{% endif %}">
+                        {{ tag  }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="select">
+            <select
+                class="select__select form-select"
+                onchange="javascript:location.href = window.location.href = this.value"
+                aria-label="Filter posts">
+                <option value="{{ blog.url }}">
+                    {{ text_all_topics }}
+                </option>
+                {% for tag in blog.all_tags %}
+                    <option 
+                        value="{{ blog.url }}/tagged/{{ tag | handleize }}" 
+                        {% if current_tags contains tag %}selected{% endif %}>
+                        {{ tag }}
+                    </option>
+                {% endfor %}
+            </select>
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+            </path></svg>
+        </div>
+    {% endif %}
+</div>

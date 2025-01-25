@@ -1,0 +1,189 @@
+{% comment %} 
+    EG Cart Goal
+    © 2022 EcomGraduates
+    https://wwww.ecomgraduates.com
+{% endcomment %}
+
+{% liquid
+    assign goal_amount = 100
+    assign text_before = "[amount] away from FREE Shipping!"
+    assign text_after = "Congrats! You're eligible for Free Shipping"
+    assign color_before = "#fd7e14"
+    assign color_after = "#158754"
+%}
+
+<style>
+/*
+    Bootstrap Progress bar
+    https://github.com/twbs/bootstrap/blob/main/dist/css/bootstrap.css
+*/
+@-webkit-keyframes progress-bar-stripes {
+    0% { background-position-x: 1rem; }
+}
+  
+@keyframes progress-bar-stripes {
+    0% { background-position-x: 1rem; }
+}
+
+.progress {
+    display: flex;
+    height: 1rem;
+    overflow: hidden;
+    font-size: 0.75rem;
+    background-color: #e9ecef;
+    border-radius: 50rem;
+}
+  
+.progress-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #0d6efd;
+    transition: width 0.6s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .progress-bar { transition: none; }
+}
+  
+.progress-bar-striped {
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-size: 1rem 1rem;
+}
+  
+.progress-bar-animated {
+    -webkit-animation: 1s linear infinite progress-bar-stripes;
+    animation: 1s linear infinite progress-bar-stripes;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .progress-bar-animated {
+        -webkit-animation: none;
+        animation: none;
+    }
+}
+
+/*
+    Cart Goal
+*/
+#eg-cart-goal {
+    position: relative;
+    margin: 0 0 1.75rem;
+}
+
+#eg-cart-goal .rte {
+    text-align: center;
+    margin: 0 0 .25rem;
+}
+
+#eg-cart-goal .progress {
+    height: 1rem;
+}
+</style>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+
+    // Detect if the cart drawer is activated
+    if (!document.querySelector('cart-drawer')) {
+        return
+    }
+
+    // Cart Goal feature
+    const initCartGoal = async (preload = false) => {
+        document.querySelector('#CartDrawer #eg-cart-goal')?.remove()
+
+        const element = document.querySelector('#eg-cart-goal')
+        const cartDrawerItems = document.querySelector('cart-drawer-items')
+
+        if (element && !cartDrawerItems.classList.contains('is-empty')) {
+            cartDrawerItems.insertAdjacentElement('afterbegin', element.cloneNode(true))
+            document.querySelector('#eg-cart-goal').style.display = 'block'
+
+            const progressBar = document.querySelector('#eg-cart-goal .progress-bar')
+            
+            if (preload) {
+                document.querySelector('#CartDrawer #eg-cart-goal').style.opacity = '0.2'
+            } else {
+                setTimeout(() => {
+                    progressBar.style.width = progressBar.dataset.width
+                }, 250)
+            }
+        }
+    }
+    initCartGoal()
+
+    // Load cart goal feature dynamically
+    const loadAjaxContent = async () => {
+        const respose = await fetch(window.location.href)
+        const data = await respose.text()
+        const newDocument = new DOMParser().parseFromString(data, 'text/html')
+
+        document.querySelector('#CartDrawer #eg-cart-goal')?.remove()
+            
+        document.querySelector('#eg-cart-goal')
+            ?.replaceWith(newDocument.querySelector('#eg-cart-goal')) 
+    }
+
+    // Listen to ajax changed in the drawer (throught class change)
+    const listenDrawerAjax = async () => {
+        const onMutation = async (mutations) => {
+            for (const mutation of mutations) {
+                if (mutation.type === 'childList') {
+                    for (const addedNode of mutation.addedNodes) {
+                        if (addedNode.classList?.contains('drawer__inner') || addedNode.classList?.contains('drawer__header') ) {
+                            initCartGoal(true)
+                            await loadAjaxContent()
+                            initCartGoal(false)
+                        }
+                    }
+                }
+            }
+        }
+
+        (new MutationObserver(onMutation)).observe(document.querySelector('#CartDrawer'), {
+            childList: true,
+            subtree: true
+        })
+    }
+    listenDrawerAjax()
+})
+</script>
+
+{% liquid
+    assign goal_value_with_cents = goal_amount | times: 100
+
+    if cart.total_price < goal_value_with_cents
+        assign cart_goal_percentage = cart.total_price | divided_by: goal_amount
+        assign cart_goal_color = color_before
+        assign goal_remaining_money = goal_value_with_cents | minus: cart.total_price | money
+        assign cart_goal_desc = text_before | replace: '[amount]', goal_remaining_money
+    else
+        assign cart_goal_percentage = 100
+        assign cart_goal_color = color_after
+        assign cart_goal_desc = text_after
+    endif
+%}
+<div id="eg-cart-goal" class="" style="display: none;">
+    <div class="rte caption-large" style="{% if cart_goal_percentage == 100 %}color: {{ cart_goal_color }};{% endif %}">
+        {{ cart_goal_desc }}
+    </div>
+    <div class="progress">
+        <div 
+            class="progress-bar progress-bar-striped progress-bar-animated" 
+            role="progressbar" 
+            aria-valuenow="{{ cart.total_price | money }}" 
+            aria-valuemin="0"
+            aria-valuemax="{{ goal_value_with_cents | money }}"
+            data-width="{{ cart_goal_percentage }}%"
+            style="width: 0%; background-color: {{ cart_goal_color }};">
+            <span style="font-size: 1rem;">
+                {{ cart_goal_percentage }}%
+            </span>
+        </div>
+    </div>
+</div>

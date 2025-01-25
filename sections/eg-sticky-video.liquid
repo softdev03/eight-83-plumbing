@@ -1,0 +1,142 @@
+{% comment %} 
+    EG Sticky Video
+    © 2022 EcomGraduates
+    https://wwww.ecomgraduates.com 
+{% endcomment %}
+
+{% liquid
+
+%}
+
+{% if section.settings.enable_section %}
+{% if section.settings.show_only_homepage == false or template.name == 'index' %}
+
+<link href="{{ 'eg-sticky-video.css' | asset_url }}" rel="stylesheet">
+<script src="{{ 'eg-sticky-video.js' | asset_url }}" defer></script>
+
+<style>
+{% if section.settings.border_radius %}
+#eg-sticky-video video {
+    border-radius: 20px; 
+}
+{% endif %}
+
+{% if section.settings.double_desktop %}
+@media (min-width: 1200px) {
+    #eg-sticky-video:hover video {
+        width: {{ section.settings.video_width | times: 2 }}px;
+    }
+}
+{% endif %}
+
+{% if section.settings.show_after %}
+    #eg-sticky-video {
+        opacity: 0;
+        visibility: hidden;
+        animation: eg_sticy_video_animation 1s both;
+        animation-delay: {{ section.settings.show_after }}s;
+    }
+    @keyframes eg_sticy_video_animation {
+        to {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+{% endif %}
+</style>
+
+<div 
+    id="eg-sticky-video"
+    class=""
+    hidden>
+    <video
+        width="{{ section.settings.video_width }}" 
+        muted playsinline loop controls
+        {% if section.settings.autoplay %}autoplay{% endif %}
+        loading="lazy"
+    >
+        <source src="{{ section.settings.video_url }}" type="video/mp4">
+    </video>    
+    <button 
+        id="eg-sticky-video-close-btn"
+        data-closing-delay="{{ section.settings.closing_delay }}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line>
+        </svg>
+    </button>
+</div>
+
+{% endif %}
+{% endif %}
+
+{% schema %}
+{
+    "name": "EG Sticky Video",
+    "settings": [
+        {
+            "type": "html",
+            "id": "video_url",
+            "label": "Video URL"
+        },
+        {
+            "type": "header",
+            "content": "General"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_section",
+            "label": "Enable section",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "show_only_homepage",
+            "label": "Show only on the homepage",
+            "default": true
+        },
+        {
+            "type": "text",
+            "id": "video_width",
+            "label": "Video Width (px)",
+            "default": "260"
+        },
+        {
+            "type": "checkbox",
+            "id": "autoplay",
+            "label": "Autoplay",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "border_radius",
+            "label": "Border radius",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "double_desktop",
+            "label": "Double size on hover",
+            "info": "Note: Applies only in large screen",
+            "default": true
+        },
+        {
+            "type": "range",
+            "id": "show_after",
+            "label": "Video delay (in seconds)",
+            "info": "Show the video after x seconds has passed.",
+            "min": 0,
+            "max": 10,
+            "default": 3
+        },
+        {
+            "type": "range",
+            "id": "closing_delay",
+            "label": "Closed delay (in hours)",
+            "info": "Time in hours to pass before showing the video again when the user has hit the close button",
+            "min": 1,
+            "max": 72,
+            "default": 24
+        }
+    ]
+}
+{% endschema %}
