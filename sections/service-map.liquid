@@ -1,0 +1,129 @@
+{%- style -%}
+  #shopify-section-{{ seciton.id }} {
+    padding-top: {{ section.settings.desktop_padding_top }}px;
+    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+  }
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="shopify-service-map">
+  <div class="post-code w-50">
+    <h1 class="heading">{{ section.settings.heading }}</h1>
+    <p class="text">{{ section.settings.text }}</p>
+    <div class="search">
+      <input type="text" class="search-pattern">
+      <img src="{{ section.settings.search_icon |  img_url: '20x' }}" alt="" width="20px" height="20px">
+    </div>
+    <a href="{{ section.settings.button_link }}" class="button-link">{{ section.settings.button_text }}</a>
+  </div>
+  <div class="map-wrapper w-50">
+    <div class="map" id="{{ section.settings.map_section_id }}"></div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Service using Map",
+    "tag": "section",
+    "class": "shopify-section--service-map",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "image_picker",
+        "id": "search_icon",
+        "label": "Search Icon"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button Link"
+      },
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button Text"
+      },
+      {
+        "type": "text",
+        "id": "map_section_id",
+        "label": "Map Section Id"
+      },
+      {
+        "type": "header",
+        "content": "Padding Setting"
+      },
+      {
+        "type": "range",
+        "id": "desktop_padding_top",
+        "min": 0,
+        "max": 150,
+        "step": 2,
+        "unit": "px",
+        "label": "Desktop Padding Top",
+        "default": 50
+      },
+      {
+        "type": "range",
+        "id": "desktop_padding_bottom",
+        "min": 0,
+        "max": 150,
+        "step": 2,
+        "unit": "px",
+        "label": "Desktop Padding Bottom",
+        "default": 50
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding_top",
+        "min": 0,
+        "max": 150,
+        "step": 2,
+        "unit": "px",
+        "label": "Mobile Padding Top",
+        "default": 50
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding_bottom",
+        "min": 0,
+        "max": 150,
+        "step": 2,
+        "unit": "px",
+        "label": "Mobile Padding Bottom",
+        "default": 50
+      }
+    ],
+    "blocks": [
+      {
+        "type": "area",
+        "name": "Area",
+        "settings": [
+          {
+            "type": "text",
+            "id": "area_name",
+            "label": "Area Name"
+          },
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Service using Map",
+        "settings": {
+        }
+      }
+    ]
+  }
+{% endschema %}

@@ -15,4 +15,15 @@ document.addEventListener('DOMContentLoaded',()=>{
         });
         observer.observe(target,config);
     }
+
+    const map = new google.maps.Map(document.getElementById('service-map-with-postcodes'), {
+        center: { lat: 0, lng: 0 },
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+      const marker = new google.maps.Marker({
+        position: { lat: 37.7749, lng: -122.4194 },
+        map: map,
+        title: 'San Francisco'
+      });
 });

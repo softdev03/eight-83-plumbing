@@ -3,7 +3,6 @@
 }
 .shopify-section--video-new #ShopifyChat {
     left: 10px;
-    bottom: 40px !important;
 }
 .shopify-section--video-new .shopify-video-new {
     position: relative;
@@ -113,11 +112,6 @@
         font-size: 27px;
     }
 }
-@media screen and (max-width: 1150px) {
-    .shopify-section--video-new #ShopifyChat {
-        bottom: 15px !important;
-    }
-}
 @media screen and (max-width: 989px) {
     .shopify-section--video-new .announcement {
         column-gap: 12px;
@@ -163,9 +157,6 @@
     .shopify-section--video-new .buttons a {
         font-size: 18px;
         padding: 15px 5px;
-    }
-    .shopify-section--video-new #ShopifyChat {
-        bottom: 60px !important;
     }
 }
 

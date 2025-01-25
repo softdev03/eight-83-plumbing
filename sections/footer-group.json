@@ -86,6 +86,10 @@
         "logo_jGGkQC"
       ],
       "settings": {
+        "quote_text": "Get a Free Quote",
+        "quote_link": "#shopify-enquiry-form",
+        "emergency_text": "24/7 Emergency Service",
+        "emergency_link": "tel:0437 174 202",
         "color_scheme": "accent-2",
         "newsletter_enable": false,
         "newsletter_heading": "Subscribe to our emails",

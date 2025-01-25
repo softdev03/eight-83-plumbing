@@ -337,6 +337,14 @@ window.addEventListener('DOMContentLoaded', () => {
       data-cascade
     {% endif %}
   >
+    <div class="links-wrapper text-white-wrapper text-upper-wrapper">
+      {%- if section.settings.quote_link != blank and section.settings.quote_text != blank -%}
+        <a href="{{ section.settings.quote_link }}" class="quote-link line-height-1_1 font-800 text-center">{{ section.settings.quote_text }}</a>
+      {%- endif -%}
+      {%- if section.settings.emergency_link != blank and section.settings.emergency_text != blank -%}
+        <a href="{{ section.settings.emergency_link }}" class="emergency-link line-height-1_1 font-800 text-center">{{ section.settings.emergency_text }}</a>
+      {%- endif -%}
+    </div>
     <div class="footer__content-bottom-wrapper page-width">
       <div class="footer__column footer__localization isolate">
         {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
@@ -538,6 +546,30 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   ],
   "settings": [
+    {
+      "type": "header",
+      "content": "Link Settings"
+    },
+    {
+      "type": "text",
+      "id": "quote_text",
+      "label": "Quote Text"
+    },
+    {
+      "type": "url",
+      "id": "quote_link",
+      "label": "Quote Link"
+    },
+    {
+      "type": "text",
+      "id": "emergency_text",
+      "label": "Emergency Text"
+    },
+    {
+      "type": "url",
+      "id": "emergency_link",
+      "label": "Emergency Link"
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",

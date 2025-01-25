@@ -100,6 +100,9 @@
         padding-right: 1.5rem;
         justify-content: space-between;
     }
+    .shopify-section--sale-offer .image {
+        margin-left: 40px;
+    }
     .shopify-section--sale-offer .online-offer .big-text {
         font-size: 27px;
     }
@@ -127,5 +130,10 @@
     .shopify-section--sale-offer .link {
         font-size: 16px;
         margin-left: 0px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .shopify-section--sale-offer .image {
+        margin-left: auto;
     }
 }

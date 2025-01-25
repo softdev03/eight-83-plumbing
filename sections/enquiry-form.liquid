@@ -14,7 +14,7 @@
     }
   }
 {%- endstyle -%}
-<div class="shopify-enquiry-form page-width">
+<div class="shopify-enquiry-form page-width" id="{{ section.settings.section_id }}">
     <div class="intro">
         <h1 class="heading font-800 line-height-1_1 text-upper m-0">{{ section.settings.heading }}</h1>
         <div class="text line-height-1_1">{{ section.settings.text }}</div>
@@ -51,6 +51,11 @@
     "tag": "section",
     "class": "shopify-section--enquiry-form",
     "settings": [
+        {
+          "type": "text",
+          "id": "section_id",
+          "label": "Section Id"
+        },
       {
         "type": "text",
         "id": "heading",

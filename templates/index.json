@@ -17,9 +17,9 @@
         "announce_text": "We're Open!",
         "heading": "<h1>Canberra's Trusted <em>24/7</em> Plumbers</h1>",
         "text": "Over 20 Years of Experience in Residential & Commercial Plumbing",
-        "quote_link": "#",
+        "quote_link": "#shopify-enquiry-form",
         "quote_text": "Get a Free Quote",
-        "emergency_link": "#",
+        "emergency_link": "tel:0437 174 202",
         "emergency_text": "24/7 Emergency Service",
         "desktop_padding_top": 50,
         "desktop_padding_bottom": 50,
@@ -264,6 +264,7 @@
         "job_type_mJ8zrm"
       ],
       "settings": {
+        "section_id": "shopify-enquiry-form",
         "heading": "Get a Free Plumbing Quote",
         "text": "<p>Fill out the form below and our team <strong>will get back to you within 60 minutes. </strong><em><strong>Guaranteed!</strong></em></p>",
         "image": "shopify://shop_images/sec5_cashback.webp",
@@ -272,6 +273,21 @@
         "mobile_padding_top": 60,
         "mobile_padding_bottom": 60,
         "bg_color": "#f6f6f6"
+      }
+    },
+    "service_map_bgGG9J": {
+      "type": "service-map",
+      "settings": {
+        "heading": "Our Service Areas",
+        "text": "Comprehensive Plumbing Services Across All Sydney Suburbs",
+        "search_icon": "shopify://shop_images/icons8-search.gif",
+        "button_link": "#shopify-enquiry-form",
+        "button_text": "Get a Quote",
+        "map_section_id": "service-map-with-postcodes",
+        "desktop_padding_top": 70,
+        "desktop_padding_bottom": 70,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40
       }
     },
     "multirow_eMnHKp": {
@@ -483,6 +499,7 @@
     "rich_text_h8ibrU",
     "multicolumn_x6DUqF",
     "enquiry_form_GJarAm",
+    "service_map_bgGG9J",
     "multirow_eMnHKp",
     "eg_testimonials_2_8nJ7F8",
     "rich_text_KDyDCj",
