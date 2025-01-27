@@ -359,11 +359,6 @@
           "button_vertical_position": "lowest",
           "greeting_message": ""
         }
-      },
-      "5237588811294397752": {
-        "type": "shopify://apps/etp-phone-call-button/blocks/phone-call-button/b9bfe677-a5d9-4634-bc18-eeebe733f962",
-        "disabled": true,
-        "settings": {}
       }
     },
     "color_schemes": {

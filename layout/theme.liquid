@@ -276,8 +276,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       {{ 'component-localization-form.css' | asset_url | stylesheet_tag: preload: true }}
       <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
     {{ 'custom.js' |  asset_url |  script_tag }}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    {{ 'map.js' |  asset_url |  script_tag }}
     {%- if settings.predictive_search_enabled -%}
       <link
         rel="stylesheet"

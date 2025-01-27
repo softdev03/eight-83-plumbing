@@ -14,7 +14,7 @@
 }
 .shopify-section--sale-offer .image {
     line-height: 0;
-    margin-top: -78px;
+    margin-top: -60px;
     margin-right: 2rem;
 }
 .shopify-section--sale-offer .online-offer .big-text {
@@ -101,7 +101,7 @@
         justify-content: space-between;
     }
     .shopify-section--sale-offer .image {
-        margin-left: 40px;
+        margin-left: 100px;
     }
     .shopify-section--sale-offer .online-offer .big-text {
         font-size: 27px;
