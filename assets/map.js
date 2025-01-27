@@ -1,4 +1,4 @@
-const serviceItemms = [{
+const suburItems = [{
     name: 'Acton',
     lat: -35.2814,
     lng: 149.1238,
@@ -884,15 +884,95 @@ const serviceItemms = [{
     lng: 149.6167,
     postcode: '2622'
 }];
+
+// const sortedSuburbItems = suburItems.sort((a,b)=>{
+//     return a.name.localeCompare(b.name);
+// });
+
+const suburbLocationList = [];
 document.addEventListener('DOMContentLoaded',()=>{
-    const mapContainer = document.querySelector('.shopify-section--service-map .map');
-    if(mapContainer) {
-        const map = L.map(mapContainer.id).setView([-35.2809, 149.1300], 11);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(map);
-                debugger;
-        // L.marker(serviceItemms).addTo(map);
-        console.log(serviceItemms);
+    const mapSection = document.querySelector('.shopify-section--service-map');
+    if(mapSection) {
+        const mapContainer = mapSection.querySelector('.map');
+        if(mapContainer) {
+            console.log(' map ');
+            console.log(L);
+            const postcodesContainer = mapSection.querySelector('.post-codes .postcode-list');
+            const map = L.map(mapContainer.id).setView([-35.2809, 149.1300], 10);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
+            suburItems.forEach(suburbItem=>{
+                const marker = L.marker([suburbItem.lat,suburbItem.lng]).addTo(map);
+                marker.bindPopup(`<div class="suburb-popup"><p>${suburbItem.name}</p><p>${suburbItem.postcode}</p></div>`);
+                postcodesContainer.innerHTML += `
+                    <div class="postcode-item" lat=${suburbItem.lat} lng=${suburbItem.lng}>
+                        <p class='suburb-name m-0'>${suburbItem.name}</p>
+                        <p class='suburb-postcode m-0'>${suburbItem.postcode}</p>
+                    </div>
+                `;
+            });
+
+            const postcodeSearch = mapSection.querySelector('.search');
+            const postcodeInput = postcodeSearch.querySelector('input');
+            const closeIcon = postcodeSearch.querySelector('img:last-child');
+            let hTime = null;
+
+            postcodeInput.addEventListener('keyup',(e)=>{
+                if(hTime !== null) {
+                    clearInterval(hTime);
+                    hTime = null;
+                }
+                hTime = setInterval(() => {
+                    clearInterval(hTime);
+                    hTime = null;
+                    displaySuburbs(postcodesContainer,searchSuburb(suburItems,e.target.value));
+                }, 500);
+                if(e.target.value !== '') {
+                    postcodeSearch.classList.remove('empty');
+                } else {
+                    postcodeSearch.classList.add('empty');
+                }
+            });
+            closeIcon.addEventListener('click',()=>{
+                postcodeInput.value = '';
+                displaySuburbs(postcodesContainer,suburItems);
+            });
+
+            const congratulationText = mapSection.querySelector('.congratulation-text');
+            document.addEventListener('click',(e)=>{
+                if(e.target.classList.contains('postcode-item') || e.target.closest('.postcode-item')) {
+                    congratulationText.classList.add('show');
+                    let hTime = setInterval(() => {
+                        congratulationText.classList.remove('show');
+                        clearInterval(hTime)
+                    }, 300);
+                }
+            });
+        }
     }
 });
+const searchSuburb = (sourceList,pattern) => {
+    const list = [];
+    const lowerPattern = pattern.toLowerCase();
+    sourceList.forEach(item=>{
+        if(item.name.toLowerCase().indexOf(lowerPattern) !== -1 || item.postcode.indexOf(lowerPattern) !== -1) {
+            list.push(item);
+        }
+    });
+    return list;
+}
+const displaySuburbs = (context,list) => {
+    if(typeof context != 'object' || context.nodeName === '') {
+        return;
+    }
+    context.innerHTML = '';
+    list.forEach(item=>{
+        context.innerHTML += `
+                    <div class="postcode-item" lat=${item.lat} lng=${item.lng}>
+                        <p class='suburb-name m-0'>${item.name}</p>
+                        <p class='suburb-postcode m-0'>${item.postcode}</p>
+                    </div>
+                `;
+    });
+}

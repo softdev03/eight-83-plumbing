@@ -11,22 +11,26 @@
     }
   }
 {%- endstyle -%}
-<div class="shopify-service-map">
-  <div class="post-code-area w-50 ">
-    <h1 class="heading font-800 text-dark line-height-1_1 text-upper">{{ section.settings.heading }}</h1>
-    <p class="text line-height-1_1 font-500 text-dark">{{ section.settings.text }}</p>
-    <div class="postcodes-form">
-      <div class="search empty">
-        <input type="text" class="search-pattern text-dark line-height-1_1 font-500" placeholder="Postcode Search">
-        <img src="{{ section.settings.search_icon |  img_url: '20x' }}" alt="" width="20px" height="20px">
-        <img src="{{ section.settings.close_icon |  img_url: '20x' }}" alt="" width="20px" height="20px" class="close-icon">
+<div class="shopify-service-map page-width">
+  <div class="map-wrapper">
+    <div class="post-code-area w-50 ">
+      <h1 class="heading font-800 text-dark line-height-1_1 text-upper">{{ section.settings.heading }}</h1>
+      <p class="text line-height-1_1 font-500 text-dark">{{ section.settings.text }}</p>
+      <div class="postcodes-form">
+        <div class="search empty">
+          <input type="text" class="search-pattern text-dark line-height-1_1 font-500" placeholder="Postcode Search">
+          <img src="{{ section.settings.search_icon |  img_url: '20x' }}" alt="" width="20px" height="20px">
+          <img src="{{ section.settings.close_icon |  img_url: '20x' }}" alt="" width="20px" height="20px" class="close-icon">
+        </div>
+        <div class="post-codes">
+          <div class="postcode-list text-dark-wrapper"></div>
+        </div>
       </div>
-      <div class="post-codes text-dark-wrapper"></div>
+      <p class="congratulation-text line-height-1_1 font-500 text-dark">{{ section.settings.congratulation_text }}</p>
+      <a href="{{ section.settings.button_link }}" class="button-link text-center bg-dark text-white line-height-1_1 font-800 text-upper">{{ section.settings.button_text }}</a>
     </div>
-    <p class="congratulation-text line-height-1_1 font-500 text-dark">{{ section.settings.congratulation_text }}</p>
-    <a href="{{ section.settings.button_link }}" class="button-link text-center bg-dark text-white line-height-1_1 font-800">{{ section.settings.button_text }}</a>
-  </div>
-  <div class="map w-50" id="{{ section.settings.map_section_id }}">
+    <div class="map w-50" id="{{ section.settings.map_section_id }}">
+    </div>
   </div>
 </div>
 {% schema %}

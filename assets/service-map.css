@@ -1,10 +1,11 @@
-.shopify-section--service-map .shopify-service-map {
+.shopify-section--service-map .map-wrapper {
     box-shadow: 0 0 62px 0 rgb(0 0 0 / .25);
     display: flex;
     max-width: var(--page-width);
     margin-left: auto;
     margin-right: auto;
     align-items: center;
+    flex-wrap: wrap;
 }
 .shopify-section--service-map .post-code-area {
     display: flex;
@@ -43,7 +44,8 @@
     box-shadow: none;
 }
 .shopify-section--service-map .search input:focus {
-    border-color: rgb(24, 24, 24);
+    /* border-color: rgb(24, 24, 24); */
+    border-color: black;
     outline: none;
 }
 .shopify-section--service-map .search img {
@@ -54,8 +56,8 @@
 }
 .shopify-section--service-map .congratulation-text {
     font-size: 18px;
-    margin-top: 32px;
-    margin-bottom: 32px;
+    margin-top: 16px;
+    margin-bottom: 16px;
     visibility: hidden;
 }
 .shopify-section--service-map .congratulation-text.show {
@@ -70,4 +72,112 @@
 
 .shopify-section--service-map .map {
     aspect-ratio: 1;
+    z-index: 0;
+}
+
+.shopify-section--service-map .leaflet-popup::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0px;
+    height: 0px;
+    border-width: 5px 10px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+    bottom: -16%;
+}
+.shopify-section--service-map .leaflet-popup-content {
+    width: unset !important;
+}
+.shopify-section--service-map .suburb-popup {
+    display: flex;
+    justify-content: space-between;
+    min-width: 100px;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+.shopify-section--service-map .suburb-popup p {
+    font-size: 12px;
+    margin: 0px;
+    white-space: nowrap;
+}
+.shopify-section--service-map .suburb-popup p:first-child {
+    margin-right: 20px;
+}
+
+.shopify-section--service-map .post-codes {
+    max-height: 250px;
+    overflow: auto;
+    padding-right: 10px;
+    border-radius: 8px;
+}
+.shopify-section--service-map .post-codes::-webkit-scrollbar {
+    width: 5px;
+}
+
+.shopify-section--service-map .post-codes::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.shopify-section--service-map .post-codes::-webkit-scrollbar-thumb {
+    background: #313131;
+    border-radius: 10px;
+}
+
+.shopify-section--service-map .post-codes::-webkit-scrollbar-thumb:hover {
+    background: black;
+}
+.shopify-section--service-map .postcode-list {
+    background-color: #f3f3f3;
+    padding: 16px;
+    border-radius: 6px;
+}
+.shopify-section--service-map .postcode-item {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    padding-right: 20px;
+}
+.shopify-section--service-map .postcode-item:hover {
+    background-color: #ececec;
+}
+
+@media screen and (max-width: 1439px) {
+    .shopify-section--service-map .post-code-area {
+        width: 100%;
+    }
+    .shopify-section--service-map .map {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 749px) {
+    .shopify-section--service-map .post-code-area {
+        padding: 15px;
+    }
+    .shopify-section--service-map .heading {
+        font-size: 28px;
+    }
+    .shopify-section--service-map .text {
+        font-size: 14px;
+    }
+    .shopify-section--service-map .search {
+        padding: 8px 24px;
+    }
+    .shopify-section--service-map .search input {
+        font-size: 16px;
+    }
+    .shopify-section--service-map .congratulation-text {
+        font-size: 15px;
+    }
+    .shopify-section--service-map .button-link {
+        font-size: 25px;
+    }
+}
+@media screen and (max-width: 512px) {
+    .shopify-section--service-map .heading {
+        font-size: 23px;
+    }
 }
