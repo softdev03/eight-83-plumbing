@@ -642,9 +642,6 @@ const suburItems = [
     },
 ];
 
-// const sortedSuburbItems = suburItems.sort((a,b)=>{
-//     return a.name.localeCompare(b.name);
-// });
 
 const suburbLocationList = [];
 document.addEventListener('DOMContentLoaded', () => {
@@ -652,9 +649,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mapSection) {
         const mapContainer = mapSection.querySelector('.map');
         if (mapContainer) {
-            // const bounds = L.latLngBounds(suburItems.map(suburbItem=>{
-            //     return [suburbItem.lat,suburbItem.lng];
-            // }));
             const postcodesContainer = mapSection.querySelector('.post-codes .postcode-list');
             const map = L.map(mapContainer.id).setView([-35.2809, 149.1300], 10);
             const customIcon = L.icon({
@@ -705,6 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const congratulationText = mapSection.querySelector('.congratulation-text');
+            let hCongratulationTime = null;
             document.addEventListener('click', (e) => {
                 let suburbItem = e.target.closest('.postcode-item');
                 if (e.target.classList.contains('postcode-item')) {
@@ -715,10 +710,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     const lat = parseFloat(suburbItem.getAttribute('lat'));
                     const lng = parseFloat(suburbItem.getAttribute('lng'));
                     searchMarker(map, lat, lng);
-                    let hTime = setInterval(() => {
+                    if(hCongratulationTime !== null) {
+                        clearInterval(hCongratulationTime);
+                        hCongratulationTime = null;
+                    }
+                    hCongratulationTime = setInterval(() => {
                         congratulationText.classList.remove('show');
-                        clearInterval(hTime)
-                    }, 300);
+                        clearInterval(hCongratulationTime)
+                    }, 5000);
                 }
             });
         }

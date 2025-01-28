@@ -16,6 +16,11 @@
   }
 {%- endstyle -%}
 <div class="shopify-sale-offer text-upper-container">
+  {%- if section.settings.google_icon != blank and section.settings.google_rating_link != blank -%}
+    <a href="{{ section.settings.google_rating_link }}">
+      <img src="{{ section.settings.google_icon |  img_url: '30x' }}" alt="" class="google-icon" width="30px" height="30px">
+    </a>
+  {%- endif -%}
   <div class="image">
     <img src="{{ section.settings.image |  img_url: 'master' }}" alt="Image" width="auto" height="auto">
   </div>
@@ -51,6 +56,16 @@
         "id": "background_color",
         "label": "Background Color",
         "default": "#000000"
+      },
+      {
+        "type": "image_picker",
+        "id": "google_icon",
+        "label": "Google Icon"
+      },
+      {
+        "type": "url",
+        "id": "google_rating_link",
+        "label": "Google Rating Link"
       },
       {
         "type": "image_picker",

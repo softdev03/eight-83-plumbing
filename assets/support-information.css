@@ -38,6 +38,7 @@
     .shopify-section--support-information .shopify-support-information {
         column-gap: 30px;
         row-gap: 15px;
+        justify-content: center;
     }
     .shopify-section--support-information .heading {
         font-size: 40px;
