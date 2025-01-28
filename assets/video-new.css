@@ -13,6 +13,7 @@
     min-width: 100%;
     min-height: 500px;
     object-fit: cover;
+    max-height: calc(100vh - 100px);
 }
 .shopify-section--video-new .overlay {
     min-width: 100%;

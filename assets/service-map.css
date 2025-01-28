@@ -114,7 +114,7 @@
     border-radius: 8px;
 }
 .shopify-section--service-map .post-codes::-webkit-scrollbar {
-    width: 5px;
+    width: 10px;
 }
 
 .shopify-section--service-map .post-codes::-webkit-scrollbar-track {

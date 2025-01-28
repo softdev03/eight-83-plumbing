@@ -31,7 +31,7 @@
       "type": "sale-offer",
       "settings": {
         "section_width": 1440,
-        "background_color": "#00446c",
+        "background_color": "#121212",
         "image": "shopify://shop_images/offer_sale_img.webp",
         "online_offer_text": "online offer only",
         "price_text": "$150",
@@ -286,6 +286,7 @@
         "button_text": "Get a Quote",
         "map_section_id": "service-map-with-postcodes",
         "congratulation_text": "Great! We service your area.",
+        "use_default_icon": true,
         "desktop_padding_top": 70,
         "desktop_padding_bottom": 70,
         "mobile_padding_top": 40,
