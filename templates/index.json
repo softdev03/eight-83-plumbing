@@ -32,6 +32,8 @@
       "settings": {
         "section_width": 1440,
         "background_color": "#121212",
+        "google_icon": "shopify://shop_images/google_icon_a8fb4188-2a6f-4f02-926f-6b8a2df3f5c5.png",
+        "google_rating_link": "#shopify-block-AVHpSajdyUWRlL0lUT__rocket_google_reviews_app_block_LfQg3E",
         "image": "shopify://shop_images/offer_sale_img.webp",
         "online_offer_text": "online offer only",
         "price_text": "$150",
@@ -199,6 +201,21 @@
         "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "17381046880982f6f5": {
+      "type": "apps",
+      "blocks": {
+        "rocket_google_reviews_app_block_LfQg3E": {
+          "type": "shopify://apps/rocket-google-reviews/blocks/app-block/d11c8893-a181-4aff-a280-7446d42cec3b",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "rocket_google_reviews_app_block_LfQg3E"
+      ],
+      "settings": {
+        "include_margins": true
       }
     },
     "enquiry_form_GJarAm": {
@@ -501,6 +518,7 @@
     "support_information_hNCxEV",
     "rich_text_h8ibrU",
     "multicolumn_x6DUqF",
+    "17381046880982f6f5",
     "enquiry_form_GJarAm",
     "service_map_bgGG9J",
     "multirow_eMnHKp",
