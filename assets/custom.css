@@ -156,6 +156,42 @@ html {
 .text-dark-wrapper > * {
     color: rgb(48, 48, 48);
 }
+.text-little-dark {
+    color: rgb(58, 58, 58);
+}
+.text-little-dark-container * {
+    color: rgb(58, 58, 58);
+}
+.text-little-dark-wrapper > * {
+    color: rgb(58, 58, 58);
+}
+.text-more-dark {
+    color: rgb(36, 36, 36);
+}
+.text-more-dark-container * {
+    color: rgb(36, 36, 36);
+}
+.text-more-dark-wrapper > * {
+    color: rgb(36, 36, 36);
+}
+.text-very-dark {
+    color: rgb(18,18,18);
+}
+.text-very-dark-container * {
+    color: rgb(18,18,18);
+}
+.text-very-dark-wrapper > * {
+    color: rgb(18,18,18);
+}
+.text-black {
+    color: black;
+}
+.text-black-container * {
+    color: black;
+}
+.text-black-wrapper > * {
+    color: black;
+}
 .text-upper {
     text-transform: uppercase;
 }
@@ -171,6 +207,9 @@ html {
 
 .bg-dark {
     background-color: rgb(48, 48, 48);
+}
+.bg-very-dark {
+    background-color: rgb(18, 18, 18);
 }
 
 

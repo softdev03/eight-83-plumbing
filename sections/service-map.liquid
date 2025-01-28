@@ -14,22 +14,22 @@
 <div class="shopify-service-map page-width">
   <div class="map-wrapper">
     <div class="post-code-area w-50 ">
-      <h1 class="heading font-800 text-dark line-height-1_1 text-upper">{{ section.settings.heading }}</h1>
-      <p class="text line-height-1_1 font-500 text-dark">{{ section.settings.text }}</p>
+      <h1 class="heading font-800 text-black line-height-1_1 text-upper">{{ section.settings.heading }}</h1>
+      <p class="text line-height-1_1 font-500 text-black">{{ section.settings.text }}</p>
       <div class="postcodes-form">
         <div class="search empty">
-          <input type="text" class="search-pattern text-dark line-height-1_1 font-500" placeholder="Postcode Search">
+          <input type="text" class="search-pattern text-black line-height-1_1 font-500" placeholder="Postcode Search">
           <img src="{{ section.settings.search_icon |  img_url: '20x' }}" alt="" width="20px" height="20px">
           <img src="{{ section.settings.close_icon |  img_url: '20x' }}" alt="" width="20px" height="20px" class="close-icon">
         </div>
         <div class="post-codes">
-          <div class="postcode-list text-dark-wrapper"></div>
+          <div class="postcode-list text-black-wrapper"></div>
         </div>
       </div>
-      <p class="congratulation-text line-height-1_1 font-500 text-dark">{{ section.settings.congratulation_text }}</p>
-      <a href="{{ section.settings.button_link }}" class="button-link text-center bg-dark text-white line-height-1_1 font-800 text-upper">{{ section.settings.button_text }}</a>
+      <p class="congratulation-text line-height-1_1 font-500 text-black">{{ section.settings.congratulation_text }}</p>
+      <a href="{{ section.settings.button_link }}" class="button-link text-center bg-very-dark text-white line-height-1_1 font-800 text-upper">{{ section.settings.button_text }}</a>
     </div>
-    <div class="map w-50" id="{{ section.settings.map_section_id }}">
+    <div class="map w-50" id="{{ section.settings.map_section_id }}" marker_icon="{{ section.settings.map_marker_icon |  img_url: '30x' }}" {% if section.settings.use_default_icon %} useDefault="true" {% endif %}>
     </div>
   </div>
 </div>
@@ -78,6 +78,17 @@
         "type": "text",
         "id": "congratulation_text",
         "label": "Congratulation Text"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_default_icon",
+        "label": "Use Default Icon",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "map_marker_icon",
+        "label": "Map Marker Icon"
       },
       {
         "type": "header",

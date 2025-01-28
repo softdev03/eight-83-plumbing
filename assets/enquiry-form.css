@@ -9,13 +9,11 @@
     height: fit-content;
 }
 .shopify-section--enquiry-form .heading {
-    color: #00446C;
     font-size: 52px;
     margin-bottom: 10px;
 }
 .shopify-section--enquiry-form .text {
     font-size: 19px;
-    color: #00446C;
     margin-bottom: 48px;
 }
 .shopify-section--enquiry-form .text p {
@@ -61,7 +59,6 @@
 }
 .shopify-section--enquiry-form .submit {
     color: white;
-    background-color: #00446C;
     cursor: pointer;
 }
 

@@ -16,8 +16,8 @@
 {%- endstyle -%}
 <div class="shopify-enquiry-form page-width" id="{{ section.settings.section_id }}">
     <div class="intro">
-        <h1 class="heading font-800 line-height-1_1 text-upper m-0">{{ section.settings.heading }}</h1>
-        <div class="text line-height-1_1">{{ section.settings.text }}</div>
+        <h1 class="heading text-black font-800 line-height-1_1 text-upper m-0">{{ section.settings.heading }}</h1>
+        <div class="text text-black line-height-1_1">{{ section.settings.text }}</div>
         <div class="image">
             <img src="{{ section.settings.image  |  img_url: '1000x'}}" alt="" width="auto" height="auto">
         </div>
@@ -42,7 +42,7 @@
         </select>
         <input type="text" name="suburb" id="suburb" class="w-45 line-height-1_1 font-500" placeholder="Suburb">
         <textarea name="message" id="message" cols="30" rows="1" class="w-100 line-height-1_1 font-600" placeholder="Your Message"></textarea>
-        <input type="submit" value="send enquiry" class="w-100 text-upper line-height-1_1 font-600 submit">
+        <input type="submit" value="send enquiry" class="w-100 bg-very-dark text-upper line-height-1_1 font-600 submit">
     </form>
 </div>
 {% schema %}
