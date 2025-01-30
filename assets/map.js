@@ -322,7 +322,7 @@ const suburItems = [
     }, {
         name: 'Rivett',
         lat: -35.3493,
-        lng: 35.3493,
+        lng: 149.0370,
         postcode: '2611'
     }, {
         name: 'Stirling',
@@ -605,12 +605,6 @@ const suburItems = [
         lat: -35.3764,
         lng: 149.2336,
         postcode: '2620'
-    },
-    {
-        name: 'Majors Creek',
-        lat: -35.5167,
-        lng: 149.7833,
-        postcode: '2622'
     },
     {
         name: 'Nerriga',

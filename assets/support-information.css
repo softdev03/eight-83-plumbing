@@ -48,8 +48,9 @@
         font-size: 10px;
     }
 }
-@media screen and (max-width: 341px) {
+@media screen and (max-width: 425px) {
     .shopify-section--support-information .shopify-support-information {
         justify-content: center;
+        flex-direction: column;
     }
 }
