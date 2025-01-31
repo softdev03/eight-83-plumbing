@@ -201,6 +201,17 @@ html {
 .text-upper-container * {
     text-transform: uppercase;
 }
+
+.text-cap {
+    text-transform: capitalize;
+}
+.text-cap-wrapper > *{
+    text-transform: capitalize;
+}
+.text-cap-container * {
+    text-transform: capitalize;
+}
+
 .text-center {
     text-align: center;
 }

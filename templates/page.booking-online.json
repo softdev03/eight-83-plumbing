@@ -7,18 +7,183 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
-    "sections": {
-      "main": {
-        "type": "main-page",
-        "settings": {
-          "padding_top": 28,
-          "padding_bottom": 28
-        }
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
       }
     },
-    "order": [
-      "main"
-    ]
-  }
-  
+    "booking_service_WQ4Ebh": {
+      "type": "booking-service",
+      "blocks": {
+        "service_type_xL9qjT": {
+          "type": "service_type",
+          "settings": {
+            "service_name": "emergency plumbing",
+            "price": 100
+          }
+        },
+        "service_type_4fPmLq": {
+          "type": "service_type",
+          "settings": {
+            "service_name": "general plumbing",
+            "price": 50
+          }
+        },
+        "service_type_K4BA3R": {
+          "type": "service_type",
+          "settings": {
+            "service_name": "blocked drain service",
+            "price": 120
+          }
+        },
+        "service_type_3giqhC": {
+          "type": "service_type",
+          "settings": {
+            "service_name": "hot water solutions",
+            "price": 30
+          }
+        },
+        "service_type_eRgdkp": {
+          "type": "service_type",
+          "settings": {
+            "service_name": "gat fitting services",
+            "price": 50
+          }
+        },
+        "service_type_TNGR94": {
+          "type": "service_type",
+          "settings": {
+            "service_name": "bathroom renovations",
+            "price": 30
+          }
+        }
+      },
+      "block_order": [
+        "service_type_xL9qjT",
+        "service_type_4fPmLq",
+        "service_type_K4BA3R",
+        "service_type_3giqhC",
+        "service_type_eRgdkp",
+        "service_type_TNGR94"
+      ],
+      "settings": {
+        "heading": "Select Service",
+        "section_id": "select-service-for-booking-online",
+        "target_section_id": "#job-inform-for-booking-online",
+        "next_step_text": "Next",
+        "desktop_padding_top": 60,
+        "desktop_padding_bottom": 60,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30
+      }
+    },
+    "booking_job_Gyhmnd": {
+      "type": "booking-job",
+      "blocks": {
+        "cleaning_servic_item_Vknwac": {
+          "type": "cleaning_servic_item",
+          "settings": {
+            "text": "regular clean"
+          }
+        },
+        "cleaning_servic_item_cEVKd9": {
+          "type": "cleaning_servic_item",
+          "settings": {
+            "text": "once off clean"
+          }
+        },
+        "cleaning_servic_item_JgghWC": {
+          "type": "cleaning_servic_item",
+          "settings": {
+            "text": "vocate/bond clean"
+          }
+        },
+        "room_sort_Ygg6my": {
+          "type": "room_sort",
+          "settings": {
+            "text": "bedroom(s)"
+          }
+        },
+        "room_sort_UW4ndU": {
+          "type": "room_sort",
+          "settings": {
+            "text": "bathroom(s)"
+          }
+        },
+        "room_sort_zGHRM8": {
+          "type": "room_sort",
+          "settings": {
+            "text": "kitchen(s)"
+          }
+        },
+        "room_sort_RiJXFY": {
+          "type": "room_sort",
+          "settings": {
+            "text": "living room(s)"
+          }
+        }
+      },
+      "block_order": [
+        "cleaning_servic_item_Vknwac",
+        "cleaning_servic_item_cEVKd9",
+        "cleaning_servic_item_JgghWC",
+        "room_sort_Ygg6my",
+        "room_sort_UW4ndU",
+        "room_sort_zGHRM8",
+        "room_sort_RiJXFY"
+      ],
+      "settings": {
+        "heading": "home services",
+        "logo": "shopify://shop_images/servicem8.png",
+        "section_id": "job-inform-for-booking-online",
+        "target_section_id": "time-inform-for-booking-online",
+        "next_step": "Select a Time",
+        "prev_section_id": "#select-service-for-booking-online",
+        "prev_step": "Back to Service Selection",
+        "phone_number": "0437 174 202",
+        "phone_icon": "shopify://shop_images/phone_icon_5c3bfd2b-17fb-465b-9a8c-da248e594377.svg",
+        "tell_us_your_job_heading": "Tell us about your job",
+        "tell_us_your_job_text": "Answer the questions below to help us understand more about the job.",
+        "job_address_heading": "Job Address",
+        "email_placeholder": "Enter your job address",
+        "cleaning_service_select_heading": "What kind of cleaning service would you like?",
+        "tell_us_place_heading": "Tell us about your place",
+        "cleaning_service_heading": "Cleaning Service",
+        "cleaning_service_text": "Professional and reliable for your home or business.",
+        "help_heading": "Need Help?",
+        "help_text": "If you're stuck or need help, call us on 0437 174 202.",
+        "desktop_padding_top": 60,
+        "desktop_padding_bottom": 60,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30
+      }
+    },
+    "booking_time_9fPyEt": {
+      "type": "booking-time",
+      "settings": {
+        "heading": "Schedule your service",
+        "text": "Select a time below and one of our team.",
+        "cleaning_service_heading": "Cleaning Service",
+        "cleaning_service_text": "Professional and reliable for your home or business.",
+        "proceed_text": "Proceed to Checkout",
+        "help_heading": "Need Help?",
+        "help_text": "If you're stuck or need help, call us on 0437 174 202.",
+        "desktop_padding_top": 60,
+        "desktop_padding_bottom": 60,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30
+      }
+    }
+  },
+  "order": [
+    "main",
+    "booking_service_WQ4Ebh",
+    "booking_job_Gyhmnd",
+    "booking_time_9fPyEt"
+  ]
+}

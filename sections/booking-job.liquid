@@ -1,0 +1,259 @@
+{{ 'booking-job.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.desktop_padding_top }}px;
+    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+  }
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+        padding-top: {{ section.settings.mobile_padding_top }}px;
+        padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="shopify-booking-job page-width" id="{{ section.settings.section_id }}">
+  <div class="card">
+    <div class="heading-container">
+      <div class="heading-wrapper">
+        {%- if section.settings.logo != blank -%}
+          <img src="{{ section.settings.logo |  img_url: '50x' }}" alt="" width="50px" height="50px">
+        {%- endif -%}
+        <h1 class="heading m-0 text-cap">{{ section.settings.heading }}</h1>
+      </div>
+      <div class="phone-number-wrapper">
+        {%- if section.settings.phone_icon != blank -%}
+          <img src="{{ section.settings.phone_icon |  img_url: '40x' }}" alt="" width="40px" height="40px">
+        {%- endif -%}
+        <p class="m-0 phone-number">{{ section.settings.phone_number }}</p>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="input-area">
+        <a href="{{ section.settings.prev_section_id }}" class="back-step">{{ section.settings.prev_step }}</a>
+        <div class="job-setting">
+          <h1 class="job-setting-heading m-0">{{ section.settings.tell_us_your_job_heading }}</h1>
+          <p class="job-setting-text m-0">{{ section.settings.tell_us_your_job_text }}</p>
+          <div class="job-address">
+            <h1 class="job-address-heading m-0">{{ section.settings.job_address_heading }}</h1>
+            <input type="email" class="job-email" placeholder="{{ section.settings.email_placeholder }}">
+          </div>
+          <div class="cleaning-service-select">
+            <h1 class="cleaning-service-heading m-0">{{ section.settings.cleaning_service_select_heading }}</h1>
+            {%- assign cleaningServiceItems = section.blocks | where: 'type', 'cleaning_servic_item' -%}
+            <div class="cleaning-service-items">
+              {%- for block in cleaningServiceItems -%}
+                <p class="cleaning-service-item m-0 text-cap">{{ block.settings.text }}</p>
+              {%- endfor -%}
+            </div>
+          </div>
+          <div class="your-place">
+            <h1 class="m-0 your-place-heading">{{ section.settings.tell_us_place_heading }}</h1>
+            <div class="place-rooms">
+              {%- assign rooms = section.blocks | where: 'type', 'room_sort' -%}
+              {%- for block in rooms -%}
+                <div class="room">
+                  <button class="minus">-</button>
+                  <p class="room-name m-0 text-cap" native="{{ block.settings.text }}" count="0">0 {{ block.settings.text }}</p>
+                  <button class="plus">+</button>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-area">
+        <div class="cleaning-service">
+          <div class="cleaning-service-main">
+            <h1 class="m-0 cleaning-service-heading">{{ section.settings.cleaning_service_heading }}</h1>
+            <p class="m-0 cleaning-service-text">{{ section.settings.cleaning_service_text }}</p>
+          </div>
+          <div class="cleaning-service-button">
+            <a href="{{ section.settings.target_section_id }}" class="next-step">{{ section.settings.next_step }}</a>
+          </div>
+        </div>
+        <div class="need-help">
+          <h1 class="m-0 need-help-heading">{{ section.settings.help_heading }}</h1>
+          <p class="m-0 need-help-text">{{ section.settings.help_text }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Booking Job",
+  "tag": "section",
+  "class": "shopify-section shopify-section--booking-job booking-online",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "section_id",
+      "label": "Section Id"
+    },
+    {
+      "type": "text",
+      "id": "target_section_id",
+      "label": "Target Section Id"
+    },
+    {
+      "type": "text",
+      "id": "next_step",
+      "label": "Next Step"
+    },
+    {
+      "type": "text",
+      "id": "prev_section_id",
+      "label": "Prev Section Id"
+    },
+    {
+      "type": "text",
+      "id": "prev_step",
+      "label": "Prev Step"
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone Number"
+    },
+    {
+      "type": "image_picker",
+      "id": "phone_icon",
+      "label": "Phone Icon"
+    },
+    {
+      "type": "text",
+      "id": "tell_us_your_job_heading",
+      "label": "Tell Us about Your job for heading"
+    },
+    {
+      "type": "text",
+      "id": "tell_us_your_job_text",
+      "label": "Tell us about your job for text"
+    },
+    {
+      "type": "text",
+      "id": "job_address_heading",
+      "label": "Job Address Heading"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Emale Placeholder"
+    },
+    {
+      "type": "text",
+      "id": "cleaning_service_select_heading",
+      "label": "Clearing Service Select Heading"
+    },
+    {
+      "type": "text",
+      "id": "tell_us_place_heading",
+      "label": "Tell Us about your place"
+    },
+    {
+      "type": "text",
+      "id": "cleaning_service_heading",
+      "label": "Cleaning Service Heading"
+    },
+    {
+      "type": "text",
+      "id": "cleaning_service_text",
+      "label": "Cleaning Service Text"
+    },
+    {
+      "type": "text",
+      "id": "help_heading",
+      "label": "Help Heading"
+    },
+    {
+      "type": "text",
+      "id": "help_text",
+      "label": "Help Text"
+    },
+    {
+      "type": "header",
+      "content": "Padding Settings"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop Padding Bottom",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Padding Bottom",
+      "default": 50
+    }
+  ],
+  "blocks": [
+    {
+      "type": "cleaning_servic_item",
+      "name": "Cleaning Service Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "room_sort",
+      "name": "Room Sort",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Booking Job",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

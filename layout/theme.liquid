@@ -261,6 +261,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'custom.css' |  asset_url |  stylesheet_tag }}
+    {{ 'booking-online.css' |  asset_url |  stylesheet_tag }}
     {%- unless settings.type_body_font.system? -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
@@ -277,9 +278,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
     {{ 'custom.js' |  asset_url |  script_tag }}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    {{ 'map.js' |  asset_url |  script_tag }}
+    {%- if template == 'index' -%}
+      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+      {{ 'map.js' |  asset_url |  script_tag }}
+    {%- endif -%}
+    {%- if template == 'page.booking-online' -%}
+      {{ 'booking-online.js' |  asset_url |  script_tag }}
+    {%- endif -%}
     {%- if settings.predictive_search_enabled -%}
       <link
         rel="stylesheet"
@@ -288,7 +294,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         onload="this.media='all'"
       >
     {%- endif -%}
-
     <script>
       if (Shopify.designMode) {
         document.documentElement.classList.add('shopify-design-mode');
@@ -378,7 +383,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         countrySelectorSearchCount: `{{ 'localization.country_results_count' | t: count: '[count]' }}`,
       };
     </script>
-
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}

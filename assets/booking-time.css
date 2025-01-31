@@ -1,0 +1,114 @@
+.shopify-section--booking-time .card {
+  padding: 30px 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f5f5f5;
+  flex-wrap: wrap;
+  row-gap: 40px;
+}
+.shopify-section--booking-time .main {
+  width: calc(100% - 390px);
+  max-width: calc(65% - 30px);
+}
+.shopify-section--booking-time .heading {
+  line-height: 1;
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 400;
+}
+.shopify-section--booking-time .text {
+  margin-bottom: 30px;
+}
+.shopify-section--booking-time p {
+  line-height: 1;
+}
+.shopify-section--booking-time .add-date {
+  text-decoration: none;
+  color: #fff;
+  background-color: #000;
+  border: 1px solid black;
+  padding: 10px 20px;
+  min-width: 200px;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+}
+.shopify-section--booking-time .time-list:not(:empty) {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+.shopify-section--booking-time .add-date:hover {
+  background-color: white;
+  color: black;
+}
+.shopify-section--booking-time .add-date:active {
+  box-shadow: 0px 0px 10px 1px grey inset;
+}
+.shopify-section--booking-time .text-area {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  min-width: 35%;
+  row-gap: 15px;
+}
+.shopify-section--booking-time .text-area > div {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.shopify-section--booking-time .cleaning-main {
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+.shopify-section--booking-time .button-wrapper {
+  padding: 20px;
+}
+.shopify-section--booking-time .book-call {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid black;
+}
+.shopify-section--booking-time .book-call:hover {
+  background-color: white;
+  color: black;
+}
+.shopify-section--booking-time .book-call:active {
+  box-shadow: 0px 0px 10px 1px grey inset;
+}
+.shopify-section--booking-time .need-help {
+  padding: 20px;
+}
+.shopify-section--booking-time .need-help-text {
+  line-height: 1.3;
+}
+
+@media screen and (max-width: 1023px) {
+    .shopify-section--booking-time .main,.shopify-section--booking-time .text-area {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+@media screen and (max-width: 749px) {
+    .shopify-section--booking-time .heading {
+        font-size: 20px;
+    }
+    .shopify-section--booking-time p {
+        font-size: 13px;
+    }
+    .shopify-section--booking-time .text {
+        margin-bottom: 20px;
+    }
+    .shopify-section--booking-time .add-date {
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 424px) {
+    .shopify-section--booking-time .add-date {
+        width: 100%;
+    }
+}
