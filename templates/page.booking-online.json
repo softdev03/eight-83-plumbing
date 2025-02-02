@@ -141,7 +141,7 @@
         "heading": "home services",
         "logo": "shopify://shop_images/servicem8.png",
         "section_id": "job-inform-for-booking-online",
-        "target_section_id": "time-inform-for-booking-online",
+        "target_section_id": "#time-inform-for-booking-online",
         "next_step": "Select a Time",
         "prev_section_id": "#select-service-for-booking-online",
         "prev_step": "Back to Service Selection",
@@ -166,8 +166,10 @@
     "booking_time_9fPyEt": {
       "type": "booking-time",
       "settings": {
+        "section_id": "time-inform-for-booking-online",
         "heading": "Schedule your service",
         "text": "Select a time below and one of our team.",
+        "select_time_heading": "Select a Time for a Schedule.",
         "cleaning_service_heading": "Cleaning Service",
         "cleaning_service_text": "Professional and reliable for your home or business.",
         "proceed_text": "Proceed to Checkout",

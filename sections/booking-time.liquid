@@ -16,8 +16,13 @@
     <div class="main">
       <h1 class="heading m-0">{{ section.settings.heading }}</h1>
       <p class="text m-0">{{ section.settings.text }}</p>
-      <button class="add-date">ADD</button>
-      <div class="time-list"></div>
+      <div class="schdule-time">
+        <h1 class="time-heading m-0">{{ section.settings.select_time_heading }}</h1>
+        <div class="date-time-wrapper">
+          <input type="date" class="date">
+          <input type="time" class="time">
+        </div>
+      </div>
     </div>
     <div class="text-area">
       <div class="cleaning-service">
@@ -56,6 +61,11 @@
       "type": "text",
       "id": "text",
       "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "select_time_heading",
+      "label": "Select Time Heading"
     },
     {
       "type": "text",
@@ -130,7 +140,9 @@
   "presets": [
     {
       "name": "Booking Time",
-      "settings": {}
+      "settings": {
+        "select_time_heading": "Select a Time for a schedule."
+      }
     }
   ]
 }
