@@ -28,46 +28,23 @@
   font-weight: 400;
   margin-bottom: 20px;
 }
-.shopify-section--booking-time .date-time-wrapper {
+/* .shopify-section--booking-time .date-time-wrapper {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   row-gap: 10px;
-}
-.shopify-section--booking-time .date-time-wrapper input {
-  width: calc(50% - 10px);
+} */
+
+.shopify-section--booking-time .date-time-wrapper .date-time {
   font-size: 18px;
   font-weight: 300;
   padding: 5px 10px;
+  width: 100%;
 }
-.shopify-section--booking-time .date-time-wrapper input:focus {
+.shopify-section--booking-time .date-time-wrapper .date-time:focus {
   outline: none;
   box-shadow: none;
 }
-/* .shopify-section--booking-time .add-date {
-  text-decoration: none;
-  color: #fff;
-  background-color: #000;
-  border: 1px solid black;
-  padding: 10px 20px;
-  min-width: 200px;
-  text-align: center;
-  font-size: 20px;
-  cursor: pointer;
-}
-.shopify-section--booking-time .time-list:not(:empty) {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
-}
-.shopify-section--booking-time .add-date:hover {
-  background-color: white;
-  color: black;
-}
-.shopify-section--booking-time .add-date:active {
-  box-shadow: 0px 0px 10px 1px grey inset;
-} */
 .shopify-section--booking-time .text-area {
   display: flex;
   flex-direction: column;
@@ -134,8 +111,7 @@
     .shopify-section--booking-time .add-date {
         width: 100%;
     }
-    .shopify-section--booking-time .date-time-wrapper input {
-      width: 100%;
+    .shopify-section--booking-time .date-time-wrapper .date-time {
       font-size: 15px;
     }
 }
