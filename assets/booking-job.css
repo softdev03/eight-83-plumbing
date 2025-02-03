@@ -43,30 +43,24 @@
   margin-bottom: 40px;
   line-height: 1;
 }
-.shopify-section--booking-job .job-address,
-.shopify-section--booking-job .cleaning-service,
-.shopify-section--booking-job .cleaning-service-select {
+.shopify-section--booking-job .item-wrapper {
   margin-bottom: 30px;
 }
 
-.shopify-section--booking-job .job-address-heading,
-.shopify-section--booking-job .cleaning-service-heading,
-.shopify-section--booking-job .your-place-heading,
-.shopify-section--booking-job .cleaning-service-heading,
-.need-help-heading {
+.shopify-section--booking-job .sub-heading {
   font-size: 24px;
   line-height: 1;
   margin-bottom: 15px;
   font-weight: 400;
 }
-.shopify-section--booking-job .job-address-input {
+.shopify-section--booking-job .text-input {
   padding: 15px;
   width: 100%;
   border: 1px solid #c5c5c5;
   border-radius: 5px;
   font-size: 15px;
 }
-.shopify-section--booking-job .job-address-input:focus {
+.shopify-section--booking-job .text-input:focus {
   outline: none;
   box-shadow: none;
 }
@@ -214,13 +208,10 @@
     font-size: 13px;
     margin-bottom: 30px;
   }
-  .shopify-section--booking-job .job-address-heading,
-  .shopify-section--booking-job .cleaning-service-heading,
-  .shopify-section--booking-job .your-place-heading,
-  .shopify-section--booking-job .need-help-heading {
+  .shopify-section--booking-job .sub-heading {
     font-size: 18px;
   }
-  .shopify-section--booking-job .job-address-input {
+  .shopify-section--booking-job .text-input {
     font-size: 13px;
   }
   .shopify-section--booking-job .cleaning-service-item {

@@ -33,13 +33,18 @@
         <div class="job-setting">
           <h1 class="job-setting-heading m-0">{{ section.settings.tell_us_your_job_heading }}</h1>
           <p class="job-setting-text m-0">{{ section.settings.tell_us_your_job_text }}</p>
-          <div class="job-address">
-            <h1 class="job-address-heading m-0">{{ section.settings.job_address_heading }}</h1>
-            <input type="text" class="job-address-input" placeholder="{{ section.settings.email_placeholder }}">
+          <div class="job-address item-wrapper">
+            <h1 class="job-address-heading sub-heading m-0">{{ section.settings.job_address_heading }}</h1>
+            <input type="text" class="job-address-input text-input" placeholder="{{ section.settings.job_placeholder }}">
             <p class="job-address-error error m-0">Please input your job address.</p>
           </div>
-          <div class="cleaning-service-select">
-            <h1 class="cleaning-service-heading m-0">{{ section.settings.cleaning_service_select_heading }}</h1>
+          <div class="email-address item-wrapper">
+            <h1 class="email-address-heading sub-heading m-0">{{ section.settings.email_address_heading }}</h1>
+            <input type="text" class="email-address-input text-input" placeholder="{{ section.settings.email_placeholder }}">
+            <p class="email-address-error error m-0">Please input your job address.</p>
+          </div>
+          <div class="cleaning-service-select item-wrapper">
+            <h1 class="cleaning-service-heading sub-heading m-0">{{ section.settings.cleaning_service_select_heading }}</h1>
             {%- assign cleaningServiceItems = section.blocks | where: 'type', 'cleaning_servic_item' -%}
             <div class="cleaning-service-items">
               {%- for block in cleaningServiceItems -%}
@@ -49,7 +54,7 @@
             <p class="cleaning-service-error error m-0">Please select the cleaning service.</p>
           </div>
           <div class="your-place">
-            <h1 class="m-0 your-place-heading">{{ section.settings.tell_us_place_heading }}</h1>
+            <h1 class="m-0 your-place-heading sub-heading">{{ section.settings.tell_us_place_heading }}</h1>
             <div class="place-rooms">
               {%- assign rooms = section.blocks | where: 'type', 'room_sort' -%}
               {%- for block in rooms -%}
@@ -66,7 +71,7 @@
       <div class="text-area">
         <div class="cleaning-service">
           <div class="cleaning-service-main">
-            <h1 class="m-0 cleaning-service-heading">{{ section.settings.cleaning_service_heading }}</h1>
+            <h1 class="m-0 cleaning-service-heading sub-heading">{{ section.settings.cleaning_service_heading }}</h1>
             <p class="m-0 cleaning-service-text">{{ section.settings.cleaning_service_text }}</p>
           </div>
           <div class="cleaning-service-button">
@@ -74,7 +79,7 @@
           </div>
         </div>
         <div class="need-help">
-          <h1 class="m-0 need-help-heading">{{ section.settings.help_heading }}</h1>
+          <h1 class="m-0 need-help-heading sub-heading">{{ section.settings.help_heading }}</h1>
           <p class="m-0 need-help-text">{{ section.settings.help_text }}</p>
         </div>
       </div>
@@ -149,8 +154,18 @@
     },
     {
       "type": "text",
+      "id": "job_placeholder",
+      "label": "Job Placeholder"
+    },
+    {
+      "type": "text",
+      "id": "email_address_heading",
+      "label": "Email Address Heading"
+    },
+    {
+      "type": "text",
       "id": "email_placeholder",
-      "label": "Emale Placeholder"
+      "label": "Email Placeholder"
     },
     {
       "type": "text",

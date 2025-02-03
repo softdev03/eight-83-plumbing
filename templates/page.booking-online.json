@@ -23,42 +23,42 @@
         "service_type_xL9qjT": {
           "type": "service_type",
           "settings": {
-            "service_name": "emergency plumbing",
+            "service_name": "Emergency Plumbing",
             "price": 100
           }
         },
         "service_type_4fPmLq": {
           "type": "service_type",
           "settings": {
-            "service_name": "general plumbing",
+            "service_name": "General Plumbing",
             "price": 50
           }
         },
         "service_type_K4BA3R": {
           "type": "service_type",
           "settings": {
-            "service_name": "blocked drain service",
+            "service_name": "Blocked Drain Service",
             "price": 120
           }
         },
         "service_type_3giqhC": {
           "type": "service_type",
           "settings": {
-            "service_name": "hot water solutions",
+            "service_name": "Hot Water Solutions",
             "price": 30
           }
         },
         "service_type_eRgdkp": {
           "type": "service_type",
           "settings": {
-            "service_name": "gat fitting services",
+            "service_name": "Gat Fitting Services",
             "price": 50
           }
         },
         "service_type_TNGR94": {
           "type": "service_type",
           "settings": {
-            "service_name": "bathroom renovations",
+            "service_name": "Bathroom Renovations",
             "price": 30
           }
         }
@@ -88,43 +88,43 @@
         "cleaning_servic_item_Vknwac": {
           "type": "cleaning_servic_item",
           "settings": {
-            "text": "regular clean"
+            "text": "Regular Clean"
           }
         },
         "cleaning_servic_item_cEVKd9": {
           "type": "cleaning_servic_item",
           "settings": {
-            "text": "once off clean"
+            "text": "Once Off Clean"
           }
         },
         "cleaning_servic_item_JgghWC": {
           "type": "cleaning_servic_item",
           "settings": {
-            "text": "vacate/bond clean"
+            "text": "Vacate/Bond Clean"
           }
         },
         "room_sort_Ygg6my": {
           "type": "room_sort",
           "settings": {
-            "text": "bedroom(s)"
+            "text": "Bedroom"
           }
         },
         "room_sort_UW4ndU": {
           "type": "room_sort",
           "settings": {
-            "text": "bathroom(s)"
+            "text": "Bathroom"
           }
         },
         "room_sort_zGHRM8": {
           "type": "room_sort",
           "settings": {
-            "text": "kitchen(s)"
+            "text": "Kitchen"
           }
         },
         "room_sort_RiJXFY": {
           "type": "room_sort",
           "settings": {
-            "text": "living room(s)"
+            "text": "Living Room"
           }
         }
       },
@@ -150,7 +150,9 @@
         "tell_us_your_job_heading": "Tell us about your job",
         "tell_us_your_job_text": "Answer the questions below to help us understand more about the job.",
         "job_address_heading": "Job Address",
-        "email_placeholder": "Enter your job address",
+        "job_placeholder": "Enter your job address",
+        "email_address_heading": "Email Address",
+        "email_placeholder": "Enter your email address",
         "cleaning_service_select_heading": "What kind of cleaning service would you like?",
         "tell_us_place_heading": "Tell us about your place",
         "cleaning_service_heading": "Cleaning Service",
@@ -173,6 +175,8 @@
         "cleaning_service_heading": "Cleaning Service",
         "cleaning_service_text": "Professional and reliable for your home or business.",
         "proceed_text": "Proceed to Checkout",
+        "processing_text": "Booking a Schedule ...",
+        "process_error_message": "Failed to book a schedule.",
         "help_heading": "Need Help?",
         "help_text": "If you're stuck or need help, call us on 0437 174 202.",
         "desktop_padding_top": 60,
