@@ -48,7 +48,7 @@
             {%- assign cleaningServiceItems = section.blocks | where: 'type', 'cleaning_servic_item' -%}
             <div class="cleaning-service-items">
               {%- for block in cleaningServiceItems -%}
-                <p class="cleaning-service-item m-0 text-cap">{{ block.settings.text }}</p>
+                <p class="cleaning-service-item m-0 text-cap" title="{{ block.settings.text }}">{{ block.settings.text }}</p>
               {%- endfor -%}
             </div>
             <p class="cleaning-service-error error m-0">Please select the cleaning service.</p>
@@ -60,7 +60,7 @@
               {%- for block in rooms -%}
                 <div class="room">
                   <button class="minus">-</button>
-                  <p class="room-name m-0 text-cap" native="{{ block.settings.text }}">0 {{ block.settings.text }}(s)</p>
+                  <p class="room-name m-0" native="{{ block.settings.text }}">0 of {{ block.settings.text }}</p>
                   <button class="plus">+</button>
                 </div>
               {%- endfor -%}
@@ -80,7 +80,8 @@
         </div>
         <div class="need-help">
           <h1 class="m-0 need-help-heading sub-heading">{{ section.settings.help_heading }}</h1>
-          <p class="m-0 need-help-text">{{ section.settings.help_text }}</p>
+          {%- assign helpText = section.settings.help_text |  split: '[phone number]' -%}
+          <p class="m-0 need-help-text">{{ helpText.first }}<i>{{ section.settings.phone_number }}</i></p>
         </div>
       </div>
     </div>

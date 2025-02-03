@@ -2,6 +2,7 @@ const email = 'someone@anagency.com.au';
 const password = 'ZA!D5.mT5u6ahUD';
 const credentials = btoa(`${email}:${password}`);
 let jobDescription = '';
+let newAddress = '';
 const getOption = {
     method: 'GET',
     headers: {
@@ -102,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         jobRoom.querySelector('.plus').addEventListener('click', () => {
             data.jobItem.place[roomName]++;
-            roomNameElem.innerHTML = `${data.jobItem.place[roomName]} ${roomName}(s)`;
+            roomNameElem.innerHTML = `${data.jobItem.place[roomName]} of ${roomName}`;
         });
     }
     jobPrev.addEventListener('click', (e) => {
@@ -159,9 +160,16 @@ document.addEventListener('DOMContentLoaded', () => {
             data.scheduleDate.endDate = scheduleEndDate.value;
         }
     });
+
+    let isProcessing = false;
     scheduleNext.addEventListener('click', () => {
+        if(isProcessing) {
+            return;
+        }
         if (data.scheduleDate.date && data.scheduleDate.endDate) {
             scheduleNext.innerHTML = scheduleNext.getAttribute('processing_text');
+            isProcessing = true;
+            newAddress = data.jobItem.address;
             createNewJob(data).then(res => {
                 if (res) {
                     getJobList().then(res => {
@@ -187,10 +195,11 @@ document.addEventListener('DOMContentLoaded', () => {
         scheduleNext.innerHTML = scheduleNext.getAttribute('proceed_text');
         if(result) {
             processErrorMessage.classList.remove('show');
+            location.href = '';
         } else {
             processErrorMessage.classList.add('show');
         }
-        // location.href = '';
+        isProcessing = false;
     }
 });
 const validateEmail = (email) => {
@@ -201,7 +210,7 @@ const checkMyJob = (jobList) => {
     const newJobDescription = jobDescription.toLocaleLowerCase().replace(' ', '').replace('\n', '');
     for (const job of jobList) {
         const newJobDescriptionFromServer = job.job_description.toLocaleLowerCase().replace(' ', '').replace('\n', '');
-        if (newJobDescription === newJobDescriptionFromServer) {
+        if (newJobDescription === newJobDescriptionFromServer && newAddress === job.job_address) {
             return job;
         }
     }
@@ -309,6 +318,7 @@ const bookSchedule = (date, endDate, jobId) => {
                 body: JSON.stringify(data)
             };
             fetch('https://api.servicem8.com/api_1.0/jobactivity.json', options).then(res => res.json()).then(res => {
+                console.log(res);
                 if(res.errorCode === 0) {
                     resolve(true);
                 } else {

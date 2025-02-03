@@ -88,43 +88,49 @@
         "cleaning_servic_item_Vknwac": {
           "type": "cleaning_servic_item",
           "settings": {
-            "text": "Regular Clean"
+            "text": "General Plumbing Repairs"
           }
         },
         "cleaning_servic_item_cEVKd9": {
           "type": "cleaning_servic_item",
           "settings": {
-            "text": "Once Off Clean"
+            "text": " Blocked Drains & Pipes"
           }
         },
         "cleaning_servic_item_JgghWC": {
           "type": "cleaning_servic_item",
           "settings": {
-            "text": "Vacate/Bond Clean"
+            "text": "Leak Detection & Fixes"
+          }
+        },
+        "cleaning_servic_item_kRfhye": {
+          "type": "cleaning_servic_item",
+          "settings": {
+            "text": "Hot Water System Installation & Repairs"
           }
         },
         "room_sort_Ygg6my": {
           "type": "room_sort",
           "settings": {
-            "text": "Bedroom"
+            "text": "Bathrooms"
           }
         },
         "room_sort_UW4ndU": {
           "type": "room_sort",
           "settings": {
-            "text": "Bathroom"
+            "text": "Kitchens"
           }
         },
         "room_sort_zGHRM8": {
           "type": "room_sort",
           "settings": {
-            "text": "Kitchen"
+            "text": "Outdoor Taps"
           }
         },
         "room_sort_RiJXFY": {
           "type": "room_sort",
           "settings": {
-            "text": "Living Room"
+            "text": "Water Heaters"
           }
         }
       },
@@ -132,6 +138,7 @@
         "cleaning_servic_item_Vknwac",
         "cleaning_servic_item_cEVKd9",
         "cleaning_servic_item_JgghWC",
+        "cleaning_servic_item_kRfhye",
         "room_sort_Ygg6my",
         "room_sort_UW4ndU",
         "room_sort_zGHRM8",
@@ -148,17 +155,17 @@
         "phone_number": "0437 174 202",
         "phone_icon": "shopify://shop_images/phone_icon_5c3bfd2b-17fb-465b-9a8c-da248e594377.svg",
         "tell_us_your_job_heading": "Tell us about your job",
-        "tell_us_your_job_text": "Answer the questions below to help us understand more about the job.",
+        "tell_us_your_job_text": "Answer the questions below to help us understand more about the plumbing work needed.",
         "job_address_heading": "Job Address",
         "job_placeholder": "Enter your job address",
         "email_address_heading": "Email Address",
         "email_placeholder": "Enter your email address",
-        "cleaning_service_select_heading": "What kind of cleaning service would you like?",
-        "tell_us_place_heading": "Tell us about your place",
-        "cleaning_service_heading": "Cleaning Service",
-        "cleaning_service_text": "Professional and reliable for your home or business.",
+        "cleaning_service_select_heading": "What kind of plumbing service do you need?",
+        "tell_us_place_heading": "Tell us about your property",
+        "cleaning_service_heading": "Plumbing Service",
+        "cleaning_service_text": "Reliable and professional plumbing solutions for your home or business.",
         "help_heading": "Need Help?",
-        "help_text": "If you're stuck or need help, call us on 0437 174 202.",
+        "help_text": "If you’re stuck or need assistance, call us at [phone number].",
         "desktop_padding_top": 60,
         "desktop_padding_bottom": 60,
         "mobile_padding_top": 30,
