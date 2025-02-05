@@ -186,7 +186,6 @@ const calendar = {
         const thisYear = today.getFullYear();
         const thisMonth = today.getMonth() + 1;
         const thisDate = today.getDate();
-
         for (let i = 0; i < 42; i++) {
             const index = i - firstDateDay;
             dateItems[i].classList.remove('selected');
@@ -397,6 +396,10 @@ const calendar = {
         if (!directUpdate) {
             this.updateYearList(this.data.year, this.data.month);
         }
+        const lastDate = this.getLastDate(this.data.year,this.data.month);
+        if(this.data.date > lastDate) {
+            this.setDate(lastDate);
+        }
     },
     setMonth: function (m, directUpdate) {
         if (m === -1) {
@@ -418,6 +421,10 @@ const calendar = {
         }
         if (!directUpdate) {
             this.updateYearList(this.data.year, this.data.month);
+        }
+        const lastDate = this.getLastDate(this.data.year,this.data.month);
+        if(this.data.date > lastDate) {
+            this.setDate(lastDate);
         }
     },
     setDate: function (d) {
