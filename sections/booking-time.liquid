@@ -19,14 +19,8 @@
       <div class="schdule-time">
         <h1 class="time-heading m-0">{{ section.settings.select_time_heading }}</h1>
         <div class="date-time-wrapper">
-          <div class="input-wrapper">
-            <input type="datetime-local" class="start-date-time date-time">
-            <p class="start-date-error m-0 error">Please input date correctly for a schedule.</p>
-          </div>
-          <div class="input-wrapper">
-            <input type="datetime-local" class="end-date-time date-time">
-            <p class="end-date-error m-0 error">Please input date and time correctly for a schedule.</p>
-          </div>
+          <div id="custom-calendar" class="calendar-wrapper" upArrow="{{ section.settings.up_arrow |  img_url: '50x' }}" downArrow="{{ section.settings.down_arrow |  img_url: '50x' }}"></div>
+          <p class="m-0 error date-error">Please set up the time correctly.</p>
         </div>
       </div>
     </div>
@@ -73,6 +67,16 @@
       "type": "text",
       "id": "select_time_heading",
       "label": "Select Time Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "up_arrow",
+      "label": "Up Arrow"
+    },
+    {
+      "type": "image_picker",
+      "id": "down_arrow",
+      "label": "Down Arrow"
     },
     {
       "type": "text",

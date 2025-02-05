@@ -2,19 +2,28 @@
   display: flex;
   justify-content: space-between;
   padding: 30px 20px;
+  background-color: #121212;
 }
 .shopify-section--booking-job .heading-container > div {
   display: flex;
   align-items: center;
   column-gap: 10px;
 }
+.shopify-section--booking-job .phone-number-wrapper {
+  padding: 10px 25px;
+  border: 1px solid white;
+  border-radius: 100px;
+}
 .shopify-section--booking-job .heading {
   color: #5abb1e;
 }
-.shopify-section--booking-job .phone-number {
+.shopify-section--booking-job .phone-number-text {
   font-size: 24px;
-  color: #44d7ef;
+  color: white;
   padding: 0px;
+  border: none;
+  display: flex;
+  column-gap: 3px;
 }
 .shopify-section--booking-job .main-content {
   background-color: #f5f5f5;
@@ -140,7 +149,7 @@
   margin-bottom: 20px;
 }
 .shopify-section--booking-job .cleaning-service > div {
-  padding: 20px 10px;
+  padding: 20px 15px;
 }
 .shopify-section--booking-job .cleaning-service-main {
   border-bottom: 1px solid #ccc;
@@ -155,7 +164,7 @@
   text-align: center;
 }
 .shopify-section--booking-job .need-help {
-  padding: 20px 10px;
+  padding: 20px 15px;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -164,10 +173,13 @@
   font-size: 15px;
   line-height: 1.5;
 }
-.shopify-section--booking-job .need-help-text i {
-  font-style: normal;
-  white-space: nowrap;
-  text-decoration: underline;
+.shopify-section--booking-job .need-help-text .phone-number {
+  display: inline-flex;
+  column-gap: 3px;
+  color: black;
+  padding: 0px;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 @media screen and (max-width: 1150px) {
@@ -183,7 +195,7 @@
   .shopify-section--booking-job .heading {
     font-size: 32px;
   }
-  .shopify-section--booking-job .phone-number {
+  .shopify-section--booking-job .phone-number-text {
     font-size: 20px;
   }
 }
@@ -200,8 +212,9 @@
   .shopify-section--booking-job .heading {
     font-size: 24px;
   }
-  .shopify-section--booking-job .phone-number {
+  .shopify-section--booking-job .phone-number-text {
     font-size: 16px;
+    color: white;
   }
   .shopify-section--booking-job .back-step {
     font-size: 13px;

@@ -16,7 +16,8 @@
 .shopify-section--booking-service .booking-service-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: center;
   width: calc(50% - 10px);
   padding: 10px 20px;
   border: 1px solid black;

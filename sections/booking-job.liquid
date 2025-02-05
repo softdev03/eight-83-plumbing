@@ -14,17 +14,24 @@
 <div class="shopify-booking-job page-width" id="{{ section.settings.section_id }}">
   <div class="card">
     <div class="heading-container">
-      <div class="heading-wrapper">
-        {%- if section.settings.logo != blank -%}
-          <img src="{{ section.settings.logo |  img_url: '50x' }}" alt="" width="50px" height="50px">
-        {%- endif -%}
-        <h1 class="heading m-0 text-cap">{{ section.settings.heading }}</h1>
-      </div>
-      <div class="phone-number-wrapper">
+      {% comment %}
+        <div class="heading-wrapper">
+          {%- if section.settings.logo != blank -%}
+            <img src="{{ section.settings.logo |  img_url: '50x' }}" alt="" width="50px" height="50px">
+          {%- endif -%}
+          <h1 class="heading m-0 text-cap">{{ section.settings.heading }}</h1>
+        </div>
+      {% endcomment %}
+      {%- assign pieces = section.settings.phone_number | split: ' ' -%}
+      <div class="phone-number-wrapper pulse">
         {%- if section.settings.phone_icon != blank -%}
           <img src="{{ section.settings.phone_icon |  img_url: '40x' }}" alt="" width="40px" height="40px">
         {%- endif -%}
-        <p class="m-0 phone-number">{{ section.settings.phone_number }}</p>
+        <div class="phone-number-text">
+          {%- for piece in pieces -%}
+            <p class="m-0">{{ piece }}</p>
+          {%- endfor -%}
+        </div>
       </div>
     </div>
     <div class="main-content">
@@ -35,23 +42,35 @@
           <p class="job-setting-text m-0">{{ section.settings.tell_us_your_job_text }}</p>
           <div class="job-address item-wrapper">
             <h1 class="job-address-heading sub-heading m-0">{{ section.settings.job_address_heading }}</h1>
-            <input type="text" class="job-address-input text-input" placeholder="{{ section.settings.job_placeholder }}">
+            <input
+              type="text"
+              class="job-address-input text-input"
+              placeholder="{{ section.settings.job_placeholder }}"
+            >
             <p class="job-address-error error m-0">Please input your job address.</p>
           </div>
           <div class="email-address item-wrapper">
             <h1 class="email-address-heading sub-heading m-0">{{ section.settings.email_address_heading }}</h1>
-            <input type="text" class="email-address-input text-input" placeholder="{{ section.settings.email_placeholder }}">
-            <p class="email-address-error error m-0">Please input your job address.</p>
+            <input
+              type="text"
+              class="email-address-input text-input"
+              placeholder="{{ section.settings.email_placeholder }}"
+            >
+            <p class="email-address-error error m-0">Please input your email address.</p>
           </div>
           <div class="cleaning-service-select item-wrapper">
-            <h1 class="cleaning-service-heading sub-heading m-0">{{ section.settings.cleaning_service_select_heading }}</h1>
+            <h1 class="cleaning-service-heading sub-heading m-0">
+              {{ section.settings.cleaning_service_select_heading }}
+            </h1>
             {%- assign cleaningServiceItems = section.blocks | where: 'type', 'cleaning_servic_item' -%}
             <div class="cleaning-service-items">
               {%- for block in cleaningServiceItems -%}
-                <p class="cleaning-service-item m-0 text-cap" title="{{ block.settings.text }}">{{ block.settings.text }}</p>
+                <p class="cleaning-service-item m-0 text-cap" title="{{ block.settings.text }}">
+                  {{ block.settings.text }}
+                </p>
               {%- endfor -%}
             </div>
-            <p class="cleaning-service-error error m-0">Please select the cleaning service.</p>
+            <p class="cleaning-service-error error m-0">Please select a service.</p>
           </div>
           <div class="your-place">
             <h1 class="m-0 your-place-heading sub-heading">{{ section.settings.tell_us_place_heading }}</h1>
@@ -80,8 +99,15 @@
         </div>
         <div class="need-help">
           <h1 class="m-0 need-help-heading sub-heading">{{ section.settings.help_heading }}</h1>
-          {%- assign helpText = section.settings.help_text |  split: '[phone number]' -%}
-          <p class="m-0 need-help-text">{{ helpText.first }}<i>{{ section.settings.phone_number }}</i></p>
+          {%- assign helpText = section.settings.help_text | split: '[phone number]' -%}
+          <div class="need-help-text">
+            {{ helpText.first -}}
+            <div class="phone-number">
+              {%- for piece in pieces -%}
+                <p class="m-0">{{ piece }}</p>
+              {%- endfor -%}
+            </div>
+          </div>
         </div>
       </div>
     </div>

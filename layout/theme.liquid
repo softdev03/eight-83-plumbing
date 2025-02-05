@@ -284,6 +284,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       {{ 'map.js' |  asset_url |  script_tag }}
     {%- endif -%}
     {%- if template == 'page.booking-online' -%}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+      {{ 'calendar.js' |  asset_url |  script_tag }}
       {{ 'booking-online.js' |  asset_url |  script_tag }}
     {%- endif -%}
     {%- if settings.predictive_search_enabled -%}

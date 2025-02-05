@@ -31,11 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const jobPrev = document.querySelector('.shopify-section--booking-job .back-step');
     const jobNext = document.querySelector('.shopify-section--booking-job .next-step');
     const scheduleDate = document.querySelector('.shopify-section--booking-time .date-time-wrapper .start-date-time');
-    const scheduleEndDate = document.querySelector('.shopify-section--booking-time .date-time-wrapper .end-date-time');
-    const dateError = document.querySelector('.shopify-section--booking-time .start-date-error');
-    const endDateError = document.querySelector('.shopify-section--booking-time .end-date-error');
+    // const scheduleEndDate = document.querySelector('.shopify-section--booking-time .date-time-wrapper .end-date-time');
+    const dateError = document.querySelector('.shopify-section--booking-time .date-error');
+    // const endDateError = document.querySelector('.shopify-section--booking-time .end-date-error');
     const scheduleNext = document.querySelector('.shopify-section--booking-time .book-call');
     const processErrorMessage = document.querySelector('.shopify-section--booking-time .process-error-message');
+
 
     for (const serviceItem of serviceItems) {
         serviceItem.addEventListener('click', () => {
@@ -57,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const target = document.querySelector(serviceNext.getAttribute('href')).closest('.booking-online');
             target.classList.add('show');
+            document.documentElement.scrollTo({top:0});
         }
     });
     jobAddress.addEventListener('keyup', () => {
@@ -111,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         jobPrev.closest('.booking-online').classList.remove('show');
         document.querySelector(jobPrev.getAttribute('href')).closest('.booking-online').classList.add('show');
+        document.documentElement.scrollTo({top:0});
     });
     jobNext.addEventListener('click', (e) => {
         e.preventDefault();
@@ -136,29 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             jobNext.closest('.booking-online').classList.remove('show');
             document.querySelector(jobNext.getAttribute('href')).closest('.booking-online').classList.add('show');
         }
-    });
-    scheduleDate.addEventListener('change', () => {
-        const inputDate = new Date(scheduleDate.value);
-        const now = new Date();
-        if (inputDate < now) {
-            dateError.classList.add('show');
-            data.scheduleDate.date = '';
-        } else {
-            dateError.classList.remove('show');
-            data.scheduleDate.date = scheduleDate.value;
-        }
-    });
-    scheduleEndDate.addEventListener('change', () => {
-        const inputDate = new Date(scheduleEndDate.value);
-        const startDate = new Date(scheduleDate.value);
-        const now = new Date();
-        if (inputDate < now || inputDate < startDate) {
-            endDateError.classList.add('show');
-            data.scheduleDate.endDate = '';
-        } else {
-            endDateError.classList.remove('show');
-            data.scheduleDate.endDate = scheduleEndDate.value;
-        }
+        document.documentElement.scrollTo({top:0});
     });
 
     let isProcessing = false;
@@ -166,7 +147,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if(isProcessing) {
             return;
         }
-        if (data.scheduleDate.date && data.scheduleDate.endDate) {
+        data.scheduleDate.date = calendar.getDateTime();
+        const {year,month,hour,minute,date} = calendar.getDateTimeAsObject();
+        const now = new Date();
+        const inputDate = new Date(year,month - 1,date,hour,minute);
+        if(now > inputDate) {
+            dateError.classList.add('show');
+            return;
+        } else {
+            dateError.classList.remove('show');
+        }
+        if (data.scheduleDate.date) {
             scheduleNext.innerHTML = scheduleNext.getAttribute('processing_text');
             isProcessing = true;
             newAddress = data.jobItem.address;
@@ -175,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     getJobList().then(res => {
                         const job = checkMyJob(res);
                         createJobContact({email: data.jobItem.emailAddress,jobId:job.uuid});
-                        bookSchedule(data.scheduleDate.date,data.scheduleDate.endDate,job.uuid).then(res=>{
+                        bookSchedule(data.scheduleDate.date,job.uuid).then(res=>{
                             showResult(res);
                         }).catch(err=>{
                             showResult(false);
@@ -201,6 +192,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         isProcessing = false;
     }
+    const hTime = setInterval(() => {
+        clearInterval(hTime);
+        document.documentElement.scrollTo({top:0});
+    }, 1200);
+
+    calendar.init('#custom-calendar',{startYear: 1990,lastYear: 2990});
 });
 const validateEmail = (email) => {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -224,6 +221,7 @@ const createNewJob = (information) => {
         jobDescription = `Plumbing Service: ${information.serviceItem.name}  $${information.serviceItem.price}
         Cleaning Service: ${information.jobItem.cleanServiceItem}
         ${place}
+        Schedule Date: ${information.scheduleDate.date}
         `;
         const jobData = {
             "status": "Quote",
@@ -297,7 +295,7 @@ const getCurrentStaff = (staffList) => {
     }
     return null;
 }
-const bookSchedule = (date, endDate, jobId) => {
+const bookSchedule = (date, jobId) => {
     return new Promise((resolve,reject)=>{
         getStaffList().then(res=>{
             const currentStaff = getCurrentStaff(res);
@@ -305,10 +303,8 @@ const bookSchedule = (date, endDate, jobId) => {
                 job_uuid: jobId,
                 staff_uuid: currentStaff.uuid,
                 start_date: formatDate(date),
-                end_date: formatDate(endDate),
                 active: 1
             };
-            console.log(data);
             const options = {
                 method: 'POST',
                 headers: {
@@ -318,7 +314,6 @@ const bookSchedule = (date, endDate, jobId) => {
                 body: JSON.stringify(data)
             };
             fetch('https://api.servicem8.com/api_1.0/jobactivity.json', options).then(res => res.json()).then(res => {
-                console.log(res);
                 if(res.errorCode === 0) {
                     resolve(true);
                 } else {
