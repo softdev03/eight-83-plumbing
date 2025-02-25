@@ -219,7 +219,7 @@ const createNewJob = (information) => {
             place += `${key} : ${information.jobItem.place[key]}\n`;
         }
         jobDescription = `Plumbing Service: ${information.serviceItem.name}  $${information.serviceItem.price}
-        Cleaning Service: ${information.jobItem.cleanServiceItem}
+        Plumbing Service: ${information.jobItem.cleanServiceItem}
         ${place}
         Schedule Date: ${information.scheduleDate.date}
         `;
