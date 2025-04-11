@@ -32,6 +32,11 @@
     -%}
     {%- form 'contact', id: 'ContactForm', class: contact_form_class -%}
       {%- if form.posted_successfully? -%}
+        {%- if section.settings.redirect_url != blank -%}
+          <script>
+            window.location.href = "{{ section.settings.redirect_url }}";
+          </script>
+        {%- endif -%}
         <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
           {% render 'icon-success' %}
           {{ 'templates.contact.form.post_success' | t }}
@@ -100,6 +105,11 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "redirect_url",
+      "label": "Redirect URL"
     },
     {
       "type": "header",

@@ -285,6 +285,7 @@
         "heading": "Get a Free Plumbing Quote",
         "text": "<p>Fill out the form below and our team <strong>will get back to you within 60 minutes. </strong><em><strong>Guaranteed!</strong></em></p>",
         "image": "shopify://shop_images/sec5_cashback.webp",
+        "redirect_url": "shopify://pages/thank-you",
         "desktop_padding_top": 60,
         "desktop_padding_bottom": 60,
         "mobile_padding_top": 60,
