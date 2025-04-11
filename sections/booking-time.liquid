@@ -16,8 +16,13 @@
     <div class="main">
       <h1 class="heading m-0">{{ section.settings.heading }}</h1>
       <p class="text m-0">{{ section.settings.text }}</p>
-      <button class="add-date">ADD</button>
-      <div class="time-list"></div>
+      <div class="schdule-time">
+        <h1 class="time-heading m-0">{{ section.settings.select_time_heading }}</h1>
+        <div class="date-time-wrapper">
+          <div id="custom-calendar" class="calendar-wrapper" upArrow="{{ section.settings.up_arrow |  img_url: '50x' }}" downArrow="{{ section.settings.down_arrow |  img_url: '50x' }}"></div>
+          <p class="m-0 error date-error">Please set up the time correctly.</p>
+        </div>
+      </div>
     </div>
     <div class="text-area">
       <div class="cleaning-service">
@@ -26,7 +31,8 @@
           <p class="cleaning-text m-0">{{ section.settings.cleaning_service_text }}</p>
         </div>
         <div class="button-wrapper">
-          <button class="book-call">{{ section.settings.proceed_text }}</button>
+          <button class="book-call" proceed_text="{{ section.settings.proceed_text }}" processing_text="{{ section.settings.processing_text }}">{{ section.settings.proceed_text }}</button>
+          <p class="error process-error-message m-0">{{ section.settings.process_error_message }}</p>
         </div>
       </div>
       <div class="need-help">
@@ -59,6 +65,21 @@
     },
     {
       "type": "text",
+      "id": "select_time_heading",
+      "label": "Select Time Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "up_arrow",
+      "label": "Up Arrow"
+    },
+    {
+      "type": "image_picker",
+      "id": "down_arrow",
+      "label": "Down Arrow"
+    },
+    {
+      "type": "text",
       "id": "cleaning_service_heading",
       "label": "Cleaning Service Heading"
     },
@@ -71,6 +92,16 @@
       "type": "text",
       "id": "proceed_text",
       "label": "Proceed Text"
+    },
+    {
+      "type": "text",
+      "id": "processing_text",
+      "label": "Processing Text"
+    },
+    {
+      "type": "text",
+      "id": "process_error_message",
+      "label": "Process Error Message"
     },
     {
       "type": "text",
@@ -130,7 +161,9 @@
   "presets": [
     {
       "name": "Booking Time",
-      "settings": {}
+      "settings": {
+        "select_time_heading": "Select a Time for a schedule."
+      }
     }
   ]
 }

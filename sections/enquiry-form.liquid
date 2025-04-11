@@ -1,6 +1,7 @@
-{{ 'enquiry-form.css' |  asset_url |  stylesheet_tag }}
+{{ 'enquiry-form.css' | asset_url | stylesheet_tag }}
+
 {%- style -%}
-    #shopify-section-{{ section.id }} {
+   #shopify-section-{{ section.id }} {
         background-color: {{ section.settings.bg_color }};
     }
   #shopify-section-{{ section.id }} .shopify-enquiry-form {
@@ -14,144 +15,182 @@
     }
   }
 {%- endstyle -%}
+
 <div class="shopify-enquiry-form page-width" id="{{ section.settings.section_id }}">
     <div class="intro">
-        <h1 class="heading text-black font-800 line-height-1_1 text-upper m-0">{{ section.settings.heading }}</h1>
-        <div class="text text-black line-height-1_1">{{ section.settings.text }}</div>
-        <div class="image">
-            <img src="{{ section.settings.image  |  img_url: '1000x'}}" alt="" width="auto" height="auto">
-        </div>
+      <h1 class="heading text-black font-800 line-height-1_1 text-upper m-0">{{ section.settings.heading }}</h1>
+      <div class="text text-black line-height-1_1">{{ section.settings.text }}</div>
+      <div class="image">
+        <img src="{{ section.settings.image  |  img_url: '1000x'}}" alt="" width="auto" height="auto">
+      </div>
     </div>
-    <form action="mailto:pavloboyko0325@gmail.com" class="form">
-        <input type="text" name="name" id="name" placeholder="Name" required class="w-45 line-height-1_1 font-500">
-        <input type="text" name="phone" id="phone" class="w-45 line-height-1_1 font-500" placeholder="Phone" required>
-        <input type="email" name="email" id="email" class="w-45 line-height-1_1 font-500" placeholder="Email" required>
-        <select name="jobtype" id="jobtype" class="w-45 line-height-1_1 font-500">
-            <option value="" disabled selected class="line-height-1_1 font-500">Job Type</option>
-            {%- assign blocks = section.blocks |  where: 'type', 'job_type' -%}
-            {%- for block in blocks -%}
-              <option value="{{ block.settings.text }}" class="line-height-1_1 font-500">{{ block.settings.text }}</option>
-            {%- endfor -%}
-        </select>
-        <select name="service" id="service" class="w-45 line-height-1_1 font-500">
-            <option value="" disabled selected class="line-height-1_1 font-500">Choose your service</option>
-            {%- assign blocks = section.blocks |  where: 'type', 'service' -%}
-            {%- for block in blocks -%}
-              <option value="{{ block.settings.text }}" class="line-height-1_1 font-500">{{ block.settings.text }}</option>
-            {%- endfor -%}
-        </select>
-        <input type="text" name="suburb" id="suburb" class="w-45 line-height-1_1 font-500" placeholder="Suburb">
-        <textarea name="message" id="message" cols="30" rows="1" class="w-100 line-height-1_1 font-600" placeholder="Your Message"></textarea>
-        <input type="submit" value="send enquiry" class="w-100 bg-very-dark text-upper line-height-1_1 font-600 submit">
-    </form>
+    {%- liquid
+      assign contact_form_class = 'isolate email-form'
+      if settings.animations_reveal_on_scroll
+        assign contact_form_class = 'isolate scroll-trigger animate--slide-in email-form'
+      endif
+    -%}
+    {%- form 'contact', id: 'ContactForm', class: contact_form_class -%}
+      {%- if form.posted_successfully? -%}
+        {%- if section.settings.redirect_url != blank -%}
+          <script>
+            window.location.href = "{{ section.settings.redirect_url }}";
+          </script>
+        {%- endif -%}
+        <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
+          {% render 'icon-success' %}
+          {{ 'templates.contact.form.post_success' | t }}
+        </h2>
+      {%- elsif form.errors -%}
+        <div class="form__message">
+          <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
+            {% render 'icon-error' %}
+            {{ 'templates.contact.form.error_heading' | t }}
+          </h2>
+        </div>
+        <ul class="form-status-list caption-large" role="list">
+          <li>
+            <a href="#ContactForm-email" class="link">
+              {{ form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email }}
+            </a>
+          </li>
+        </ul>
+      {%- endif -%}
+      <input type="text" name="contact[name]" id="name" placeholder="Name" required class="w-45 line-height-1_1 font-500">
+      <input type="text" name="contact[phone]" id="phone" class="w-45 line-height-1_1 font-500" placeholder="Phone" required>
+      <input type="email" name="contact[email]" id="email" class="w-45 line-height-1_1 font-500" placeholder="Email" required>
+      <select name="contact[jobtype]" id="jobtype" class="w-45 line-height-1_1 font-500">
+          <option value="" disabled selected class="line-height-1_1 font-500">Job Type</option>
+          {%- assign blocks = section.blocks |  where: 'type', 'job_type' -%}
+          {%- for block in blocks -%}
+            <option value="{{ block.settings.text }}" class="line-height-1_1 font-500">{{ block.settings.text }}</option>
+          {%- endfor -%}
+      </select>
+      <select name="contact[service]" id="service" class="w-45 line-height-1_1 font-500">
+          <option value="" disabled selected class="line-height-1_1 font-500">Choose your service</option>
+          {%- assign blocks = section.blocks |  where: 'type', 'service' -%}
+          {%- for block in blocks -%}
+            <option value="{{ block.settings.text }}" class="line-height-1_1 font-500">{{ block.settings.text }}</option>
+          {%- endfor -%}
+      </select>
+      <input type="text" name="contact[suburb]" id="suburb" class="w-45 line-height-1_1 font-500" placeholder="Suburb">
+      <textarea name="contact[message]" id="message" cols="30" rows="1" class="w-100 line-height-1_1 font-600" placeholder="Your Message"></textarea>
+      <input type="submit" value="send enquiry" class="w-100 bg-very-dark text-upper line-height-1_1 font-600 submit">
+    {%- endform -%}
 </div>
+
 {% schema %}
-  {
-    "name": "Enquiry Form",
-    "tag": "section",
-    "class": "shopify-section--enquiry-form",
-    "settings": [
+{
+  "name": "Enquiry Form",
+  "tag": "section",
+  "class": "shopify-section--enquiry-form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_id",
+      "label": "Section Id"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "redirect_url",
+      "label": "Redirect URL"
+    },
+    {
+      "type": "header",
+      "content": "Padding Settings"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop Padding Bottom",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Padding Bottom",
+      "default": 50
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Bg Color",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Service",
+      "type": "service",
+      "settings": [
         {
           "type": "text",
-          "id": "section_id",
-          "label": "Section Id"
-        },
-      {
-        "type": "text",
-        "id": "heading",
-        "label": "Heading"
-      },
-      {
-        "type": "richtext",
-        "id": "text",
-        "label": "Text"
-      },
-      {
-        "type": "image_picker",
-        "id": "image",
-        "label": "Image"
-      },
-      {
-        "type": "header",
-        "content": "Padding Settings"
-      },
-      {
-        "type": "range",
-        "id": "desktop_padding_top",
-        "min": 0,
-        "max": 150,
-        "step": 2,
-        "unit": "px",
-        "label": "Desktop Padding Top",
-        "default": 50
-      },
-      {
-        "type": "range",
-        "id": "desktop_padding_bottom",
-        "min": 0,
-        "max": 150,
-        "step": 2,
-        "unit": "px",
-        "label": "Desktop Padding Bottom",
-        "default": 50
-      },
-      {
-        "type": "range",
-        "id": "mobile_padding_top",
-        "min": 0,
-        "max": 150,
-        "step": 2,
-        "unit": "px",
-        "label": "Mobile Padding Top",
-        "default": 50
-      },
-      {
-        "type": "range",
-        "id": "mobile_padding_bottom",
-        "min": 0,
-        "max": 150,
-        "step": 2,
-        "unit": "px",
-        "label": "Mobile Padding Bottom",
-        "default": 50
-      },
-      {
-        "type": "color",
-        "id": "bg_color",
-        "label": "Bg Color",
-        "default": "#000000"
-      },
-    ],
-    "blocks": [
-      {
-        "name": "Service",
-        "type": "service",
-        "settings": [
-           {
-             "type": "text",
-             "id": "text",
-             "label": "Text"
-           }
-        ]
-      },
-      {
-        "name": "Job Type",
-        "type": "job_type",
-        "settings": [
-            {
-              "type": "text",
-              "id": "text",
-              "label": "Text"
-            },
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Enquiry Form",
-        "settings": {
+          "id": "text",
+          "label": "Text"
         }
-      }
-    ]
-  }
+      ]
+    },
+    {
+      "name": "Job Type",
+      "type": "job_type",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Enquiry Form",
+      "settings": {}
+    }
+  ]
+}
 {% endschema %}

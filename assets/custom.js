@@ -14,4 +14,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         });
         observer.observe(target,config);
     }
+    if(location.pathname === '/' && location.href.indexOf('?contact_posted=') !== -1) {
+        location.href = location.origin;
+    }
 });

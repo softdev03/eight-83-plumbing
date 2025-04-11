@@ -27,7 +27,7 @@
     width: 100%;
 }
 
-.shopify-section--enquiry-form .form {
+.shopify-section--enquiry-form .email-form {
     width: calc((100% - 30px)* 0.55);
     display: flex;
     flex-wrap: wrap;
@@ -84,7 +84,7 @@
     .shopify-section--enquiry-form .intro {
         width: 100%;
     }
-    .shopify-section--enquiry-form .form {
+    .shopify-section--enquiry-form .email-form {
         width: 100%;
     }
     .shopify-section--enquiry-form input:not(.submit), .shopify-section--enquiry-form select {

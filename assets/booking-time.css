@@ -17,34 +17,36 @@
   font-weight: 400;
 }
 .shopify-section--booking-time .text {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 .shopify-section--booking-time p {
   line-height: 1;
 }
-.shopify-section--booking-time .add-date {
-  text-decoration: none;
-  color: #fff;
-  background-color: #000;
-  border: 1px solid black;
-  padding: 10px 20px;
-  min-width: 200px;
-  text-align: center;
+.shopify-section--booking-time .time-heading {
   font-size: 20px;
-  cursor: pointer;
+  line-height: 1;
+  font-weight: 400;
+  margin-bottom: 20px;
 }
-.shopify-section--booking-time .time-list:not(:empty) {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
+.shopify-section--booking-time .date-time-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 10px;
 }
-.shopify-section--booking-time .add-date:hover {
-  background-color: white;
-  color: black;
+.shopify-section--booking-time .input-wrapper {
+  width: calc(50% - 10px);
 }
-.shopify-section--booking-time .add-date:active {
-  box-shadow: 0px 0px 10px 1px grey inset;
+
+.shopify-section--booking-time .date-time-wrapper .date-time {
+  font-size: 18px;
+  font-weight: 300;
+  padding: 5px 10px;
+  width: 100%;
+}
+.shopify-section--booking-time .date-time-wrapper .date-time:focus {
+  outline: none;
+  box-shadow: none;
 }
 .shopify-section--booking-time .text-area {
   display: flex;
@@ -88,27 +90,249 @@
 }
 
 @media screen and (max-width: 1023px) {
-    .shopify-section--booking-time .main,.shopify-section--booking-time .text-area {
-        width: 100%;
-        max-width: 100%;
-    }
+  .shopify-section--booking-time .main,
+  .shopify-section--booking-time .text-area {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 @media screen and (max-width: 749px) {
-    .shopify-section--booking-time .heading {
-        font-size: 20px;
-    }
-    .shopify-section--booking-time p {
-        font-size: 13px;
-    }
-    .shopify-section--booking-time .text {
-        margin-bottom: 20px;
-    }
-    .shopify-section--booking-time .add-date {
-        font-size: 16px;
-    }
+  .shopify-section--booking-time .heading {
+    font-size: 20px;
+  }
+  .shopify-section--booking-time p {
+    font-size: 13px;
+  }
+  .shopify-section--booking-time .text {
+    margin-bottom: 30px;
+  }
+  .shopify-section--booking-time .time-heading {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .shopify-section--booking-time .input-wrapper {
+    width: 100%;
+  }
 }
 @media screen and (max-width: 424px) {
-    .shopify-section--booking-time .add-date {
-        width: 100%;
-    }
+  .shopify-section--booking-time .add-date {
+    width: 100%;
+  }
+  .shopify-section--booking-time .date-time-wrapper .date-time {
+    font-size: 15px;
+  }
+}
+
+.shopify-section--booking-time .calendar-wrapper {
+  display: flex;
+  color: black;
+  background-color: white;
+  width: 100%;
+  max-height: 360px;
+  flex-wrap: wrap;
+  row-gap: 20px;
+}
+.shopify-section--booking-time .calendar-wrapper .calendar {
+  width: 60%;
+  border-right: 1px solid #e3e3e3;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+.shopify-section--booking-time .calendar-wrapper .calendar-heading {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.shopify-section--booking-time .calendar-wrapper .year-month {
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+.shopify-section--booking-time .calendar-wrapper .buttons {
+  display: flex;
+}
+.shopify-section--booking-time .calendar-wrapper .arrow-direction {
+  width: 25px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 3px;
+}
+.shopify-section--booking-time .calendar-wrapper .arrow-direction:hover {
+  border-color: #121212;
+  background-color: rgb(44, 224, 248);
+}
+.shopify-section--booking-time .calendar-wrapper .arrow-direction img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.shopify-section--booking-time .calendar-wrapper .calendar-content {
+  position: relative;
+}
+.shopify-section--booking-time .calendar-wrapper .calendar-year-list {
+  position: absolute;
+  max-height: 100%;
+  overflow: auto;
+  width: 100%;
+  background-color: white;
+  z-index: 1;
+  display: none;
+}
+.shopify-section--booking-time .calendar-wrapper .calendar-year-list.show {
+  display: block;
+}
+.shopify-section--booking-time
+  .calendar-wrapper
+  .calendar-year-list::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+
+.shopify-section--booking-time
+  .calendar-wrapper
+  .calendar-year-list::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f5f5f5;
+}
+
+.shopify-section--booking-time
+  .calendar-wrapper
+  .calendar-year-list::-webkit-scrollbar-thumb {
+  background-color: #000000;
+}
+
+.shopify-section--booking-time .calendar-wrapper .year-item-month {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 0px;
+  overflow: hidden;
+  transition: all 0.2s;
+  padding: 0px;
+}
+.shopify-section--booking-time .calendar-wrapper .year-item-heading {
+  margin: 0px;
+  font-size: 15px;
+  font-weight: 400;
+  background-color: #efefef;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+.shopify-section--booking-time .calendar-wrapper .month-item {
+  width: calc((100% - 15px) / 4);
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid transparent;
+}
+.shopify-section--booking-time .calendar-wrapper .month-item:hover {
+  background-color: #f5f5f5;
+}
+.shopify-section--booking-time .calendar-wrapper .month-item.this-month {
+  border-color: #121212;
+}
+.shopify-section--booking-time .calendar-wrapper .month-item.selected {
+  background-color: #6de6ff;
+}
+.shopify-section--booking-time .calendar-wrapper .current-month-content {
+  width: 100%;
+}
+.shopify-section--booking-time .calendar-wrapper .date-item {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 300;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.shopify-section--booking-time .calendar-wrapper .date-item:hover {
+  border-color: #121212;
+  background-color: rgb(92, 236, 255);
+}
+.shopify-section--booking-time
+  .calendar-wrapper
+  .date-item.today:not(.selected) {
+  background-color: white;
+  border-color: #121212;
+}
+.shopify-section--booking-time .calendar-wrapper .date-item.selected {
+  background-color: blue;
+  color: white;
+}
+.shopify-section--booking-time .calendar-wrapper .date-item.out {
+  color: #ccc;
+}
+
+.shopify-section--booking-time .calendar-wrapper .clock-slider-item {
+  padding: 13px;
+  font-weight: 300;
+  text-align: center;
+  border-radius: 3px;
+  height: fit-content;
+  box-sizing: border-box;
+  cursor: pointer;
+  user-select: none;
+}
+.shopify-section--booking-time .calendar-wrapper .clock-slider-item.selected {
+  background-color: rgb(41, 41, 170);
+  color: white;
+}
+.shopify-section--booking-time .calendar-wrapper .clock-slider-item:hover {
+  background-color: rgb(77, 213, 255);
+  color: black;
+}
+
+.shopify-section--booking-time .calendar-wrapper .clock {
+  width: 40%;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  max-height: 100%;
+}
+.shopify-section--booking-time .calendar-wrapper .clock > div {
+  width: calc((100% - 20px) / 3);
+  overflow: hidden;
+}
+
+.init-today {
+  margin-left: auto;
+  display: block;
+  margin-top: 10px;
+  border: 1px solid #121212;
+  padding: 4px 10px;
+  background-color: white;
+  cursor: pointer;
+}
+.init-today:hover {
+  background-color: rgb(88, 236, 255);
+}
+.init-today:active {
+  background-color: rgb(0, 225, 255);
+}
+
+@media screen and (max-width: 749px) {
+  .shopify-section--booking-time .calendar-wrapper {
+    max-height: unset;
+  }
+  .shopify-section--booking-time .calendar-wrapper .calendar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e3e3e3;
+  }
+  .shopify-section--booking-time .calendar-wrapper .clock {
+    width: 100%;
+    max-height: 360px;
+  }
 }

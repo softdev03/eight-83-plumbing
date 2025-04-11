@@ -16,14 +16,16 @@
 .shopify-section--booking-service .booking-service-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: center;
   width: calc(50% - 10px);
   padding: 10px 20px;
-  border: 1px solid #b1b1b1;
+  border: 1px solid black;
   cursor: pointer;
 }
 .shopify-section--booking-service .booking-service-item.selected {
-  border: 1px solid black;
+  background-color: black;
+  color: white;
 }
 .shopify-section--booking-service .next-step {
   text-decoration: none;

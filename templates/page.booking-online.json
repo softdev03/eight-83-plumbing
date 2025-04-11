@@ -23,42 +23,42 @@
         "service_type_xL9qjT": {
           "type": "service_type",
           "settings": {
-            "service_name": "emergency plumbing",
+            "service_name": "Emergency Plumbing",
             "price": 100
           }
         },
         "service_type_4fPmLq": {
           "type": "service_type",
           "settings": {
-            "service_name": "general plumbing",
+            "service_name": "General Plumbing",
             "price": 50
           }
         },
         "service_type_K4BA3R": {
           "type": "service_type",
           "settings": {
-            "service_name": "blocked drain service",
+            "service_name": "Blocked Drain Service",
             "price": 120
           }
         },
         "service_type_3giqhC": {
           "type": "service_type",
           "settings": {
-            "service_name": "hot water solutions",
+            "service_name": "Hot Water Solutions",
             "price": 30
           }
         },
         "service_type_eRgdkp": {
           "type": "service_type",
           "settings": {
-            "service_name": "gat fitting services",
+            "service_name": "Gat Fitting Services",
             "price": 50
           }
         },
         "service_type_TNGR94": {
           "type": "service_type",
           "settings": {
-            "service_name": "bathroom renovations",
+            "service_name": "Bathroom Renovations",
             "price": 30
           }
         }
@@ -88,43 +88,49 @@
         "cleaning_servic_item_Vknwac": {
           "type": "cleaning_servic_item",
           "settings": {
-            "text": "regular clean"
+            "text": "General Plumbing Repairs"
           }
         },
         "cleaning_servic_item_cEVKd9": {
           "type": "cleaning_servic_item",
           "settings": {
-            "text": "once off clean"
+            "text": " Blocked Drains & Pipes"
           }
         },
         "cleaning_servic_item_JgghWC": {
           "type": "cleaning_servic_item",
           "settings": {
-            "text": "vocate/bond clean"
+            "text": "Leak Detection & Fixes"
+          }
+        },
+        "cleaning_servic_item_kRfhye": {
+          "type": "cleaning_servic_item",
+          "settings": {
+            "text": "Hot Water System Installation & Repairs"
           }
         },
         "room_sort_Ygg6my": {
           "type": "room_sort",
           "settings": {
-            "text": "bedroom(s)"
+            "text": "Bathrooms"
           }
         },
         "room_sort_UW4ndU": {
           "type": "room_sort",
           "settings": {
-            "text": "bathroom(s)"
+            "text": "Kitchens"
           }
         },
         "room_sort_zGHRM8": {
           "type": "room_sort",
           "settings": {
-            "text": "kitchen(s)"
+            "text": "Outdoor Taps"
           }
         },
         "room_sort_RiJXFY": {
           "type": "room_sort",
           "settings": {
-            "text": "living room(s)"
+            "text": "Water Heaters"
           }
         }
       },
@@ -132,6 +138,7 @@
         "cleaning_servic_item_Vknwac",
         "cleaning_servic_item_cEVKd9",
         "cleaning_servic_item_JgghWC",
+        "cleaning_servic_item_kRfhye",
         "room_sort_Ygg6my",
         "room_sort_UW4ndU",
         "room_sort_zGHRM8",
@@ -141,22 +148,24 @@
         "heading": "home services",
         "logo": "shopify://shop_images/servicem8.png",
         "section_id": "job-inform-for-booking-online",
-        "target_section_id": "time-inform-for-booking-online",
+        "target_section_id": "#time-inform-for-booking-online",
         "next_step": "Select a Time",
         "prev_section_id": "#select-service-for-booking-online",
         "prev_step": "Back to Service Selection",
         "phone_number": "0437 174 202",
         "phone_icon": "shopify://shop_images/phone_icon_5c3bfd2b-17fb-465b-9a8c-da248e594377.svg",
         "tell_us_your_job_heading": "Tell us about your job",
-        "tell_us_your_job_text": "Answer the questions below to help us understand more about the job.",
+        "tell_us_your_job_text": "Answer the questions below to help us understand more about the plumbing work needed.",
         "job_address_heading": "Job Address",
-        "email_placeholder": "Enter your job address",
-        "cleaning_service_select_heading": "What kind of cleaning service would you like?",
-        "tell_us_place_heading": "Tell us about your place",
-        "cleaning_service_heading": "Cleaning Service",
-        "cleaning_service_text": "Professional and reliable for your home or business.",
+        "job_placeholder": "Enter your job address",
+        "email_address_heading": "Email Address",
+        "email_placeholder": "Enter your email address",
+        "cleaning_service_select_heading": "What kind of plumbing service do you need?",
+        "tell_us_place_heading": "Tell us about your property",
+        "cleaning_service_heading": "Plumbing Service",
+        "cleaning_service_text": "Reliable and professional plumbing solutions for your home or business.",
         "help_heading": "Need Help?",
-        "help_text": "If you're stuck or need help, call us on 0437 174 202.",
+        "help_text": "If you’re stuck or need assistance, call us at [phone number].",
         "desktop_padding_top": 60,
         "desktop_padding_bottom": 60,
         "mobile_padding_top": 30,
@@ -166,13 +175,19 @@
     "booking_time_9fPyEt": {
       "type": "booking-time",
       "settings": {
+        "section_id": "time-inform-for-booking-online",
         "heading": "Schedule your service",
-        "text": "Select a time below and one of our team.",
-        "cleaning_service_heading": "Cleaning Service",
-        "cleaning_service_text": "Professional and reliable for your home or business.",
-        "proceed_text": "Proceed to Checkout",
+        "text": "Select the time below and one of our problems will be there.",
+        "select_time_heading": "Select the Time for a Schedule.",
+        "up_arrow": "shopify://shop_images/icons8-up-arrow-96.png",
+        "down_arrow": "shopify://shop_images/icons8-down-arrow-96.png",
+        "cleaning_service_heading": "Plumbing Service",
+        "cleaning_service_text": "Reliable and professional plumbing solutions for your home or business.",
+        "proceed_text": "Book Now",
+        "processing_text": "Booking a Schedule ...",
+        "process_error_message": "Failed to book a schedule.",
         "help_heading": "Need Help?",
-        "help_text": "If you're stuck or need help, call us on 0437 174 202.",
+        "help_text": "If you’re stuck or need assistance, call us at 0437 174 202.",
         "desktop_padding_top": 60,
         "desktop_padding_bottom": 60,
         "mobile_padding_top": 30,

@@ -16,19 +16,13 @@
     <h1 class="m-0 heading">{{ section.settings.heading }}</h1>
     <div class="booking-service-items-list">
       {%- for block in section.blocks -%}
-        <div class="booking-service-item">
-          <p class="m-0 service-name text-cap">{{ block.settings.service_name }}</p>
-          {%- if block.settings.price < 0 -%}
-            <p class="m-0 service-price">
-              $
-              {{- block.settings.price | times: -1 -}}
-            </p>
+        <div class="booking-service-item" price="{{ block.settings.price }}">
+          <p class="m-0 service-name">{{ block.settings.service_name }}</p>
+          {% comment %} {%- if block.settings.price < 0 -%}
+            <p class="m-0 service-price">{{- block.settings.price | times: -100 |  money -}}</p>
           {%- else -%}
-            <p class="m-0 service-price">
-              $
-              {{- block.settings.price -}}
-            </p>
-          {%- endif -%}
+            <p class="m-0 service-price">{{- block.settings.price |  times: 100 |  money -}}</p>
+          {%- endif -%} {% endcomment %}
         </div>
       {%- endfor -%}
     </div>
