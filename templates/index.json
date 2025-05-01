@@ -19,7 +19,7 @@
         "text": "Over 20 Years of Experience in Residential & Commercial Plumbing",
         "quote_link": "#shopify-enquiry-form",
         "quote_text": "Get a Free Quote",
-        "emergency_link": "tel:0437 174 202",
+        "emergency_link": "tel:+61 437 174 202",
         "emergency_text": "24/7 Emergency Service",
         "desktop_padding_top": 50,
         "desktop_padding_bottom": 50,
@@ -322,7 +322,7 @@
             "heading": "<strong>24/7 Emergency Response</strong>",
             "text": "<p>With over 15 years of experience, Eight 83 Plumbing has built a reputation for providing top-notch plumbing services in Canberra. Our commitment to quality and customer satisfaction sets us apart from the competition.</p>",
             "button_label": "Call Us Anytime!",
-            "button_link": "tel:0437 174 202"
+            "button_link": "tel:+61 437 174 202"
           }
         },
         "row_j999rB": {
@@ -344,7 +344,7 @@
             "heading": "Our commitment to quality and transparency",
             "text": "<p>At Eight 83 Plumbing, we believe in using the latest technology and best practices to ensure your plumbing system is reliable and efficient. Our commitment to quality and transparency means you can trust us to get the job done right the first time.</p>",
             "button_label": "Book a Plumber",
-            "button_link": "shopify://pages/contact"
+            "button_link": "shopify://pages/booking-online"
           }
         }
       },
@@ -458,7 +458,7 @@
           "type": "button",
           "settings": {
             "button_label": "Call Now",
-            "button_link": "tel:0437 174 202",
+            "button_link": "tel:+61 437 174 202",
             "button_style_secondary": false,
             "button_label_2": "",
             "button_link_2": "",

@@ -76,6 +76,8 @@
         "section_id": "select-service-for-booking-online",
         "target_section_id": "#job-inform-for-booking-online",
         "next_step_text": "Next",
+        "client_email": "someone@anagency.com.au",
+        "confirm_message": "<p>Hi Client,</p><p>A Customer booked a schedule with the email, [email].</p>",
         "desktop_padding_top": 60,
         "desktop_padding_bottom": 60,
         "mobile_padding_top": 30,

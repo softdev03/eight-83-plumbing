@@ -11,18 +11,13 @@
     }
   }
 {%- endstyle -%}
-<div class="shopify-booking-service page-width" id="{{ section.settings.section_id }}">
+<div class="shopify-booking-service page-width" id="{{ section.settings.section_id }}" client-email="{{ section.settings.client_email }}" confirm-message="{{ section.settings.confirm_message }}">
   <div class="card">
     <h1 class="m-0 heading">{{ section.settings.heading }}</h1>
     <div class="booking-service-items-list">
       {%- for block in section.blocks -%}
         <div class="booking-service-item" price="{{ block.settings.price }}">
           <p class="m-0 service-name">{{ block.settings.service_name }}</p>
-          {% comment %} {%- if block.settings.price < 0 -%}
-            <p class="m-0 service-price">{{- block.settings.price | times: -100 |  money -}}</p>
-          {%- else -%}
-            <p class="m-0 service-price">{{- block.settings.price |  times: 100 |  money -}}</p>
-          {%- endif -%} {% endcomment %}
         </div>
       {%- endfor -%}
     </div>
@@ -56,6 +51,18 @@
       "type": "text",
       "id": "next_step_text",
       "label": "Next Step Text"
+    },
+    {
+      "type": "text",
+      "id": "client_email",
+      "label": "Client Email",
+      "default": "someone@anagency.com.au"
+    },
+    {
+      "type": "richtext",
+      "id": "confirm_message",
+      "label": "Confirm Message",
+      "info": "Please use '[email]' to display the customer email on the notification for the client email."
     },
     {
       "type": "header",
