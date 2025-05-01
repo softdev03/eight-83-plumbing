@@ -31,14 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
 	const jobRooms = document.querySelectorAll('.shopify-section--booking-job .room');
 	const jobPrev = document.querySelector('.shopify-section--booking-job .back-step');
 	const jobNext = document.querySelector('.shopify-section--booking-job .next-step');
-	const scheduleDate = document.querySelector('.shopify-section--booking-time .date-time-wrapper .start-date-time');
-	const dateError = document.querySelector('.shopify-section--booking-time .date-error');
-	const scheduleNext = document.querySelector('.shopify-section--booking-time .book-call');
-	const processErrorMessage = document.querySelector('.shopify-section--booking-time .process-error-message');
+	const bookingTimeSection = document.querySelector('.shopify-booking-section');
+	const scheduleDate = bookingTimeSection.querySelector('.date-time-wrapper .start-date-time');
+	const dateError = bookingTimeSection.querySelector('.date-error');
+	const scheduleNext = bookingTimeSection.querySelector('.book-call');
+	const processErrorMessage = bookingTimeSection.querySelector('.process-error-message');
 	const clientEmail = bookingServiceFirstStep.getAttribute('client-email');
 	const confirmMessage = bookingServiceFirstStep.getAttribute('confirm-message');
 	bookingServiceFirstStep.removeAttribute('client-email');
 	bookingServiceFirstStep.removeAttribute('confirm-message');
+	const redirectURL = bookingTimeSection.getAttribute('redirect');
 
 	for (const serviceItem of serviceItems) {
 		serviceItem.addEventListener('click', () => {
@@ -131,13 +133,16 @@ document.addEventListener('DOMContentLoaded', () => {
 			emailAddressError.classList.add('show');
 			return;
 		}
-		if (!data.jobItem.cleanServiceItem) {
+		if (!data.jobItem.cleanServiceItem && cleanServiceItems.length > 0) {
 			cleanServiceItemError.classList.add('show');
 			return;
 		} else {
 			cleanServiceItemError.classList.remove('show');
 		}
-		if (data.jobItem.address && data.jobItem.cleanServiceItem) {
+		if (data.jobItem.address) {
+			if(!data.jobItem.cleanServiceItem && cleanServiceItems.length > 0) {
+				return;
+			}
 			jobNext.closest('.booking-online').classList.remove('show');
 			document.querySelector(jobNext.getAttribute('href')).closest('.booking-online').classList.add('show');
 		}
@@ -192,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		scheduleNext.innerHTML = scheduleNext.getAttribute('proceed_text');
 		if (result) {
 			processErrorMessage.classList.remove('show');
-			location.href = '';
+			location.href = redirectURL;
 		} else {
 			processErrorMessage.classList.add('show');
 		}

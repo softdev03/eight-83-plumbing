@@ -11,7 +11,7 @@
     }
   }
 {%- endstyle -%}
-<div class="shopify-booking-section page-width" id="{{ section.settings.section_id }}">
+<div class="shopify-booking-section page-width" id="{{ section.settings.section_id }}" redirect="{{ section.settings.redirect_url |  default : '/' }}">
   <div class="card">
     <div class="main">
       <h1 class="heading m-0">{{ section.settings.heading }}</h1>
@@ -81,12 +81,12 @@
     {
       "type": "text",
       "id": "cleaning_service_heading",
-      "label": "Cleaning Service Heading"
+      "label": "Plumbing Service Heading"
     },
     {
       "type": "text",
       "id": "cleaning_service_text",
-      "label": "Cleaning Service Text"
+      "label": "Plumbing Service Text"
     },
     {
       "type": "text",
@@ -112,6 +112,11 @@
       "type": "text",
       "id": "help_text",
       "label": "Help Text"
+    },
+    {
+      "type": "url",
+      "id": "redirect_url",
+      "label": "Redirect URL"
     },
     {
       "type": "header",
