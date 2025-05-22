@@ -8,7 +8,7 @@ const getOption = {
   headers: {
     'accept': 'application/json',
     'Authorization': `Basic ${credentials}`
-  }
+  },
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -265,7 +265,7 @@ const createNewJob = (information) => {
       serviceItems = `Service Items: ${information.jobItem.cleanServiceItem}`;
     }
     jobDescription = `
-    Plumbing Service: ${information.serviceItem.name}  $${information.serviceItem.price}
+    Plumbing Service: ${information.serviceItem.name}
     ${serviceItems}
     ${place}
     Schedule Date: ${information.scheduleDate.date}
