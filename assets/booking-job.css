@@ -55,7 +55,12 @@
 .shopify-section--booking-job .item-wrapper {
   margin-bottom: 30px;
 }
-
+.shopify-section--booking-job .item-wrapper:has(.cleaning-service-items:empty) {
+  display: none;
+}
+.shopify-section--booking-job .your-place:has(.place-rooms:empty) {
+  display: none;
+}
 .shopify-section--booking-job .sub-heading {
   font-size: 24px;
   line-height: 1;

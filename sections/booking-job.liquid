@@ -14,14 +14,6 @@
 <div class="shopify-booking-job page-width" id="{{ section.settings.section_id }}">
   <div class="card">
     <div class="heading-container">
-      {% comment %}
-        <div class="heading-wrapper">
-          {%- if section.settings.logo != blank -%}
-            <img src="{{ section.settings.logo |  img_url: '50x' }}" alt="" width="50px" height="50px">
-          {%- endif -%}
-          <h1 class="heading m-0 text-cap">{{ section.settings.heading }}</h1>
-        </div>
-      {% endcomment %}
       {%- assign pieces = section.settings.phone_number | split: ' ' -%}
       <div class="phone-number-wrapper pulse">
         {%- if section.settings.phone_icon != blank -%}
@@ -40,6 +32,20 @@
         <div class="job-setting">
           <h1 class="job-setting-heading m-0">{{ section.settings.tell_us_your_job_heading }}</h1>
           <p class="job-setting-text m-0">{{ section.settings.tell_us_your_job_text }}</p>
+          <div class="name item-wrapper">
+            {%- if section.settings.name_heading != blank -%}
+              <h1 class="name-heading sub-heading m-0">{{ section.settings.name_heading }}</h1>  
+            {%- endif -%}
+            <input type="text" class="name-input text-input" placeholder="{{ section.settings.name_placeholder }}">
+            <p class="name-error error m-0">{{ section.settings.name_err_msg }}</p>
+          </div>
+          <div class="item-wrapper">
+            {%- if section.settings.phone_heading != blank -%}
+              <h1 class="phone-heading sub-heading m-0">{{ section.settings.phone_heading }}</h1>  
+            {%- endif -%}
+            <input type="text" class="phone-input text-input" placeholder="{{ section.settings.phone_placeholder }}">
+            <p class="phone-error error m-0">{{ section.settings.phone_err_msg }}</p>
+          </div>
           <div class="job-address item-wrapper">
             <h1 class="job-address-heading sub-heading m-0">{{ section.settings.job_address_heading }}</h1>
             <input
@@ -47,7 +53,7 @@
               class="job-address-input text-input"
               placeholder="{{ section.settings.job_placeholder }}"
             >
-            <p class="job-address-error error m-0">Please input your job address.</p>
+            <p class="job-address-error error m-0">{{ section.settings.job_err_msg }}</p>
           </div>
           <div class="email-address item-wrapper">
             <h1 class="email-address-heading sub-heading m-0">{{ section.settings.email_address_heading }}</h1>
@@ -56,12 +62,14 @@
               class="email-address-input text-input"
               placeholder="{{ section.settings.email_placeholder }}"
             >
-            <p class="email-address-error error m-0">Please input your email address.</p>
+            <p class="email-address-error error m-0">{{ section.settings.email_err_msg }}</p>
           </div>
           <div class="cleaning-service-select item-wrapper">
-            <h1 class="cleaning-service-heading sub-heading m-0">
-              {{ section.settings.cleaning_service_select_heading }}
-            </h1>
+            {%- if section.settings.cleaning_service_select_heading != blank -%}
+              <h1 class="cleaning-service-heading sub-heading m-0">
+                {{ section.settings.cleaning_service_select_heading }}
+              </h1>
+            {%- endif -%}
             {%- assign cleaningServiceItems = section.blocks | where: 'type', 'cleaning_servic_item' -%}
             <div class="cleaning-service-items">
               {%- for block in cleaningServiceItems -%}
@@ -166,6 +174,36 @@
     },
     {
       "type": "text",
+      "id": "name_heading",
+      "label": "Name Heading"
+    },
+    {
+      "type": "text",
+      "id": "name_placeholder",
+      "label": "Name Placeholder"
+    },
+    {
+      "type": "text",
+      "id": "name_err_msg",
+      "label": "Name Error Message"
+    },
+    {
+      "type": "text",
+      "id": "phone_heading",
+      "label": "Phone Number Heading"
+    },
+    {
+      "type": "text",
+      "id": "phone_placeholder",
+      "label": "Phone Number Placeholder"
+    },
+    {
+      "type": "text",
+      "id": "phone_err_msg",
+      "label": "Phone Number Error Message"
+    },
+    {
+      "type": "text",
       "id": "tell_us_your_job_heading",
       "label": "Tell Us about Your job for heading"
     },
@@ -186,6 +224,11 @@
     },
     {
       "type": "text",
+      "id": "job_err_msg",
+      "label": "Job Error Message"
+    },
+    {
+      "type": "text",
       "id": "email_address_heading",
       "label": "Email Address Heading"
     },
@@ -196,8 +239,13 @@
     },
     {
       "type": "text",
+      "id": "email_err_msg",
+      "label": "Email Error Message"
+    },
+    {
+      "type": "text",
       "id": "cleaning_service_select_heading",
-      "label": "Clearing Service Select Heading"
+      "label": "Plumbing Service Select Heading"
     },
     {
       "type": "text",
@@ -207,12 +255,12 @@
     {
       "type": "text",
       "id": "cleaning_service_heading",
-      "label": "Cleaning Service Heading"
+      "label": "Plumbing Service Heading"
     },
     {
       "type": "text",
       "id": "cleaning_service_text",
-      "label": "Cleaning Service Text"
+      "label": "Plumbing Service Text"
     },
     {
       "type": "text",
@@ -272,7 +320,7 @@
   "blocks": [
     {
       "type": "cleaning_servic_item",
-      "name": "Cleaning Service Item",
+      "name": "Plumbing Service Item",
       "settings": [
         {
           "type": "text",

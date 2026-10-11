@@ -1,116 +1,161 @@
 .shopify-section--enquiry-form .shopify-enquiry-form {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    row-gap: 16px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	row-gap: 16px;
 }
+
 .shopify-section--enquiry-form .intro {
-    width: calc((100% - 30px) * 0.45);
-    height: fit-content;
+	width: calc((100% - 30px) * 0.45);
+	height: fit-content;
 }
+
 .shopify-section--enquiry-form .heading {
-    font-size: 52px;
-    margin-bottom: 10px;
+	font-size: 52px;
+	margin-bottom: 10px;
 }
+
 .shopify-section--enquiry-form .text {
-    font-size: 19px;
-    margin-bottom: 48px;
+	font-size: 19px;
+	margin-bottom: 48px;
 }
+
 .shopify-section--enquiry-form .text p {
-    margin: 0px;
+	margin: 0px;
 }
+
 .shopify-section--enquiry-form .image {
-    line-height: 0;
-    max-width: 500px;
+	line-height: 0;
+	max-width: 500px;
 }
+
 .shopify-section--enquiry-form .image img {
-    width: 100%;
+	width: 100%;
 }
 
 .shopify-section--enquiry-form .email-form {
-    width: calc((100% - 30px)* 0.55);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 10px;
-    height: fit-content;
+	width: calc((100% - 30px)* 0.55);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 10px;
+	height: fit-content;
 }
-.shopify-section--enquiry-form input:not(.submit), .shopify-section--enquiry-form select {
-    width: calc(50% - 5px);
+
+.shopify-section--enquiry-form input,.shopify-section--enquiry-form textarea,.shopify-section--enquiry-form select {
+	color: #000;
 }
+.shopify-section--enquiry-form input:not(.submit),
+.shopify-section--enquiry-form select {
+	width: calc(50% - 5px);
+}
+
 .shopify-section--enquiry-form input:not(.submit) {
-    border-radius: 3px;
+	border-radius: 3px;
 }
+
 .shopify-section--enquiry-form textarea {
-    resize: none;
+	resize: none;
 }
-.shopify-section--enquiry-form input, .shopify-section--enquiry-form textarea, .shopify-section--enquiry-form select, .shopify-section--enquiry-form option {
-    padding: 2rem;
-    color: #D9D9D9;
-    font-size: 24px;
-    height: fit-content;
-    border-color: transparent;
-    border-width: 3px;
+
+.shopify-section--enquiry-form input,
+.shopify-section--enquiry-form textarea,
+.shopify-section--enquiry-form select,
+.shopify-section--enquiry-form option {
+	padding: 2rem;
+	color: #000;
+	font-size: 24px;
+	height: fit-content;
+	border-color: transparent;
+	border-width: 3px;
 }
-.shopify-section--enquiry-form input:not(.submit):focus, .shopify-section--enquiry-form textarea:focus {
-    outline: none;
-    box-shadow: none;
-    border-color: black;
+
+.shopify-section--enquiry-form input:not(.submit):focus,
+.shopify-section--enquiry-form textarea:focus {
+	outline: none;
+	box-shadow: none;
+	border-color: black;
 }
+
 .shopify-section--enquiry-form .submit {
-    color: white;
-    cursor: pointer;
+	color: white;
+	cursor: pointer;
 }
 
 ::placeholder {
-    color: #D9D9D9;
+	color: #D9D9D9;
 }
 
 @media screen and (max-width: 1279px) {
-    .shopify-section--enquiry-form input:not(.submit), .shopify-section--enquiry-form select {
-        width: 100%;
-    }
-    .shopify-section--enquiry-form .heading {
-        font-size: 45px;
-    }
-    .shopify-section--enquiry-form .text {
-        font-size: 18px;
-    }
-    .shopify-section--enquiry-form input, .shopify-section--enquiry-form textarea, .shopify-section--enquiry-form select, .shopify-section--enquiry-form option {
-        font-size: 22px;
-    }
+
+	.shopify-section--enquiry-form input:not(.submit),
+	.shopify-section--enquiry-form select {
+		width: 100%;
+	}
+
+	.shopify-section--enquiry-form .heading {
+		font-size: 45px;
+	}
+
+	.shopify-section--enquiry-form .text {
+		font-size: 18px;
+	}
+
+	.shopify-section--enquiry-form input,
+	.shopify-section--enquiry-form textarea,
+	.shopify-section--enquiry-form select,
+	.shopify-section--enquiry-form option {
+		font-size: 22px;
+	}
 }
+
 @media screen and (max-width: 1023px) {
-    .shopify-section--enquiry-form .intro {
-        width: 100%;
-    }
-    .shopify-section--enquiry-form .email-form {
-        width: 100%;
-    }
-    .shopify-section--enquiry-form input:not(.submit), .shopify-section--enquiry-form select {
-        width: calc(50% - 5px);
-    }
-    .shopify-section--enquiry-form .heading {
-        font-size: 40px;
-    }
-    .shopify-section--enquiry-form input, .shopify-section--enquiry-form textarea, .shopify-section--enquiry-form select, .shopify-section--enquiry-form option {
-        font-size: 20px;
-    }
+	.shopify-section--enquiry-form .intro {
+		width: 100%;
+	}
+
+	.shopify-section--enquiry-form .email-form {
+		width: 100%;
+	}
+
+	.shopify-section--enquiry-form input:not(.submit),
+	.shopify-section--enquiry-form select {
+		width: calc(50% - 5px);
+	}
+
+	.shopify-section--enquiry-form .heading {
+		font-size: 40px;
+	}
+
+	.shopify-section--enquiry-form input,
+	.shopify-section--enquiry-form textarea,
+	.shopify-section--enquiry-form select,
+	.shopify-section--enquiry-form option {
+		font-size: 20px;
+	}
 }
 
 @media screen and (max-width: 749px) {
-    .shopify-section--enquiry-form input:not(.submit), .shopify-section--enquiry-form select {
-        width: 100%;
-    }
-    .shopify-section--enquiry-form .heading {
-        font-size: 30px;
-        margin-bottom: 6px;
-    }
-    .shopify-section--enquiry-form .text {
-        font-size: 12px;
-        margin-bottom: 20px;
-    }
-    .shopify-section--enquiry-form input, .shopify-section--enquiry-form textarea, .shopify-section--enquiry-form select, .shopify-section--enquiry-form option {
-        font-size: 18px;
-    }
+
+	.shopify-section--enquiry-form input:not(.submit),
+	.shopify-section--enquiry-form select {
+		width: 100%;
+	}
+
+	.shopify-section--enquiry-form .heading {
+		font-size: 30px;
+		margin-bottom: 6px;
+	}
+
+	.shopify-section--enquiry-form .text {
+		font-size: 12px;
+		margin-bottom: 20px;
+	}
+
+	.shopify-section--enquiry-form input,
+	.shopify-section--enquiry-form textarea,
+	.shopify-section--enquiry-form select,
+	.shopify-section--enquiry-form option {
+		font-size: 18px;
+	}
 }

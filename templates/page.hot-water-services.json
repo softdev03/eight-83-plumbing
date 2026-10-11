@@ -29,11 +29,11 @@
         "buttons_gQV6xc": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "0437 174 202",
-            "button_link_1": "tel:0437 174 202",
+            "button_label_1": "+61 437 174 202",
+            "button_link_1": "tel:+61 437 174 202",
             "button_style_secondary_1": false,
             "button_label_2": "Book Now",
-            "button_link_2": "shopify://pages/contact",
+            "button_link_2": "shopify://pages/booking-online",
             "button_style_secondary_2": true
           }
         }
@@ -162,7 +162,7 @@
         "heading_CJhahg": {
           "type": "heading",
           "settings": {
-            "heading": "Tired of unreliable hot water? Our comprehensive services ensure your system works perfectly, giving you peace of mind.<strong> </strong><a href=\"tel:+61300 495 574\" title=\"Call 1300 495 574\">0437 174 202.</a>",
+            "heading": "Tired of unreliable hot water? Our comprehensive services ensure your system works perfectly, giving you peace of mind.<strong> </strong><a href=\"tel:0437 174 202\"><strong>+61 </strong>437 174 202</a>",
             "heading_size": "h2"
           }
         }
@@ -217,14 +217,90 @@
         "padding_bottom": 36
       }
     },
-    "contact_form_fDGHDq": {
-      "type": "contact-form",
+    // "contact_form_fDGHDq": {
+    //   "type": "contact-form",
+    //   "disabled": true,
+    //   "settings": {
+    //     "heading": "Fill out the form below or call us directly at <a href=\"tel:0437 174 202\"><strong>+61 </strong>437 174 202</a>. Our team is ready to provide you with the best hot water services in Melbourne.",
+    //     "heading_size": "h2",
+    //     "color_scheme": "",
+    //     "padding_top": 12,
+    //     "padding_bottom": 36
+    //   }
+    // },
+    "enquiry_form_GJarAm": {
+      "type": "enquiry-form",
+      "blocks": {
+        "service_9zTQfL": {
+          "type": "service",
+          "settings": {
+            "text": "Blocked Drains"
+          }
+        },
+        "service_txwN4Q": {
+          "type": "service",
+          "settings": {
+            "text": "Burst Pipes"
+          }
+        },
+        "service_wyqTMR": {
+          "type": "service",
+          "settings": {
+            "text": "New Home Plumbing"
+          }
+        },
+        "service_JE6P4D": {
+          "type": "service",
+          "settings": {
+            "text": "Emergency Plumbing"
+          }
+        },
+        "service_jD6gpq": {
+          "type": "service",
+          "settings": {
+            "text": "Gas Fitting"
+          }
+        },
+        "service_zPdGXp": {
+          "type": "service",
+          "settings": {
+            "text": "Bathroom Renovations"
+          }
+        },
+        "job_type_bBfa6x": {
+          "type": "job_type",
+          "settings": {
+            "text": "Residential"
+          }
+        },
+        "job_type_mJ8zrm": {
+          "type": "job_type",
+          "settings": {
+            "text": "Commercial"
+          }
+        }
+      },
+      "block_order": [
+        "service_9zTQfL",
+        "service_txwN4Q",
+        "service_wyqTMR",
+        "service_JE6P4D",
+        "service_jD6gpq",
+        "service_zPdGXp",
+        "job_type_bBfa6x",
+        "job_type_mJ8zrm"
+      ],
       "settings": {
-        "heading": "Fill out the form below or call us directly at <a href=\"tel:1300 495 574\" title=\"tel:1300 495 574\">0437 174 202</a>. Our team is ready to provide you with the best hot water services in Melbourne.",
-        "heading_size": "h2",
-        "color_scheme": "",
-        "padding_top": 12,
-        "padding_bottom": 36
+        "section_id": "shopify-enquiry-form",
+        "heading": "Get a Free Plumbing Quote",
+        "text": "<p>Fill out the form below and our team <strong>will get back to you within 60 minutes. </strong><em><strong>Guaranteed!</strong></em></p>",
+        "image": "shopify://shop_images/sec5_cashback.webp",
+        "redirect_url": "shopify://pages/thank-you",
+        "desktop_padding_top": 60,
+        "desktop_padding_bottom": 60,
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 60,
+        "bg_color": "#f6f6f6"
       }
     },
     "eg_testimonials_2_a4Tg9q": {
@@ -316,8 +392,8 @@
         "buttons_CfhD7C": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Call Us",
-            "button_link_1": "tel:1300 495 574",
+            "button_label_1": "+61 437 174 202",
+            "button_link_1": "tel:+61 437 174 202",
             "button_style_secondary_1": false,
             "button_label_2": "",
             "button_link_2": "",
@@ -382,7 +458,7 @@
     "collapsible_content_Aq49Fz",
     "rich_text_qygbqc",
     "image_with_text_ftCdxm",
-    "contact_form_fDGHDq",
+    "enquiry_form_GJarAm",
     "eg_testimonials_2_a4Tg9q",
     "image_banner_t9VViN",
     "waves_HJYgLq",
